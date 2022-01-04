@@ -9,6 +9,9 @@
   "repository": "https://yuhongda@github.com/yuhongda/echarts-readymade.git",
   "author": "yuhongda <silverage.y@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "lerna run build"
+  },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.14.8",
