@@ -1,0 +1,25 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "jsx": "react",
+    "outDir": "./dist",
+    "module": "ESNext",
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
+    "sourceMap": false,
+    "target": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "declaration": true,
+    "allowJs": false,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": false,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "removeComments": false,
+    "resolveJsonModule": true,
+  },
+}
