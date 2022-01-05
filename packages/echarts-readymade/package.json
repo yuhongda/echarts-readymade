@@ -3,6 +3,17 @@
   "version": "1.0.0",
   "description": "A collection of echarts templates for React. Based on echarts-for-react",
   "main": "lib/index.js",
+  "module": "lib/esm/index.esm.js",
+  "unpkg": "lib/umd/index.min.js",
+  "jsdelivr": "lib/umd/index.min.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "lib/",
+    "types/",
+    "index.d.ts",
+    "LICENSE",
+    "README.md"
+  ],
   "repository": "https://yuhongda@github.com/yuhongda/echarts-readymade.git",
   "author": "yuhongda",
   "license": "MIT",
