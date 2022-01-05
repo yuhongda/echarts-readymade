@@ -1,1 +1,2 @@
-export { ChartProvider } from '@echarts-readymade/core'
+// export { ChartProvider } from '@echarts-readymade/core'
+export {}

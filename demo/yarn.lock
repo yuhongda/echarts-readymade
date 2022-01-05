@@ -1327,6 +1327,11 @@ typescript@^4.3.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.2.tgz#8ac1fba9f52256fdb06fb89e4122fa6a346c2998"
   integrity sha512-5BlMof9H1yGt0P8/WF+wPNw6GfctgGjXp5hkblpyT+8rkASSmkUKMXrxR0Xg8ThVCi/JnHQiKXeBaEwCeQwMFw==
 
+use-async-request@^1.2.10:
+  version "1.2.10"
+  resolved "https://registry.yarnpkg.com/use-async-request/-/use-async-request-1.2.10.tgz#5f854c70f2250ca6b022da43a27f37a987521005"
+  integrity sha512-ygMtKY7XG0/uduGWcXFzGF/2JHDzLUxbioQgewicQtCP1joeBNIaqyHiAWzUQscIa2XgAK2Pq+o2BQgOadRrbQ==
+
 vite@^2.6.4:
   version "2.6.14"
   resolved "https://registry.yarnpkg.com/vite/-/vite-2.6.14.tgz#35c09a15e4df823410819a2a239ab11efb186271"

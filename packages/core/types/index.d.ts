@@ -1,4 +1,5 @@
-import React, { CSSProperties } from 'react';
+import * as React from 'react';
+import React__default, { CSSProperties } from 'react';
 
 declare type EChartsOption = any;
 declare type EChartsInstance = any;
@@ -70,10 +71,26 @@ interface ChartContextValue<T = any> {
     data?: T[];
     echartsOptions?: EChartsReactProps;
 }
+declare const ChartContext: React__default.Context<ChartContextValue<any>>;
 interface ChartProviderProps<T = any> extends ChartContextValue<T> {
 }
-declare const ChartProvider: React.FC<ChartProviderProps>;
+declare const ChartProvider: React__default.FC<ChartProviderProps>;
 
-declare const _default: {};
+declare type Field = {
+    fieldKey: string;
+    fieldName: string;
+    yAxixIndex?: number;
+    isPercent?: boolean;
+    decimalLength?: number;
+};
+declare type ChartProps = {
+    dimension: Field[];
+    valueList: Field[];
+};
 
-export { ChartProvider, _default as default };
+declare const _default: {
+    ChartProvider: React.FC<ChartProviderProps<any>>;
+    ChartContext: React.Context<ChartContextValue<any>>;
+};
+
+export { ChartContext, ChartProps, ChartProvider, Field, _default as default };

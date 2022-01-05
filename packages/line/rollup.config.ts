@@ -7,7 +7,7 @@ import type { RollupOptions } from 'rollup'
 const format = process.env.FORMAT || 'esm'
 
 const config: RollupOptions = {
-  input: './src/index.ts',
+  input: './src/index.tsx',
   plugins: [
     resolve({
       customResolveOptions: {

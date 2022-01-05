@@ -6,6 +6,7 @@ import { Divider, Typography } from 'antd'
 const { Title } = Typography
 import { Line } from './components/Line'
 
+
 type ResultDataType<T> = T[]
 
 const Wrapper = styled.div`
