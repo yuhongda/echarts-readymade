@@ -16,6 +16,7 @@ export const Line: React.FC<LineChartProps> = (props) => {
         notMerge={true}
         opts={{ renderer: 'svg' }}
         style={{ height: '100%', width: '100%' }}
+        {...echartsOptions}
       />
     </>
   )
