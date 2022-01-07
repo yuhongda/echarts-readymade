@@ -18,7 +18,7 @@ const config: RollupOptions = {
     commonjs(),
   ],
 
-  external: ['react', 'react-dom']
+  external: ['react', 'react-dom', 'echarts']
 }
 
 if (format === 'esm' || format === 'cjs' || format === 'umd') {
