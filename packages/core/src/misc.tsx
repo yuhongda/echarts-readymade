@@ -1,3 +1,22 @@
+import type { EChartsOption } from 'echarts-for-react'
+import numeral from 'numeral'
+import { ceil } from 'mathjs/number'
+
+export const COLOR_LIST = [
+  '#FF7C7C',
+  '#ADD4EF',
+  '#BFDAA7',
+  '#FCAC65',
+  '#C6C1D2',
+  '#7598E4',
+  '#CF6D6C',
+  '#4979CF',
+  '#E1934B',
+  '#829649',
+  '#7D70AC',
+  '#2559B7'
+]
+
 export const echartsOptionsBase: any = {
   title: {
     show: true,
@@ -199,4 +218,17 @@ export const echartsOptionsBase: any = {
     icon: 'circle'
   },
   series: null
+}
+
+export const mergeOption = (
+  baseOptions: EChartsOption,
+  userOptions: EChartsOption = {}
+): EChartsOption => {
+  const _baseOptions = baseOptions || {}
+  const _userOptions = userOptions || {}
+  const _mergeOptions = {
+    ..._baseOptions,
+    ..._userOptions
+  }
+  return _mergeOptions
 }

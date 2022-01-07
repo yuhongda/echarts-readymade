@@ -3,7 +3,7 @@ import { ChartProvider, ChartContext } from './ChartProvider'
 export type Field = {
   fieldKey: string
   fieldName: string
-  yAxixIndex?: number
+  yAxisIndex?: number
   isPercent?: boolean
   decimalLength?: number
 }

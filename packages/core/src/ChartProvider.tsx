@@ -1,29 +1,23 @@
 import React from 'react'
-import type { EChartsReactProps } from 'echarts-for-react'
-import { echartsOptionsBase } from './misc'
+import type { EChartsReactProps, EChartsOption } from 'echarts-for-react'
+import { echartsOptionsBase, mergeOption } from './misc'
 
 export interface ChartContextValue<T = any> {
   data?: T[]
   echartsOptions?: EChartsReactProps
-  echartsOptionsBase?: any
+  chartOption?: EChartsOption
 }
 
 export const ChartContext = React.createContext<ChartContextValue>({})
 const { Provider } = ChartContext
 
-export interface ChartProviderProps<T = any> extends Omit<ChartContextValue<T>, 'echartsOptionsBase'> {
-  // echartsLayout is just what echartsOpiotnsBase is, but it is better to understand for users.
-  echartsLayout?: any
-}
+export interface ChartProviderProps<T = any> extends Omit<ChartContextValue<T>, 'chartOptions'> {}
 
 export const ChartProvider: React.FC<ChartProviderProps> = (props) => {
-  const { data, echartsOptions, echartsLayout } = props
+  const { data, echartsOptions } = props
+  const { option: userOptions } = echartsOptions || {}
 
-  return (
-    <Provider
-      value={{ data, echartsOptions, echartsOptionsBase: echartsLayout || echartsOptionsBase }}
-    >
-      {props.children}
-    </Provider>
-  )
+  const chartOption = mergeOption(echartsOptionsBase, userOptions)
+
+  return <Provider value={{ data, echartsOptions, chartOption }}>{props.children}</Provider>
 }

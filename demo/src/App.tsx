@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import 'antd/dist/antd.css'
 import { Divider, Typography } from 'antd'
 const { Title } = Typography
-import { Line } from './components/Line'
+import { LineChart } from './components/LineChart'
 
 
 type ResultDataType<T> = T[]
@@ -19,7 +19,7 @@ function App() {
       <header className="App-header">
         <Title>echarts-readymade</Title>
         <Divider />
-        <Line />
+        <LineChart />
       </header>
     </Wrapper>
   )

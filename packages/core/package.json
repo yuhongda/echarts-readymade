@@ -35,6 +35,10 @@
     "release:next": "npm publish --tag next"
   },
   "dependencies": {
-    "echarts-for-react": "^3.0.2"
+    "mathjs": "^10.0.2",
+    "numeral": "^2.0.6"
+  },
+  "devDependencies": {
+    "@types/numeral": "^2.0.2"
   }
 }
