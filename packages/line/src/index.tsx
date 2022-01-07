@@ -70,51 +70,53 @@ interface LineChartProps extends ChartProps {}
 
 export const Line: React.FC<LineChartProps> = (props) => {
   const { data, echartsOptions, chartOption } = useContext(ChartContext)
+  const { option, ...resetOptions } = echartsOptions || {}
   const { dimension, valueList } = props
-
 
   chartOption.xAxis.data =
     data &&
     data.map((d) => {
-      const value = d[dimension && dimension[0] && dimension[0].fieldKey];
+      const value = d[dimension && dimension[0] && dimension[0].fieldKey]
       if (value != null) {
-        return `${value}月`;
+        return `${value}月`
       }
-    });
-    chartOption.series = valueList.map((v) => {
-      return {
-        name: v.fieldName,
-        type: 'line',
-        barWidth: 30,
-        barGap: 0,
-        lineStyle: {
-          shadowColor: 'rgba(0,0,0,0.15)',
-          shadowBlur: 3,
-          shadowOffsetX: 0,
-          shadowOffsetY: 1,
-        },
-        data:
-          data &&
-          data.map((d) => {
-            if (d[v.fieldKey] != null) {
-              let result = d[v.fieldKey];
-              if (v.isPercent) {
-                result = multiply(d[v.fieldKey], 100);
-              }
-              return {
-                value: round(result, v.decimalLength || 0),
-                isPercent: v.isPercent,
-              };
+    })
+  chartOption.series = valueList.map((v) => {
+    return {
+      name: v.fieldName,
+      type: 'line',
+      barWidth: 30,
+      barGap: 0,
+      lineStyle: {
+        shadowColor: 'rgba(0,0,0,0.15)',
+        shadowBlur: 3,
+        shadowOffsetX: 0,
+        shadowOffsetY: 1
+      },
+      data:
+        data &&
+        data.map((d) => {
+          if (d[v.fieldKey] != null) {
+            let result = d[v.fieldKey]
+            if (v.isPercent) {
+              result = multiply(d[v.fieldKey], 100)
             }
             return {
-              value: 0,
-              isPercent: v.isPercent,
-            };
-          }),
-        yAxisIndex: v.yAxisIndex || 0,
-      };
-    });
-    console.log(data, echartsOptions, chartOption)
+              value: round(result, v.decimalLength || 0),
+              isPercent: v.isPercent
+            }
+          }
+          return {
+            value: 0,
+            isPercent: v.isPercent
+          }
+        }),
+      yAxisIndex: v.yAxisIndex || 0
+    }
+  })
+  console.log(data, echartsOptions, chartOption)
+
+  const reactEchartsOptions = echartsOptions
 
   return (
     <>
@@ -124,7 +126,7 @@ export const Line: React.FC<LineChartProps> = (props) => {
         notMerge={true}
         opts={{ renderer: 'svg' }}
         style={{ height: '100%', width: '100%' }}
-        {...echartsOptions}
+        {...resetOptions}
       />
     </>
   )
