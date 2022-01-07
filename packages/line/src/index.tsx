@@ -122,7 +122,21 @@ export const Line: React.FC<LineChartProps> = (props) => {
     <>
       <ReactEChartsCore
         echarts={echarts}
-        option={{ ...chartOption }}
+        option={{
+          xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [
+            {
+              data: [150, 230, 224, 218, 135, 147, 260],
+              type: 'line'
+            }
+          ]
+        }}
         notMerge={true}
         opts={{ renderer: 'svg' }}
         style={{ height: '100%', width: '100%' }}
