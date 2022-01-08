@@ -116,27 +116,11 @@ export const Line: React.FC<LineChartProps> = (props) => {
   })
   console.log(data, echartsOptions, chartOption)
 
-  const reactEchartsOptions = echartsOptions
-
   return (
     <>
       <ReactEChartsCore
         echarts={echarts}
-        option={{
-          xAxis: {
-            type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-          },
-          yAxis: {
-            type: 'value'
-          },
-          series: [
-            {
-              data: [150, 230, 224, 218, 135, 147, 260],
-              type: 'line'
-            }
-          ]
-        }}
+        option={{ ...chartOption }}
         notMerge={true}
         opts={{ renderer: 'svg' }}
         style={{ height: '100%', width: '100%' }}

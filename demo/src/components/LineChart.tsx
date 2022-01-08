@@ -2,6 +2,7 @@ import React from 'react'
 import { ChartProvider } from '../../../packages/core/src/ChartProvider'
 import { Line } from '../../../packages/line/src'
 import styled from 'styled-components'
+import { Field } from '@echarts-readymade/core'
 
 const Container = styled.div`
   width: 500px;
@@ -29,17 +30,18 @@ export const LineChart: React.FC = () => {
     { v6: 0.6310820851864044, d1: '2021-11-30', v4: 100.0, v5: 61.308992912255384 }
   ]
 
-  const dimension = [
+  const dimension: Field[] = [
     {
       fieldKey: 'd1',
       fieldName: '日期'
     }
   ]
 
-  const valueList = [
+  const valueList: Field[] = [
     {
       fieldKey: 'v6',
-      fieldName: '占比'
+      fieldName: '占比',
+      isPercent: true
     }
   ]
 
