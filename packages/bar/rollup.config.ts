@@ -3,6 +3,7 @@ import esbuild from 'rollup-plugin-esbuild'
 import replace from 'rollup-plugin-replace'
 import resolve from 'rollup-plugin-node-resolve'
 import type { RollupOptions } from 'rollup'
+import commonjs from '@rollup/plugin-commonjs'
 
 const format = process.env.FORMAT || 'esm'
 
@@ -14,6 +15,7 @@ const config: RollupOptions = {
         moduleDirectory: 'node_modules'
       }
     }),
+    commonjs(),
   ],
 
   external: ['react', 'react-dom']
@@ -79,7 +81,7 @@ if (format === 'dts') {
     format: 'es',
     file: 'types/index.d.ts'
   }
-  config.plugins?.push(dts())
+  config.plugins = [dts()]
 }
 
 export default config

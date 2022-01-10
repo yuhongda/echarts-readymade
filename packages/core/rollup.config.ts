@@ -80,7 +80,7 @@ if (format === 'dts') {
     format: 'es',
     file: 'types/index.d.ts'
   }
-  config.plugins?.push(dts())
+  config.plugins = [dts()]
 }
 
 export default config
