@@ -7,7 +7,7 @@ import type { Field } from '@echarts-readymade/core'
 import { Radio, Button } from 'antd'
 
 const Container = styled.div`
-  width: 500px;
+  width: 100%;
   height: 500px;
 `
 

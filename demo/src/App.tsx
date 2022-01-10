@@ -2,12 +2,9 @@ import logo from './logo.svg'
 import './App.css'
 import styled from 'styled-components'
 import 'antd/dist/antd.css'
-import { Divider, Typography } from 'antd'
+import { Divider, Typography, Row, Col } from 'antd'
 const { Title } = Typography
 import { LineChart } from './components/LineChart'
-
-
-type ResultDataType<T> = T[]
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -19,7 +16,14 @@ function App() {
       <header className="App-header">
         <Title>echarts-readymade</Title>
         <Divider />
-        <LineChart />
+        <Row gutter={16}>
+          <Col span={12}>
+            <LineChart />
+          </Col>
+          <Col span={12}>
+            <LineChart />
+          </Col>
+        </Row>
       </header>
     </Wrapper>
   )
