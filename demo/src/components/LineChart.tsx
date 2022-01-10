@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ChartProvider } from '../../../packages/core/src/ChartProvider'
 import { Line } from '../../../packages/line/src'
+import type { LegendPosition } from '../../../packages/line/src'
 import styled from 'styled-components'
-import { Field } from '@echarts-readymade/core'
+import type { Field } from '@echarts-readymade/core'
+import { Radio, Button } from 'antd'
 
 const Container = styled.div`
   width: 500px;
@@ -10,7 +12,7 @@ const Container = styled.div`
 `
 
 export const LineChart: React.FC = () => {
-  const data = [
+  const [data, setData] = useState([
     {
       v6: 0.8141021277904137,
       d1: '2020-12-31',
@@ -28,7 +30,7 @@ export const LineChart: React.FC = () => {
     { v6: 0.326598530255224, d1: '2021-09-30', v4: 56.245232663930274, v5: 42.39808154552174 },
     { v6: 0.5967677847481455, d1: '2021-10-31', v4: 66.81265781236482, v5: 41.8424384876371 },
     { v6: 0.6310820851864044, d1: '2021-11-30', v4: 100.0, v5: 61.308992912255384 }
-  ]
+  ])
 
   const dimension: Field[] = [
     {
@@ -40,24 +42,69 @@ export const LineChart: React.FC = () => {
   const valueList: Field[] = [
     {
       fieldKey: 'v6',
-      fieldName: '占比',
+      fieldName: '占比1',
       isPercent: true
+    },
+    {
+      fieldKey: 'v4',
+      fieldName: '占比2'
+    },
+    {
+      fieldKey: 'v5',
+      fieldName: '占比3'
     }
   ]
 
+  const [legendPosition, setLegendPosition] = useState('top')
+
   return (
     <Container>
+      <Radio.Group
+        value={legendPosition}
+        buttonStyle="solid"
+        onChange={(e) => setLegendPosition(e.target.value)}
+      >
+        <Radio.Button value="top">Top</Radio.Button>
+        <Radio.Button value="right">Right</Radio.Button>
+        <Radio.Button value="bottom">Bottom</Radio.Button>
+        <Radio.Button value="left">Left</Radio.Button>
+      </Radio.Group>
+      <Button
+        onClick={() => {
+          setData(
+            data.map((d) => ({
+              ...d,
+              v6: Math.random(),
+              v4: Math.random() * 100,
+              v5: Math.random() * 100
+            }))
+          )
+        }}
+      >
+        Reload
+      </Button>
       <ChartProvider
         data={data}
         echartsOptions={{
           option: {
             title: {
               text: 'Line Chart'
-            }
+            },
+            yAxis: [
+              {
+                axisLabel: {
+                  formatter: '{value}%'
+                }
+              }
+            ]
           }
         }}
       >
-        <Line dimension={dimension} valueList={valueList} />
+        <Line
+          dimension={dimension}
+          valueList={valueList}
+          legendPosition={legendPosition as LegendPosition}
+        />
       </ChartProvider>
     </Container>
   )

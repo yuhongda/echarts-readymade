@@ -138,8 +138,8 @@ export const echartsOptionsBase: any = {
       lineStyle: {}
     },
     axisLabel: {
-      rotate: 0,
-      align: 'center',
+      rotate: 45,
+      align: 'right',
       textStyle: {
         color: '#8C8C8C'
       }
@@ -206,11 +206,13 @@ export const echartsOptionsBase: any = {
   color: COLOR_LIST,
   textStyle: {},
   legend: {
+    itemWidth: 10,
+    itemHeight: 10,
     top: 30,
     left: 24,
     selectedMode: false,
     textStyle: {
-      padding: [2, 0, 0, -5]
+      padding: [2, 0, 0, 0]
     },
     show: true,
     position: 'bottom',
@@ -232,3 +234,20 @@ export const mergeOption = (
   }
   return _mergeOptions
 }
+
+export const truncate = (str: string, n: number) => {
+  const r = /[^\x00-\xff]/g;
+  let m;
+
+  if (str.replace(r, '**').length > n) {
+    m = Math.floor(n / 2);
+
+    for (let i = m, l = str.length; i < l; i++) {
+      if (str.slice(0, i).replace(r, '**').length >= n) {
+        return str.slice(0, i) + '...';
+      }
+    }
+  }
+
+  return str;
+};

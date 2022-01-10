@@ -1,4 +1,6 @@
 import { ChartProvider, ChartContext } from './ChartProvider'
+import { mergeOption } from './misc'
+import { buildChartOption } from './chartOptionBuilder'
 
 export type Field = {
   fieldKey: string
@@ -11,7 +13,9 @@ export type Field = {
 export type ChartProps = {
   dimension: Field[]
   valueList: Field[]
+  echartsSeries?: any[]
+  xAxisData?: any
 }
 
-export { ChartProvider, ChartContext }
-export default { ChartProvider, ChartContext }
+export { ChartProvider, ChartContext, mergeOption, buildChartOption }
+export default { ChartProvider, ChartContext, mergeOption, buildChartOption }

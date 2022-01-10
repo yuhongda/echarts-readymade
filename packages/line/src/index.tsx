@@ -1,8 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { multiply, round } from 'mathjs/number'
+import { cloneDeep } from 'lodash'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps } from '@echarts-readymade/core'
+import { mergeOption, buildChartOption } from '../../../packages/core/src'
 import { ChartContext } from '../../../packages/core/src/ChartProvider'
 import { LineChart } from 'echarts/charts'
 import {
@@ -66,61 +68,75 @@ echarts.use([
   DatasetComponent
 ])
 
-interface LineChartProps extends ChartProps {}
+export type LegendPosition = 'top' | 'left' | 'right' | 'bottom'
+
+interface LineChartProps extends ChartProps {
+  legendPosition?: LegendPosition
+}
 
 export const Line: React.FC<LineChartProps> = (props) => {
-  const { data, echartsOptions, chartOption } = useContext(ChartContext)
+  const {
+    data,
+    echartsOptions,
+    echartsOptionsBase: chartOption,
+    userOptions
+  } = useContext(ChartContext)
   const { option, ...resetOptions } = echartsOptions || {}
-  const { dimension, valueList } = props
+  const { dimension, valueList, echartsSeries, xAxisData, ...restSettings } = props
 
-  chartOption.xAxis.data =
-    data &&
-    data.map((d) => {
-      const value = d[dimension && dimension[0] && dimension[0].fieldKey]
-      if (value != null) {
-        return `${value}月`
-      }
-    })
-  chartOption.series = valueList.map((v) => {
-    return {
-      name: v.fieldName,
-      type: 'line',
-      barWidth: 30,
-      barGap: 0,
-      lineStyle: {
-        shadowColor: 'rgba(0,0,0,0.15)',
-        shadowBlur: 3,
-        shadowOffsetX: 0,
-        shadowOffsetY: 1
-      },
-      data:
-        data &&
+  if (chartOption) {
+    chartOption.xAxis.data =
+      xAxisData ||
+      (data &&
         data.map((d) => {
-          if (d[v.fieldKey] != null) {
-            let result = d[v.fieldKey]
-            if (v.isPercent) {
-              result = multiply(d[v.fieldKey], 100)
-            }
-            return {
-              value: round(result, v.decimalLength || 0),
-              isPercent: v.isPercent
-            }
+          const value = d[dimension && dimension[0] && dimension[0].fieldKey]
+          if (value != null) {
+            return `${value}`
           }
-          return {
-            value: 0,
-            isPercent: v.isPercent
-          }
-        }),
-      yAxisIndex: v.yAxisIndex || 0
-    }
-  })
-  console.log(data, echartsOptions, chartOption)
+        }))
+    chartOption.series =
+      echartsSeries ||
+      valueList.map((v) => {
+        return {
+          name: v.fieldName,
+          type: 'line',
+          lineStyle: {
+            shadowColor: 'rgba(0,0,0,0.15)',
+            shadowBlur: 3,
+            shadowOffsetX: 0,
+            shadowOffsetY: 1
+          },
+          data:
+            data &&
+            data.map((d) => {
+              if (d[v.fieldKey] != null) {
+                let result = d[v.fieldKey]
+                if (v.isPercent) {
+                  result = multiply(d[v.fieldKey], 100)
+                }
+                return {
+                  value: round(result, v.decimalLength || 0),
+                  isPercent: v.isPercent
+                }
+              }
+              return {
+                value: 0,
+                isPercent: v.isPercent
+              }
+            }),
+          yAxisIndex: v.yAxisIndex || 0
+        }
+      })
+  }
+
+  const builtOption = buildChartOption(chartOption, restSettings, 'line')
+  const options = mergeOption(builtOption, userOptions)
 
   return (
     <>
       <ReactEChartsCore
         echarts={echarts}
-        option={{ ...chartOption }}
+        option={{ ...cloneDeep(options) }}
         notMerge={true}
         opts={{ renderer: 'svg' }}
         style={{ height: '100%', width: '100%' }}
