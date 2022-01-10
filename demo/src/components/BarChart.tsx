@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ChartProvider } from '../../../packages/core/src/ChartProvider'
-import { Line } from '../../../packages/line/src'
+import { Bar } from '../../../packages/bar/src'
 import type { LegendPosition } from '../../../packages/core/src/'
 import styled from 'styled-components'
 import type { Field } from '@echarts-readymade/core'

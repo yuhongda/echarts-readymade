@@ -86,6 +86,7 @@ declare type ChartSettings = {
 declare type ChartType = 'line' | 'bar' | 'pie' | 'stack' | 'line-stack' | 'line-bar' | 'bar-horizontal' | 'table' | 'high-relation-scatter' | 'map' | 'wordcloud' | 'scatter-quadrant';
 declare const buildChartOption: (chartOptions: EChartsOption, settings: ChartSettings, chartType: ChartType) => any;
 
+declare type LegendPosition = 'top' | 'left' | 'right' | 'bottom';
 declare type Field = {
     fieldKey: string;
     fieldName: string;
@@ -105,8 +106,8 @@ declare const _default: {
     ChartContext: React.Context<ChartContextValue<any>>;
     mergeOption: (baseOptions: any, userOptions?: any) => any;
     buildChartOption: (chartOptions: any, settings: {
-        legendPosition?: "left" | "right" | "bottom" | "top" | undefined;
+        legendPosition?: "top" | "left" | "right" | "bottom" | undefined;
     }, chartType: "line" | "bar" | "pie" | "stack" | "line-stack" | "line-bar" | "bar-horizontal" | "table" | "high-relation-scatter" | "map" | "wordcloud" | "scatter-quadrant") => any;
 };
 
-export { ChartContext, ChartProps, ChartProvider, Field, buildChartOption, _default as default, mergeOption };
+export { ChartContext, ChartProps, ChartProvider, Field, LegendPosition, buildChartOption, _default as default, mergeOption };

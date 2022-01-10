@@ -3,24 +3,20 @@ import esbuild from 'rollup-plugin-esbuild'
 import replace from 'rollup-plugin-replace'
 import resolve from 'rollup-plugin-node-resolve'
 import type { RollupOptions } from 'rollup'
-import commonjs from '@rollup/plugin-commonjs'
-import typescript from '@rollup/plugin-typescript'
 
 const format = process.env.FORMAT || 'esm'
 
 const config: RollupOptions = {
-  input: './src/index.ts',
+  input: './src/index.tsx',
   plugins: [
     resolve({
       customResolveOptions: {
         moduleDirectory: 'node_modules'
       }
     }),
-    commonjs(),
-    typescript()
   ],
 
-  external: ['react', 'react-dom', 'echarts']
+  external: ['react', 'react-dom']
 }
 
 if (format === 'esm' || format === 'cjs' || format === 'umd') {
@@ -66,7 +62,10 @@ if (format === 'umd') {
   config.output = {
     format,
     name: 'index',
-    file: process.env.NODE_ENV === 'production' ? 'lib/umd/index.min.js' : 'lib/umd/index.js'
+    file:
+      process.env.NODE_ENV === 'production'
+        ? 'lib/umd/index.min.js'
+        : 'lib/umd/index.js'
   }
   config.plugins?.push(
     replace({
