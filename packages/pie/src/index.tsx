@@ -219,7 +219,7 @@ export const Pie: React.FC<PieChartProps> = (props) => {
     }
   }
 
-  _chartOption.series = _series
+  _chartOption.series = echartsSeries || _series
   const builtOption = buildChartOption(_chartOption, restSettings, 'pie')
   const options = mergeOption(builtOption, userOptions)
 

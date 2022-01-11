@@ -118,15 +118,18 @@ export const StackChart: React.FC = () => {
     {
       fieldKey: 'v6',
       fieldName: '占比1',
-      isPercent: true
+      isPercent: true,
+      decimalLength: 2
     },
     {
       fieldKey: 'v4',
-      fieldName: '占比2'
+      fieldName: '占比2',
+      isPercent: true
     },
     {
       fieldKey: 'v5',
-      fieldName: '占比3'
+      fieldName: '占比3',
+      isPercent: true
     }
   ]
 

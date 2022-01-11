@@ -224,8 +224,8 @@ export const Line: React.FC<LineChartProps> = (props) => {
           })
         })
       }
-      _chartOption.xAxis = _xAxis
-      _chartOption.series = _seriesValueList
+      _chartOption.xAxis = xAxisData || _xAxis
+      _chartOption.series = echartsSeries || _seriesValueList
     } else {
       // 无对比维度
       _chartOption.xAxis.data =

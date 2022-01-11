@@ -17,7 +17,7 @@ type ChartType =
   | 'high-relation-scatter'
   | 'map'
   | 'wordcloud'
-  | 'scatter-quadrant'
+  | 'scatter'
 
 export const buildChartOption = (
   chartOptions: EChartsOption,
@@ -39,20 +39,20 @@ export const buildChartOption = (
         _option.grid.top = 110
         _option.grid.left = 20
         _option.grid.right =
-          'scatter-quadrant' == chartType ? 50 : 'bar-horizontal' == chartType ? 50 : 20
-        _option.grid.bottom = 'scatter-quadrant' == chartType ? 70 : 45
+          'scatter' == chartType ? 50 : 'bar-horizontal' == chartType ? 50 : 20
+        _option.grid.bottom = 'scatter' == chartType ? 70 : 45
         _option.legend.orient = 'horizontal'
         break
       case 'bottom':
         _option.legend.top = 'auto'
-        _option.legend.bottom = 'scatter-quadrant' == chartType ? 40 : 20
+        _option.legend.bottom = 'scatter' == chartType ? 40 : 20
         _option.legend.left = 'center'
         _option.legend.padding = [5, 5]
         _option.grid.top = 70
         _option.grid.left = 20
         _option.grid.right =
-          'scatter-quadrant' == chartType ? 50 : 'bar-horizontal' == chartType ? 50 : 20
-        _option.grid.bottom = 'scatter-quadrant' == chartType ? 70 : 45
+          'scatter' == chartType ? 50 : 'bar-horizontal' == chartType ? 50 : 20
+        _option.grid.bottom = 'scatter' == chartType ? 70 : 45
         _option.legend.orient = 'horizontal'
         break
       case 'left':
@@ -63,20 +63,20 @@ export const buildChartOption = (
         _option.legend.padding = [5, 5]
         _option.grid.top = 70
         _option.grid.left = 150
-        _option.grid.right = 'scatter-quadrant' == chartType ? 50 : 20
-        _option.grid.bottom = 'scatter-quadrant' == chartType ? 75 : 20
+        _option.grid.right = 'scatter' == chartType ? 50 : 20
+        _option.grid.bottom = 'scatter' == chartType ? 75 : 20
         _option.legend.orient = 'vertical'
         break
       case 'right':
         _option.legend.top = 60
         _option.legend.bottom = 60
         _option.legend.left = 'auto'
-        _option.legend.right = 'scatter-quadrant' == chartType ? 50 : 20
+        _option.legend.right = 'scatter' == chartType ? 50 : 20
         _option.legend.padding = [5, 5]
         _option.grid.top = 70
         _option.grid.left = 20
-        _option.grid.right = 'scatter-quadrant' == chartType ? 170 : 200
-        _option.grid.bottom = 'scatter-quadrant' == chartType ? 75 : 20
+        _option.grid.right = 'scatter' == chartType ? 170 : 200
+        _option.grid.bottom = 'scatter' == chartType ? 75 : 20
         _option.legend.orient = 'vertical'
         break
       default:
@@ -99,8 +99,8 @@ export const buildChartOption = (
       _option.legend.padding = [5, 5]
       _option.grid.top = 100
       _option.grid.left = 20
-      _option.grid.right = 'scatter-quadrant' == chartType ? 50 : 20
-      _option.grid.bottom = 'scatter-quadrant' == chartType ? 60 : 20
+      _option.grid.right = 'scatter' == chartType ? 50 : 20
+      _option.grid.bottom = 'scatter' == chartType ? 60 : 20
     }
   } else {
     _option.legend.top = 'auto'

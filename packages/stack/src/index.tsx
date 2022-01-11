@@ -210,7 +210,7 @@ export const Stack: React.FC<StackChartProps> = (props) => {
         }
       })
 
-      _chartOption.xAxis.data = _dataXAxis
+      _chartOption.xAxis.data = xAxisData || _dataXAxis
       _chartOption.yAxis = [
         {
           show: true,
@@ -255,45 +255,49 @@ export const Stack: React.FC<StackChartProps> = (props) => {
         }
       ]
 
-      _chartOption.series = _processData.map((item) => {
-        let _dataClone = cloneDeep(item.data) || []
+      _chartOption.series =
+        echartsSeries ||
+        _processData.map((item) => {
+          let _dataClone = cloneDeep(item.data) || []
 
-        let text = item.name
+          let text = item.name
 
-        return {
-          name: text,
-          type: isLineStack ? 'line' : 'bar',
-          stack: '总量',
-          areaStyle: {},
-          data: _dataClone.map((d, i) => {
-            return {
-              value: isPercentMode
-                ? (((d && d[_valueItem.fieldKey]) || 0) / sumData[i].value) * 100
-                : (d && d[_valueItem.fieldKey]) || 0,
-              label: {
-                show: false,
-                position: 'inside',
-                fontSize: 10,
-                formatter: function (data: any) {
-                  if (isPercentMode) {
-                    return data.value != null && !isNaN(data.value)
-                      ? `${numberWithCommas(round(data.value, 2))}%`
-                      : '--%'
+          return {
+            name: text,
+            type: isLineStack ? 'line' : 'bar',
+            stack: '总量',
+            areaStyle: {},
+            data: _dataClone.map((d, i) => {
+              return {
+                value: isPercentMode
+                  ? (((d && d[_valueItem.fieldKey]) || 0) / sumData[i].value) * 100
+                  : (d && d[_valueItem.fieldKey]) || 0,
+                label: {
+                  show: false,
+                  position: 'inside',
+                  fontSize: 10,
+                  formatter: function (data: any) {
+                    if (isPercentMode) {
+                      return data.value != null && !isNaN(data.value)
+                        ? `${numberWithCommas(round(data.value, 2))}%`
+                        : '--%'
+                    }
+
+                    try {
+                      return data.value != null && !isNaN(data.value)
+                        ? numberWithCommas(round(data.value, 2))
+                        : '--'
+                    } catch {
+                      return data.value || '--'
+                    }
                   }
-
-                  try {
-                    return data.value != null && !isNaN(data.value)
-                      ? numberWithCommas(round(data.value, 2))
-                      : '--'
-                  } catch {
-                    return data.value || '--'
-                  }
-                }
+                },
+                decimalLength: _valueItem.decimalLength || 0,
+                isPercent: _valueItem.isPercent
               }
-            }
-          })
-        }
-      })
+            })
+          }
+        })
     } else {
       // 无对比维度
       const dataMatrix = valueList.map((item, i) => {
@@ -305,7 +309,7 @@ export const Stack: React.FC<StackChartProps> = (props) => {
         })
       })
 
-      _chartOption.xAxis.data = _dataXAxis
+      _chartOption.xAxis.data = xAxisData || _dataXAxis
       _chartOption.yAxis = [
         {
           show: true,
@@ -350,39 +354,46 @@ export const Stack: React.FC<StackChartProps> = (props) => {
         }
       ]
 
-      _chartOption.series = valueList.map((item, i) => {
-        return {
-          name: item.fieldName,
-          type: isLineStack ? 'line' : 'bar',
-          stack: '总量',
-          areaStyle: {},
-          data: data?.map((d, j) => {
-            return {
-              value: isPercentMode ? (d[item.fieldKey] / sumData[j]) * 100 : d[item.fieldKey],
-              label: {
-                show: false,
-                position: 'inside',
-                fontSize: 10,
-                formatter: function (params: any) {
-                  if (isPercentMode) {
-                    return params.value != null && !isNaN(params.value)
-                      ? `${numberWithCommas(round(params.value, 2))}%`
-                      : '--%'
-                  }
+      _chartOption.series =
+        echartsSeries ||
+        valueList.map((item, i) => {
+          return {
+            name: item.fieldName,
+            type: isLineStack ? 'line' : 'bar',
+            stack: '总量',
+            areaStyle: {},
+            data: data?.map((d, j) => {
+              return {
+                value: round(
+                  isPercentMode ? (d[item.fieldKey] / sumData[j]) * 100 : d[item.fieldKey],
+                  item.decimalLength || 0
+                ),
+                label: {
+                  show: false,
+                  position: 'inside',
+                  fontSize: 10,
+                  formatter: function (params: any) {
+                    if (isPercentMode) {
+                      return params.value != null && !isNaN(params.value)
+                        ? `${numberWithCommas(round(params.value, item.decimalLength || 0))}%`
+                        : '--%'
+                    }
 
-                  try {
-                    return params.value != null && !isNaN(params.value)
-                      ? numberWithCommas(round(params.value, 2))
-                      : '--'
-                  } catch {
-                    return params.value || '--'
+                    try {
+                      return params.value != null && !isNaN(params.value)
+                        ? numberWithCommas(round(params.value, item.decimalLength || 0))
+                        : '--'
+                    } catch {
+                      return params.value || '--'
+                    }
                   }
-                }
+                },
+                decimalLength: item.decimalLength || 0,
+                isPercent: item.isPercent
               }
-            }
-          })
-        }
-      })
+            })
+          }
+        })
     }
   }
 

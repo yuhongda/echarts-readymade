@@ -63,7 +63,7 @@ export const echartsOptionsBase: any = {
                           : d.data.value == null
                           ? '--'
                           : d.data.isPercent
-                          ? d.data.value + (d.data.hideUnit ? '' : '%')
+                          ? d.data.value + '%'
                           : numeral(d.data.value).format(
                               `0,0.${
                                 d.data.decimalLength != null
@@ -105,7 +105,7 @@ export const echartsOptionsBase: any = {
                         d.data.value == null
                           ? '--'
                           : d.data.isPercent
-                          ? d.data.value + (d.data.hideUnit ? '' : '%')
+                          ? d.data.value + '%'
                           : numeral(d.data.value).format(
                               `0,0.${
                                 d.data.decimalLength != null
