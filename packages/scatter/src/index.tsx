@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
-import { multiply, round, divide } from 'mathjs/number'
+import React, { useContext, useState, useCallback } from 'react'
+import { multiply, round, divide, add, abs, fix } from 'mathjs/number'
 import { cloneDeep } from 'lodash'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
-import { mergeOption, buildChartOption, COLOR_LIST } from '../../../packages/core/src'
+import { mergeOption, buildChartOption, COLOR_LIST, truncate } from '../../../packages/core/src'
 import { ChartContext } from '../../../packages/core/src/ChartProvider'
 import { ScatterChart } from 'echarts/charts'
 import {
@@ -93,6 +93,8 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
     return null
   }
 
+  const [dataZoomX, setDataZoomX] = useState<{ start: number; end: number } | null>(null)
+  const [dataZoomY, setDataZoomY] = useState<{ start: number; end: number } | null>(null)
   if (_chartOption) {
     const processedData = data?.map((d) => {
       const values: any[] = new Array(_valueList.length).fill(0)
@@ -123,78 +125,78 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
       const scale = divide(max - min, maxSymbolSize - minSymbolSize) || 1
 
       list.forEach((item, index) => {
-        item[4] = round(divide(item[2] - min, scale) + minSymbolSize, 2)
+        item[4] =
+          _valueList.length === 3 ? round(divide(item[2] - min, scale) + minSymbolSize, 2) : 80
         item[5] = COLOR_LIST[index % COLOR_LIST.length]
       })
       return list
     }
 
-    chartOption5.animation = false
-    chartOption5.grid.x = 70
-    chartOption5.grid.x2 = 130
-    chartOption5.grid.top = 50
-    chartOption5.grid.bottom = 130
-    chartOption5.title.text = ''
-    chartOption5.xAxis.name = valueList5[0].fieldName
-    chartOption5.xAxis.nameLocation = 'center'
-    chartOption5.xAxis.nameTextStyle = {
+    _chartOption.grid.x = 70
+    _chartOption.grid.x2 = 130
+    _chartOption.grid.top = 50
+    _chartOption.grid.bottom = 130
+    _chartOption.xAxis.name = _valueList[0].fieldName
+    _chartOption.xAxis.nameLocation = 'center'
+    _chartOption.xAxis.nameTextStyle = {
       color: '#666'
     }
-    chartOption5.xAxis.nameGap = 40
-    chartOption5.xAxis.type = 'value'
-    chartOption5.xAxis.show = true
-    chartOption5.xAxis.axisLabel.formatter = (value: any) => {
-      return `${value}${valueList5[0].isPercent ? (valueList5[0].hideUnit ? '' : '%') : ''}`
+    _chartOption.xAxis.nameGap = 40
+    _chartOption.xAxis.type = 'value'
+    _chartOption.xAxis.show = true
+    _chartOption.xAxis.axisLabel.formatter = (value: any) => {
+      return `${value}${_valueList[0].isPercent ? '%' : ''}`
     }
 
-    chartOption5.yAxis[0].show = true
+    _chartOption.yAxis[0].show = true
 
-    chartOption5.yAxis[0].name = valueList5[1].fieldName
-    // chartOption5.yAxis[0].nameRotate = -90;
-    chartOption5.yAxis[0].nameGap = 60
-    chartOption5.yAxis[0].nameLocation = 'center'
-    chartOption5.yAxis[0].nameTextStyle = {
+    _chartOption.yAxis[0].name = _valueList[1].fieldName
+    // _chartOption.yAxis[0].nameRotate = -90;
+    _chartOption.yAxis[0].nameGap = 60
+    _chartOption.yAxis[0].nameLocation = 'center'
+    _chartOption.yAxis[0].nameTextStyle = {
       color: '#666'
     }
-    chartOption5.yAxis[0].axisLabel.formatter = (value: any) => {
-      return `${value}${valueList5[1].isPercent ? (valueList5[1].hideUnit ? '' : '%') : ''}`
+    _chartOption.yAxis[0].axisLabel.formatter = (value: any) => {
+      return `${value}${_valueList[1].isPercent ? '%' : ''}`
     }
 
-    chartOption5.xAxis.boundaryGap = ['1%', '1%']
-    chartOption5.xAxis.axisLine.show = false
-    chartOption5.xAxis.axisTick.show = false
-    chartOption5.xAxis.offset = 20
-    chartOption5.yAxis[0].axisLine.show = false
-    chartOption5.yAxis[0].axisTick.show = false
-    chartOption5.yAxis[0].boundaryGap = ['1%', '1%']
-    chartOption5.yAxis[0].offset = 20
+    _chartOption.xAxis.boundaryGap = ['1%', '1%']
+    _chartOption.xAxis.axisLine.show = false
+    _chartOption.xAxis.axisTick.show = false
+    _chartOption.xAxis.offset = 20
+    _chartOption.yAxis[0].axisLine.show = false
+    _chartOption.yAxis[0].axisTick.show = false
+    _chartOption.yAxis[0].boundaryGap = ['1%', '1%']
+    _chartOption.yAxis[0].offset = 20
 
-    chartOption5.tooltip = {
+    _chartOption.tooltip = {
       show: true,
       trigger: 'item',
       backgroundColor: 'rgba(255,255,255,0.9)',
       extraCssText:
-        'box-shadow:  0px 0px 4px 0px rgba(0,0,0,0.25); border-radius: 2px; padding:10px 14px',
+        'box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25); border-radius: 2px; padding:10px 14px',
       formatter: (item: any) => {
         return `<div style="color: #c8c8c8;">
                 <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:${
                   item.color
                 }"></span>
-                <span>${wordWrapByLength(item.name, 30, null, '<br/>')}:</span>
+                <span>${truncate(item.name, 6)}:</span>
                 <div><span style="color: #595959;">${
-                  valueList5[0].fieldName
+                  _valueList[0].fieldName
                 }</span>:<span style="color: #262626;">${item.value[0]}${
-          valueList5[0].isPercent ? (valueList5[0].hideUnit ? '' : '%') : ''
+          _valueList[0].isPercent ? '%' : ''
         }</span></div>
                 <div><span style="color: #595959;">${
-                  valueList5[1].fieldName
+                  _valueList[1].fieldName
                 }</span>:<span style="color: #262626;">${item.value[1]}${
-          valueList5[1].isPercent ? (valueList5[1].hideUnit ? '' : '%') : ''
+          _valueList[1].isPercent ? '%' : ''
         }</span></div>
             </div>`
       }
     }
-    chartOption5.series = [
+
+    _chartOption.series = [
       {
         type: 'scatter',
         symbolSize: (data: any[]) => {
@@ -215,11 +217,11 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
               show: true,
               position: 'inside',
               color: '#000',
-              formatter: (params) => {
+              formatter: (params: any) => {
                 const {
                   data: { name }
                 } = params
-                return wordWrapByLength(name, 5, 17)
+                return truncate(name, 6)
               },
               fontSize: 12,
               rich: {
@@ -308,20 +310,38 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
         labelFormatter: '{value}%'
       })
     }
-    chartOption5.dataZoom = _dataZoom
+    _chartOption.dataZoom = _dataZoom
 
     // 为了使dataZoom中x轴的endValue生效，这里要设置下x轴的max
-    chartOption5.xAxis.max = (xMax && add(xMax, abs(fix(multiply(xMax, 0.1))))) || 100
-    chartOption5.xAxis.axisLabel.formatter = (value: any) => {
+    _chartOption.xAxis.max = (xMax && add(xMax, abs(fix(multiply(xMax, 0.1))))) || 100
+    _chartOption.xAxis.axisLabel.formatter = (value: any) => {
       if (xMax <= 100 && value > 100) {
         return ''
       }
-      return `${value}${valueList5[0].isPercent ? (valueList5[0].hideUnit ? '' : '%') : ''}`
+      return `${value}${_valueList[0].isPercent ? '%' : ''}`
     }
   }
 
   const builtOption = buildChartOption(_chartOption, restSettings, 'scatter')
   const options = mergeOption(builtOption, userOptions)
+
+  const onDataZoomChange = useCallback((params: any) => {
+    if (params.dataZoomId == '\u0000series\u00000\u00000') {
+      setDataZoomX({
+        start: params?.start,
+        end: params?.end
+      })
+    } else if (params.dataZoomId == '\u0000series\u00001\u00000') {
+      setDataZoomY({
+        start: params?.start,
+        end: params?.end
+      })
+    }
+  }, [])
+
+  const onEvents = {
+    datazoom: onDataZoomChange
+  }
 
   return (
     <>
@@ -331,6 +351,7 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
         notMerge={true}
         opts={{ renderer: 'svg' }}
         style={{ height: '100%', width: '100%' }}
+        onEvents={onEvents}
         {...resetOptions}
       />
     </>

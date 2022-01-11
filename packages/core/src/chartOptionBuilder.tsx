@@ -39,8 +39,8 @@ export const buildChartOption = (
         _option.grid.top = 110
         _option.grid.left = 20
         _option.grid.right =
-          'scatter' == chartType ? 50 : 'bar-horizontal' == chartType ? 50 : 20
-        _option.grid.bottom = 'scatter' == chartType ? 70 : 45
+          'scatter' == chartType ? 100 : 'bar-horizontal' == chartType ? 50 : 20
+        _option.grid.bottom = 'scatter' == chartType ? 100 : 45
         _option.legend.orient = 'horizontal'
         break
       case 'bottom':
@@ -52,7 +52,7 @@ export const buildChartOption = (
         _option.grid.left = 20
         _option.grid.right =
           'scatter' == chartType ? 50 : 'bar-horizontal' == chartType ? 50 : 20
-        _option.grid.bottom = 'scatter' == chartType ? 70 : 45
+        _option.grid.bottom = 'scatter' == chartType ? 100 : 45
         _option.legend.orient = 'horizontal'
         break
       case 'left':
@@ -64,7 +64,7 @@ export const buildChartOption = (
         _option.grid.top = 70
         _option.grid.left = 150
         _option.grid.right = 'scatter' == chartType ? 50 : 20
-        _option.grid.bottom = 'scatter' == chartType ? 75 : 20
+        _option.grid.bottom = 'scatter' == chartType ? 100 : 20
         _option.legend.orient = 'vertical'
         break
       case 'right':
@@ -76,7 +76,7 @@ export const buildChartOption = (
         _option.grid.top = 70
         _option.grid.left = 20
         _option.grid.right = 'scatter' == chartType ? 170 : 200
-        _option.grid.bottom = 'scatter' == chartType ? 75 : 20
+        _option.grid.bottom = 'scatter' == chartType ? 100 : 20
         _option.legend.orient = 'vertical'
         break
       default:
@@ -212,7 +212,7 @@ export const buildChartOption = (
   }
 
   // tooltip
-  _option.tooltip.trigger = ['pie'].includes(chartType) ? 'item' : 'axis'
+  _option.tooltip.trigger = ['pie', 'scatter'].includes(chartType) ? 'item' : 'axis'
 
   return _option
 }

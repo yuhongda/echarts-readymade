@@ -240,6 +240,10 @@ export const truncate = (str: string, n: number) => {
   const r = /[^\x00-\xff]/g
   let m
 
+  if (!str) {
+    return ''
+  }
+
   if (str.replace(r, '**').length > n) {
     m = Math.floor(n / 2)
 

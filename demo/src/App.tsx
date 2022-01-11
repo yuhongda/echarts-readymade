@@ -8,6 +8,7 @@ import { LineChart } from './components/LineChart'
 import { BarChart } from './components/BarChart'
 import { PieChart } from './components/PieChart'
 import { StackChart } from './components/StackChart'
+import { ScatterChart } from './components/ScatterChart'
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -35,6 +36,11 @@ function App() {
         <Row gutter={16}>
           <Col span={24}>
             <StackChart />
+          </Col>
+        </Row>
+        <Row gutter={16}>
+          <Col span={24}>
+            <ScatterChart />
           </Col>
         </Row>
       </header>

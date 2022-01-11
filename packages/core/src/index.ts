@@ -1,5 +1,5 @@
 import { ChartProvider, ChartContext } from './ChartProvider'
-import { mergeOption, numberWithCommas, COLOR_LIST } from './misc'
+import { mergeOption, numberWithCommas, COLOR_LIST, truncate } from './misc'
 import { buildChartOption } from './chartOptionBuilder'
 
 type LegendPosition = 'top' | 'left' | 'right' | 'bottom'
@@ -20,5 +20,5 @@ type ChartProps = {
 }
 
 export type { LegendPosition, Field, ChartProps }
-export { ChartProvider, ChartContext, mergeOption, buildChartOption, numberWithCommas, COLOR_LIST }
-export default { ChartProvider, ChartContext, mergeOption, buildChartOption, numberWithCommas, COLOR_LIST }
+export { ChartProvider, ChartContext, mergeOption, buildChartOption, numberWithCommas, COLOR_LIST, truncate }
+export default { ChartProvider, ChartContext, mergeOption, buildChartOption, numberWithCommas, COLOR_LIST, truncate }
