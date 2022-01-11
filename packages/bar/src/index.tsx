@@ -100,7 +100,6 @@ export const Bar: React.FC<LineChartProps> = (props) => {
         return {
           name: v.fieldName,
           type: 'bar',
-          barWidth: 30,
           barMaxWidth: 60,
           barGap: 0,
           data:

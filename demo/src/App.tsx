@@ -5,6 +5,7 @@ import 'antd/dist/antd.css'
 import { Divider, Typography, Row, Col } from 'antd'
 const { Title } = Typography
 import { LineChart } from './components/LineChart'
+import { BarChart } from './components/BarChart'
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -21,7 +22,7 @@ function App() {
             <LineChart />
           </Col>
           <Col span={12}>
-            <LineChart />
+            <BarChart />
           </Col>
         </Row>
       </header>

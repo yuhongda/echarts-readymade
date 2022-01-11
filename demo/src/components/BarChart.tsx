@@ -11,7 +11,7 @@ const Container = styled.div`
   height: 500px;
 `
 
-export const LineChart: React.FC = () => {
+export const BarChart: React.FC = () => {
   const [data, setData] = useState([
     {
       v6: 0.8141021277904137,
@@ -100,7 +100,7 @@ export const LineChart: React.FC = () => {
           }
         }}
       >
-        <Line
+        <Bar
           dimension={dimension}
           valueList={valueList}
           legendPosition={legendPosition as LegendPosition}
