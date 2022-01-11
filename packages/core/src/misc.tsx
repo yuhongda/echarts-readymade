@@ -215,6 +215,7 @@ export const echartsOptionsBase: any = {
       padding: [2, 0, 0, 0]
     },
     show: true,
+    type: 'scroll',
     position: 'bottom',
     fontSize: 12,
     icon: 'circle'

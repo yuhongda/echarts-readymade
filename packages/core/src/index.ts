@@ -13,10 +13,10 @@ type Field = {
 }
 
 type ChartProps = {
-  dimension: Field[]
-  valueList: Field[]
+  dimension?: Field[]
+  compareDimension?: Field[]
+  valueList?: Field[]
   echartsSeries?: any[]
-  xAxisData?: any
 }
 
 export type { LegendPosition, Field, ChartProps }

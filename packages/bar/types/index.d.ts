@@ -1,10 +1,10 @@
 import React from 'react';
-import { ChartProps } from '@echarts-readymade/core';
+import { ChartProps, LegendPosition } from '@echarts-readymade/core';
 
-declare type LegendPosition = 'top' | 'left' | 'right' | 'bottom';
 interface LineChartProps extends ChartProps {
+    xAxisData?: any[];
     legendPosition?: LegendPosition;
 }
 declare const Bar: React.FC<LineChartProps>;
 
-export { Bar, LegendPosition };
+export { Bar };

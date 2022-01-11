@@ -35,7 +35,7 @@ export const buildChartOption = (
         _option.legend.top = 60
         _option.legend.bottom = 'auto'
         _option.legend.left = 'center'
-        _option.legend.padding = [5, 100]
+        _option.legend.padding = [5, 5]
         _option.grid.top = 110
         _option.grid.left = 20
         _option.grid.right =
@@ -47,7 +47,7 @@ export const buildChartOption = (
         _option.legend.top = 'auto'
         _option.legend.bottom = 'scatter-quadrant' == chartType ? 40 : 20
         _option.legend.left = 'center'
-        _option.legend.padding = [5, 100]
+        _option.legend.padding = [5, 5]
         _option.grid.top = 70
         _option.grid.left = 20
         _option.grid.right =
@@ -96,7 +96,7 @@ export const buildChartOption = (
       _option.legend.top = 60
       _option.legend.bottom = 'auto'
       _option.legend.left = 'center'
-      _option.legend.padding = [5, 100]
+      _option.legend.padding = [5, 5]
       _option.grid.top = 100
       _option.grid.left = 20
       _option.grid.right = 'scatter-quadrant' == chartType ? 50 : 20
@@ -210,6 +210,9 @@ export const buildChartOption = (
       return text
     }
   }
+
+  // tooltip
+  _option.tooltip.trigger = ['pie'].includes(chartType) ? 'item' : 'axis'
 
   return _option
 }
