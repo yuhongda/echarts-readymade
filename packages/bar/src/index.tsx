@@ -68,12 +68,12 @@ echarts.use([
   DatasetComponent
 ])
 
-interface LineChartProps extends ChartProps {
+export interface BarChartProps extends ChartProps {
   xAxisData?: any[]
   legendPosition?: LegendPosition
 }
 
-export const Bar: React.FC<LineChartProps> = (props) => {
+export const Bar: React.FC<BarChartProps> = (props) => {
   const {
     data,
     echartsOptions,
@@ -84,7 +84,7 @@ export const Bar: React.FC<LineChartProps> = (props) => {
   const { dimension, compareDimension, valueList, echartsSeries, xAxisData, ...restSettings } = props
 
   const _dimension = dimension && dimension.slice(0, 1)
-  const _chartOption = chartOption || {}
+  const _chartOption = Object.assign({}, chartOption || {}, {})
 
   if (_chartOption) {
     let _xAxis = []

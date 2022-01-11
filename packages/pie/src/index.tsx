@@ -68,12 +68,12 @@ echarts.use([
   DatasetComponent
 ])
 
-interface LineChartProps extends ChartProps {
+export interface PieChartProps extends ChartProps {
   showInRing?: boolean
   legendPosition?: LegendPosition
 }
 
-export const Pie: React.FC<LineChartProps> = (props) => {
+export const Pie: React.FC<PieChartProps> = (props) => {
   const {
     data,
     echartsOptions,
@@ -102,7 +102,7 @@ export const Pie: React.FC<LineChartProps> = (props) => {
     }
   }
 
-  const _chartOption = chartOption || {}
+  const _chartOption = Object.assign({}, chartOption || {}, {})
 
   _chartOption.xAxis = { show: false }
   _chartOption.yAxis = { show: false }
@@ -222,7 +222,7 @@ export const Pie: React.FC<LineChartProps> = (props) => {
   _chartOption.series = _series
   const builtOption = buildChartOption(_chartOption, restSettings, 'pie')
   const options = mergeOption(builtOption, userOptions)
-  console.log(options)
+
   return (
     <>
       <ReactEChartsCore

@@ -237,18 +237,27 @@ export const mergeOption = (
 }
 
 export const truncate = (str: string, n: number) => {
-  const r = /[^\x00-\xff]/g;
-  let m;
+  const r = /[^\x00-\xff]/g
+  let m
 
   if (str.replace(r, '**').length > n) {
-    m = Math.floor(n / 2);
+    m = Math.floor(n / 2)
 
     for (let i = m, l = str.length; i < l; i++) {
       if (str.slice(0, i).replace(r, '**').length >= n) {
-        return str.slice(0, i) + '...';
+        return str.slice(0, i) + '...'
       }
     }
   }
 
-  return str;
-};
+  return str
+}
+
+export function numberWithCommas(x: string | number) {
+  if (!x) {
+    return '--'
+  }
+  const parts = x.toString().split('.')
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return parts.join('.')
+}

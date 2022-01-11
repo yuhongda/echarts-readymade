@@ -7,6 +7,7 @@ const { Title } = Typography
 import { LineChart } from './components/LineChart'
 import { BarChart } from './components/BarChart'
 import { PieChart } from './components/PieChart'
+import { StackChart } from './components/StackChart'
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -29,6 +30,11 @@ function App() {
           </Col>
           <Col span={12}>
             <PieChart />
+          </Col>
+        </Row>
+        <Row gutter={16}>
+          <Col span={24}>
+            <StackChart />
           </Col>
         </Row>
       </header>
