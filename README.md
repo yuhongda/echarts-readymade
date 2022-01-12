@@ -81,5 +81,5 @@ const valueList: Field[] = [
 
 - [ ] `<Wordcloud />` Chart component
 - [ ] `<Polar /> ` Chart component
-- [ ] test
+- [ ] Test
 - [ ] More detail docs & examples
