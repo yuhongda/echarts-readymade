@@ -690,7 +690,7 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
   const onEvents = {
     datazoom: onDataZoomChange
   }
-  console.log(options)
+console.log(options)
   return (
     <>
       <ReactEChartsCore
