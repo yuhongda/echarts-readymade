@@ -10,7 +10,8 @@
   "author": "yuhongda <silverage.y@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "lerna run build"
+    "build": "lerna run build",
+    "release": "lerna run release"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
