@@ -13,12 +13,15 @@ interface ChartProviderProps<T = any> extends Omit<ChartContextValue<T>, 'echart
 }
 declare const ChartProvider: React__default.FC<ChartProviderProps>;
 
+declare const COLOR_LIST: string[];
 declare const mergeOption: (baseOptions: EChartsOption, userOptions?: EChartsOption) => EChartsOption;
+declare const truncate: (str: string, n: number) => string;
+declare function numberWithCommas(x: string | number): string;
 
 declare type ChartSettings = {
     legendPosition?: 'top' | 'right' | 'bottom' | 'left';
 };
-declare type ChartType = 'line' | 'bar' | 'pie' | 'stack' | 'line-stack' | 'line-bar' | 'bar-horizontal' | 'table' | 'high-relation-scatter' | 'map' | 'wordcloud' | 'scatter-quadrant';
+declare type ChartType = 'line' | 'bar' | 'pie' | 'stack' | 'line-stack' | 'line-bar' | 'bar-horizontal' | 'table' | 'high-relation-scatter' | 'map' | 'wordcloud' | 'scatter';
 declare const buildChartOption: (chartOptions: EChartsOption, settings: ChartSettings, chartType: ChartType) => any;
 
 declare type LegendPosition = 'top' | 'left' | 'right' | 'bottom';
@@ -34,6 +37,7 @@ declare type ChartProps = {
     compareDimension?: Field[];
     valueList?: Field[];
     echartsSeries?: any[];
+    setOption?: (option: EChartsOption) => EChartsOption;
 };
 
 declare const _default: {
@@ -42,7 +46,10 @@ declare const _default: {
     mergeOption: (baseOptions: any, userOptions?: any) => any;
     buildChartOption: (chartOptions: any, settings: {
         legendPosition?: "top" | "left" | "right" | "bottom" | undefined;
-    }, chartType: "line" | "bar" | "pie" | "stack" | "line-stack" | "line-bar" | "bar-horizontal" | "table" | "high-relation-scatter" | "map" | "wordcloud" | "scatter-quadrant") => any;
+    }, chartType: "line" | "bar" | "pie" | "stack" | "line-stack" | "line-bar" | "bar-horizontal" | "table" | "high-relation-scatter" | "map" | "wordcloud" | "scatter") => any;
+    numberWithCommas: typeof numberWithCommas;
+    COLOR_LIST: string[];
+    truncate: (str: string, n: number) => string;
 };
 
-export { ChartContext, ChartProps, ChartProvider, Field, LegendPosition, buildChartOption, _default as default, mergeOption };
+export { COLOR_LIST, ChartContext, ChartProps, ChartProvider, Field, LegendPosition, buildChartOption, _default as default, mergeOption, numberWithCommas, truncate };

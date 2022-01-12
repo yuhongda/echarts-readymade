@@ -93,7 +93,8 @@ export const Stack: React.FC<StackChartProps> = (props) => {
     data,
     echartsOptions,
     echartsOptionsBase: chartOption,
-    userOptions
+    userOptions,
+    
   } = useContext(ChartContext)
   const { option, ...resetOptions } = echartsOptions || {}
   const {
@@ -101,6 +102,7 @@ export const Stack: React.FC<StackChartProps> = (props) => {
     compareDimension,
     valueList,
     echartsSeries,
+    setOption,
     xAxisData,
     isPercentMode,
     isLineStack,
@@ -113,7 +115,8 @@ export const Stack: React.FC<StackChartProps> = (props) => {
 
   const _dimension = dimension && dimension.slice(0, 1)
   const _valueItem = valueList && valueList[0]
-  const _chartOption = Object.assign({}, chartOption || {}, {})
+  const _chartOption = cloneDeep(chartOption || {})
+
 
   if (!(_dimension && _valueItem && _dimension.length === 1)) {
     return null
@@ -402,7 +405,11 @@ export const Stack: React.FC<StackChartProps> = (props) => {
     restSettings,
     isLineStack ? 'line-stack' : 'stack'
   )
-  const options = mergeOption(builtOption, userOptions)
+  let options = mergeOption(builtOption, userOptions)
+
+  if (setOption) {
+    options = setOption(cloneDeep(options))
+  }
 
   return (
     <>

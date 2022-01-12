@@ -1,6 +1,7 @@
 import { ChartProvider, ChartContext } from './ChartProvider'
 import { mergeOption, numberWithCommas, COLOR_LIST, truncate } from './misc'
 import { buildChartOption } from './chartOptionBuilder'
+import type { EChartsOption } from 'echarts-for-react'
 
 type LegendPosition = 'top' | 'left' | 'right' | 'bottom'
 
@@ -17,6 +18,7 @@ type ChartProps = {
   compareDimension?: Field[]
   valueList?: Field[]
   echartsSeries?: any[]
+  setOption?: (option: EChartsOption) => EChartsOption
 }
 
 export type { LegendPosition, Field, ChartProps }

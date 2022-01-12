@@ -81,10 +81,18 @@ export const Bar: React.FC<BarChartProps> = (props) => {
     userOptions
   } = useContext(ChartContext)
   const { option, ...resetOptions } = echartsOptions || {}
-  const { dimension, compareDimension, valueList, echartsSeries, xAxisData, ...restSettings } = props
+  const {
+    dimension,
+    compareDimension,
+    valueList,
+    echartsSeries,
+    xAxisData,
+    setOption,
+    ...restSettings
+  } = props
 
   const _dimension = dimension && dimension.slice(0, 1)
-  const _chartOption = Object.assign({}, chartOption || {}, {})
+  const _chartOption = cloneDeep(chartOption || {})
 
   if (_chartOption) {
     let _xAxis = []
@@ -271,7 +279,11 @@ export const Bar: React.FC<BarChartProps> = (props) => {
   }
 
   const builtOption = buildChartOption(_chartOption, restSettings, 'bar')
-  const options = mergeOption(builtOption, userOptions)
+  let options = mergeOption(builtOption, userOptions)
+
+  if (setOption) {
+    options = setOption(cloneDeep(options))
+  }
 
   return (
     <>

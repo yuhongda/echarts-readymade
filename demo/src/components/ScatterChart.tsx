@@ -5,6 +5,7 @@ import type { LegendPosition } from '../../../packages/core/src/'
 import styled from 'styled-components'
 import type { Field } from '@echarts-readymade/core'
 import { Radio, Button, Row, Col } from 'antd'
+import { optionalCallExpression } from '@babel/types'
 
 const Container = styled.div`
   width: 100%;
@@ -107,6 +108,13 @@ export const ScatterChart: React.FC = () => {
     }
   ]
 
+  const compareDimension: Field[] = [
+    {
+      fieldKey: 'd2',
+      fieldName: '城市'
+    }
+  ]
+
   const valueList: Field[] = [
     {
       fieldKey: 'v6',
@@ -157,14 +165,20 @@ export const ScatterChart: React.FC = () => {
           option: {
             title: {
               text: 'Scatter Chart'
-            },
-            yAxis: [
-              {
-                axisLabel: {
-                  formatter: '{value}%'
-                }
-              }
-            ]
+            }
+            // color: [
+            //   '#c23531',
+            //   '#2f4554',
+            //   '#61a0a8',
+            //   '#d48265',
+            //   '#91c7ae',
+            //   '#749f83',
+            //   '#ca8622',
+            //   '#bda29a',
+            //   '#6e7074',
+            //   '#546570',
+            //   '#c4ccd3'
+            // ]
           }
         }}
       >
@@ -174,6 +188,22 @@ export const ScatterChart: React.FC = () => {
               dimension={dimension}
               valueList={valueList}
               legendPosition={legendPosition as LegendPosition}
+              setOption={(option) => {
+                // option.color = legendPosition == 'left' ? ['#ccc'] : option.color
+                return option
+              }}
+            />
+          </Col>
+          <Col span={12}>
+            <Scatter
+              dimension={dimension}
+              compareDimension={compareDimension}
+              valueList={valueList}
+              legendPosition={legendPosition as LegendPosition}
+              setOption={(option) => {
+                // option.color = legendPosition == 'left' ? ['#ccc'] : option.color
+                return option
+              }}
             />
           </Col>
         </Row>

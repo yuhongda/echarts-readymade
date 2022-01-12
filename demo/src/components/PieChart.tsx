@@ -97,6 +97,10 @@ export const PieChart: React.FC = () => {
           dimension={dimension}
           valueList={valueList}
           legendPosition={legendPosition as LegendPosition}
+          setOption={(option) => {
+            option.series[0].radius = ['left', 'right'].includes(legendPosition) ? '40%' : '50%'
+            return option
+          }}
         />
       </ChartProvider>
     </Container>

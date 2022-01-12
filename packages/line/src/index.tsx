@@ -4,7 +4,7 @@ import { cloneDeep } from 'lodash'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
-import { mergeOption, buildChartOption } from '../../../packages/core/src'
+import { mergeOption, buildChartOption, Field } from '../../../packages/core/src'
 import { ChartContext } from '../../../packages/core/src/ChartProvider'
 import { LineChart } from 'echarts/charts'
 import {
@@ -81,11 +81,18 @@ export const Line: React.FC<LineChartProps> = (props) => {
     userOptions
   } = useContext(ChartContext)
   const { option, ...resetOptions } = echartsOptions || {}
-  const { dimension, compareDimension, valueList, echartsSeries, xAxisData, ...restSettings } =
-    props
+  const {
+    dimension,
+    compareDimension,
+    valueList,
+    echartsSeries,
+    xAxisData,
+    setOption,
+    ...restSettings
+  } = props
 
   const _dimension = dimension && dimension.slice(0, 1)
-  const _chartOption = Object.assign({}, chartOption || {}, {})
+  const _chartOption = cloneDeep(chartOption || {})
 
   if (_chartOption) {
     let _xAxis = []
@@ -132,7 +139,7 @@ export const Line: React.FC<LineChartProps> = (props) => {
             const v = pd.data.find(
               (d: any) =>
                 compareDimension
-                  .map((dim) => {
+                  .map((dim: Field) => {
                     return d[dim.fieldKey]
                   })
                   .join('~') == item
@@ -274,7 +281,11 @@ export const Line: React.FC<LineChartProps> = (props) => {
   }
 
   const builtOption = buildChartOption(_chartOption, restSettings, 'line')
-  const options = mergeOption(builtOption, userOptions)
+  let options = mergeOption(builtOption, userOptions)
+
+  if (setOption) {
+    options = setOption(cloneDeep(options))
+  }
 
   return (
     <>

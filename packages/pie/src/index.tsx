@@ -81,7 +81,7 @@ export const Pie: React.FC<PieChartProps> = (props) => {
     userOptions
   } = useContext(ChartContext)
   const { option, ...resetOptions } = echartsOptions || {}
-  const { dimension, valueList, echartsSeries, showInRing, ...restSettings } = props
+  const { dimension, valueList, echartsSeries, showInRing, setOption, ...restSettings } = props
 
   const getCenter = () => {
     let _centerLeft = '50%'
@@ -102,7 +102,7 @@ export const Pie: React.FC<PieChartProps> = (props) => {
     }
   }
 
-  const _chartOption = Object.assign({}, chartOption || {}, {})
+  const _chartOption = cloneDeep(chartOption || {})
 
   _chartOption.xAxis = { show: false }
   _chartOption.yAxis = { show: false }
@@ -221,7 +221,11 @@ export const Pie: React.FC<PieChartProps> = (props) => {
 
   _chartOption.series = echartsSeries || _series
   const builtOption = buildChartOption(_chartOption, restSettings, 'pie')
-  const options = mergeOption(builtOption, userOptions)
+  let options = mergeOption(builtOption, userOptions)
+
+  if (setOption) {
+    options = setOption(cloneDeep(options))
+  }
 
   return (
     <>

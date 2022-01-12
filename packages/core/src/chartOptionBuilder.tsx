@@ -37,7 +37,7 @@ export const buildChartOption = (
         _option.legend.left = 'center'
         _option.legend.padding = [5, 5]
         _option.grid.top = 110
-        _option.grid.left = 20
+        _option.grid.left = 'scatter' == chartType ? 70 : 20
         _option.grid.right =
           'scatter' == chartType ? 100 : 'bar-horizontal' == chartType ? 50 : 20
         _option.grid.bottom = 'scatter' == chartType ? 100 : 45
@@ -49,7 +49,7 @@ export const buildChartOption = (
         _option.legend.left = 'center'
         _option.legend.padding = [5, 5]
         _option.grid.top = 70
-        _option.grid.left = 20
+        _option.grid.left = 'scatter' == chartType ? 70 : 20
         _option.grid.right =
           'scatter' == chartType ? 50 : 'bar-horizontal' == chartType ? 50 : 20
         _option.grid.bottom = 'scatter' == chartType ? 100 : 45
@@ -74,7 +74,7 @@ export const buildChartOption = (
         _option.legend.right = 'scatter' == chartType ? 50 : 20
         _option.legend.padding = [5, 5]
         _option.grid.top = 70
-        _option.grid.left = 20
+        _option.grid.left = 'scatter' == chartType ? 70 : 20
         _option.grid.right = 'scatter' == chartType ? 170 : 200
         _option.grid.bottom = 'scatter' == chartType ? 100 : 20
         _option.legend.orient = 'vertical'
@@ -135,7 +135,7 @@ export const buildChartOption = (
         }
       })
   } else {
-    const _legendData = _option.series.map((item: any) => {
+    const _legendData = _option.series?.map((item: any) => {
       let icon = 'circle'
       const textStyle = {
         padding: [2, 0, 0, 0]
