@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ChartProvider } from '../../../packages/core/src/ChartProvider'
+import { ChartProvider, ChartContext } from '../../../packages/core/src/ChartProvider'
 import { Scatter } from '../../../packages/scatter/src'
 import type { LegendPosition } from '../../../packages/core/src/'
 import styled from 'styled-components'
@@ -185,6 +185,7 @@ export const ScatterChart: React.FC = () => {
         <Row gutter={16} style={{ height: 500 }}>
           <Col span={12}>
             <Scatter
+              context={ChartContext}
               dimension={dimension}
               valueList={valueList}
               legendPosition={legendPosition as LegendPosition}
@@ -196,6 +197,7 @@ export const ScatterChart: React.FC = () => {
           </Col>
           <Col span={12}>
             <Scatter
+              context={ChartContext}
               dimension={dimension}
               compareDimension={compareDimension}
               valueList={valueList}

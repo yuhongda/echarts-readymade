@@ -4,8 +4,7 @@ import { cloneDeep } from 'lodash'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
-import { mergeOption, buildChartOption, COLOR_LIST, truncate } from '../../../packages/core/src'
-import { ChartContext } from '../../../packages/core/src/ChartProvider'
+import { mergeOption, buildChartOption, COLOR_LIST, truncate } from '@echarts-readymade/core'
 import { ScatterChart } from 'echarts/charts'
 import {
   GridSimpleComponent,
@@ -78,14 +77,16 @@ export interface ScatterChartProps extends ChartProps {
 
 export const Scatter: React.FC<ScatterChartProps> = (props) => {
   const {
-    data,
-    echartsOptions,
-    echartsOptionsBase: chartOption,
-    userOptions
-  } = useContext(ChartContext)
+    context,
+    dimension,
+    compareDimension,
+    valueList,
+    echartsSeries,
+    setOption,
+    ...restSettings
+  } = props
+  const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = useContext(context)
   const { option, ...resetOptions } = echartsOptions || {}
-  const { dimension, compareDimension, valueList, echartsSeries, setOption, ...restSettings } =
-    props
 
   const _dimension = dimension && dimension.slice(0, 1)
   const _valueList = valueList && valueList.slice(0, 3)
@@ -690,7 +691,7 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
   const onEvents = {
     datazoom: onDataZoomChange
   }
-console.log(options)
+
   return (
     <>
       <ReactEChartsCore

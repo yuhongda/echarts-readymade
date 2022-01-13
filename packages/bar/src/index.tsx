@@ -4,8 +4,7 @@ import { cloneDeep } from 'lodash'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
-import { mergeOption, buildChartOption } from '../../../packages/core/src'
-import { ChartContext } from '../../../packages/core/src/ChartProvider'
+import { mergeOption, buildChartOption } from '@echarts-readymade/core'
 import { BarChart } from 'echarts/charts'
 import {
   GridSimpleComponent,
@@ -75,13 +74,7 @@ export interface BarChartProps extends ChartProps {
 
 export const Bar: React.FC<BarChartProps> = (props) => {
   const {
-    data,
-    echartsOptions,
-    echartsOptionsBase: chartOption,
-    userOptions
-  } = useContext(ChartContext)
-  const { option, ...resetOptions } = echartsOptions || {}
-  const {
+    context,
     dimension,
     compareDimension,
     valueList,
@@ -90,6 +83,17 @@ export const Bar: React.FC<BarChartProps> = (props) => {
     setOption,
     ...restSettings
   } = props
+  const {
+    data,
+    echartsOptions,
+    echartsOptionsBase: chartOption,
+    userOptions
+  } = useContext(context)
+  const { option, ...resetOptions } = echartsOptions || {}
+
+  if (!data) {
+    return null
+  }
 
   const _dimension = dimension && dimension.slice(0, 1)
   const _chartOption = cloneDeep(chartOption || {})
@@ -236,15 +240,17 @@ export const Bar: React.FC<BarChartProps> = (props) => {
       _chartOption.series = echartsSeries || _seriesValueList
     } else {
       // 无对比维度
-      _chartOption.xAxis.data =
-        xAxisData ||
-        (data &&
-          data.map((d) => {
-            const value = dimension && d[dimension?.[0]?.fieldKey]
-            if (value != null) {
-              return `${value}`
-            }
-          }))
+      if (_chartOption.xAxis) {
+        _chartOption.xAxis.data =
+          xAxisData ||
+          (data &&
+            data.map((d) => {
+              const value = dimension && d[dimension?.[0]?.fieldKey]
+              if (value != null) {
+                return `${value}`
+              }
+            }))
+      }
       _chartOption.series =
         echartsSeries ||
         valueList?.map((v) => {

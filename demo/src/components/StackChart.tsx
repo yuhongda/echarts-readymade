@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ChartProvider } from '../../../packages/core/src/ChartProvider'
+import { ChartProvider, ChartContext } from '../../../packages/core/src/ChartProvider'
 import { Stack } from '../../../packages/stack/src'
 import type { LegendPosition } from '../../../packages/core/src/'
 import styled from 'styled-components'
@@ -181,6 +181,7 @@ export const StackChart: React.FC = () => {
         <Row gutter={16} style={{ height: 500 }}>
           <Col span={12}>
             <Stack
+              context={ChartContext}
               dimension={dimension}
               valueList={valueList}
               legendPosition={legendPosition as LegendPosition}
@@ -188,6 +189,7 @@ export const StackChart: React.FC = () => {
           </Col>
           <Col span={12}>
             <Stack
+              context={ChartContext}
               dimension={dimension}
               compareDimension={compareDimension}
               valueList={valueList}

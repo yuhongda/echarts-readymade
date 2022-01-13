@@ -4,8 +4,7 @@ import { cloneDeep } from 'lodash'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
-import { mergeOption, buildChartOption } from '../../../packages/core/src'
-import { ChartContext } from '../../../packages/core/src/ChartProvider'
+import { mergeOption, buildChartOption } from '@echarts-readymade/core'
 import { PieChart } from 'echarts/charts'
 import {
   GridSimpleComponent,
@@ -74,14 +73,14 @@ export interface PieChartProps extends ChartProps {
 }
 
 export const Pie: React.FC<PieChartProps> = (props) => {
+  const { context, dimension, valueList, echartsSeries, showInRing, setOption, ...restSettings } = props
   const {
     data,
     echartsOptions,
     echartsOptionsBase: chartOption,
     userOptions
-  } = useContext(ChartContext)
+  } = useContext(context)
   const { option, ...resetOptions } = echartsOptions || {}
-  const { dimension, valueList, echartsSeries, showInRing, setOption, ...restSettings } = props
 
   const getCenter = () => {
     let _centerLeft = '50%'

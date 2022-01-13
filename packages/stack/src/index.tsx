@@ -4,8 +4,7 @@ import { cloneDeep } from 'lodash'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
-import { mergeOption, buildChartOption, numberWithCommas } from '../../../packages/core/src'
-import { ChartContext } from '../../../packages/core/src/ChartProvider'
+import { mergeOption, buildChartOption, numberWithCommas } from '@echarts-readymade/core'
 import { BarChart, LineChart } from 'echarts/charts'
 import {
   GridSimpleComponent,
@@ -90,14 +89,7 @@ export interface StackChartProps extends ChartProps {
 
 export const Stack: React.FC<StackChartProps> = (props) => {
   const {
-    data,
-    echartsOptions,
-    echartsOptionsBase: chartOption,
-    userOptions,
-    
-  } = useContext(ChartContext)
-  const { option, ...resetOptions } = echartsOptions || {}
-  const {
+    context,
     dimension,
     compareDimension,
     valueList,
@@ -108,6 +100,8 @@ export const Stack: React.FC<StackChartProps> = (props) => {
     isLineStack,
     ...restSettings
   } = props
+  const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = useContext(context)
+  const { option, ...resetOptions } = echartsOptions || {}
 
   if (valueList?.length === 0) {
     return null
@@ -116,7 +110,6 @@ export const Stack: React.FC<StackChartProps> = (props) => {
   const _dimension = dimension && dimension.slice(0, 1)
   const _valueItem = valueList && valueList[0]
   const _chartOption = cloneDeep(chartOption || {})
-
 
   if (!(_dimension && _valueItem && _dimension.length === 1)) {
     return null

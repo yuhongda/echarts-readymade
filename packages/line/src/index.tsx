@@ -4,8 +4,7 @@ import { cloneDeep } from 'lodash'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
-import { mergeOption, buildChartOption, Field } from '../../../packages/core/src'
-import { ChartContext } from '../../../packages/core/src/ChartProvider'
+import { mergeOption, buildChartOption, Field } from '@echarts-readymade/core'
 import { LineChart } from 'echarts/charts'
 import {
   GridSimpleComponent,
@@ -75,13 +74,7 @@ export interface LineChartProps extends ChartProps {
 
 export const Line: React.FC<LineChartProps> = (props) => {
   const {
-    data,
-    echartsOptions,
-    echartsOptionsBase: chartOption,
-    userOptions
-  } = useContext(ChartContext)
-  const { option, ...resetOptions } = echartsOptions || {}
-  const {
+    context,
     dimension,
     compareDimension,
     valueList,
@@ -90,6 +83,13 @@ export const Line: React.FC<LineChartProps> = (props) => {
     setOption,
     ...restSettings
   } = props
+  const {
+    data,
+    echartsOptions,
+    echartsOptionsBase: chartOption,
+    userOptions
+  } = useContext(context)
+  const { option, ...resetOptions } = echartsOptions || {}
 
   const _dimension = dimension && dimension.slice(0, 1)
   const _chartOption = cloneDeep(chartOption || {})

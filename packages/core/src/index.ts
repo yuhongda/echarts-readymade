@@ -14,6 +14,7 @@ type Field = {
 }
 
 type ChartProps = {
+  context: typeof ChartContext
   dimension?: Field[]
   compareDimension?: Field[]
   valueList?: Field[]
@@ -22,5 +23,21 @@ type ChartProps = {
 }
 
 export type { LegendPosition, Field, ChartProps }
-export { ChartProvider, ChartContext, mergeOption, buildChartOption, numberWithCommas, COLOR_LIST, truncate }
-export default { ChartProvider, ChartContext, mergeOption, buildChartOption, numberWithCommas, COLOR_LIST, truncate }
+export {
+  ChartProvider,
+  ChartContext,
+  mergeOption,
+  buildChartOption,
+  numberWithCommas,
+  COLOR_LIST,
+  truncate
+}
+export default {
+  ChartProvider,
+  ChartContext,
+  mergeOption,
+  buildChartOption,
+  numberWithCommas,
+  COLOR_LIST,
+  truncate
+}
