@@ -1,11 +1,11 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn
+  /Users/yuhongda/.nvm/versions/node/v14.18.1/bin/node /Users/yuhongda/.node/corepack/yarn/1.22.15/bin/yarn.js add -D -W @types/rollup-plugin-external-globals
 
 PATH: 
-  /opt/local/bin:/opt/local/sbin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+  /Users/yuhongda/.nvm/versions/node/v14.18.1/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
 
 Yarn version: 
-  1.22.17
+  1.22.15
 
 Node version: 
   14.18.1
@@ -14,8 +14,17 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: unexpected end of file
-      at Zlib.zlibOnError [as onerror] (zlib.js:187:17)
+  Error: https://registry.yarnpkg.com/@types%2frollup-plugin-external-globals: Not found
+      at Request.params.callback [as _callback] (/Users/yuhongda/.node/corepack/yarn/1.22.15/lib/cli.js:66140:18)
+      at Request.self.callback (/Users/yuhongda/.node/corepack/yarn/1.22.15/lib/cli.js:140885:22)
+      at Request.emit (events.js:400:28)
+      at Request.<anonymous> (/Users/yuhongda/.node/corepack/yarn/1.22.15/lib/cli.js:141857:10)
+      at Request.emit (events.js:400:28)
+      at IncomingMessage.<anonymous> (/Users/yuhongda/.node/corepack/yarn/1.22.15/lib/cli.js:141779:12)
+      at Object.onceWrapper (events.js:519:28)
+      at IncomingMessage.emit (events.js:412:35)
+      at endReadableNT (internal/streams/readable.js:1334:12)
+      at processTicksAndRejections (internal/process/task_queues.js:82:21)
 
 npm manifest: 
   {
@@ -30,7 +39,8 @@ npm manifest:
     "author": "yuhongda <silverage.y@gmail.com>",
     "license": "MIT",
     "scripts": {
-      "build": "lerna run build"
+      "build": "lerna run build",
+      "release": "lerna run release"
     },
     "devDependencies": {
       "@babel/cli": "^7.14.8",
@@ -43,6 +53,7 @@ npm manifest:
       "@babel/preset-typescript": "^7.14.5",
       "@babel/types": "^7.14.8",
       "@rollup/plugin-commonjs": "^21.0.1",
+      "@rollup/plugin-typescript": "^8.3.0",
       "@testing-library/jest-dom": "^5.16.1",
       "@testing-library/react": "^12.1.2",
       "@testing-library/react-hooks": "^7.0.2",
@@ -66,9 +77,11 @@ npm manifest:
       "rollup": "^2.54.0",
       "rollup-plugin-dts": "^3.0.2",
       "rollup-plugin-esbuild": "^4.7.2",
+      "rollup-plugin-external-globals": "^0.6.1",
       "rollup-plugin-node-resolve": "^5.2.0",
       "rollup-plugin-replace": "^2.2.0",
       "rollup-plugin-typescript2": "^0.31.1",
+      "rollup-plugin-visualizer": "^5.5.2",
       "ts-node": "^10.4.0",
       "typescript": "^4.3.5"
     }
@@ -2280,6 +2293,14 @@ Lockfile:
       magic-string "^0.25.7"
       resolve "^1.17.0"
   
+  "@rollup/plugin-typescript@^8.3.0":
+    version "8.3.0"
+    resolved "https://registry.yarnpkg.com/@rollup/plugin-typescript/-/plugin-typescript-8.3.0.tgz#bc1077fa5897b980fc27e376c4e377882c63e68b"
+    integrity sha512-I5FpSvLbtAdwJ+naznv+B4sjXZUcIvLLceYpITAn7wAP8W0wqc5noLdGIp9HGVntNhRWXctwPYrSSFQxtl0FPA==
+    dependencies:
+      "@rollup/pluginutils" "^3.1.0"
+      resolve "^1.17.0"
+  
   "@rollup/pluginutils@^3.1.0":
     version "3.1.0"
     resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.1.0.tgz#706b4524ee6dc8b103b3c995533e5ad680c02b9b"
@@ -2289,7 +2310,7 @@ Lockfile:
       estree-walker "^1.0.1"
       picomatch "^2.2.2"
   
-  "@rollup/pluginutils@^4.1.0", "@rollup/pluginutils@^4.1.1":
+  "@rollup/pluginutils@^4.0.0", "@rollup/pluginutils@^4.1.0", "@rollup/pluginutils@^4.1.1":
     version "4.1.2"
     resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.1.2.tgz#ed5821c15e5e05e32816f5fb9ec607cdf5a75751"
     integrity sha512-ROn4qvkxP9SyPeHaf7uQC/GPFY6L/OWy9+bd9AwcjOAWQwxRscoEyAUD8qCY5o5iL4jqQwoLk2kaTKJPb/HwzQ==
@@ -2504,6 +2525,11 @@ Lockfile:
     dependencies:
       jest-diff "^26.0.0"
       pretty-format "^26.0.0"
+  
+  "@types/lodash@^4.14.178":
+    version "4.14.178"
+    resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.178.tgz#341f6d2247db528d4a13ddbb374bcdc80406f4f8"
+    integrity sha512-0d5Wd09ItQWH1qFbEyQ7oTQ3GZrMfth5JkbN3EvTKLXcHLRDSXeLnlvlOn0wvxVIwK5o2M8JzP/OWz7T3NRsbw==
   
   "@types/minimatch@^3.0.3":
     version "3.0.5"
@@ -5424,6 +5450,11 @@ Lockfile:
       is-data-descriptor "^1.0.0"
       kind-of "^6.0.2"
   
+  is-docker@^2.0.0:
+    version "2.2.1"
+    resolved "https://registry.yarnpkg.com/is-docker/-/is-docker-2.2.1.tgz#33eeabe23cfe86f14bde4408a02c0cfb853acdaa"
+    integrity sha512-F+i2BKsFrH66iaUFc0woD8sLy8getkwTwtOBjvs56Cx4CgJDeKQeqfz8wAYiSb8JOprWhHH5p77PbmYCvvUuXQ==
+  
   is-extendable@^0.1.0, is-extendable@^0.1.1:
     version "0.1.1"
     resolved "https://registry.yarnpkg.com/is-extendable/-/is-extendable-0.1.1.tgz#62b110e289a471418e3ec36a617d472e301dfc89"
@@ -5610,6 +5641,13 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
     integrity sha512-eXK1UInq2bPmjyX6e3VHIzMLobc4J94i4AWn+Hpq3OU5KkrRC96OAcR3PRJ/pGu6m8TRnBHP9dkXQVsT/COVIA==
+  
+  is-wsl@^2.1.1:
+    version "2.2.0"
+    resolved "https://registry.yarnpkg.com/is-wsl/-/is-wsl-2.2.0.tgz#74a4c76e77ca9fd3f932f290c17ea326cd157271"
+    integrity sha512-fKzAra0rGJUUBwGBgNkHZuToZcn+TtXHpeCgmkMJMMYx1sQDYaCSyjJBSCa2nH1DGm7s3n1oBnohoVTBaN7Lww==
+    dependencies:
+      is-docker "^2.0.0"
   
   isarray@1.0.0, isarray@~1.0.0:
     version "1.0.0"
@@ -7058,6 +7096,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/nan/-/nan-2.15.0.tgz#3f34a473ff18e15c1b5626b62903b5ad6e665fee"
     integrity sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==
   
+  nanoid@^3.1.22:
+    version "3.1.32"
+    resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.32.tgz#8f96069e6239cc0a9ae8c0d3b41a3b4933a88c0a"
+    integrity sha512-F8mf7R3iT9bvThBoW4tGXhXFHCctyCiUUPrWF8WaTqa3h96d9QybkSeba43XVOOE3oiLfkVDe4bT8MeGmkrTxw==
+  
   nanoid@^3.1.30:
     version "3.1.30"
     resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.30.tgz#63f93cc548d2a113dc5dfbc63bfa09e2b9b64362"
@@ -7456,6 +7499,14 @@ Lockfile:
     integrity sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==
     dependencies:
       mimic-fn "^2.1.0"
+  
+  open@^7.4.2:
+    version "7.4.2"
+    resolved "https://registry.yarnpkg.com/open/-/open-7.4.2.tgz#b8147e26dcf3e426316c730089fd71edd29c2321"
+    integrity sha512-MVHddDVweXZF3awtlAS+6pgKLlm/JgxZ90+/NBurBoQctVOOB/zDdVjcyPzQ+0laDGbsWgrRkflI65sQeOgT9Q==
+    dependencies:
+      is-docker "^2.0.0"
+      is-wsl "^2.1.1"
   
   optionator@^0.8.1:
     version "0.8.3"
@@ -8421,6 +8472,16 @@ Lockfile:
       joycon "^3.0.1"
       jsonc-parser "^3.0.0"
   
+  rollup-plugin-external-globals@^0.6.1:
+    version "0.6.1"
+    resolved "https://registry.yarnpkg.com/rollup-plugin-external-globals/-/rollup-plugin-external-globals-0.6.1.tgz#861c260b5727144e0fd1b424b103f9f0282fc365"
+    integrity sha512-mlp3KNa5sE4Sp9UUR2rjBrxjG79OyZAh/QC18RHIjM+iYkbBwNXSo8DHRMZWtzJTrH8GxQ+SJvCTN3i14uMXIA==
+    dependencies:
+      "@rollup/pluginutils" "^4.0.0"
+      estree-walker "^2.0.1"
+      is-reference "^1.2.1"
+      magic-string "^0.25.7"
+  
   rollup-plugin-node-resolve@^5.2.0:
     version "5.2.0"
     resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-5.2.0.tgz#730f93d10ed202473b1fb54a5997a7db8c6d8523"
@@ -8451,6 +8512,16 @@ Lockfile:
       fs-extra "8.1.0"
       resolve "1.20.0"
       tslib "2.2.0"
+  
+  rollup-plugin-visualizer@^5.5.2:
+    version "5.5.2"
+    resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-5.5.2.tgz#ae2130ee5ae4a2d901e764e492b71357cb95eed7"
+    integrity sha512-sh+P9KhuWTzeStyRA5yNZpoEFGuj5Ph34JLMa9+muhU8CneFf9L0XE4fmAwAojJLWp//uLUEyytBPSCdZEg5AA==
+    dependencies:
+      nanoid "^3.1.22"
+      open "^7.4.2"
+      source-map "^0.7.3"
+      yargs "^16.2.0"
   
   rollup-pluginutils@^2.6.0, rollup-pluginutils@^2.8.1:
     version "2.8.2"

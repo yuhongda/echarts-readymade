@@ -1,15 +1,10 @@
 import React, { useContext } from 'react'
 import { multiply, round } from 'mathjs/number'
-import { cloneDeep } from 'lodash'
+import cloneDeep from 'lodash/cloneDeep'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
-import {
-  mergeOption,
-  buildChartOption,
-  numberWithCommas,
-  ChartContext
-} from '@echarts-readymade/core'
+import { mergeOption, buildChartOption, numberWithCommas } from '@echarts-readymade/core'
 import { BarChart, LineChart } from 'echarts/charts'
 import {
   GridSimpleComponent,
@@ -94,6 +89,7 @@ export interface StackChartProps extends ChartProps {
 
 export const Stack: React.FC<StackChartProps> = (props) => {
   const {
+    context,
     dimension,
     compareDimension,
     valueList,
@@ -104,14 +100,9 @@ export const Stack: React.FC<StackChartProps> = (props) => {
     isLineStack,
     ...restSettings
   } = props
-  const {
-    data,
-    echartsOptions,
-    echartsOptionsBase: chartOption,
-    userOptions
-  } = useContext(ChartContext)
+  const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = useContext(context)
   const { option, ...resetOptions } = echartsOptions || {}
-  
+
   if (!data) {
     return null
   }

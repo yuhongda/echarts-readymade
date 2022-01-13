@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { multiply, round, divide, fix } from 'mathjs/number'
-import { cloneDeep } from 'lodash'
+import cloneDeep from 'lodash/cloneDeep'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
-import { mergeOption, buildChartOption, ChartContext } from '@echarts-readymade/core'
+import { mergeOption, buildChartOption } from '@echarts-readymade/core'
 import { PieChart } from 'echarts/charts'
 import {
   GridSimpleComponent,
@@ -73,19 +73,15 @@ export interface PieChartProps extends ChartProps {
 }
 
 export const Pie: React.FC<PieChartProps> = (props) => {
-  const { dimension, valueList, echartsSeries, showInRing, setOption, ...restSettings } = props
-  const {
-    data,
-    echartsOptions,
-    echartsOptionsBase: chartOption,
-    userOptions
-  } = useContext(ChartContext)
+  const { context, dimension, valueList, echartsSeries, showInRing, setOption, ...restSettings } =
+    props
+  const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = useContext(context)
   const { option, ...resetOptions } = echartsOptions || {}
 
   if (!data) {
     return null
   }
-  
+
   const getCenter = () => {
     let _centerLeft = '50%'
     let _centerTop = '50%'

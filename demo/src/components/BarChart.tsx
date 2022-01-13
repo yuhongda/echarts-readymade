@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { ChartProvider } from '@echarts-readymade/core'
-import { Bar } from '../../../packages/bar/src'
-import type { LegendPosition } from '@echarts-readymade/core'
+// import { ChartContext, ChartProvider } from '@echarts-readymade/core'
+// import { Bar } from '@echarts-readymade/bar'
+import { ChartProvider, Bar } from 'echarts-readymade'
+import type { LegendPosition, Field } from 'echarts-readymade'
 import styled from 'styled-components'
-import type { Field } from '@echarts-readymade/core'
 import { Radio, Button, Row, Col } from 'antd'
 
 const Container = styled.div`
@@ -171,9 +171,8 @@ export const BarChart: React.FC = () => {
                   formatter: '{value}%'
                 }
               }
-            ],
+            ]
             // color: ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
-
           }
         }}
       >

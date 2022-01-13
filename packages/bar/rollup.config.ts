@@ -4,6 +4,7 @@ import replace from 'rollup-plugin-replace'
 import resolve from 'rollup-plugin-node-resolve'
 import type { RollupOptions } from 'rollup'
 import commonjs from '@rollup/plugin-commonjs'
+// import { visualizer } from 'rollup-plugin-visualizer'
 
 const format = process.env.FORMAT || 'esm'
 
@@ -15,10 +16,18 @@ const config: RollupOptions = {
         moduleDirectory: 'node_modules'
       }
     }),
-    commonjs(),
+    commonjs()
+    // visualizer()
   ],
-
-  external: ['react', 'react-dom']
+  external: [
+    'react',
+    'react-dom',
+    'echarts',
+    'echarts/core',
+    'echarts/charts',
+    'echarts/components',
+    'echarts/renderers'
+  ]
 }
 
 if (format === 'esm' || format === 'cjs' || format === 'umd') {
@@ -64,10 +73,7 @@ if (format === 'umd') {
   config.output = {
     format,
     name: 'index',
-    file:
-      process.env.NODE_ENV === 'production'
-        ? 'lib/umd/index.min.js'
-        : 'lib/umd/index.js'
+    file: process.env.NODE_ENV === 'production' ? 'lib/umd/index.min.js' : 'lib/umd/index.js'
   }
   config.plugins?.push(
     replace({

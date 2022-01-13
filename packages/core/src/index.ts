@@ -14,6 +14,7 @@ type Field = {
 }
 
 type ChartProps = {
+  context: typeof ChartContext
   dimension?: Field[]
   compareDimension?: Field[]
   valueList?: Field[]

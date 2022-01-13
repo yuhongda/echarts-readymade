@@ -18,7 +18,15 @@ const config: RollupOptions = {
     commonjs()
   ],
 
-  external: ['react', 'react-dom']
+  external: [
+    'react',
+    'react-dom',
+    'echarts',
+    'echarts/core',
+    'echarts/charts',
+    'echarts/components',
+    'echarts/renderers'
+  ]
 }
 
 if (format === 'esm' || format === 'cjs' || format === 'umd') {
@@ -64,10 +72,7 @@ if (format === 'umd') {
   config.output = {
     format,
     name: 'index',
-    file:
-      process.env.NODE_ENV === 'production'
-        ? 'lib/umd/index.min.js'
-        : 'lib/umd/index.js'
+    file: process.env.NODE_ENV === 'production' ? 'lib/umd/index.min.js' : 'lib/umd/index.js'
   }
   config.plugins?.push(
     replace({

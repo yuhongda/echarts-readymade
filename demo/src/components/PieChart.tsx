@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { ChartProvider } from '@echarts-readymade/core'
-import { Pie } from '../../../packages/pie/src'
+import { ChartProvider, ChartContext } from '@echarts-readymade/core'
+import { Pie } from '@echarts-readymade/pie'
 import type { LegendPosition } from '@echarts-readymade/core'
 import styled from 'styled-components'
 import type { Field } from '@echarts-readymade/core'
@@ -94,6 +94,7 @@ export const PieChart: React.FC = () => {
         }}
       >
         <Pie
+          context={ChartContext}
           dimension={dimension}
           valueList={valueList}
           legendPosition={legendPosition as LegendPosition}

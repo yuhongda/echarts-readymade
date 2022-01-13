@@ -40,6 +40,10 @@
     "@echarts-readymade/bar": "^1.0.0",
     "@echarts-readymade/pie": "^1.0.0",
     "@echarts-readymade/stack": "^1.0.0",
-    "@echarts-readymade/scatter": "^1.0.0"
+    "@echarts-readymade/scatter": "^1.0.0",
+    "echarts": "^5.2.2",
+    "echarts-for-react": "^3.0.2",
+    "lodash": "^4.17.21",
+    "mathjs": "^10.0.2"
   }
 }

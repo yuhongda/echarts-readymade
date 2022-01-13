@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { ChartProvider } from '@echarts-readymade/core'
-import { Stack } from '../../../packages/stack/src'
+import { ChartProvider, ChartContext } from '@echarts-readymade/core'
+import { Stack } from '@echarts-readymade/stack'
 import type { LegendPosition } from '@echarts-readymade/core'
 import styled from 'styled-components'
 import type { Field } from '@echarts-readymade/core'
@@ -181,6 +181,7 @@ export const StackChart: React.FC = () => {
         <Row gutter={16} style={{ height: 500 }}>
           <Col span={12}>
             <Stack
+              context={ChartContext}
               dimension={dimension}
               valueList={valueList}
               legendPosition={legendPosition as LegendPosition}
@@ -188,6 +189,7 @@ export const StackChart: React.FC = () => {
           </Col>
           <Col span={12}>
             <Stack
+              context={ChartContext}
               dimension={dimension}
               compareDimension={compareDimension}
               valueList={valueList}
