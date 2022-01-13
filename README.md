@@ -29,8 +29,7 @@ yarn add @echarts-readymade/line
 ## Usage
 
 ```jsx
-import { ChartProvider } from '@echarts-readymade/core'
-import { Line } from '@echarts-readymade/line'
+import { ChartProvider, Bar } from 'echarts-readymade'
 
 const data = [
   {
@@ -73,7 +72,7 @@ const valueList: Field[] = [
 ]
 
 <ChartProvider data={data}>
-  <Line dimension={dimension} valueList={valueList} />
+  <Bar dimension={dimension} valueList={valueList} />
 </ChartProvider>
 
 ```
