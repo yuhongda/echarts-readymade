@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { ChartProvider, ChartContext } from '@echarts-readymade/core'
-import { Bar } from '@echarts-readymade/bar'
+import { ChartProvider } from '@echarts-readymade/core'
+import { Bar } from '../../../packages/bar/src'
 import type { LegendPosition } from '@echarts-readymade/core'
 import styled from 'styled-components'
 import type { Field } from '@echarts-readymade/core'
@@ -180,7 +180,6 @@ export const BarChart: React.FC = () => {
         <Row gutter={16} style={{ height: 500 }}>
           <Col span={12}>
             <Bar
-              context={ChartContext}
               dimension={dimension}
               valueList={valueList}
               legendPosition={legendPosition as LegendPosition}
@@ -188,7 +187,6 @@ export const BarChart: React.FC = () => {
           </Col>
           <Col span={12}>
             <Bar
-              context={ChartContext}
               dimension={dimension}
               compareDimension={compareDimension}
               valueList={valueList}

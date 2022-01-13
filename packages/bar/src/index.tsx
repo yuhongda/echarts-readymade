@@ -4,7 +4,7 @@ import { cloneDeep } from 'lodash'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
-import { mergeOption, buildChartOption } from '@echarts-readymade/core'
+import { mergeOption, buildChartOption, ChartContext } from '@echarts-readymade/core'
 import { BarChart } from 'echarts/charts'
 import {
   GridSimpleComponent,
@@ -74,7 +74,6 @@ export interface BarChartProps extends ChartProps {
 
 export const Bar: React.FC<BarChartProps> = (props) => {
   const {
-    context,
     dimension,
     compareDimension,
     valueList,
@@ -88,7 +87,7 @@ export const Bar: React.FC<BarChartProps> = (props) => {
     echartsOptions,
     echartsOptionsBase: chartOption,
     userOptions
-  } = useContext(context)
+  } = useContext(ChartContext)
   const { option, ...resetOptions } = echartsOptions || {}
 
   if (!data) {

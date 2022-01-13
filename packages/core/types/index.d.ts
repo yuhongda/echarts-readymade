@@ -33,7 +33,6 @@ declare type Field = {
     decimalLength?: number;
 };
 declare type ChartProps = {
-    context: typeof ChartContext;
     dimension?: Field[];
     compareDimension?: Field[];
     valueList?: Field[];

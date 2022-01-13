@@ -4,7 +4,7 @@ import { cloneDeep } from 'lodash'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
-import { mergeOption, buildChartOption, COLOR_LIST, truncate } from '@echarts-readymade/core'
+import { mergeOption, buildChartOption, COLOR_LIST, truncate, ChartContext } from '@echarts-readymade/core'
 import { ScatterChart } from 'echarts/charts'
 import {
   GridSimpleComponent,
@@ -77,7 +77,6 @@ export interface ScatterChartProps extends ChartProps {
 
 export const Scatter: React.FC<ScatterChartProps> = (props) => {
   const {
-    context,
     dimension,
     compareDimension,
     valueList,
@@ -85,8 +84,12 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
     setOption,
     ...restSettings
   } = props
-  const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = useContext(context)
+  const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = useContext(ChartContext)
   const { option, ...resetOptions } = echartsOptions || {}
+  
+  if (!data) {
+    return null
+  }
 
   const _dimension = dimension && dimension.slice(0, 1)
   const _valueList = valueList && valueList.slice(0, 3)

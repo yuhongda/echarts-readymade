@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { ChartProvider, ChartContext } from '../../../packages/core/src/ChartProvider'
+import { ChartProvider } from '@echarts-readymade/core'
 import { Pie } from '../../../packages/pie/src'
-import type { LegendPosition } from '../../../packages/core/src/'
+import type { LegendPosition } from '@echarts-readymade/core'
 import styled from 'styled-components'
 import type { Field } from '@echarts-readymade/core'
 import { Radio, Button } from 'antd'
@@ -94,7 +94,6 @@ export const PieChart: React.FC = () => {
         }}
       >
         <Pie
-          context={ChartContext}
           dimension={dimension}
           valueList={valueList}
           legendPosition={legendPosition as LegendPosition}
