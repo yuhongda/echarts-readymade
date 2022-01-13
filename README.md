@@ -3,7 +3,12 @@ A collection of echarts templates for React. Based on echarts-for-react
 
 ![CC0328C6BAADA3C93D3DA9B093ED5908 (1)](https://user-images.githubusercontent.com/259410/149259067-f410c199-bf21-4f84-9121-35d46a75e465.jpeg)
 
+## 🎨 Features
 
+- 🌈 Easy to use (provide default layout and style)
+- 🌟 Available components: `<Bar />` `<Line />` `<Pie />` `<Stack />` `<Scatter />`
+- 🎁 Support `Compare Dimension`, which means you can indicate another dimension field to compare base on one dimension.
+- 💪 Typescript support
 
 ## Installation
 
@@ -29,8 +34,7 @@ yarn add @echarts-readymade/line
 ## Usage
 
 ```jsx
-import { ChartProvider } from '@echarts-readymade/core'
-import { Line } from '@echarts-readymade/line'
+import { ChartProvider, Bar } from 'echarts-readymade'
 
 const data = [
   {
@@ -73,7 +77,7 @@ const valueList: Field[] = [
 ]
 
 <ChartProvider data={data}>
-  <Line dimension={dimension} valueList={valueList} />
+  <Bar dimension={dimension} valueList={valueList} />
 </ChartProvider>
 
 ```
