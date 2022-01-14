@@ -5,7 +5,7 @@ import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption, COLOR_LIST, truncate } from '@echarts-readymade/core'
-import { ScatterChart } from 'echarts/charts'
+import { ScatterChart, LineChart, BarChart } from 'echarts/charts'
 import {
   GridSimpleComponent,
   GridComponent,
@@ -39,6 +39,8 @@ import { EChartsOption } from 'echarts-for-react'
 
 echarts.use([
   ScatterChart,
+  LineChart,
+  BarChart,
   CanvasRenderer,
   SVGRenderer,
   GridSimpleComponent,

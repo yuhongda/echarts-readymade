@@ -5,7 +5,7 @@ import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption, Field } from '@echarts-readymade/core'
-import { LineChart } from 'echarts/charts'
+import { LineChart, BarChart, ScatterChart } from 'echarts/charts'
 import {
   GridSimpleComponent,
   GridComponent,
@@ -38,6 +38,8 @@ import { CanvasRenderer, SVGRenderer } from 'echarts/renderers'
 
 echarts.use([
   LineChart,
+  BarChart,
+  ScatterChart,
   CanvasRenderer,
   SVGRenderer,
   GridSimpleComponent,
@@ -200,13 +202,13 @@ export const Line: React.FC<LineChartProps> = (props) => {
         let _data = cloneDeep(_processData[i].data) || []
         let compareDimensionName = `${_processData[i].name}`
 
-        valueList?.forEach((v) => {
+        valueList?.forEach((v: Field) => {
           _seriesValueList.push({
             name:
               valueList.length > 1
                 ? `${compareDimensionName}~${v.fieldName}`
                 : compareDimensionName,
-            type: 'line',
+            type: v.type || 'line',
             barGap: 0,
             barMaxWidth: 60,
             lineStyle: {
@@ -253,7 +255,7 @@ export const Line: React.FC<LineChartProps> = (props) => {
         valueList?.map((v) => {
           return {
             name: v.fieldName,
-            type: 'line',
+            type: v.type || 'line',
             lineStyle: {
               shadowColor: 'rgba(0,0,0,0.15)',
               shadowBlur: 3,

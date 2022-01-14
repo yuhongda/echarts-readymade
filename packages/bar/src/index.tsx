@@ -3,9 +3,9 @@ import { multiply, round } from 'mathjs/number'
 import cloneDeep from 'lodash/cloneDeep'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import * as echarts from 'echarts/core'
-import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
+import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption } from '@echarts-readymade/core'
-import { BarChart } from 'echarts/charts'
+import { BarChart, LineChart, ScatterChart } from 'echarts/charts'
 import {
   GridSimpleComponent,
   GridComponent,
@@ -38,6 +38,8 @@ import { CanvasRenderer, SVGRenderer } from 'echarts/renderers'
 
 echarts.use([
   BarChart,
+  LineChart,
+  ScatterChart,
   CanvasRenderer,
   SVGRenderer,
   GridSimpleComponent,
@@ -200,14 +202,14 @@ export const Bar: React.FC<BarChartProps> = (props) => {
         let _data = cloneDeep(_processData[i].data) || []
         let compareDimensionName = `${_processData[i].name}`
 
-        valueList?.forEach((v) => {
+        valueList?.forEach((v: Field) => {
           _seriesValueList.push({
             name:
               valueList.length > 1
                 ? `${compareDimensionName}~${v.fieldName}`
                 : compareDimensionName,
 
-            type: 'bar',
+            type: v.type || 'bar',
             barMaxWidth: 60,
             barGap: 0,
             lineStyle: {
@@ -256,8 +258,7 @@ export const Bar: React.FC<BarChartProps> = (props) => {
         valueList?.map((v) => {
           return {
             name: v.fieldName,
-
-            type: 'bar',
+            type: v.type || 'bar',
             barMaxWidth: 60,
             barGap: 0,
             data:

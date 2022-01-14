@@ -25,9 +25,11 @@ declare type ChartType = 'line' | 'bar' | 'pie' | 'stack' | 'line-stack' | 'line
 declare const buildChartOption: (chartOptions: EChartsOption, settings: ChartSettings, chartType: ChartType) => any;
 
 declare type LegendPosition = 'top' | 'left' | 'right' | 'bottom';
+declare type SeriesType = 'line' | 'bar' | 'pie' | 'scatter';
 declare type Field = {
     fieldKey: string;
     fieldName: string;
+    type: SeriesType;
     yAxisIndex?: number;
     isPercent?: boolean;
     decimalLength?: number;
@@ -47,7 +49,7 @@ declare const _default: {
     mergeOption: (baseOptions: any, userOptions?: any) => any;
     buildChartOption: (chartOptions: any, settings: {
         legendPosition?: "top" | "left" | "right" | "bottom" | undefined;
-    }, chartType: "line" | "bar" | "pie" | "stack" | "line-stack" | "line-bar" | "bar-horizontal" | "table" | "high-relation-scatter" | "map" | "wordcloud" | "scatter") => any;
+    }, chartType: "line" | "bar" | "pie" | "scatter" | "stack" | "line-stack" | "line-bar" | "bar-horizontal" | "table" | "high-relation-scatter" | "map" | "wordcloud") => any;
     numberWithCommas: typeof numberWithCommas;
     COLOR_LIST: string[];
     truncate: (str: string, n: number) => string;
