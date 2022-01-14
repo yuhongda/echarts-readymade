@@ -179,7 +179,7 @@ const valueList: Field[] = [
 | isPercent | If set `true`, the value will be multiply by 100. | `boolean` | `undefined` |
 | decimalLength | round number in `mathjs/number/round`. round(v, decimalLength) | `number` | `undefined` |
 
-###  `<Bar />` `<Line />`
+###  `<Bar />` & `<Line />`
 
 | Property | Description | Type | Default |
 | :------- | :---------- | :--- | ------: |
@@ -191,6 +191,12 @@ const valueList: Field[] = [
 | Property | Description | Type | Default |
 | :------- | :---------- | :--- | ------: |
 | showInRing | It's literary meaning | `boolean` | `undefined` |
+| legendPosition | Position of legend | `'top' | 'left' | 'right' | 'bottom'` | `undefined` |
+
+###  `<Scatter />`
+
+| Property | Description | Type | Default |
+| :------- | :---------- | :--- | ------: |
 | legendPosition | Position of legend | `'top' | 'left' | 'right' | 'bottom'` | `undefined` |
 
 ###  `<Stack />`
