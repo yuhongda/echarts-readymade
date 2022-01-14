@@ -39,6 +39,9 @@ yarn add @echarts-readymade/line
 ### Why the difference?
 > In order to reduce the bundle size, we divided the whole package into several packages based on chart type. The `ChartContext` exported from `@echarts-readymade/core` can not share with other packages. So you need pass it down to chart component manually. check [the example](#example) below.
 
+### For `<Bar />` and `<Line />` and `<Scatter />`, we import the three chart components from `echarts-for-react`
+
+I think there is no need to import full components of echarts-for-react, so just import useful components for some chart components. Like in <Line /> component, we  also import <BarChart /> and <ScatterChart />, so you can use them on one chart. Maybe there is other scenario, feel free let me know.
 
 ## Usage
 
