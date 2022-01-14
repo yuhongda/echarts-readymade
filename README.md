@@ -179,6 +179,13 @@ const valueList: Field[] = [
 | isPercent | If set `true`, the value will be multiply by 100. | `boolean` | `undefined` |
 | decimalLength | round number in `mathjs/number/round`. round(v, decimalLength) | `number` | `undefined` |
 
+###  `<Bar />`
+
+| Property | Description | Type | Default |
+| :------- | :---------- | :--- | ------: |
+| xAxisData | will replace the data of xAxis with this | `any[]` | `undefined` |
+| legendPosition | position of legend | `'top' | 'left' | 'right' | 'bottom'` | `undefined` |
+
 
 ## Roadmap
 
