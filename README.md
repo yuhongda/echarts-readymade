@@ -179,12 +179,29 @@ const valueList: Field[] = [
 | isPercent | If set `true`, the value will be multiply by 100. | `boolean` | `undefined` |
 | decimalLength | round number in `mathjs/number/round`. round(v, decimalLength) | `number` | `undefined` |
 
-###  `<Bar />`
+###  `<Bar />` `<Line />`
+
+| Property | Description | Type | Default |
+| :------- | :---------- | :--- | ------: |
+| xAxisData | Will replace the data of xAxis with this | `any[]` | `undefined` |
+| legendPosition | Position of legend | `'top' | 'left' | 'right' | 'bottom'` | `undefined` |
+
+###  `<Pie />`
+
+| Property | Description | Type | Default |
+| :------- | :---------- | :--- | ------: |
+| showInRing | It's literary meaning | `boolean` | `undefined` |
+| legendPosition | Position of legend | `'top' | 'left' | 'right' | 'bottom'` | `undefined` |
+
+###  `<Stack />`
 
 | Property | Description | Type | Default |
 | :------- | :---------- | :--- | ------: |
 | xAxisData | will replace the data of xAxis with this | `any[]` | `undefined` |
 | legendPosition | position of legend | `'top' | 'left' | 'right' | 'bottom'` | `undefined` |
+| isPercentMode | The stack bar will fill full the Y axis, which max value is 100.  | `boolean` | `undefined` |
+| isLineStack | transform bar stack to line stack | `boolean` | `undefined` |
+
 
 
 ## Roadmap
