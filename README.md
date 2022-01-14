@@ -41,7 +41,7 @@ yarn add @echarts-readymade/line
 
 ### For `<Bar />` and `<Line />` and `<Scatter />`, we import the three chart components from `echarts-for-react`
 
-> I think there is no need to import full components of echarts-for-react, so just import useful components for some chart components. Like in <Line /> component, we  also import <BarChart /> and <ScatterChart />, so you can use them on one chart. Maybe there is other scenario, feel free let me know.
+> I think there is no need to import full components from echarts-for-react, so we just import useful components for some chart components. But in some scenarios, user wants show Line on a Scatter chart. So like in <Line /> component, we also import <BarChart /> and <ScatterChart />, so you can use them on one chart. Maybe there is other scenario, feel free let me know.
 
 ## Usage
 
