@@ -31,17 +31,17 @@ yarn add @echarts-readymade/core
 yarn add @echarts-readymade/line
 ```
 
-### There're some differences between the two ways of installation below?
+### There're some differences between the two ways of installation below.
 > 1. Obviously, the way of 'Install What You Need' will keep the bundle size down.
 > 2. If you choose the way of 'Install What You Need', then you will need to pass `ChartContext` down to every chart component manually.
 > 3. If you choose the way of 'Full Installation', then we take the `ChartContext` in charge.
 
 ### Why the difference?
-> In order to reduce the bundle size, we divided the whole package into several packages based on chart type. The `ChartContext` exported from `@echarts-readymade/core` can not share with other packages. So you need pass it down to chart component manually. check [the example](#example) below.
+> In order to reduce the bundle size, we divided the whole package into several packages based on chart type. But the `ChartContext` exported from `@echarts-readymade/core` can not share with other packages in this situation. So you need pass it down to chart component manually. check [the example](#example) below.
 
 ### For `<Bar />` and `<Line />` and `<Scatter />`, we import the three chart components from `echarts-for-react`
 
-> I think there is no need to import full components from echarts-for-react, so we just import useful components for some chart components. But in some scenarios, user wants show Line on a Scatter chart. So like in <Line /> component, we also import <BarChart /> and <ScatterChart />, so you can use them on one chart. Maybe there is other scenario, feel free let me know.
+> I think there is no need to import full components from echarts-for-react, so we just import useful components for some chart components. But in some scenarios, user may want to show Line on a Scatter chart. So like in `<Line />` component, we also import `<BarChart />` and `<ScatterChart />`, so you can use them on one chart. Maybe there are other scenarios, feel free to let me know.
 
 ## Usage
 
