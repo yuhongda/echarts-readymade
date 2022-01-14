@@ -42,6 +42,7 @@ yarn add @echarts-readymade/line
 ## Usage
 
 ```jsx
+// Full Installation
 import { ChartProvider, Bar } from 'echarts-readymade'
 
 const data = [
@@ -86,6 +87,62 @@ const valueList: Field[] = [
 
 <ChartProvider data={data}>
   <Bar dimension={dimension} valueList={valueList} />
+</ChartProvider>
+
+```
+
+```jsx
+// Installation What You Need
+import { ChartProvider, ChartContext } from '@echarts-readymade/core'
+import { Bar } from '@echarts-readymade/Bar'
+
+const data = [
+  {
+    v6: 0.8141021277904137,
+    d1: '2020-12-31',
+    d2: '北京',
+    v4: 50.028318723339325,
+    v5: 27.577454409512264
+  },
+  {
+    v6: 0.3141021277904137,
+    d1: '2020-12-31',
+    d2: '上海',
+    v4: 60.028318723339325,
+    v5: 47.577454409512264
+  }
+]
+
+const dimension: Field[] = [
+  {
+    fieldKey: 'd1',
+    fieldName: '日期'
+  }
+]
+
+const valueList: Field[] = [
+  {
+    fieldKey: 'v6',
+    fieldName: '占比1',
+    isPercent: true
+  },
+  {
+    fieldKey: 'v4',
+    fieldName: '占比2'
+  },
+  {
+    fieldKey: 'v5',
+    fieldName: '占比3'
+  }
+]
+
+<ChartProvider data={data}>
+  <Bar 
+    // Note: here you need pass context down
+    context={ChartContext} 
+    dimension={dimension} 
+    valueList={valueList} 
+  />
 </ChartProvider>
 
 ```
