@@ -1,5 +1,5 @@
 # 📦 echarts-readymade
-A collection of echarts templates for React. Based on echarts-for-react
+> A collection of echarts templates for React. Based on echarts-for-react
 
 ![CC0328C6BAADA3C93D3DA9B093ED5908 (1)](https://user-images.githubusercontent.com/259410/149259067-f410c199-bf21-4f84-9121-35d46a75e465.jpeg)
 
@@ -11,8 +11,16 @@ A collection of echarts templates for React. Based on echarts-for-react
 - 💪 Typescript support
 
 ## Installation
+> There're some differences between the two ways of installation below?
+> 1. Obviously, the way of 'Install What You Need' will keep the bundle size down.
+> 2. If you choose the way of 'Install What You Need', then you will need to pass `ChartContext` down to every chart component manually.
+> 3. If you choose the way of 'Full Installation', then we keep the `ChartContext` in charge.
 
-👉 完整安装
+### Why this difference?
+> ...
+
+
+👉 Full Installation
 ```js
 npm install --save echarts-readymade
 
@@ -20,7 +28,7 @@ OR
 
 yarn add echarts-readymade
 ```
-👉 按需安装
+👉 Install What You Need
 ```js
 npm install --save @echarts-readymade/core
 npm install --save @echarts-readymade/line
