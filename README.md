@@ -11,14 +11,6 @@
 - 💪 Typescript support
 
 ## Installation
-> There're some differences between the two ways of installation below?
-> 1. Obviously, the way of 'Install What You Need' will keep the bundle size down.
-> 2. If you choose the way of 'Install What You Need', then you will need to pass `ChartContext` down to every chart component manually.
-> 3. If you choose the way of 'Full Installation', then we keep the `ChartContext` in charge.
-
-### Why this difference?
-> ...
-
 
 👉 Full Installation
 ```js
@@ -38,6 +30,15 @@ OR
 yarn add @echarts-readymade/core
 yarn add @echarts-readymade/line
 ```
+
+### There're some differences between the two ways of installation below?
+> 1. Obviously, the way of 'Install What You Need' will keep the bundle size down.
+> 2. If you choose the way of 'Install What You Need', then you will need to pass `ChartContext` down to every chart component manually.
+> 3. If you choose the way of 'Full Installation', then we take the `ChartContext` in charge.
+
+### Why the difference?
+> In order to reduce the bundle size, we divided the whole package into several packages based on chart type. The `ChartContext` exported from `@echarts-readymade/core` can not share with other packages. So you need pass it down to chart component manually. check [the example](#example) below.
+
 
 ## Usage
 
@@ -91,7 +92,7 @@ const valueList: Field[] = [
 
 ```
 
-### For `Installation What You Need`
+### <a name="example"></a>For `Installation What You Need`
 ```jsx
 import { ChartProvider, ChartContext } from '@echarts-readymade/core'
 import { Bar } from '@echarts-readymade/Bar'
@@ -151,6 +152,6 @@ const valueList: Field[] = [
 
 - [ ] `<Wordcloud />` Chart component
 - [ ] `<Polar /> ` Chart component
-- [ ] Online demo
+- [x] Online demo
 - [ ] Test
 - [ ] More detail docs & examples
