@@ -41,8 +41,8 @@ yarn add @echarts-readymade/line
 
 ## Usage
 
+### For `Full Installation`
 ```jsx
-// Full Installation
 import { ChartProvider, Bar } from 'echarts-readymade'
 
 const data = [
@@ -91,8 +91,8 @@ const valueList: Field[] = [
 
 ```
 
+### For `Installation What You Need`
 ```jsx
-// Installation What You Need
 import { ChartProvider, ChartContext } from '@echarts-readymade/core'
 import { Bar } from '@echarts-readymade/Bar'
 
