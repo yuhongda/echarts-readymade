@@ -29,7 +29,7 @@ declare type SeriesType = 'line' | 'bar' | 'pie' | 'scatter';
 declare type Field = {
     fieldKey: string;
     fieldName: string;
-    type: SeriesType;
+    type?: SeriesType;
     yAxisIndex?: number;
     isPercent?: boolean;
     decimalLength?: number;
