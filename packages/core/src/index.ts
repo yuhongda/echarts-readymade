@@ -9,7 +9,7 @@ type SeriesType = 'line' | 'bar' | 'pie' | 'scatter'
 type Field = {
   fieldKey: string
   fieldName: string
-  type: SeriesType
+  type?: SeriesType
   yAxisIndex?: number
   isPercent?: boolean
   decimalLength?: number
