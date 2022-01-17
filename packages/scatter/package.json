@@ -1,6 +1,6 @@
 {
   "name": "@echarts-readymade/scatter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Scatter chart",
   "main": "lib/index.js",
   "module": "lib/esm/index.esm.js",
