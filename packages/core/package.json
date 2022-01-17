@@ -1,6 +1,6 @@
 {
   "name": "@echarts-readymade/core",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Core of echarts-readymade, provide with layout, styles, utils, or something like that.",
   "main": "lib/index.js",
   "module": "lib/esm/index.esm.js",
