@@ -1,71 +1,9 @@
 import React, { useContext } from 'react'
 import { multiply, round, divide, fix } from 'mathjs/number'
 import cloneDeep from 'lodash/cloneDeep'
-import ReactEChartsCore from 'echarts-for-react/lib/core'
-import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption } from '@echarts-readymade/core'
-import { PieChart } from 'echarts/charts'
-import {
-  GridSimpleComponent,
-  GridComponent,
-  SingleAxisComponent,
-  GraphicComponent,
-  ToolboxComponent,
-  TooltipComponent,
-  AxisPointerComponent,
-  BrushComponent,
-  TitleComponent,
-  TimelineComponent,
-  MarkPointComponent,
-  MarkLineComponent,
-  MarkAreaComponent,
-  LegendComponent,
-  LegendScrollComponent,
-  LegendPlainComponent,
-  DataZoomComponent,
-  DataZoomInsideComponent,
-  DataZoomSliderComponent,
-  VisualMapComponent,
-  VisualMapContinuousComponent,
-  VisualMapPiecewiseComponent,
-  AriaComponent,
-  TransformComponent,
-  DatasetComponent
-} from 'echarts/components'
-
-import { CanvasRenderer, SVGRenderer } from 'echarts/renderers'
-
-echarts.use([
-  PieChart,
-  CanvasRenderer,
-  SVGRenderer,
-  GridSimpleComponent,
-  GridComponent,
-  SingleAxisComponent,
-  GraphicComponent,
-  ToolboxComponent,
-  TooltipComponent,
-  AxisPointerComponent,
-  BrushComponent,
-  TitleComponent,
-  TimelineComponent,
-  MarkPointComponent,
-  MarkLineComponent,
-  MarkAreaComponent,
-  LegendComponent,
-  LegendScrollComponent,
-  LegendPlainComponent,
-  DataZoomComponent,
-  DataZoomInsideComponent,
-  DataZoomSliderComponent,
-  VisualMapComponent,
-  VisualMapContinuousComponent,
-  VisualMapPiecewiseComponent,
-  AriaComponent,
-  TransformComponent,
-  DatasetComponent
-])
+import ReactEcharts from 'echarts-for-react'
 
 export interface PieChartProps extends ChartProps {
   showInRing?: boolean
@@ -228,8 +166,7 @@ export const Pie: React.FC<PieChartProps> = (props) => {
 
   return (
     <>
-      <ReactEChartsCore
-        echarts={echarts}
+      <ReactEcharts
         option={{ ...cloneDeep(options) }}
         notMerge={true}
         opts={{ renderer: 'svg' }}

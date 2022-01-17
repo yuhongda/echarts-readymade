@@ -1,73 +1,9 @@
 import React, { useContext } from 'react'
 import { multiply, round } from 'mathjs/number'
 import cloneDeep from 'lodash/cloneDeep'
-import ReactEChartsCore from 'echarts-for-react/lib/core'
-import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption } from '@echarts-readymade/core'
-import { BarChart, LineChart, ScatterChart } from 'echarts/charts'
-import {
-  GridSimpleComponent,
-  GridComponent,
-  SingleAxisComponent,
-  GraphicComponent,
-  ToolboxComponent,
-  TooltipComponent,
-  AxisPointerComponent,
-  BrushComponent,
-  TitleComponent,
-  TimelineComponent,
-  MarkPointComponent,
-  MarkLineComponent,
-  MarkAreaComponent,
-  LegendComponent,
-  LegendScrollComponent,
-  LegendPlainComponent,
-  DataZoomComponent,
-  DataZoomInsideComponent,
-  DataZoomSliderComponent,
-  VisualMapComponent,
-  VisualMapContinuousComponent,
-  VisualMapPiecewiseComponent,
-  AriaComponent,
-  TransformComponent,
-  DatasetComponent
-} from 'echarts/components'
-
-import { CanvasRenderer, SVGRenderer } from 'echarts/renderers'
-
-echarts.use([
-  BarChart,
-  LineChart,
-  ScatterChart,
-  CanvasRenderer,
-  SVGRenderer,
-  GridSimpleComponent,
-  GridComponent,
-  SingleAxisComponent,
-  GraphicComponent,
-  ToolboxComponent,
-  TooltipComponent,
-  AxisPointerComponent,
-  BrushComponent,
-  TitleComponent,
-  TimelineComponent,
-  MarkPointComponent,
-  MarkLineComponent,
-  MarkAreaComponent,
-  LegendComponent,
-  LegendScrollComponent,
-  LegendPlainComponent,
-  DataZoomComponent,
-  DataZoomInsideComponent,
-  DataZoomSliderComponent,
-  VisualMapComponent,
-  VisualMapContinuousComponent,
-  VisualMapPiecewiseComponent,
-  AriaComponent,
-  TransformComponent,
-  DatasetComponent
-])
+import ReactEcharts from 'echarts-for-react'
 
 export interface BarChartProps extends ChartProps {
   xAxisData?: any[]
@@ -85,12 +21,7 @@ export const Bar: React.FC<BarChartProps> = (props) => {
     setOption,
     ...restSettings
   } = props
-  const {
-    data,
-    echartsOptions,
-    echartsOptionsBase: chartOption,
-    userOptions
-  } = useContext(context)
+  const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = useContext(context)
   const { option, ...resetOptions } = echartsOptions || {}
 
   if (!data) {
@@ -294,8 +225,7 @@ export const Bar: React.FC<BarChartProps> = (props) => {
 
   return (
     <>
-      <ReactEChartsCore
-        echarts={echarts}
+      <ReactEcharts
         option={{ ...cloneDeep(options) }}
         notMerge={true}
         opts={{ renderer: 'svg' }}

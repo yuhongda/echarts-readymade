@@ -1,74 +1,9 @@
 import React, { useContext, useState, useCallback } from 'react'
 import { multiply, round, divide, add, abs, fix } from 'mathjs/number'
 import cloneDeep from 'lodash/cloneDeep'
-import ReactEChartsCore from 'echarts-for-react/lib/core'
-import * as echarts from 'echarts/core'
 import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption, COLOR_LIST, truncate } from '@echarts-readymade/core'
-import { ScatterChart, LineChart, BarChart } from 'echarts/charts'
-import {
-  GridSimpleComponent,
-  GridComponent,
-  SingleAxisComponent,
-  GraphicComponent,
-  ToolboxComponent,
-  TooltipComponent,
-  AxisPointerComponent,
-  BrushComponent,
-  TitleComponent,
-  TimelineComponent,
-  MarkPointComponent,
-  MarkLineComponent,
-  MarkAreaComponent,
-  LegendComponent,
-  LegendScrollComponent,
-  LegendPlainComponent,
-  DataZoomComponent,
-  DataZoomInsideComponent,
-  DataZoomSliderComponent,
-  VisualMapComponent,
-  VisualMapContinuousComponent,
-  VisualMapPiecewiseComponent,
-  AriaComponent,
-  TransformComponent,
-  DatasetComponent
-} from 'echarts/components'
-
-import { CanvasRenderer, SVGRenderer } from 'echarts/renderers'
-import { EChartsOption } from 'echarts-for-react'
-
-echarts.use([
-  ScatterChart,
-  LineChart,
-  BarChart,
-  CanvasRenderer,
-  SVGRenderer,
-  GridSimpleComponent,
-  GridComponent,
-  SingleAxisComponent,
-  GraphicComponent,
-  ToolboxComponent,
-  TooltipComponent,
-  AxisPointerComponent,
-  BrushComponent,
-  TitleComponent,
-  TimelineComponent,
-  MarkPointComponent,
-  MarkLineComponent,
-  MarkAreaComponent,
-  LegendComponent,
-  LegendScrollComponent,
-  LegendPlainComponent,
-  DataZoomComponent,
-  DataZoomInsideComponent,
-  DataZoomSliderComponent,
-  VisualMapComponent,
-  VisualMapContinuousComponent,
-  VisualMapPiecewiseComponent,
-  AriaComponent,
-  TransformComponent,
-  DatasetComponent
-])
+import ReactEcharts from 'echarts-for-react'
 
 export interface ScatterChartProps extends ChartProps {
   /**
@@ -700,8 +635,7 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
 
   return (
     <>
-      <ReactEChartsCore
-        echarts={echarts}
+      <ReactEcharts
         option={{ ...cloneDeep(options) }}
         notMerge={true}
         opts={{ renderer: 'svg' }}
