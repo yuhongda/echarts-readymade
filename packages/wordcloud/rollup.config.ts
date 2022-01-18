@@ -4,7 +4,7 @@ import replace from 'rollup-plugin-replace'
 import resolve from 'rollup-plugin-node-resolve'
 import type { RollupOptions } from 'rollup'
 import commonjs from '@rollup/plugin-commonjs'
-// import { visualizer } from 'rollup-plugin-visualizer'
+import image from '@rollup/plugin-image'
 
 const format = process.env.FORMAT || 'esm'
 
@@ -16,8 +16,8 @@ const config: RollupOptions = {
         moduleDirectory: 'node_modules'
       }
     }),
-    commonjs()
-    // visualizer()
+    commonjs(),
+    image(),
   ],
   external: [
     'react',

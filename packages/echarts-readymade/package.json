@@ -46,5 +46,8 @@
     "echarts-for-react": "^3.0.2",
     "lodash": "^4.17.21",
     "mathjs": "^10.0.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-image": "^2.1.1"
   }
 }

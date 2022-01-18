@@ -13,6 +13,13 @@ import maskBad from './assets/mask-bad.png'
 import maskOval from './assets/mask-oval.png'
 import maskRect from './assets/mask-rect.png'
 import maskCloud from './assets/mask-cloud.png'
+import styled from 'styled-components'
+import { useRect } from './useRect'
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`
 
 export type WordcloudShape =
   | 'mask-joy'
@@ -21,20 +28,33 @@ export type WordcloudShape =
   | 'mask-oval'
   | 'mask-rect'
   | 'mask-cloud'
+  | 'mask-circle'
+  | 'mask-diamond'
 
 export interface WordcloudOptions extends Omit<WordCloudTypes.Options, 'shape'> {
-  shrinkToFit: boolean
+  shrinkToFit?: boolean
   shape?: WordcloudShape | string | ((theta: number) => number) | undefined
 }
 
 export interface WordcloudChartProps
   extends Omit<ChartProps, 'compareDimension' | 'echartsSeries' | 'setOption'> {
   colorList?: string[]
-  wordcloudOptions: WordcloudOptions
+  fontSizeMode?: 'bySort' | 'byValue'
+  shape?: WordcloudShape | string
+  wordcloudOptions?: WordcloudOptions
 }
 
 export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
-  const { context, dimension, valueList, colorList, wordcloudOptions, ...restSettings } = props
+  const {
+    context,
+    dimension,
+    valueList,
+    colorList,
+    fontSizeMode = 'bySort',
+    wordcloudOptions,
+    shape,
+    ...restSettings
+  } = props
   const { data } = useContext(context)
 
   if (!data) {
@@ -42,6 +62,9 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
   }
 
   const ref = useRef<HTMLCanvasElement>(null)
+  const wrapperRef = useRef(null)
+  const wrapperRect = useRect(wrapperRef)
+  const textRef = useRef<HTMLSpanElement>(null)
   const [isShowKeywordValueComp, setIsShowKeywordValueComp] = useState(false)
   const [pos, setPos] = useState({
     top: 0,
@@ -57,6 +80,17 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
     return null
   }
 
+  const getColor = useCallback(
+    (index: number) => {
+      if (colorList && colorList.length > 0) {
+        return colorList[index % colorList.length]
+      } else {
+        return COLOR_LIST[index % COLOR_LIST.length]
+      }
+    },
+    [colorList && colorList.join(',')]
+  )
+
   const wordCloudCallback = useCallback(async () => {
     if (!ref || !ref.current) {
       return
@@ -68,7 +102,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
         const fontSizeRange = 200
         const per = (index / d.length) * 100
         let fontSize = 16
-        const _width = ref.current?.width || 500
+        const _width = wrapperRect?.width || 500
         let ratio = 1
 
         // 如果排名第一个词的字体长度超出画布，则计算缩放比例
@@ -95,7 +129,31 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
             fontSize = 20
           }
         }
+
         return round(fontSize * ratio, 0)
+      }
+
+      let fontSizeRatio = 1
+      const minFontSize = 20
+      const maxFontSize = 360
+      const getFontSize = (d: any[], v: number, index: number) => {
+        const max = d[0][1]
+        const min = d[d.length - 1][1]
+        const scale = (max - min) / (maxFontSize - minFontSize)
+
+        const _fontSize = round((v - min) / scale + minFontSize, 0)
+
+        let _width = wrapperRect?.width || 500
+
+        // 如果排名第一个词的字体长度超出画布，则计算缩放比例
+        if (textRef && textRef.current && index == 0) {
+          textRef.current.innerText = d[0][0]
+          textRef.current.style.fontSize = 360 + 'px'
+          if (textRef.current.clientWidth > _width) {
+            fontSizeRatio = _width / textRef.current.clientWidth
+          }
+        }
+        return Math.round(_fontSize * fontSizeRatio)
       }
 
       let progressData =
@@ -406,8 +464,8 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
       //   ['黄瓜', 13],
       //   ['卡斯特巧克力', 12],
       //   ['香菜', 12],
-      //   ['燕麦世涛', 11],
-      // ];
+      //   ['燕麦世涛', 11]
+      // ]
 
       let result: any[] = []
       if (progressData && progressData.length > 0) {
@@ -415,7 +473,11 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
           return b[1] - a[1]
         })
         result = result.map((item, index) => {
-          return [item[0], getFontSizeBySorting(result, index), item[1], item[2]]
+          if (fontSizeMode === 'bySort') {
+            return [item[0], getFontSizeBySorting(result, index), item[1]]
+          } else {
+            return [item[0], getFontSize(result, item[1], index), item[1]]
+          }
         })
       }
 
@@ -432,31 +494,16 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
       return result
     }
 
-    const getColor = useCallback(
-      (index: number) => {
-        if (colorList && colorList.length > 0) {
-          return colorList[index % colorList.length]
-        } else {
-          return COLOR_LIST[index % COLOR_LIST.length]
-        }
-      },
-      [colorList && colorList.join(',')]
-    )
-
-    if (ref && ref.current) {
-      ref.current.height = ref.current.height * 2
-      ref.current.style.height = `${ref.current.height}px`
-      ref.current.width = ref.current.width * 2
-      ref.current.style.width = `${ref.current.width}px`
+    if (wrapperRect) {
+      ref.current.height = wrapperRect.width * 2
+      ref.current.style.height = `${wrapperRect.width}px`
+      ref.current.width = wrapperRect.width * 2
+      ref.current.style.width = `${wrapperRect.width}px`
     }
 
     let maskImage: string = maskJoy
-    if (
-      wordcloudOptions.shape &&
-      typeof wordcloudOptions.shape === 'string' &&
-      wordcloudOptions.shape.includes('mask-')
-    ) {
-      switch (wordcloudOptions.shape) {
+    if (typeof shape === 'string' && shape.includes('mask-')) {
+      switch (shape) {
         case 'mask-circle':
           maskImage = maskCircle
           break
@@ -480,6 +527,9 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
           break
         case 'mask-cloud':
           maskImage = maskCloud
+          break
+        default:
+          maskImage = shape
           break
       }
     }
@@ -585,18 +635,19 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
       maskCanvasScaled = ctx = imageData = newImageData = bctx = bgPixel = null
     }
 
-    const bgColor = (colorList && colorList.length > 0 ? colorList[0] : COLOR_LIST[0])[0] + '22'
+    const bgColor = (colorList && colorList.length > 0 ? colorList[0] : COLOR_LIST[0]) + '22'
 
     let _locker: NodeJS.Timeout | null = null
     if (ref.current) {
+      const _list = sortedData()
       const _defaultOptions: WordcloudOptions = {
-        list: sortedData(),
+        list: _list,
         gridSize: 20, //Math.round(100 * ref.current.clientWidth / 1024),
         fontFamily: 'Microsoft YaHei',
         fontWeight: 600,
         color: function (word: any, _weight: any, fontSize: any, distance: any, theta: any) {
           // 按colorList顺序
-          const _index = sortedData().findIndex((item) => item[0] == word)
+          const _index = _list.findIndex((item) => item[0] == word)
           let _alpha = '66'
           if (fontSize >= 100) {
             _alpha = 'FF'
@@ -608,7 +659,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
           return getColor(_index) + _alpha
         },
         rotateRatio: 0,
-        shape: 'mask-joy', // https://wordcloud2-js.timdream.org/shape-generator.html
+        shape: wordcloudOptions?.shape || 'mask-joy', // https://wordcloud2-js.timdream.org/shape-generator.html
         drawOutOfBound: false,
         shrinkToFit: true,
         backgroundColor: bgColor,
@@ -638,9 +689,17 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
       }
 
       const options = mergeOption(_defaultOptions, wordcloudOptions)
-      WordCloud(ref.current, options as any)
+      WordCloud(ref.current, options)
     }
-  }, [_dimension && JSON.stringify(_dimension), _valueList && JSON.stringify(_valueList)])
+  }, [
+    _dimension && JSON.stringify(_dimension),
+    _valueList && JSON.stringify(_valueList),
+    getColor,
+    JSON.stringify(wrapperRect),
+    ref.current,
+    data,
+    props
+  ])
 
   useEffect(() => {
     if (ref.current) {
@@ -660,10 +719,14 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
   return (
     <>
       {data && data.length > 0 ? (
-        <>
+        <Wrapper ref={wrapperRef}>
           <canvas ref={ref}></canvas>
           <KeywordValueComp position={pos} value={val} visible={isShowKeywordValueComp} />
-        </>
+          <span
+            ref={textRef}
+            style={{ display: 'none', visibility: 'hidden', position: 'absolute' }}
+          ></span>
+        </Wrapper>
       ) : null}
     </>
   )
@@ -695,7 +758,9 @@ const KeywordValueComp: React.FC<IKeywordValueCompProps> = (props) => {
         background: 'rgba(0,0,0,.5)',
         color: '#fff',
         borderRadius: '3px',
-        transition: 'all .2s ease .1s'
+        transition: 'all .2s ease .1s',
+        fontSize: '12px',
+        whiteSpace: 'nowrap'
       }}
     >
       {value}

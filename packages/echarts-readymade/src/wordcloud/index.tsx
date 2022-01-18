@@ -1,7 +1,7 @@
 import React from 'react'
 import { ChartContext } from '@echarts-readymade/core'
 import { Wordcloud as WordcloudChart } from '../../../../packages/wordcloud/src/'
-import type { WordcloudChartProps } from '@echarts-readymade/wordcloud'
+import type { WordcloudChartProps } from '../../../../packages/wordcloud/src/'
 
 export interface IWordcloudChartProps extends Omit<WordcloudChartProps, 'context'> {}
 
