@@ -9,7 +9,7 @@ import image from '@rollup/plugin-image'
 const format = process.env.FORMAT || 'esm'
 
 const config: RollupOptions = {
-  input: './src/index.ts',
+  input: './src/index.tsx',
   plugins: [
     resolve({
       customResolveOptions: {
@@ -17,9 +17,8 @@ const config: RollupOptions = {
       }
     }),
     commonjs(),
-    image()
+    image(),
   ],
-
   external: [
     'react',
     'react-dom',

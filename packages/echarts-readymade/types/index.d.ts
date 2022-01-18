@@ -1,11 +1,16 @@
 import * as React from 'react';
 import React__default from 'react';
+import { WordcloudChartProps } from '@echarts-readymade/wordcloud';
 import { StackChartProps } from '@echarts-readymade/stack';
 import { ScatterChartProps } from '@echarts-readymade/scatter';
 import { PieChartProps } from '@echarts-readymade/pie';
 import { LineChartProps } from '@echarts-readymade/line';
 import { BarChartProps } from '@echarts-readymade/bar';
 export * from '@echarts-readymade/core';
+
+interface IWordcloudChartProps extends Omit<WordcloudChartProps, 'context'> {
+}
+declare const Wordcloud: React__default.FC<IWordcloudChartProps>;
 
 interface IStackChartProps extends Omit<StackChartProps, 'context'> {
 }
@@ -33,6 +38,7 @@ declare const _default: {
     Pie: React.FC<IPieChartProps>;
     Scatter: React.FC<IScatterChartProps>;
     Stack: React.FC<IStackChartProps>;
+    Wordcloud: React.FC<IWordcloudChartProps>;
 };
 
-export { Bar, Line, Pie, Scatter, Stack, _default as default };
+export { Bar, Line, Pie, Scatter, Stack, Wordcloud, _default as default };

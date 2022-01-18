@@ -1,7 +1,7 @@
 {
-  "name": "echarts-readymade",
-  "version": "1.0.2",
-  "description": "A collection of echarts templates for React. Based on echarts-for-react",
+  "name": "@echarts-readymade/wordcloud",
+  "version": "1.0.0",
+  "description": "Wordcloud chart",
   "main": "lib/index.js",
   "module": "lib/esm/index.esm.js",
   "unpkg": "lib/umd/index.min.js",
@@ -14,7 +14,7 @@
     "LICENSE",
     "README.md"
   ],
-  "repository": "https://yuhongda@github.com/yuhongda/echarts-readymade.git",
+  "repository": "https://github.com/yuhongda/echarts-readymade.git",
   "author": "yuhongda",
   "license": "MIT",
   "scripts": {
@@ -35,19 +35,16 @@
     "release:next": "npm publish --tag next"
   },
   "dependencies": {
-    "@echarts-readymade/bar": "^1.0.0",
     "@echarts-readymade/core": "^1.0.0",
-    "@echarts-readymade/line": "^1.0.0",
-    "@echarts-readymade/pie": "^1.0.0",
-    "@echarts-readymade/scatter": "^1.0.0",
-    "@echarts-readymade/stack": "^1.0.0",
-    "@echarts-readymade/wordcloud": "^1.0.0",
-    "echarts": "^5.2.2",
-    "echarts-for-react": "^3.0.2",
     "lodash": "^4.17.21",
-    "mathjs": "^10.0.2"
+    "mathjs": "^10.0.2",
+    "styled-components": "^5.3.3",
+    "wordcloud": "^1.2.2"
   },
   "devDependencies": {
-    "@rollup/plugin-image": "^2.1.1"
+    "@rollup/plugin-image": "^2.1.1",
+    "@types/lodash": "^4.14.178",
+    "@types/numeral": "^2.0.2",
+    "@types/styled-components": "^5.1.20"
   }
 }
