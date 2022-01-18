@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-// import { ChartContext, ChartProvider } from '@echarts-readymade/core'
-// import { Bar } from '@echarts-readymade/bar'
 import { ChartProvider, Wordcloud } from '../../../packages/echarts-readymade/src/'
 import type { Field } from 'echarts-readymade'
 import styled from 'styled-components'

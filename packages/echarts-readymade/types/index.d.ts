@@ -1,12 +1,24 @@
 import * as React from 'react';
 import React__default from 'react';
-import { WordcloudChartProps } from '@echarts-readymade/wordcloud';
+import { ChartProps } from '@echarts-readymade/core';
+export * from '@echarts-readymade/core';
 import { StackChartProps } from '@echarts-readymade/stack';
 import { ScatterChartProps } from '@echarts-readymade/scatter';
 import { PieChartProps } from '@echarts-readymade/pie';
 import { LineChartProps } from '@echarts-readymade/line';
 import { BarChartProps } from '@echarts-readymade/bar';
-export * from '@echarts-readymade/core';
+
+declare type WordcloudShape = 'mask-joy' | 'mask-great' | 'mask-bad' | 'mask-oval' | 'mask-rect' | 'mask-cloud' | 'mask-circle' | 'mask-diamond';
+interface WordcloudOptions extends Omit<WordCloudTypes.Options, 'shape'> {
+    shrinkToFit?: boolean;
+    shape?: WordcloudShape | string | ((theta: number) => number) | undefined;
+}
+interface WordcloudChartProps extends Omit<ChartProps, 'compareDimension' | 'echartsSeries' | 'setOption'> {
+    colorList?: string[];
+    fontSizeMode?: 'bySort' | 'byValue';
+    shape?: WordcloudShape | string;
+    wordcloudOptions?: WordcloudOptions;
+}
 
 interface IWordcloudChartProps extends Omit<WordcloudChartProps, 'context'> {
 }

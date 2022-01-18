@@ -659,7 +659,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
           return getColor(_index) + _alpha
         },
         rotateRatio: 0,
-        shape: wordcloudOptions?.shape || 'mask-joy', // https://wordcloud2-js.timdream.org/shape-generator.html
+        shape: shape || 'mask-joy', // https://wordcloud2-js.timdream.org/shape-generator.html
         drawOutOfBound: false,
         shrinkToFit: true,
         backgroundColor: bgColor,

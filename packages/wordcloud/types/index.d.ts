@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChartProps } from '@echarts-readymade/core';
 
-declare type WordcloudShape = 'mask-joy' | 'mask-great' | 'mask-bad' | 'mask-oval' | 'mask-rect' | 'mask-cloud';
+declare type WordcloudShape = 'mask-joy' | 'mask-great' | 'mask-bad' | 'mask-oval' | 'mask-rect' | 'mask-cloud' | 'mask-circle' | 'mask-diamond';
 interface WordcloudOptions extends Omit<WordCloudTypes.Options, 'shape'> {
     shrinkToFit?: boolean;
     shape?: WordcloudShape | string | ((theta: number) => number) | undefined;
@@ -9,6 +9,7 @@ interface WordcloudOptions extends Omit<WordCloudTypes.Options, 'shape'> {
 interface WordcloudChartProps extends Omit<ChartProps, 'compareDimension' | 'echartsSeries' | 'setOption'> {
     colorList?: string[];
     fontSizeMode?: 'bySort' | 'byValue';
+    shape?: WordcloudShape | string;
     wordcloudOptions?: WordcloudOptions;
 }
 declare const Wordcloud: React.FC<WordcloudChartProps>;
