@@ -1,6 +1,6 @@
 {
   "name": "echarts-readymade",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A collection of echarts templates for React. Based on echarts-for-react",
   "main": "lib/index.js",
   "module": "lib/esm/index.esm.js",
