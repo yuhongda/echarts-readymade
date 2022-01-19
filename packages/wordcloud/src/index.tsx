@@ -1,7 +1,6 @@
 import React, { useContext, useRef, useCallback, useState, useEffect } from 'react'
 import { multiply, round } from 'mathjs/number'
-import cloneDeep from 'lodash/cloneDeep'
-import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
+import type { ChartProps } from '@echarts-readymade/core'
 import { mergeOption } from '@echarts-readymade/core'
 import { COLOR_LIST } from '@echarts-readymade/core'
 import WordCloud from 'wordcloud'
