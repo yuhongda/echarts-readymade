@@ -6,7 +6,7 @@
 ## 🎨 Features
 
 - 🌈 Easy to use (provide default layout and style)
-- 🌟 Available components: `<Bar />` `<Line />` `<Pie />` `<Stack />` `<Scatter />`
+- 🌟 Available components: `<Bar />` `<Line />` `<Pie />` `<Stack />` `<Scatter />` `<Wordcloud />`
 - 🎁 Support `Compare Dimension`, which means you can indicate another dimension field to compare base on one dimension.
 - 💪 Typescript support
 
@@ -211,11 +211,21 @@ const valueList: Field[] = [
 | isPercentMode | The stack bar will fill full the Y axis, which max value is 100.  | `boolean` | `undefined` |
 | isLineStack | transform bar stack to line stack | `boolean` | `undefined` |
 
+###  `<Wordcloud />` (1.0.3)
+
+Base on [wordcloud2.js](https://github.com/timdream/wordcloud2.js)
+
+| Property | Description | Type | Default |
+| :------- | :---------- | :--- | ------: |
+| colorList | Color of the text, by random | `string[]` | `undefined` |
+| fontSizeMode | The mode of calculating font size | `'bySort' \| 'byValue'` | `undefined` |
+| shape | The shape of wordcloud | `'mask-joy' \| 'mask-great' \| 'mask-bad' \| 'mask-oval' \| 'mask-rect' \| 'mask-cloud' \| 'mask-circle' \| 'mask-diamond'` Or `image string from import` | `undefined` |
+| wordcloudOptions | `wordcloud2.js` options | `WordcloudOptions` | `undefined` |
 
 
 ## Roadmap
 
-- [ ] `<Wordcloud />` Chart component
+- [x] `<Wordcloud />` Chart component
 - [ ] `<Polar /> ` Chart component
 - [x] Online demo
 - [ ] Test
