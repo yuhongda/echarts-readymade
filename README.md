@@ -211,7 +211,7 @@ const valueList: Field[] = [
 | isPercentMode | The stack bar will fill full the Y axis, which max value is 100.  | `boolean` | `undefined` |
 | isLineStack | transform bar stack to line stack | `boolean` | `undefined` |
 
-###  `<Wordcloud />`
+###  `<Wordcloud />` (1.0.3)
 
 Base on [wordcloud2.js](https://github.com/timdream/wordcloud2.js)
 
