@@ -1,4 +1,12 @@
-import React, { useContext, useRef, useCallback, useState, useEffect } from 'react'
+import React, {
+  useContext,
+  useRef,
+  useCallback,
+  useState,
+  useEffect,
+  useImperativeHandle,
+  forwardRef
+} from 'react'
 import { multiply, round } from 'mathjs/number'
 import type { ChartProps } from '@echarts-readymade/core'
 import { mergeOption } from '@echarts-readymade/core'
@@ -64,6 +72,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
   const wrapperRef = useRef(null)
   const wrapperRect = useRect(wrapperRef)
   const textRef = useRef<HTMLSpanElement>(null)
+  const tooltipRef = useRef<HTMLSpanElement & { getRect: () => DOMRect | undefined }>(null)
   const [isShowKeywordValueComp, setIsShowKeywordValueComp] = useState(false)
   const [pos, setPos] = useState({
     top: 0,
@@ -670,10 +679,19 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
             setIsShowKeywordValueComp(false)
             return
           }
+
+          function getLeft(x: number) {
+            const rect = tooltipRef.current?.getRect()
+            if (rect && x + rect.width + 100 >= window.innerWidth) {
+              return (x - (x + rect.width - window.innerWidth)) / 2 - 50
+            }
+            return x / 2
+          }
+
           setIsShowKeywordValueComp(true)
           setPos({
             top: dimension.y / 2 - 50,
-            left: dimension.x / 2 + 150,
+            left: getLeft(dimension.x),
             width: dimension.w / 2,
             height: dimension.h / 2
           })
@@ -720,7 +738,12 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
       {data && data.length > 0 ? (
         <Wrapper ref={wrapperRef}>
           <canvas ref={ref}></canvas>
-          <KeywordValueComp position={pos} value={val} visible={isShowKeywordValueComp} />
+          <KeywordValueComp
+            ref={tooltipRef}
+            position={pos}
+            value={val}
+            visible={isShowKeywordValueComp}
+          />
           <span
             ref={textRef}
             style={{ display: 'none', visibility: 'hidden', position: 'absolute' }}
@@ -739,15 +762,37 @@ export interface IPosition {
 }
 
 export interface IKeywordValueCompProps {
+  ref: React.Ref<any>
   position: IPosition
   value: string
   visible: boolean
 }
 
-const KeywordValueComp: React.FC<IKeywordValueCompProps> = (props) => {
+const KeywordValueComp: React.FC<IKeywordValueCompProps> = forwardRef<
+  { getRect: () => DOMRect | undefined },
+  IKeywordValueCompProps
+>((props, ref) => {
   const { position, value, visible } = props
+  const [tooltipNode, setTooltipNode] = useState<HTMLSpanElement | null>(null)
+  const tooltipRef = useCallback((node) => {
+    if (node !== null) {
+      setTooltipNode(node)
+    }
+  }, [])
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      getRect: () => {
+        return tooltipNode?.getBoundingClientRect()
+      }
+    }),
+    [tooltipNode]
+  )
+
   return (
     <span
+      ref={tooltipRef}
       style={{
         display: visible ? 'block' : 'none',
         position: 'absolute',
@@ -765,4 +810,4 @@ const KeywordValueComp: React.FC<IKeywordValueCompProps> = (props) => {
       {value}
     </span>
   )
-}
+})

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ChartProvider, Wordcloud } from 'echarts-readymade'
+import { ChartProvider, Wordcloud } from '../../../packages/echarts-readymade/src'
 import type { Field } from 'echarts-readymade'
 import styled from 'styled-components'
 import { Button, Row, Col } from 'antd'
