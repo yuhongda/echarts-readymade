@@ -1,6 +1,6 @@
 import type { EChartsOption } from 'echarts-for-react'
 import numeral from 'numeral'
-import { ceil } from 'mathjs/number'
+import { ceil } from 'mathjs'
 
 export const COLOR_LIST = [
   '#FF7C7C',

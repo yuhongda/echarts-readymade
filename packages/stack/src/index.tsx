@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { multiply, round } from 'mathjs/number'
+import { multiply, round } from 'mathjs'
 import cloneDeep from 'lodash/cloneDeep'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption, numberWithCommas } from '@echarts-readymade/core'

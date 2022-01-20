@@ -7,7 +7,7 @@ import React, {
   useImperativeHandle,
   forwardRef
 } from 'react'
-import { multiply, round } from 'mathjs/number'
+import { multiply, round } from 'mathjs'
 import type { ChartProps } from '@echarts-readymade/core'
 import { mergeOption } from '@echarts-readymade/core'
 import { COLOR_LIST } from '@echarts-readymade/core'
