@@ -20,6 +20,7 @@ interface IPosition {
     height: number;
 }
 interface IKeywordValueCompProps {
+    ref: React.Ref<any>;
     position: IPosition;
     value: string;
     visible: boolean;
