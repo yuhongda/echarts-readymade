@@ -11,7 +11,8 @@
   "license": "MIT",
   "scripts": {
     "build": "lerna run build",
-    "release": "lerna run release"
+    "patch": "lerna version patch",
+    "release": "lerna run release --npm-client=npm"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
