@@ -7,7 +7,7 @@ import React, {
   useImperativeHandle,
   forwardRef
 } from 'react'
-import { multiply, round } from 'mathjs'
+import Big from 'big.js'
 import type { ChartProps } from '@echarts-readymade/core'
 import { mergeOption } from '@echarts-readymade/core'
 import { COLOR_LIST } from '@echarts-readymade/core'
@@ -138,7 +138,9 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
           }
         }
 
-        return round(fontSize * ratio, 0)
+        return Big(fontSize * ratio)
+          .round(0)
+          .toNumber()
       }
 
       let fontSizeRatio = 1
@@ -149,7 +151,11 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
         const min = d[d.length - 1][1]
         const scale = (max - min) / (maxFontSize - minFontSize)
 
-        const _fontSize = round((v - min) / scale + minFontSize, 0)
+        const _fontSize = Big(v - min)
+          .div(scale)
+          .plus(minFontSize)
+          .round(0)
+          .toNumber()
 
         let _width = wrapperRect?.width || 500
 
@@ -167,13 +173,13 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
       let progressData =
         data?.map((d, i) => {
           const text = d[_dimension[0].fieldKey]
-          let value = 0
+          let value: number | Big = 0
           if (d[_valueList[0].fieldKey]) {
-            value = d[_valueList[0].fieldKey]
+            value = Big(d[_valueList[0].fieldKey])
             if (_valueList[0].isPercent) {
-              value = multiply(d[_valueList[0].fieldKey], 100)
+              value = value.times(100)
             }
-            value = round(value, _valueList[0].decimalLength || 0)
+            value = value.round(_valueList[0].decimalLength || 0).toNumber()
           }
           return [text || '--', value]
         }) || []
@@ -695,7 +701,9 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
             width: dimension.w / 2,
             height: dimension.h / 2
           })
-          setVal(`${item[3] || item[0]}: ${item[2] != null ? round(item[2], 2) : '--'}`)
+          setVal(
+            `${item[3] || item[0]}: ${item[2] != null ? Big(item[2]).round(2).toNumber() : '--'}`
+          )
           if (_locker) {
             clearTimeout(_locker)
           }

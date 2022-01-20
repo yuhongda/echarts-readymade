@@ -36,8 +36,8 @@
   },
   "dependencies": {
     "@echarts-readymade/core": "^1.0.0",
+    "big.js": "^6.1.1",
     "lodash": "^4.17.21",
-    "mathjs": "^10.0.2",
     "styled-components": "^5.3.3",
     "wordcloud": "^1.2.2"
   },

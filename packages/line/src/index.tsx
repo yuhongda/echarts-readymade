@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { multiply, round } from 'mathjs'
+import Big from 'big.js'
 import cloneDeep from 'lodash/cloneDeep'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption, Field } from '@echarts-readymade/core'
@@ -150,12 +150,12 @@ export const Line: React.FC<LineChartProps> = (props) => {
             },
             data: _data.map((d) => {
               if (d[v.fieldKey] != null) {
-                let result = d[v.fieldKey]
+                let result = Big(d[v.fieldKey])
                 if (v.isPercent) {
-                  result = multiply(d[v.fieldKey], 100)
+                  result = result.times(100)
                 }
                 return {
-                  value: round(result, v.decimalLength || 0),
+                  value: result.round(v.decimalLength || 0).toNumber(),
                   isPercent: v.isPercent
                 }
               }
@@ -197,12 +197,12 @@ export const Line: React.FC<LineChartProps> = (props) => {
               data &&
               data.map((d) => {
                 if (d[v.fieldKey] != null) {
-                  let result = d[v.fieldKey]
+                  let result = Big(d[v.fieldKey])
                   if (v.isPercent) {
-                    result = multiply(d[v.fieldKey], 100)
+                    result = result.times(100)
                   }
                   return {
-                    value: round(result, v.decimalLength || 0),
+                    value: result.round(v.decimalLength || 0).toNumber(),
                     isPercent: v.isPercent
                   }
                 }

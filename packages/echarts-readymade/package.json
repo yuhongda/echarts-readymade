@@ -44,8 +44,7 @@
     "@echarts-readymade/wordcloud": "^1.0.4",
     "echarts": "^5.2.2",
     "echarts-for-react": "^3.0.2",
-    "lodash": "^4.17.21",
-    "mathjs": "^10.0.2"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@rollup/plugin-image": "^2.1.1"

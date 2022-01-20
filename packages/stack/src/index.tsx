@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { multiply, round } from 'mathjs'
+import Big from 'big.js'
 import cloneDeep from 'lodash/cloneDeep'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption, numberWithCommas } from '@echarts-readymade/core'
@@ -216,13 +216,13 @@ export const Stack: React.FC<StackChartProps> = (props) => {
                   formatter: function (data: any) {
                     if (isPercentMode) {
                       return data.value != null && !isNaN(data.value)
-                        ? `${numberWithCommas(round(data.value, 2))}%`
+                        ? `${numberWithCommas(Big(data.value).round(2).toNumber())}%`
                         : '--%'
                     }
 
                     try {
                       return data.value != null && !isNaN(data.value)
-                        ? numberWithCommas(round(data.value, 2))
+                        ? numberWithCommas(Big(data.value).round(2).toNumber())
                         : '--'
                     } catch {
                       return data.value || '--'
@@ -301,10 +301,9 @@ export const Stack: React.FC<StackChartProps> = (props) => {
             areaStyle: {},
             data: data?.map((d, j) => {
               return {
-                value: round(
-                  isPercentMode ? (d[item.fieldKey] / sumData[j]) * 100 : d[item.fieldKey],
-                  item.decimalLength || 0
-                ),
+                value: Big(isPercentMode ? (d[item.fieldKey] / sumData[j]) * 100 : d[item.fieldKey])
+                  .round(item.decimalLength || 0)
+                  .toNumber(),
                 label: {
                   show: false,
                   position: 'inside',
@@ -312,13 +311,21 @@ export const Stack: React.FC<StackChartProps> = (props) => {
                   formatter: function (params: any) {
                     if (isPercentMode) {
                       return params.value != null && !isNaN(params.value)
-                        ? `${numberWithCommas(round(params.value, item.decimalLength || 0))}%`
+                        ? `${numberWithCommas(
+                            Big(params.value)
+                              .round(item.decimalLength || 0)
+                              .toNumber()
+                          )}%`
                         : '--%'
                     }
 
                     try {
                       return params.value != null && !isNaN(params.value)
-                        ? numberWithCommas(round(params.value, item.decimalLength || 0))
+                        ? numberWithCommas(
+                            Big(params.value)
+                              .round(item.decimalLength || 0)
+                              .toNumber()
+                          )
                         : '--'
                     } catch {
                       return params.value || '--'

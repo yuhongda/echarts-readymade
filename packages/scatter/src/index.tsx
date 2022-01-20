@@ -1,5 +1,5 @@
 import React, { useContext, useState, useCallback } from 'react'
-import { multiply, round, divide, add, abs, fix } from 'mathjs'
+import Big from 'big.js'
 import cloneDeep from 'lodash/cloneDeep'
 import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption, COLOR_LIST, truncate } from '@echarts-readymade/core'
@@ -123,9 +123,16 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
       const maxSymbolSize = 100
       const getSymbolSize = useCallback(
         (dotValue: number) => {
-          const scale = divide(dotValueMax - dotValueMin, maxSymbolSize - minSymbolSize) || 1
+          const scale =
+            Big(dotValueMax - dotValueMin)
+              .div(maxSymbolSize - minSymbolSize)
+              .toNumber() || 1
           return _valueList.length === 3
-            ? round(divide(dotValue - dotValueMin, scale) + minSymbolSize, 2)
+            ? Big(dotValue - dotValueMin)
+                .div(scale)
+                .plus(minSymbolSize)
+                .round(2)
+                .toNumber()
             : 80
         },
         [getColor]
@@ -204,15 +211,15 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
                 const itemColor = getColor(i)
 
                 let _value = _valueList.map((v: Field) => {
-                  let _v = 0
+                  let _v: number | Big = 0
                   if (d[v.fieldKey] != null) {
-                    _v = d[v.fieldKey]
+                    _v = Big(d[v.fieldKey])
                     if (v.isPercent) {
-                      _v = multiply(d[v.fieldKey], 100)
+                      _v = _v.times(100)
                     }
-                    _v = round(_v, v.decimalLength || 0)
+                    _v = _v.round(v.decimalLength || 0).toNumber()
                   }
-                  return _v
+                  return _v || 0
                 })
 
                 return {
@@ -259,21 +266,21 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
 
       _processData?.forEach((item) => {
         item.data.forEach((d) => {
-          xMin = Math.min(round(d[_valueList[0].fieldKey] || 0, 0), xMin)
-          xMax = Math.max(round(d[_valueList[0].fieldKey] || 0, 0), xMax)
-          yMin = Math.min(round(d[_valueList[1].fieldKey] || 0, 0), yMin)
-          yMax = Math.max(round(d[_valueList[1].fieldKey] || 0, 0), yMax)
+          xMin = Math.min(Big(d[_valueList[0].fieldKey] || 0).round(0).toNumber(), xMin)
+          xMax = Math.max(Big(d[_valueList[0].fieldKey] || 0).round(0).toNumber(), xMax)
+          yMin = Math.min(Big(d[_valueList[1].fieldKey] || 0).round(0).toNumber(), yMin)
+          yMax = Math.max(Big(d[_valueList[1].fieldKey] || 0).round(0).toNumber(), yMax)
         })
       })
 
       if (_valueList[0].isPercent) {
-        xMin = multiply(xMin, 100)
-        xMax = multiply(xMax, 100)
+        xMin = Big(xMin).times(100).toNumber()
+        xMax = Big(xMax).times(100).toNumber()
       }
 
       if (_valueList[1].isPercent) {
-        yMin = multiply(yMin, 100)
-        yMax = multiply(yMax, 100)
+        yMin = Big(yMin).times(100).toNumber()
+        yMax = Big(yMax).times(100).toNumber()
       }
 
       const _dataZoom: any = [
@@ -314,7 +321,7 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
           xAxisIndex: [0],
           bottom: 30,
           startValue: xMin || 0,
-          endValue: (xMax && add(xMax, abs(fix(multiply(xMax, 0.1))))) || 100,
+          endValue: (xMax && Big(xMax).plus(Big(xMax).times(0.1).abs().toNumber()).toNumber()) || 100,
           throttle: 150
         })
       }
@@ -342,8 +349,10 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
       _chartOption.dataZoom = _dataZoom
 
       // 为了使dataZoom中x轴的endValue生效，这里要设置下x轴的max
-      _chartOption.xAxis.max = (xMax && add(xMax, abs(fix(multiply(xMax, 0.1))))) || 100
-      _chartOption.yAxis[0].max = (yMax && add(yMax, abs(fix(multiply(yMax, 0.1))))) || 100
+      _chartOption.xAxis.max =
+        (xMax && Big(xMax).plus(Big(xMax).times(0.1).abs().toNumber()).toNumber()) || 100
+      _chartOption.yAxis[0].max =
+        (yMax && Big(yMax).plus(Big(yMax).times(0.1).abs().toNumber()).toNumber()) || 100
       _chartOption.xAxis.axisLabel.formatter = (value: any) => {
         if (xMax <= 100 && value > 100) {
           return ''
@@ -363,11 +372,11 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
 
         _valueList.map((v: Field, i: number) => {
           if (d[v.fieldKey] != null) {
-            values[i] = d[v.fieldKey]
+            values[i] = Big(d[v.fieldKey])
             if (v.isPercent) {
-              values[i] = multiply(d[v.fieldKey], 100)
+              values[i] = values[i].times(100)
             }
-            values[i] = round(values[i], v.decimalLength || 0)
+            values[i] = values[i].round(v.decimalLength || 0).toNumber()
           }
         })
 
@@ -406,11 +415,20 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
             })
           const min = symbolList[0]
           const max = symbolList[symbolList.length - 1]
-          const scale = divide(max - min, maxSymbolSize - minSymbolSize) || 1
+          const scale =
+            Big(max - min)
+              .div(maxSymbolSize - minSymbolSize)
+              .toNumber() || 1
 
           list.forEach((item, index) => {
             item[4] =
-              _valueList.length === 3 ? round(divide(item[2] - min, scale) + minSymbolSize, 2) : 80
+              _valueList.length === 3
+                ? Big(item[2] - min)
+                    .div(scale)
+                    .plus(minSymbolSize)
+                    .round(2)
+                    .toNumber()
+                : 80
             item[5] = getColor(index)
           })
           return list
@@ -571,7 +589,7 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
           xAxisIndex: [0],
           bottom: 30,
           startValue: xMin || 0,
-          endValue: (xMax && add(xMax, abs(fix(multiply(xMax, 0.1))))) || 100,
+          endValue: (xMax && Big(xMax).plus(Big(xMax).times(0.1).abs().toNumber()).toNumber()) || 100,
           throttle: 150
         })
       }
@@ -598,7 +616,8 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
       _chartOption.dataZoom = _dataZoom
 
       // 为了使dataZoom中x轴的endValue生效，这里要设置下x轴的max
-      _chartOption.xAxis.max = (xMax && add(xMax, abs(fix(multiply(xMax, 0.1))))) || 100
+      _chartOption.xAxis.max =
+        (xMax && Big(xMax).plus(Big(xMax).times(0.1).abs().toNumber()).toNumber()) || 100
       _chartOption.xAxis.axisLabel.formatter = (value: any) => {
         if (xMax <= 100 && value > 100) {
           return ''

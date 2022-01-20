@@ -1,6 +1,6 @@
 import type { EChartsOption } from 'echarts-for-react'
 import numeral from 'numeral'
-import { ceil } from 'mathjs'
+import Big from 'big.js'
 
 export const COLOR_LIST = [
   '#FF7C7C',
@@ -46,9 +46,13 @@ export const echartsOptionsBase: any = {
       'box-shadow:  0px 0px 4px 0px rgba(0,0,0,0.25); border-radius: 2px; padding:10px 14px',
     formatter: function (data: any) {
       const _data = Array.isArray(data) ? data : [data]
-      return `<div style="color: #c8c8c8;">${_data[0].name}</div><div style="column-count: ${ceil(
-        _data.length / 10
-      )};">${_data
+
+      const _len = Big(_data.length)
+      const _count = _len.div(10).round(0, Big.roundUp).toNumber()
+
+      return `<div style="color: #c8c8c8;">${
+        _data[0].name
+      }</div><div style="column-count: ${_count};">${_data
         .map((d: any) => {
           switch (d.seriesType) {
             case 'pie':

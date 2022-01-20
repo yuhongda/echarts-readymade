@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { multiply, round, divide, fix } from 'mathjs'
+import Big from 'big.js'
 import cloneDeep from 'lodash/cloneDeep'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption } from '@echarts-readymade/core'
@@ -78,10 +78,7 @@ export const Pie: React.FC<PieChartProps> = (props) => {
                 show: true,
                 position: 'outside',
                 formatter: (params: any) => {
-                  const _percent = round(
-                    multiply(divide(round(Number(params.value), 4), _sum), 100),
-                    2
-                  )
+                  const _percent = Big(params.value).round(4).div(_sum).times(100).round(2).toNumber()
 
                   let res = ''
                   try {
@@ -104,7 +101,7 @@ export const Pie: React.FC<PieChartProps> = (props) => {
       const _sum = _valueListClone?.reduce((s, c) => {
         s = s + (d[c.fieldKey] || 0)
         return s
-      }, 0)
+      }, 0) || 0
 
       _series = [
         {
@@ -131,10 +128,7 @@ export const Pie: React.FC<PieChartProps> = (props) => {
                 position: 'outside',
                 formatter: (params: any) => {
                   try {
-                    const _percent = round(
-                      multiply(divide(round(Number(params.value), 4), _sum), 100),
-                      2
-                    )
+                    const _percent = Big(params.value).round(4).div(_sum).times(100).round(2).toNumber()
 
                     let res = ''
                     try {

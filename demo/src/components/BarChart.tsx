@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 // import { ChartContext, ChartProvider } from '@echarts-readymade/core'
 // import { Bar } from '@echarts-readymade/bar'
-import { ChartProvider, Bar } from 'echarts-readymade'
-import type { LegendPosition, Field } from 'echarts-readymade'
+import { ChartProvider, Bar } from '../../../packages/echarts-readymade/src/'
+import type { LegendPosition, Field } from '../../../packages/echarts-readymade/src/'
 import styled from 'styled-components'
 import { Radio, Button, Row, Col } from 'antd'
 

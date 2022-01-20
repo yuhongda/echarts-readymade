@@ -35,7 +35,7 @@
     "release:next": "npm publish --tag next"
   },
   "dependencies": {
-    "mathjs": "^10.0.2",
+    "big.js": "^6.1.1",
     "numeral": "^2.0.6"
   },
   "devDependencies": {
