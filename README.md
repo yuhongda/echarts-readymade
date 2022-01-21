@@ -98,7 +98,7 @@ const valueList: Field[] = [
 ### <a name="example"></a>For `Install What You Need`
 ```jsx
 import { ChartProvider, ChartContext } from '@echarts-readymade/core'
-import { Bar } from '@echarts-readymade/Bar'
+import { Bar } from '@echarts-readymade/bar'
 
 const data = [
   {
