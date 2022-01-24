@@ -1,0 +1,49 @@
+{
+  "name": "@echarts-readymade/bar-horizontal",
+  "version": "1.0.5",
+  "description": "Horizontal Bar chart",
+  "main": "lib/index.js",
+  "module": "lib/esm/index.esm.js",
+  "unpkg": "lib/umd/index.min.js",
+  "jsdelivr": "lib/umd/index.min.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "lib/",
+    "types/",
+    "index.d.ts",
+    "LICENSE",
+    "README.md"
+  ],
+  "repository": "https://github.com/yuhongda/echarts-readymade.git",
+  "author": "yuhongda",
+  "license": "MIT",
+  "scripts": {
+    "lib": "babel src --out-dir lib --extensions \".js,.jsx,.ts,.tsx\" --config-file \"../../.babelrc.js\"",
+    "cjs": "FORMAT=cjs rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2",
+    "esm": "FORMAT=esm rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2",
+    "umd": "NODE_ENV=development FORMAT=umd rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2",
+    "min": "NODE_ENV=production FORMAT=umd rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2",
+    "dts": "FORMAT=dts rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2",
+    "build": "yarn run clear && yarn run lib && yarn run dts && yarn run cjs && yarn run esm && yarn run umd && yarn run min",
+    "clear": "rm -rf lib/ && rm -rf types/",
+    "test": "jest",
+    "jest:clear": "jest --clearCache",
+    "cover": "yarn run jest:clear && jest --coverage --config=jest.config.ts",
+    "make-badges": "istanbul-badges-readme --coverageDir=__test__/coverage",
+    "ci": "yarn run build && yarn run cover && codecov",
+    "release": "npm publish",
+    "release:next": "npm publish --tag next"
+  },
+  "dependencies": {
+    "@echarts-readymade/core": "^1.0.5",
+    "big.js": "^6.1.1",
+    "echarts": "^5.2.2",
+    "echarts-for-react": "^3.0.2",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/big.js": "^6.1.2",
+    "@types/lodash": "^4.14.178",
+    "@types/numeral": "^2.0.2"
+  }
+}
