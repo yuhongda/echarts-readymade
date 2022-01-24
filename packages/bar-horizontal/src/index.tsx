@@ -5,19 +5,19 @@ import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption } from '@echarts-readymade/core'
 import ReactEcharts from 'echarts-for-react'
 
-export interface BarChartProps extends ChartProps {
-  xAxisData?: any[]
+export interface BarHorizontalChartProps extends ChartProps {
+  yAxisData?: any[]
   legendPosition?: LegendPosition
 }
 
-export const Bar: React.FC<BarChartProps> = (props) => {
+export const BarHorizontal: React.FC<BarHorizontalChartProps> = (props) => {
   const {
     context,
     dimension,
     compareDimension,
     valueList,
     echartsSeries,
-    xAxisData,
+    yAxisData,
     setOption,
     ...restSettings
   } = props
