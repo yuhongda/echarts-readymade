@@ -226,6 +226,7 @@ Base on [wordcloud2.js](https://github.com/timdream/wordcloud2.js)
 ## Roadmap
 
 - [x] `<Wordcloud />` Chart component
+- [ ] `<BarHorizontal /> ` Chart component
 - [ ] `<Polar /> ` Chart component
 - [x] Online demo
 - [ ] Test
