@@ -31,7 +31,7 @@
     "cover": "yarn run jest:clear && jest --coverage --config=jest.config.ts",
     "make-badges": "istanbul-badges-readme --coverageDir=__test__/coverage",
     "ci": "yarn run build && yarn run cover && codecov",
-    "release": "npm publish",
+    "release": "npm publish --access public",
     "release:next": "npm publish --tag next"
   },
   "dependencies": {
