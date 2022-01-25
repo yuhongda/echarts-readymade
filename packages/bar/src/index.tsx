@@ -152,7 +152,7 @@ export const Bar: React.FC<BarChartProps> = (props) => {
             data: _data.map((d) => {
               if (d[v.fieldKey] != null) {
                 let result = new Big(d[v.fieldKey])
-                
+
                 if (v.isPercent) {
                   result = result.times(100)
                 }
@@ -171,7 +171,10 @@ export const Bar: React.FC<BarChartProps> = (props) => {
           })
         })
       }
-      _chartOption.xAxis = xAxisData || _xAxis
+      _chartOption.xAxis = _xAxis
+      if (xAxisData) {
+        _chartOption.xAxis.data = xAxisData
+      }
       _chartOption.series = echartsSeries || _seriesValueList
     } else {
       // 无对比维度
