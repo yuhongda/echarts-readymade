@@ -1,7 +1,7 @@
 import React from 'react'
 import { ChartContext } from '@echarts-readymade/core'
-import { BarHorizontal as BarHorizontalChart } from '../../../bar-horizontal/src'
-import type { BarHorizontalChartProps } from '../../../bar-horizontal/src'
+import { BarHorizontal as BarHorizontalChart } from '@echarts-readymade/bar-horizontal'
+import type { BarHorizontalChartProps } from '@echarts-readymade/bar-horizontal'
 
 export interface IBarHorizontalChartProps extends Omit<BarHorizontalChartProps, 'context'> {}
 

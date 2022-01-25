@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ChartProvider, ChartContext } from '@echarts-readymade/core'
-import { BarHorizontal } from '../../../packages/bar-horizontal/src'
+import { BarHorizontal } from '@echarts-readymade/bar-horizontal'
 import type { LegendPosition } from '@echarts-readymade/core'
 import styled from 'styled-components'
 import type { Field } from '@echarts-readymade/core'
