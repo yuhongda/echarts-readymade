@@ -10,6 +10,7 @@ import { PieChart } from './components/PieChart'
 import { StackChart } from './components/StackChart'
 import { ScatterChart } from './components/ScatterChart'
 import { WordcloudChart } from './components/WordcloudChart'
+import { BarHorizontalChart } from './components/BarHorizontalChart'
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -47,6 +48,11 @@ function App() {
         <Row gutter={16}>
           <Col span={24}>
             <WordcloudChart />
+          </Col>
+        </Row>
+        <Row gutter={16}>
+          <Col span={24}>
+            <BarHorizontalChart />
           </Col>
         </Row>
       </header>

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import Big from 'big.js'
 import cloneDeep from 'lodash/cloneDeep'
 import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
-import { mergeOption, buildChartOption } from '@echarts-readymade/core'
+import { mergeOption, buildChartOption, numberWithCommas } from '@echarts-readymade/core'
 import ReactEcharts from 'echarts-for-react'
 
 export interface BarHorizontalChartProps extends ChartProps {
@@ -32,29 +32,19 @@ export const BarHorizontal: React.FC<BarHorizontalChartProps> = (props) => {
   const _chartOption = cloneDeep(chartOption || {})
 
   if (_chartOption) {
-    let _xAxis = []
     const _preProcessData: any[] = []
-    let _processData = []
+    let _processData: any[] = []
     let compareDimensionValues = []
+    let _seriesValueList: any = []
+
     if (compareDimension && compareDimension.length > 0) {
       // 对比维度全量值
       compareDimensionValues = [
-        ...new Set(
-          data?.map((d) => {
-            return compareDimension
-              .map((dim) => {
-                return d[dim.fieldKey]
-              })
-              .join('~')
-          })
-        )
+        ...new Set(data.map((d) => d[compareDimension[0] && compareDimension[0].fieldKey]))
       ]
-      compareDimensionValues = compareDimensionValues.filter((cdv) => {
-        return !(cdv.startsWith('~') || cdv.endsWith('~'))
-      })
 
       // 按维度分组
-      data?.forEach((d) => {
+      data.forEach((d) => {
         const _index = _preProcessData.findIndex(
           (item) => item.name == (_dimension && d[_dimension?.[0].fieldKey])
         )
@@ -71,154 +61,172 @@ export const BarHorizontal: React.FC<BarHorizontalChartProps> = (props) => {
       // 在维度分组基础上，分组对比维度
       _processData = compareDimensionValues.map((item) => {
         return {
-          name: item,
+          name: `${item}`,
           data: _preProcessData.map((pd) => {
             const v = pd.data.find(
-              (d: any) =>
-                compareDimension
-                  .map((dim) => {
-                    return d[dim.fieldKey]
-                  })
-                  .join('~') == item
+              (d: any) => d[compareDimension[0] && compareDimension[0].fieldKey] == item
             )
-
-            if (v) {
-              return v
-            } else {
-              const _v: { [key: string]: any } = {}
-              if (_dimension && _dimension[0]) {
-                _v[_dimension[0].fieldKey] = pd.name
-              }
-              return _v
-            }
+            return v || {}
           })
         }
       })
 
-      // X轴数据
-      let _data = [
-        ...new Set(
-          data?.map((d) => {
-            return _dimension && d[_dimension[0].fieldKey]
-          })
-        )
-      ]
-
-      _xAxis = [
-        {
-          type: 'category',
-          splitLine: {
-            show: false,
-            lineStyle: {}
-          },
-          axisLine: {
-            show: true,
-            lineStyle: {}
-          },
-          axisTick: {
-            show: true,
-            lineStyle: {}
-          },
-          axisLabel: {
-            padding: [0, 0, 0, 0],
-            rotate: 30
-          },
-          data: _data
-        }
-      ]
-
-      // Y轴数据
-      let _seriesValueList: any[] = []
       for (let i = 0; i < _processData.length; i++) {
-        let _data = cloneDeep(_processData[i].data) || []
-        let compareDimensionName = `${_processData[i].name}`
+        let compareDimensionName = _processData[i].name
+        _processData[i].data = _processData[i].data.reverse()
 
-        valueList?.forEach((v: Field) => {
+        valueList?.forEach((v) => {
           _seriesValueList.push({
             name:
               valueList.length > 1
-                ? `${compareDimensionName}~${v.fieldName}`
+                ? `${compareDimensionName}-${v.fieldName}`
                 : compareDimensionName,
-
-            type: v.type || 'bar',
-            barMaxWidth: 60,
+            type: 'bar',
             barGap: 0,
+            barMaxWidth: 60,
             lineStyle: {
               shadowColor: 'rgba(0,0,0,0.15)',
               shadowBlur: 3,
               shadowOffsetX: 0,
               shadowOffsetY: 1
             },
-            data: _data.map((d) => {
+            data: _processData[i].data.map((d: any) => {
+              let _value: Big | number = 0
               if (d[v.fieldKey] != null) {
-                let result = new Big(d[v.fieldKey])
-                
+                _value = new Big(d[v.fieldKey])
+
                 if (v.isPercent) {
-                  result = result.times(100)
+                  _value = _value.times(100)
                 }
 
-                return {
-                  value: result.round(v.decimalLength || 0).toNumber(),
-                  isPercent: v.isPercent
-                }
+                _value = _value.round(v.decimalLength || 0).toNumber()
               }
+
               return {
-                value: 0,
+                value: _value,
+                label: {
+                  show: true,
+                  position: 'right',
+                  fontSize: 10,
+                  formatter: function (params: any) {
+                    try {
+                      return params.value != null && !isNaN(params.value)
+                        ? `${numberWithCommas(
+                            params.value.toFixed(
+                              typeof v.decimalLength == 'number' ? v.decimalLength : 0
+                            )
+                          )}${v.isPercent ? '%' : ''}`
+                        : `--${v.isPercent ? '%' : ''}`
+                    } catch {
+                      return params.value || `--${v.isPercent ? '%' : ''}`
+                    }
+                  }
+                },
                 isPercent: v.isPercent
               }
-            }),
-            yAxisIndex: v.yAxisIndex || 0
+            })
           })
         })
       }
-      _chartOption.xAxis = xAxisData || _xAxis
-      _chartOption.series = echartsSeries || _seriesValueList
     } else {
       // 无对比维度
-      if (_chartOption.xAxis) {
-        _chartOption.xAxis.data =
-          xAxisData ||
-          (data &&
-            data.map((d) => {
-              const value = dimension && d[dimension?.[0]?.fieldKey]
-              if (value != null) {
-                return `${value}`
+      let _data = cloneDeep(data) || []
+      _data = _data.reverse()
+
+      _seriesValueList = valueList?.map((v, i) => {
+        return {
+          name: v.fieldName,
+          type: 'bar',
+          barGap: 0,
+          barMaxWidth: 60,
+          data: _data.map((d) => {
+            let _value: Big | number = 0
+            if (d[v.fieldKey] != null) {
+              _value = new Big(d[v.fieldKey])
+
+              if (v.isPercent) {
+                _value = _value.times(100)
               }
-            }))
-      }
-      _chartOption.series =
-        echartsSeries ||
-        valueList?.map((v) => {
-          return {
-            name: v.fieldName,
-            type: v.type || 'bar',
-            barMaxWidth: 60,
-            barGap: 0,
-            data:
-              data &&
-              data.map((d) => {
-                if (d[v.fieldKey] != null) {
-                  let result = Big(d[v.fieldKey])
-                  if (v.isPercent) {
-                    result = result.times(100)
-                  }
-                  return {
-                    value: result.round(v.decimalLength || 0).toNumber(),
-                    isPercent: v.isPercent
+
+              _value = _value.round(v.decimalLength || 0).toNumber()
+            }
+
+            return {
+              value: _value,
+              label: {
+                show: true,
+                position: 'right',
+                fontSize: 10,
+                formatter: function (params: any) {
+                  try {
+                    return params.value != null && !isNaN(params.value)
+                      ? `${numberWithCommas(
+                          params.value.toFixed(
+                            typeof v.decimalLength == 'number' ? v.decimalLength : 0
+                          )
+                        )}${v.isPercent ? '%' : ''}`
+                      : `--${v.isPercent ? '%' : ''}`
+                  } catch {
+                    return params.value || `--${v.isPercent ? '%' : ''}`
                   }
                 }
-                return {
-                  value: 0,
-                  isPercent: v.isPercent
-                }
-              }),
-            yAxisIndex: v.yAxisIndex || 0
-          }
-        })
+              },
+              isPercent: v.isPercent
+            }
+          })
+        }
+      })
     }
+
+    let _dataYAxis = [
+      ...new Set(
+        data.map((d) => {
+          return _dimension && d[_dimension[0] && _dimension[0].fieldKey]
+        })
+      )
+    ]
+
+    _chartOption.xAxis = {
+      type: 'value',
+      axisLabel: {
+        rotate: 30
+      },
+      axisLine: {
+        show: true,
+        lineStyle: {}
+      },
+      axisTick: {
+        show: true,
+        lineStyle: {}
+      }
+    }
+
+    _chartOption.yAxis = [
+      {
+        type: 'category',
+        splitLine: {
+          show: false,
+          lineStyle: {}
+        },
+        axisLine: {
+          show: true,
+          lineStyle: {}
+        },
+        axisTick: {
+          show: true,
+          lineStyle: {}
+        },
+        axisLabel: {
+          rotate: 30
+        },
+        data: yAxisData || _dataYAxis
+      }
+    ]
+
+    _chartOption.series = _seriesValueList
   }
 
-  const builtOption = buildChartOption(_chartOption, restSettings, 'bar')
+  const builtOption = buildChartOption(_chartOption, restSettings, 'bar-horizontal')
   let options = mergeOption(builtOption, userOptions)
 
   if (setOption) {

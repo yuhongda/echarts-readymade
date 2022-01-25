@@ -7,7 +7,7 @@ import maskBad from '../assets/mask-bad.png'
 
 const Container = styled.div`
   width: 100%;
-  height: 500px;
+  height: 650px;
 `
 
 export const WordcloudChart: React.FC = () => {
