@@ -6,7 +6,7 @@
 ## 🎨 Features
 
 - 🌈 Easy to use (provide default layout and style)
-- 🌟 Available components: `<Bar />` `<Line />` `<Pie />` `<Stack />` `<Scatter />` `<Wordcloud />`
+- 🌟 Available components: `<Bar />` `<Line />` `<Pie />` `<Stack />` `<Scatter />` `<Wordcloud />` `<BarHorizontal />`
 - 🎁 Support `Compare Dimension`, which means you can indicate another dimension field to compare base on one dimension.
 - 💪 Typescript support
 
@@ -221,6 +221,13 @@ Base on [wordcloud2.js](https://github.com/timdream/wordcloud2.js)
 | fontSizeMode | The mode of calculating font size | `'bySort' \| 'byValue'` | `undefined` |
 | shape | The shape of wordcloud | `'mask-joy' \| 'mask-great' \| 'mask-bad' \| 'mask-oval' \| 'mask-rect' \| 'mask-cloud' \| 'mask-circle' \| 'mask-diamond'` Or `image string from import` | `undefined` |
 | wordcloudOptions | `wordcloud2.js` options | `WordcloudOptions` | `undefined` |
+
+###  `<BarHorizontal />` (1.0.6)
+
+| Property | Description | Type | Default |
+| :------- | :---------- | :--- | ------: |
+| yAxisData | Will replace the data of yAxis with this | `any[]` | `undefined` |
+| legendPosition | Position of legend | `'top' \| 'left' \| 'right' \| 'bottom'` | `undefined` |
 
 
 ## Roadmap
