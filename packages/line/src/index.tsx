@@ -168,7 +168,7 @@ export const Line: React.FC<LineChartProps> = (props) => {
           })
         })
       }
-      _chartOption.xAxis = xAxisData || _xAxis
+      _chartOption.xAxis.data = xAxisData || _data
       _chartOption.series = echartsSeries || _seriesValueList
     } else {
       // 无对比维度

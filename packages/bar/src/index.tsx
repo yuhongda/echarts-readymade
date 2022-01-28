@@ -171,10 +171,7 @@ export const Bar: React.FC<BarChartProps> = (props) => {
           })
         })
       }
-      _chartOption.xAxis = _xAxis
-      if (xAxisData) {
-        _chartOption.xAxis.data = xAxisData
-      }
+      _chartOption.xAxis.data = xAxisData || _data
       _chartOption.series = echartsSeries || _seriesValueList
     } else {
       // 无对比维度
