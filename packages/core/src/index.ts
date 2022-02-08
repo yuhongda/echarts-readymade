@@ -1,7 +1,7 @@
 import { ChartProvider, ChartContext } from './ChartProvider'
 import { mergeOption, numberWithCommas, COLOR_LIST, truncate } from './misc'
 import { buildChartOption } from './chartOptionBuilder'
-import type { EChartsOption } from 'echarts-for-react'
+import type { EChartsOption, EChartsReactProps } from 'echarts-for-react'
 
 type LegendPosition = 'top' | 'left' | 'right' | 'bottom'
 type SeriesType = 'line' | 'bar' | 'pie' | 'scatter'
@@ -14,8 +14,7 @@ type Field = {
   isPercent?: boolean
   decimalLength?: number
 }
-
-type ChartProps = {
+interface ChartProps extends Omit<EChartsReactProps, 'option'> {
   context: typeof ChartContext
   dimension?: Field[]
   compareDimension?: Field[]

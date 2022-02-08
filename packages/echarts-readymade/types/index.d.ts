@@ -5,6 +5,8 @@ import { StackChartProps } from '@echarts-readymade/stack';
 import { ScatterChartProps } from '@echarts-readymade/scatter';
 import { PieChartProps } from '@echarts-readymade/pie';
 import { LineChartProps } from '@echarts-readymade/line';
+import * as echarts_types_dist_echarts from 'echarts/types/dist/echarts';
+import { ECharts } from 'echarts';
 import { BarChartProps } from '@echarts-readymade/bar';
 export * from '@echarts-readymade/core';
 
@@ -30,10 +32,14 @@ declare const Line: React__default.FC<ILineChartProps>;
 
 interface IBarChartProps extends Omit<BarChartProps, 'context'> {
 }
-declare const Bar: React__default.FC<IBarChartProps>;
+declare const Bar: React__default.ForwardRefExoticComponent<IBarChartProps & React__default.RefAttributes<{
+    getEchartsInstance: () => ECharts | undefined;
+}>>;
 
 declare const _default: {
-    Bar: React.FC<IBarChartProps>;
+    Bar: React.ForwardRefExoticComponent<IBarChartProps & React.RefAttributes<{
+        getEchartsInstance: () => echarts_types_dist_echarts.ECharts | undefined;
+    }>>;
     Line: React.FC<ILineChartProps>;
     Pie: React.FC<IPieChartProps>;
     Scatter: React.FC<IScatterChartProps>;

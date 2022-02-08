@@ -10,7 +10,7 @@ export default {
   coverageDirectory: '<rootDir>/__test__/coverage',
   coverageProvider: 'babel',
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  setupFiles: ['<rootDir>/__test__/setup.js'],
+  setupFiles: ['jest-canvas-mock', '<rootDir>/__test__/setup.js'],
   testEnvironment: 'jsdom',
   testMatch: ['<rootDir>/**/__test__/**/*.(spec|test).{js,jsx,ts,tsx}'],
   transform: {

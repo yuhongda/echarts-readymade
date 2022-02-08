@@ -44,6 +44,7 @@
     "esbuild": "^0.14.2",
     "istanbul-badges-readme": "^1.8.0",
     "jest": "^27.0.6",
+    "jest-canvas-mock": "^2.3.1",
     "jest-css-modules-transform": "^4.3.0",
     "jest-enzyme": "^7.1.2",
     "lerna": "^4.0.0",

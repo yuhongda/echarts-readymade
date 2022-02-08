@@ -22,7 +22,7 @@ declare type ChartSettings = {
     legendPosition?: 'top' | 'right' | 'bottom' | 'left';
 };
 declare type ChartType = 'line' | 'bar' | 'pie' | 'stack' | 'line-stack' | 'line-bar' | 'bar-horizontal' | 'table' | 'high-relation-scatter' | 'map' | 'wordcloud' | 'scatter';
-declare const buildChartOption: (chartOptions: EChartsOption, settings: ChartSettings, chartType: ChartType) => any;
+declare const buildChartOption: (chartOptions: EChartsOption, settings: ChartSettings, chartType: ChartType) => EChartsOption;
 
 declare type LegendPosition = 'top' | 'left' | 'right' | 'bottom';
 declare type SeriesType = 'line' | 'bar' | 'pie' | 'scatter';
@@ -34,14 +34,14 @@ declare type Field = {
     isPercent?: boolean;
     decimalLength?: number;
 };
-declare type ChartProps = {
+interface ChartProps extends Omit<EChartsReactProps, 'option'> {
     context: typeof ChartContext;
     dimension?: Field[];
     compareDimension?: Field[];
     valueList?: Field[];
     echartsSeries?: any[];
     setOption?: (option: EChartsOption) => EChartsOption;
-};
+}
 
 declare const _default: {
     ChartProvider: React.FC<ChartProviderProps<any>>;
