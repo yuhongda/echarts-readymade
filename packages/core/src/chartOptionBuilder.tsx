@@ -23,7 +23,7 @@ export const buildChartOption = (
   chartOptions: EChartsOption,
   settings: ChartSettings,
   chartType: ChartType
-) => {
+): EChartsOption => {
   const _option = chartOptions || {}
   const { legendPosition = 'top' } = settings || {}
 

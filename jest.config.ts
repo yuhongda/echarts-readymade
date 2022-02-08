@@ -6,7 +6,7 @@
 export default {
   clearMocks: true,
   collectCoverage: true,
-  collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx,ts,tsx}'],
+  collectCoverageFrom: ['<rootDir>/packages/**/src/**/*.{js,jsx,ts,tsx}'],
   coverageDirectory: '<rootDir>/__test__/coverage',
   coverageProvider: 'babel',
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],

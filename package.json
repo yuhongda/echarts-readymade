@@ -12,7 +12,10 @@
   "scripts": {
     "build": "lerna run build",
     "patch": "lerna version patch",
-    "release": "lerna run release --npm-client=npm"
+    "release": "lerna run release --npm-client=npm",
+    "test": "jest",
+    "jest:clear": "jest --clearCache",
+    "cover": "yarn run jest:clear && jest --coverage --config=jest.config.ts"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
