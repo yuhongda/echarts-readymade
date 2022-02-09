@@ -1,4 +1,5 @@
 import React from 'react';
+import { ECharts } from 'echarts';
 import { ChartProps, LegendPosition } from '@echarts-readymade/core';
 
 interface StackChartProps extends ChartProps {
@@ -19,6 +20,8 @@ interface StackChartProps extends ChartProps {
      */
     isLineStack?: boolean;
 }
-declare const Stack: React.FC<StackChartProps>;
+declare const Stack: React.ForwardRefExoticComponent<StackChartProps & React.RefAttributes<{
+    getEchartsInstance: () => ECharts | undefined;
+}>>;
 
 export { Stack, StackChartProps };

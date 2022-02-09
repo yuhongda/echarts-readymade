@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useCallback, useImperativeHandle, forwardRef } from 'react'
+import type { ECharts } from 'echarts'
 import Big from 'big.js'
 import cloneDeep from 'lodash/cloneDeep'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
@@ -10,7 +11,12 @@ export interface LineChartProps extends ChartProps {
   legendPosition?: LegendPosition
 }
 
-export const Line: React.FC<LineChartProps> = (props) => {
+export const Line = forwardRef<
+  {
+    getEchartsInstance: () => ECharts | undefined
+  },
+  LineChartProps
+>((props, ref) => {
   const {
     context,
     dimension,
@@ -224,15 +230,33 @@ export const Line: React.FC<LineChartProps> = (props) => {
     options = setOption(cloneDeep(options))
   }
 
-  return (
-    <>
-      <ReactEcharts
-        option={{ ...cloneDeep(options) }}
-        notMerge={true}
-        opts={{ renderer: 'svg' }}
-        style={{ height: '100%', width: '100%' }}
-        {...resetOptions}
-      />
-    </>
+  /**
+   * forward the ref for getEchartsInstance()
+   */
+  const [reactEchartsNode, setReactEchartsNode] = useState<ReactEcharts | null>(null)
+  const reactEchartsRef = useCallback((node) => {
+    if (node !== null) {
+      setReactEchartsNode(node)
+    }
+  }, [])
+  useImperativeHandle(
+    ref,
+    () => ({
+      getEchartsInstance: () => {
+        return reactEchartsNode?.getEchartsInstance()
+      }
+    }),
+    [reactEchartsNode]
   )
-}
+
+  return (
+    <ReactEcharts
+      ref={reactEchartsRef}
+      option={{ ...cloneDeep(options) }}
+      notMerge={true}
+      opts={{ renderer: 'svg' }}
+      style={{ height: '100%', width: '100%' }}
+      {...resetOptions}
+    />
+  )
+})

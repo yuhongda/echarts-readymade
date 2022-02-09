@@ -1,4 +1,5 @@
-import React, { useContext, useState, useCallback } from 'react'
+import React, { useContext, useState, useCallback, useImperativeHandle, forwardRef } from 'react'
+import type { ECharts } from 'echarts'
 import Big from 'big.js'
 import cloneDeep from 'lodash/cloneDeep'
 import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
@@ -12,7 +13,12 @@ export interface ScatterChartProps extends ChartProps {
   legendPosition?: LegendPosition
 }
 
-export const Scatter: React.FC<ScatterChartProps> = (props) => {
+export const Scatter = forwardRef<
+  {
+    getEchartsInstance: () => ECharts | undefined
+  },
+  ScatterChartProps
+>((props, ref) => {
   const {
     context,
     dimension,
@@ -266,10 +272,30 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
 
       _processData?.forEach((item) => {
         item.data.forEach((d) => {
-          xMin = Math.min(Big(d[_valueList[0].fieldKey] || 0).round(0).toNumber(), xMin)
-          xMax = Math.max(Big(d[_valueList[0].fieldKey] || 0).round(0).toNumber(), xMax)
-          yMin = Math.min(Big(d[_valueList[1].fieldKey] || 0).round(0).toNumber(), yMin)
-          yMax = Math.max(Big(d[_valueList[1].fieldKey] || 0).round(0).toNumber(), yMax)
+          xMin = Math.min(
+            Big(d[_valueList[0].fieldKey] || 0)
+              .round(0)
+              .toNumber(),
+            xMin
+          )
+          xMax = Math.max(
+            Big(d[_valueList[0].fieldKey] || 0)
+              .round(0)
+              .toNumber(),
+            xMax
+          )
+          yMin = Math.min(
+            Big(d[_valueList[1].fieldKey] || 0)
+              .round(0)
+              .toNumber(),
+            yMin
+          )
+          yMax = Math.max(
+            Big(d[_valueList[1].fieldKey] || 0)
+              .round(0)
+              .toNumber(),
+            yMax
+          )
         })
       })
 
@@ -321,7 +347,8 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
           xAxisIndex: [0],
           bottom: 30,
           startValue: xMin || 0,
-          endValue: (xMax && Big(xMax).plus(Big(xMax).times(0.1).abs().toNumber()).toNumber()) || 100,
+          endValue:
+            (xMax && Big(xMax).plus(Big(xMax).times(0.1).abs().toNumber()).toNumber()) || 100,
           throttle: 150
         })
       }
@@ -589,7 +616,8 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
           xAxisIndex: [0],
           bottom: 30,
           startValue: xMin || 0,
-          endValue: (xMax && Big(xMax).plus(Big(xMax).times(0.1).abs().toNumber()).toNumber()) || 100,
+          endValue:
+            (xMax && Big(xMax).plus(Big(xMax).times(0.1).abs().toNumber()).toNumber()) || 100,
           throttle: 150
         })
       }
@@ -652,16 +680,34 @@ export const Scatter: React.FC<ScatterChartProps> = (props) => {
     datazoom: onDataZoomChange
   }
 
-  return (
-    <>
-      <ReactEcharts
-        option={{ ...cloneDeep(options) }}
-        notMerge={true}
-        opts={{ renderer: 'svg' }}
-        style={{ height: '100%', width: '100%' }}
-        onEvents={onEvents}
-        {...resetOptions}
-      />
-    </>
+  /**
+   * forward the ref for getEchartsInstance()
+   */
+  const [reactEchartsNode, setReactEchartsNode] = useState<ReactEcharts | null>(null)
+  const reactEchartsRef = useCallback((node) => {
+    if (node !== null) {
+      setReactEchartsNode(node)
+    }
+  }, [])
+  useImperativeHandle(
+    ref,
+    () => ({
+      getEchartsInstance: () => {
+        return reactEchartsNode?.getEchartsInstance()
+      }
+    }),
+    [reactEchartsNode]
   )
-}
+
+  return (
+    <ReactEcharts
+      ref={reactEchartsRef}
+      option={{ ...cloneDeep(options) }}
+      notMerge={true}
+      opts={{ renderer: 'svg' }}
+      style={{ height: '100%', width: '100%' }}
+      onEvents={onEvents}
+      {...resetOptions}
+    />
+  )
+})

@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
+import type { ECharts } from 'echarts'
 import { ChartContext } from '@echarts-readymade/core'
 import { Scatter as ScatterChart } from '@echarts-readymade/scatter'
 import type { ScatterChartProps } from '@echarts-readymade/scatter'
 
 export interface IScatterChartProps extends Omit<ScatterChartProps, 'context'> {}
 
-export const Scatter: React.FC<IScatterChartProps> = (props) => {
-  return <ScatterChart context={ChartContext} {...props} />
-}
+export const Scatter = forwardRef<
+  {
+    getEchartsInstance: () => ECharts | undefined
+  },
+  IScatterChartProps
+>((props, ref) => {
+  return <ScatterChart ref={ref} context={ChartContext} {...props} />
+})

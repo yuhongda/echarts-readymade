@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useCallback, useImperativeHandle, forwardRef } from 'react'
+import type { ECharts } from 'echarts'
 import Big from 'big.js'
 import cloneDeep from 'lodash/cloneDeep'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
@@ -10,7 +11,12 @@ export interface PieChartProps extends ChartProps {
   legendPosition?: LegendPosition
 }
 
-export const Pie: React.FC<PieChartProps> = (props) => {
+export const Pie = forwardRef<
+  {
+    getEchartsInstance: () => ECharts | undefined
+  },
+  PieChartProps
+>((props, ref) => {
   const { context, dimension, valueList, echartsSeries, showInRing, setOption, ...restSettings } =
     props
   const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = useContext(context)
@@ -78,7 +84,12 @@ export const Pie: React.FC<PieChartProps> = (props) => {
                 show: true,
                 position: 'outside',
                 formatter: (params: any) => {
-                  const _percent = Big(params.value).round(4).div(_sum).times(100).round(2).toNumber()
+                  const _percent = Big(params.value)
+                    .round(4)
+                    .div(_sum)
+                    .times(100)
+                    .round(2)
+                    .toNumber()
 
                   let res = ''
                   try {
@@ -98,10 +109,11 @@ export const Pie: React.FC<PieChartProps> = (props) => {
       const d = (data && cloneDeep(data)[0]) || {}
       const _valueListClone = cloneDeep(valueList)
 
-      const _sum = _valueListClone?.reduce((s, c) => {
-        s = s + (d[c.fieldKey] || 0)
-        return s
-      }, 0) || 0
+      const _sum =
+        _valueListClone?.reduce((s, c) => {
+          s = s + (d[c.fieldKey] || 0)
+          return s
+        }, 0) || 0
 
       _series = [
         {
@@ -128,7 +140,12 @@ export const Pie: React.FC<PieChartProps> = (props) => {
                 position: 'outside',
                 formatter: (params: any) => {
                   try {
-                    const _percent = Big(params.value).round(4).div(_sum).times(100).round(2).toNumber()
+                    const _percent = Big(params.value)
+                      .round(4)
+                      .div(_sum)
+                      .times(100)
+                      .round(2)
+                      .toNumber()
 
                     let res = ''
                     try {
@@ -158,9 +175,29 @@ export const Pie: React.FC<PieChartProps> = (props) => {
     options = setOption(cloneDeep(options))
   }
 
+  /**
+   * forward the ref for getEchartsInstance()
+   */
+  const [reactEchartsNode, setReactEchartsNode] = useState<ReactEcharts | null>(null)
+  const reactEchartsRef = useCallback((node) => {
+    if (node !== null) {
+      setReactEchartsNode(node)
+    }
+  }, [])
+  useImperativeHandle(
+    ref,
+    () => ({
+      getEchartsInstance: () => {
+        return reactEchartsNode?.getEchartsInstance()
+      }
+    }),
+    [reactEchartsNode]
+  )
+
   return (
     <>
       <ReactEcharts
+        ref={reactEchartsRef}
         option={{ ...cloneDeep(options) }}
         notMerge={true}
         opts={{ renderer: 'svg' }}
@@ -169,4 +206,4 @@ export const Pie: React.FC<PieChartProps> = (props) => {
       />
     </>
   )
-}
+})

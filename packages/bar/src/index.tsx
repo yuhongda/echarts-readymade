@@ -231,6 +231,10 @@ export const Bar = forwardRef<
     options = setOption(cloneDeep(options))
   }
 
+
+  /**
+   * forward the ref for getEchartsInstance()
+   */
   const [reactEchartsNode, setReactEchartsNode] = useState<ReactEcharts | null>(null)
   const reactEchartsRef = useCallback((node) => {
     if (node !== null) {

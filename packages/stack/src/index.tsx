@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useCallback, useImperativeHandle, forwardRef } from 'react'
+import type { ECharts } from 'echarts'
 import Big from 'big.js'
 import cloneDeep from 'lodash/cloneDeep'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
@@ -24,7 +25,12 @@ export interface StackChartProps extends ChartProps {
   isLineStack?: boolean
 }
 
-export const Stack: React.FC<StackChartProps> = (props) => {
+export const Stack = forwardRef<
+  {
+    getEchartsInstance: () => ECharts | undefined
+  },
+  StackChartProps
+>((props, ref) => {
   const {
     context,
     dimension,
@@ -352,9 +358,29 @@ export const Stack: React.FC<StackChartProps> = (props) => {
     options = setOption(cloneDeep(options))
   }
 
+  /**
+   * forward the ref for getEchartsInstance()
+   */
+  const [reactEchartsNode, setReactEchartsNode] = useState<ReactEcharts | null>(null)
+  const reactEchartsRef = useCallback((node) => {
+    if (node !== null) {
+      setReactEchartsNode(node)
+    }
+  }, [])
+  useImperativeHandle(
+    ref,
+    () => ({
+      getEchartsInstance: () => {
+        return reactEchartsNode?.getEchartsInstance()
+      }
+    }),
+    [reactEchartsNode]
+  )
+
   return (
     <>
       <ReactEcharts
+        ref={reactEchartsRef}
         option={{ ...cloneDeep(options) }}
         notMerge={true}
         opts={{ renderer: 'svg' }}
@@ -363,4 +389,4 @@ export const Stack: React.FC<StackChartProps> = (props) => {
       />
     </>
   )
-}
+})
