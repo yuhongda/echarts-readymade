@@ -5,8 +5,8 @@ import { ChartProvider, ChartContext } from '../packages/core/src/index'
 import type { Field } from '../packages/core/src/index'
 import { Bar } from '../packages/bar/src/index'
 
-describe('testing buildChartOption()', () => {
-  it('buildChartOption() work fine', async () => {
+describe('testing <Bar /> chart', () => {
+  it('<Bar /> chart works fine', async () => {
     const data = [
       {
         v6: 0.8141021277904137,
@@ -102,6 +102,13 @@ describe('testing buildChartOption()', () => {
       }
     ]
 
+    const compareDimension: Field[] = [
+      {
+        fieldKey: 'd2',
+        fieldName: '城市'
+      }
+    ]
+
     const valueList: Field[] = [
       {
         fieldKey: 'v6',
@@ -118,7 +125,156 @@ describe('testing buildChartOption()', () => {
       }
     ]
 
-    let instance
+    let instance: any
+    let instance2: any
+
+    render(
+      <div style={{ width: 500, height: 500 }}>
+        <ChartProvider
+          data={data}
+          echartsOptions={{
+            option: {
+              title: {
+                text: 'Bar Chart'
+              },
+              yAxis: [
+                {
+                  axisLabel: {
+                    formatter: '{value}%'
+                  }
+                }
+              ]
+            }
+          }}
+        >
+          <Bar
+            context={ChartContext}
+            dimension={dimension}
+            valueList={valueList}
+            legendPosition="top"
+            ref={(node) => {
+              instance = node
+            }}
+          />
+          <Bar
+            context={ChartContext}
+            dimension={dimension}
+            compareDimension={compareDimension}
+            valueList={valueList}
+            legendPosition="top"
+            ref={(node) => {
+              instance2 = node
+            }}
+          />
+        </ChartProvider>
+      </div>
+    )
+    expect(instance).toBeDefined()
+    expect(instance.getEchartsInstance()).toBeDefined()
+    expect(instance2).toBeDefined()
+    expect(instance2.getEchartsInstance()).toBeDefined()
+  })
+
+  it('<Bar /> chart return null if data is null', async () => {
+    const dimension: Field[] = [
+      {
+        fieldKey: 'd1',
+        fieldName: '日期'
+      }
+    ]
+
+    const valueList: Field[] = [
+      {
+        fieldKey: 'v6',
+        fieldName: '占比1',
+        isPercent: true
+      },
+      {
+        fieldKey: 'v4',
+        fieldName: '占比2'
+      },
+      {
+        fieldKey: 'v5',
+        fieldName: '占比3'
+      }
+    ]
+
+    let instance: any
+
+    render(
+      <div style={{ width: 500, height: 500 }}>
+        <ChartProvider
+          echartsOptions={{
+            option: {
+              title: {
+                text: 'Bar Chart'
+              },
+              yAxis: [
+                {
+                  axisLabel: {
+                    formatter: '{value}%'
+                  }
+                }
+              ]
+            }
+          }}
+        >
+          <Bar
+            context={ChartContext}
+            dimension={dimension}
+            valueList={valueList}
+            legendPosition="top"
+            ref={(node) => {
+              instance = node
+            }}
+          />
+        </ChartProvider>
+      </div>
+    )
+
+    expect(instance).toBeUndefined()
+  })
+
+  it('The value will be 0, if could not find value in data', async () => {
+    const data = [
+      {
+        d1: '2020-12-31'
+      },
+      {
+        d1: '2020-12-31'
+      },
+      {
+        d1: '2021-01-31'
+      },
+      {
+        d1: '2021-02-28'
+      }
+    ]
+
+    const dimension: Field[] = [
+      {
+        fieldKey: 'd1',
+        fieldName: '日期'
+      }
+    ]
+
+    const valueList: Field[] = [
+      {
+        fieldKey: 'v6',
+        fieldName: '占比1',
+        isPercent: true
+      },
+      {
+        fieldKey: 'v4',
+        fieldName: '占比2'
+      },
+      {
+        fieldKey: 'v5',
+        fieldName: '占比3'
+      }
+    ]
+
+    let instance: any
 
     render(
       <div style={{ width: 500, height: 500 }}>
@@ -151,12 +307,104 @@ describe('testing buildChartOption()', () => {
         </ChartProvider>
       </div>
     )
-    console.log(instance)
-    // if (ref?.current) {
-    //   const instance = instance.getEchartsInstance()
-    //   console.log(instance)
-      expect(instance).toBeDefined()
-    //   // expect(instance.getEchartsInstance()).toBeDefined()
-    // }
+
+    expect(instance).toBeDefined()
+    expect(instance.getEchartsInstance()).toBeDefined()
+    const series = instance.getEchartsInstance().getOption().series
+    expect(series.map((item: any) => item.data.map((d: any) => d.value)).flat()).toStrictEqual(
+      series.map((item: any) => item.data.map((d: any) => 0)).flat()
+    )
+  })
+
+  it('setOption() works fine', async () => {
+    const data = [
+      {
+        v6: 0.8141021277904137,
+        d1: '2020-12-31',
+        d2: '北京',
+        v4: 50.028318723339325,
+        v5: 27.577454409512264
+      },
+      {
+        v6: 0.3141021277904137,
+        d1: '2020-12-31',
+        d2: '上海',
+        v4: 60.028318723339325,
+        v5: 47.577454409512264
+      },
+      {
+        v6: 0.8982190959595345,
+        d1: '2021-01-31',
+        d2: '北京',
+        v4: 41.51820080195095,
+        v5: 21.872185824241658
+      }
+    ]
+
+    const dimension: Field[] = [
+      {
+        fieldKey: 'd1',
+        fieldName: '日期'
+      }
+    ]
+
+    const valueList: Field[] = [
+      {
+        fieldKey: 'v6',
+        fieldName: '占比1',
+        isPercent: true
+      },
+      {
+        fieldKey: 'v4',
+        fieldName: '占比2'
+      },
+      {
+        fieldKey: 'v5',
+        fieldName: '占比3'
+      }
+    ]
+
+    let instance: any
+
+    render(
+      <div style={{ width: 500, height: 500 }}>
+        <ChartProvider
+          data={data}
+          echartsOptions={{
+            option: {
+              title: {
+                text: 'Bar Chart'
+              },
+              yAxis: [
+                {
+                  axisLabel: {
+                    formatter: '{value}%'
+                  }
+                }
+              ]
+            }
+          }}
+        >
+          <Bar
+            context={ChartContext}
+            dimension={dimension}
+            valueList={valueList}
+            legendPosition="top"
+            ref={(node) => {
+              instance = node
+            }}
+            setOption={(option: any) => {
+              option.title.text = 'tada!!'
+              return option
+            }}
+          />
+        </ChartProvider>
+      </div>
+    )
+
+    expect(instance).toBeDefined()
+    expect(instance.getEchartsInstance()).toBeDefined()
+    const title = instance.getEchartsInstance().getOption().title
+    expect(title[0].text).toBe('tada!!')
   })
 })
