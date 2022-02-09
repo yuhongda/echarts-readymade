@@ -230,6 +230,30 @@ Base on [wordcloud2.js](https://github.com/timdream/wordcloud2.js)
 | legendPosition | Position of legend | `'top' \| 'left' \| 'right' \| 'bottom'` | `undefined` |
 
 
+## Q/A
+### Q: How to get the instance of the `echarts-for-react`?
+### A: Each chart component support forwarding `ref` down to `echarts-for-react` in order to get Echarts instance, you can do it like below:
+
+```jsx
+import { ChartProvider, Bar } from 'echarts-readymade'
+import { useRef } from 'react'
+
+const ref = useRef(null)
+
+useEffect(() => {
+  if (ref.current) {
+    // boom!!
+    const instance = ref.current.getEchartsInstance()
+    // so next, you can use Echarts instance api
+    // instance.setOption(...)
+  }
+}, [ref.current])
+
+<ChartProvider data={data}>
+  <Bar ref={ref} dimension={dimension} valueList={valueList} />
+</ChartProvider>
+```
+
 ## Roadmap
 
 - [x] `<Wordcloud />` Chart component
