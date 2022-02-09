@@ -231,7 +231,7 @@ Base on [wordcloud2.js](https://github.com/timdream/wordcloud2.js)
 
 
 ## Q/A
-### Q: How to get the instance of the `echarts-for-react`?
+### Q: How to get the instance of `echarts`?
 ### A: Each chart component support forwarding `ref` down to `echarts-for-react` in order to get Echarts instance, you can do it like below:
 
 ```jsx
