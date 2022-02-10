@@ -91,13 +91,7 @@ export const Pie = forwardRef<
                     .round(2)
                     .toNumber()
 
-                  let res = ''
-                  try {
-                    res += `${_percent}%`
-                  } catch {
-                    res += '--%'
-                  }
-                  return res
+                  return `${_percent || '--'}%`
                 },
                 fontSize: 12
               }
@@ -147,13 +141,7 @@ export const Pie = forwardRef<
                       .round(2)
                       .toNumber()
 
-                    let res = ''
-                    try {
-                      res += `${_percent}%`
-                    } catch {
-                      res += '--%'
-                    }
-                    return res
+                    return `${_percent || '--'}%`
                   } catch (e) {
                     return '--'
                   }
