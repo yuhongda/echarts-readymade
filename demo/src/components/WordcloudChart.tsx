@@ -1225,14 +1225,18 @@ export const WordcloudChart: React.FC = () => {
       <ChartProvider data={data}>
         <Row gutter={16} style={{ height: 500 }}>
           <Col span={12}>
-            <Wordcloud dimension={dimension} valueList={valueList} />
+            <Wordcloud
+              dimension={dimension}
+              valueList={valueList}
+              wordcloudStop={() => console.log('Stop!')}
+            />
           </Col>
           <Col span={12}>
             <Wordcloud
               dimension={dimension}
               valueList={valueList}
               colorList={[
-                '#5657af',
+                '#6f6f79',
                 '#c94682',
                 '#6197db',
                 '#7f285d',

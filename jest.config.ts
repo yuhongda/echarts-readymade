@@ -23,5 +23,6 @@ export default {
     '^(?!.*\\.(js|jsx|ts|tsx|css|less|scss|json)$)': '<rootDir>/__test__/fileTransform.js'
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!lodash-es/).+(js|jsx|ts|tsx|mjs)$'],
-  coverageReporters: ['json-summary', 'clover', 'json', 'lcov', 'text']
+  coverageReporters: ['json-summary', 'clover', 'json', 'lcov', 'text'],
+  testTimeout: 30000
 }

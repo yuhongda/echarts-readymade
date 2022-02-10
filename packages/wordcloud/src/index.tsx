@@ -49,6 +49,7 @@ export interface WordcloudChartProps
   fontSizeMode?: 'bySort' | 'byValue'
   shape?: WordcloudShape | string
   wordcloudOptions?: WordcloudOptions
+  wordcloudStop?: () => void
 }
 
 export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
@@ -60,6 +61,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
     fontSizeMode = 'bySort',
     wordcloudOptions,
     shape,
+    wordcloudStop,
     ...restSettings
   } = props
   const { data } = useContext(context)
@@ -740,6 +742,17 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
       clearTimeout(timer)
     }
   }, [wordCloudCallback])
+
+  useEffect(() => {
+    if (wordcloudStop && ref.current) {
+      ref.current.addEventListener('wordcloudstop', wordcloudStop)
+    }
+    return () => {
+      if (wordcloudStop && ref.current) {
+        ref.current.removeEventListener('wordcloudstop', wordcloudStop)
+      }
+    }
+  }, [ref?.current])
 
   return (
     <>

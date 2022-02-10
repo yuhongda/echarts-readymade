@@ -127,6 +127,7 @@ declare namespace WordCloudTypes {
      * canvas word clouds.
      */
     click?: EventCallback | undefined
+
   }
 }
 declare function WordCloud(elements: HTMLElement | HTMLElement[], options: WordCloudTypes.Options): void
