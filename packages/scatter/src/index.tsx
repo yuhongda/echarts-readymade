@@ -105,7 +105,7 @@ export const Scatter = forwardRef<
       // 散点颜色
       let userColorFromSetOption: string[] | null = null
       if (setOption) {
-        const option = setOption({})
+        const option = setOption(cloneDeep(_chartOption))
         userColorFromSetOption = option.color
       }
 
@@ -412,7 +412,7 @@ export const Scatter = forwardRef<
 
       let userColorFromSetOption: string[] | null = null
       if (setOption) {
-        const option = setOption({})
+        const option = setOption(cloneDeep(_chartOption))
         userColorFromSetOption = option.color
       }
 

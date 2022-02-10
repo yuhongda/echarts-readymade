@@ -211,10 +211,17 @@ export const Stack = forwardRef<
             stack: '总量',
             areaStyle: {},
             data: _dataClone.map((d, i) => {
-              return {
-                value: isPercentMode
+              let _value
+              try {
+                _value = isPercentMode
                   ? (((d && d[_valueItem.fieldKey]) || 0) / sumData[i].value) * 100
-                  : (d && d[_valueItem.fieldKey]) || 0,
+                  : (d && d[_valueItem.fieldKey]) || 0
+              } catch (error) {
+                _value = 0
+              }
+
+              return {
+                value: _value,
                 label: {
                   show: false,
                   position: 'inside',
@@ -306,23 +313,37 @@ export const Stack = forwardRef<
             stack: '总量',
             areaStyle: {},
             data: data?.map((d, j) => {
-              return {
-                value: Big(isPercentMode ? (d[item.fieldKey] / sumData[j]) * 100 : d[item.fieldKey])
+              let _value
+
+              try {
+                _value = Big(
+                  isPercentMode ? (d[item.fieldKey] / sumData[j]) * 100 : d[item.fieldKey]
+                )
                   .round(item.decimalLength || 0)
-                  .toNumber(),
+                  .toNumber()
+              } catch (error) {
+                _value = 0
+              }
+
+              return {
+                value: _value,
                 label: {
                   show: false,
                   position: 'inside',
                   fontSize: 10,
                   formatter: function (params: any) {
                     if (isPercentMode) {
-                      return params.value != null && !isNaN(params.value)
-                        ? `${numberWithCommas(
-                            Big(params.value)
-                              .round(item.decimalLength || 0)
-                              .toNumber()
-                          )}%`
-                        : '--%'
+                      try {
+                        return params.value != null && !isNaN(params.value)
+                          ? `${numberWithCommas(
+                              Big(params.value)
+                                .round(item.decimalLength || 0)
+                                .toNumber()
+                            )}%`
+                          : '--%'
+                      } catch {
+                        return params.value || '--%'
+                      }
                     }
 
                     try {
