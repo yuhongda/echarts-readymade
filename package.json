@@ -13,7 +13,7 @@
     "build": "lerna run build",
     "patch": "lerna version patch",
     "release": "lerna run release --npm-client=npm",
-    "test": "jest",
+    "test": "NODE_ENV=test jest",
     "jest:clear": "jest --clearCache",
     "cover": "yarn run jest:clear && jest --coverage --config=jest.config.ts"
   },
