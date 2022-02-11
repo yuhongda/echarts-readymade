@@ -745,11 +745,15 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
 
   useEffect(() => {
     if (wordcloudStop && ref.current) {
-      ref.current.addEventListener('wordcloudstop', wordcloudStop)
+      ref.current.addEventListener('wordcloudstop', () => {
+        wordcloudStop()
+      })
     }
     return () => {
       if (wordcloudStop && ref.current) {
-        ref.current.removeEventListener('wordcloudstop', wordcloudStop)
+        ref.current.removeEventListener('wordcloudstop', () => {
+          wordcloudStop()
+        })
       }
     }
   }, [ref?.current])

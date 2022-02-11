@@ -24,5 +24,5 @@ export default {
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!lodash-es/).+(js|jsx|ts|tsx|mjs)$'],
   coverageReporters: ['json-summary', 'clover', 'json', 'lcov', 'text'],
-  testTimeout: 30000
+  testTimeout: 50000
 }
