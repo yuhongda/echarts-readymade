@@ -558,6 +558,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
           maskCanvas.width = img.width
           maskCanvas.height = img.height
           const ctx = maskCanvas.getContext('2d')
+
           if (ctx) {
             ctx.drawImage(img, 0, 0, img.width, img.height)
             const imageData = ctx.getImageData(0, 0, maskCanvas.width, maskCanvas.height)

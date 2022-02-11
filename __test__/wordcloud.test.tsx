@@ -22,7 +22,6 @@ beforeEach((): void => {
       left: 851.671875
     }
   }
-
 })
 
 describe('testing <Wordcloud /> chart', () => {
@@ -96,7 +95,7 @@ describe('testing <Wordcloud /> chart', () => {
       </ChartProvider>
     )
     expect(container.getElementsByTagName('canvas')[0]).toBeVisible()
-    // await waitFor(async () => expect(done).toBe(true), { timeout: 5000 })
+    await waitFor(async () => expect(done).toBe(true), { timeout: 5000 })
 
     // const MyComponent: React.FC<{ onDone: () => void }> = ({ onDone }) => {
     //   const ref = useRef<any>(null)
