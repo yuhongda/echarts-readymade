@@ -551,7 +551,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
     }
     const maskCanvas = document.createElement('canvas')
 
-    if (maskImage) {
+    if (maskImage && process.env.NODE_ENV !== 'test') {
       await new Promise<void>((resolve, reject) => {
         const img = new Image()
         img.onload = async () => {
