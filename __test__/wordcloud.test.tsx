@@ -10,6 +10,7 @@ jest.useRealTimers()
 
 beforeEach((): void => {
   jest.useRealTimers()
+  // @ts-ignore
   window.HTMLElement.prototype.getBoundingClientRect = function () {
     return {
       x: 851.671875,
