@@ -1,6 +1,6 @@
 {
   "name": "@echarts-readymade/bar-horizontal",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Horizontal Bar chart",
   "main": "lib/index.js",
   "module": "lib/esm/index.esm.js",
@@ -35,7 +35,7 @@
     "release:next": "npm publish --tag next"
   },
   "dependencies": {
-    "@echarts-readymade/core": "^1.0.7",
+    "@echarts-readymade/core": "^1.0.8",
     "big.js": "^6.1.1",
     "echarts": "^5.2.2",
     "echarts-for-react": "^3.0.2",
