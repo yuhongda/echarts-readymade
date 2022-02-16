@@ -24,5 +24,8 @@ export default {
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!lodash-es/).+(js|jsx|ts|tsx|mjs)$'],
   coverageReporters: ['json-summary', 'clover', 'json', 'lcov', 'text'],
-  testTimeout: 50000
+  testTimeout: 50000,
+  moduleNameMapper: {
+    'assets/(.*)': ['<rootDir>/packages/wordcloud/src/assets/$1']
+  }
 }
