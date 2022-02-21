@@ -33,6 +33,7 @@ const config: RollupOptions = {
 
 if (format === 'esm' || format === 'cjs' || format === 'umd') {
   config.output = {
+    name: 'EchartsReadymade',
     format,
     file:
       format === 'umd'
@@ -73,7 +74,7 @@ if (format === 'esm' || format === 'cjs' || format === 'umd') {
 if (format === 'umd') {
   config.output = {
     format,
-    name: 'index',
+    name: 'EchartsReadymade',
     file: process.env.NODE_ENV === 'production' ? 'lib/umd/index.min.js' : 'lib/umd/index.js'
   }
   config.plugins?.push(
