@@ -20,7 +20,7 @@ const config: RollupOptions = {
     typescript()
   ],
 
-  external: ['react', 'react-dom', 'echarts']
+  external: ['react', 'react-dom', 'echarts', 'big.js']
 }
 
 if (format === 'esm' || format === 'cjs' || format === 'umd') {
