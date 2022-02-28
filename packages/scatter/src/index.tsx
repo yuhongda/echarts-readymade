@@ -111,7 +111,7 @@ export const Scatter = forwardRef<
 
       const getColor = useCallback(
         (index: number) => {
-          let userColor = userOptions.color
+          let userColor = userOptions?.color
 
           if (userColorFromSetOption) {
             return userColorFromSetOption[index % userColorFromSetOption.length]
@@ -121,7 +121,7 @@ export const Scatter = forwardRef<
             return COLOR_LIST[index % COLOR_LIST.length]
           }
         },
-        [userOptions.color, userColorFromSetOption]
+        [userOptions?.color, userColorFromSetOption]
       )
 
       // 散点大小
@@ -418,7 +418,7 @@ export const Scatter = forwardRef<
 
       const getColor = useCallback(
         (index: number) => {
-          let userColor = userOptions.color
+          let userColor = userOptions?.color
 
           if (userColorFromSetOption) {
             return userColorFromSetOption[index % userColorFromSetOption.length]
@@ -428,7 +428,7 @@ export const Scatter = forwardRef<
             return COLOR_LIST[index % COLOR_LIST.length]
           }
         },
-        [userOptions.color, userColorFromSetOption]
+        [userOptions?.color, userColorFromSetOption]
       )
 
       const minSymbolSize = 50

@@ -10,6 +10,7 @@ jest.useRealTimers()
 
 beforeEach((): void => {
   jest.useRealTimers()
+  // @ts-ignore
   window.HTMLElement.prototype.getBoundingClientRect = function () {
     return {
       x: 851.671875,
@@ -148,4 +149,86 @@ describe('testing <Wordcloud /> chart', () => {
     // )
     // await waitFor(async () => expect(done).toEqual(true), { timeout: 10000 })
   })
+
+  // it('<Wordcloud /> chart tooltip works fine', async () => {
+  //   const data = [
+  //     {
+  //       d1: '啤酒',
+  //       v1: 39878014
+  //     },
+  //     {
+  //       d1: '自营',
+  //       v1: 7388903
+  //     },
+  //     {
+  //       d1: '青岛',
+  //       v1: 2475055
+  //     },
+  //     {
+  //       d1: '百威',
+  //       v1: 2454790
+  //     },
+  //     {
+  //       d1: '德国',
+  //       v1: 1667918
+  //     }
+  //   ]
+
+  //   const dimension: Field[] = [
+  //     {
+  //       fieldKey: 'd1',
+  //       fieldName: '日期'
+  //     }
+  //   ]
+
+  //   const valueList: Field[] = [
+  //     {
+  //       fieldKey: 'v1',
+  //       fieldName: '词频'
+  //     }
+  //   ]
+
+  //   let done = false
+
+  //   const { container, rerender, debug } = await render(
+  //     <ChartProvider data={data}>
+  //       <div style={{ width: 500, height: 500 }}>
+  //         <Wordcloud
+  //           context={ChartContext}
+  //           dimension={dimension}
+  //           valueList={valueList}
+  //           colorList={[
+  //             '#5657af',
+  //             '#c94682',
+  //             '#6197db',
+  //             '#7f285d',
+  //             '#727de4',
+  //             '#dc81b7',
+  //             '#553080',
+  //             '#bb83d4',
+  //             '#be509c',
+  //             '#be5abb'
+  //           ]}
+  //           fontSizeMode="byValue"
+  //           shape="mask-cloud"
+  //           wordcloudStop={() => {
+  //             done = true
+  //             console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>done')
+  //           }}
+  //         />
+  //       </div>
+  //     </ChartProvider>
+  //   )
+  //   const canvas = container.getElementsByTagName('canvas')[0]
+  //   expect(canvas).toBeVisible()
+  //   act(() => {
+  //     fireEvent.mouseMove(canvas, {
+  //       clientX: 200,
+  //       clientY: 300
+  //     })
+  //   })
+  //   const span = container.getElementsByTagName('span')[0]
+  //   await waitFor(async () => expect(span).toHaveTextContent('啤酒'), { timeout: 3000 })
+  //   debug()
+  // })
 })
