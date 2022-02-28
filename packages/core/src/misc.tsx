@@ -1,5 +1,4 @@
 import type { EChartsOption } from 'echarts-for-react'
-import numeral from 'numeral'
 import Big from 'big.js'
 
 export const COLOR_LIST = [
@@ -68,12 +67,8 @@ export const echartsOptionsBase: any = {
                           ? '--'
                           : d.data.isPercent
                           ? d.data.value + '%'
-                          : numeral(d.data.value).format(
-                              `0,0.${
-                                d.data.decimalLength != null
-                                  ? new Array(d.data.decimalLength).fill('0').join('')
-                                  : '00'
-                              }`
+                          : Big(d.data.value).toFixed(
+                              d.data.decimalLength != null ? d.data.decimalLength : 2
                             )
                       }</span>
                   </div>`
@@ -90,12 +85,8 @@ export const echartsOptionsBase: any = {
                           ? d.data.value != null
                             ? `${d.data.value}%`
                             : `--`
-                          : numeral(d.data.value).format(
-                              `0,0.${
-                                d.data.decimalLength != null
-                                  ? new Array(d.data.decimalLength).fill('0').join('')
-                                  : '00'
-                              }`
+                          : Big(d.data.value).toFixed(
+                              d.data.decimalLength != null ? d.data.decimalLength : 2
                             )
                       }</span>
                   </div>`
@@ -110,12 +101,8 @@ export const echartsOptionsBase: any = {
                           ? '--'
                           : d.data.isPercent
                           ? d.data.value + '%'
-                          : numeral(d.data.value).format(
-                              `0,0.${
-                                d.data.decimalLength != null
-                                  ? new Array(d.data.decimalLength).fill('0').join('')
-                                  : '00'
-                              }`
+                          : Big(d.data.value).toFixed(
+                              d.data.decimalLength != null ? d.data.decimalLength : 2
                             )
                       }</span>
                   </div>`

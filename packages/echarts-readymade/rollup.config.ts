@@ -5,6 +5,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import type { RollupOptions } from 'rollup'
 import commonjs from '@rollup/plugin-commonjs'
 import image from '@rollup/plugin-image'
+// import { visualizer } from 'rollup-plugin-visualizer'
 
 const format = process.env.FORMAT || 'esm'
 
@@ -17,7 +18,8 @@ const config: RollupOptions = {
       }
     }),
     commonjs(),
-    image()
+    image(),
+    // visualizer()
   ],
 
   external: [

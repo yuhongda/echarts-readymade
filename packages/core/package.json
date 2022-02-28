@@ -35,8 +35,7 @@
     "release:next": "npm publish --tag next"
   },
   "dependencies": {
-    "big.js": "^6.1.1",
-    "numeral": "^2.0.6"
+    "big.js": "^6.1.1"
   },
   "devDependencies": {
     "@types/numeral": "^2.0.2"
