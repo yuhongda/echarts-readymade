@@ -6,7 +6,7 @@ import type { RollupOptions } from 'rollup'
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 
-const format = process.env.FORMAT || 'esm'
+const format = process.env.FORMAT || 'es'
 
 const config: RollupOptions = {
   input: './src/index.ts',
@@ -23,7 +23,7 @@ const config: RollupOptions = {
   external: ['react', 'react-dom', 'echarts', 'big.js']
 }
 
-if (format === 'esm' || format === 'cjs' || format === 'umd') {
+if (format === 'es' || format === 'cjs' || format === 'umd') {
   config.output = {
     name: 'EchartsReadymadeCore',
     format,

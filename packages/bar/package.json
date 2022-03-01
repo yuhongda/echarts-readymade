@@ -3,7 +3,7 @@
   "version": "1.0.9",
   "description": "Bar chart",
   "main": "lib/index.js",
-  "module": "lib/esm/index.esm.js",
+  "module": "lib/es/index.es.js",
   "unpkg": "lib/umd/index.min.js",
   "jsdelivr": "lib/umd/index.min.js",
   "types": "types/index.d.ts",
@@ -20,7 +20,7 @@
   "scripts": {
     "lib": "babel src --out-dir lib --extensions \".js,.jsx,.ts,.tsx\" --config-file \"../../.babelrc.js\"",
     "cjs": "FORMAT=cjs rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2",
-    "esm": "FORMAT=esm rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2",
+    "esm": "FORMAT=es rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2",
     "umd": "NODE_ENV=development FORMAT=umd rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2",
     "min": "NODE_ENV=production FORMAT=umd rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2",
     "dts": "FORMAT=dts rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2",

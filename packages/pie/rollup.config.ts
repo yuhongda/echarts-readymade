@@ -5,7 +5,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import type { RollupOptions } from 'rollup'
 import commonjs from '@rollup/plugin-commonjs'
 
-const format = process.env.FORMAT || 'esm'
+const format = process.env.FORMAT || 'es'
 
 const config: RollupOptions = {
   input: './src/index.tsx',
@@ -29,7 +29,7 @@ const config: RollupOptions = {
   ]
 }
 
-if (format === 'esm' || format === 'cjs' || format === 'umd') {
+if (format === 'es' || format === 'cjs' || format === 'umd') {
   config.output = {
     name: 'EchartsReadymadePie',
     format,

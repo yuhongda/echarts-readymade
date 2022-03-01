@@ -6,7 +6,7 @@ import type { RollupOptions } from 'rollup'
 import commonjs from '@rollup/plugin-commonjs'
 import image from '@rollup/plugin-image'
 
-const format = process.env.FORMAT || 'esm'
+const format = process.env.FORMAT || 'es'
 
 const config: RollupOptions = {
   input: './src/index.tsx',
@@ -30,7 +30,7 @@ const config: RollupOptions = {
   ]
 }
 
-if (format === 'esm' || format === 'cjs' || format === 'umd') {
+if (format === 'es' || format === 'cjs' || format === 'umd') {
   config.output = {
     name: 'EchartsReadymadeWordcloud',
     format,
