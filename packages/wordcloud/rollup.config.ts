@@ -17,7 +17,7 @@ const config: RollupOptions = {
       }
     }),
     commonjs(),
-    image(),
+    image()
   ],
   external: [
     'react',
@@ -26,7 +26,8 @@ const config: RollupOptions = {
     'echarts/core',
     'echarts/charts',
     'echarts/components',
-    'echarts/renderers'
+    'echarts/renderers',
+    'big.js'
   ]
 }
 

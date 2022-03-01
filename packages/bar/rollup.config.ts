@@ -4,7 +4,7 @@ import replace from 'rollup-plugin-replace'
 import resolve from 'rollup-plugin-node-resolve'
 import type { RollupOptions } from 'rollup'
 import commonjs from '@rollup/plugin-commonjs'
-// import { visualizer } from 'rollup-plugin-visualizer'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 const format = process.env.FORMAT || 'es'
 
@@ -16,8 +16,8 @@ const config: RollupOptions = {
         moduleDirectory: 'node_modules'
       }
     }),
-    commonjs()
-    // visualizer()
+    commonjs(),
+    visualizer()
   ],
   external: [
     'react',
@@ -26,7 +26,8 @@ const config: RollupOptions = {
     'echarts/core',
     'echarts/charts',
     'echarts/components',
-    'echarts/renderers'
+    'echarts/renderers',
+    'big.js'
   ]
 }
 

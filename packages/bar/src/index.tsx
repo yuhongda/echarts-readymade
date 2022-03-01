@@ -1,7 +1,7 @@
 import React, { useContext, forwardRef, useImperativeHandle, useState, useCallback } from 'react'
 import type { ECharts } from 'echarts'
 import Big from 'big.js'
-import cloneDeep from 'lodash-es/cloneDeep'
+import cloneDeep from 'clone'
 import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption } from '@echarts-readymade/core'
 import ReactEcharts from 'echarts-for-react'

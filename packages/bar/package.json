@@ -37,6 +37,7 @@
   "dependencies": {
     "@echarts-readymade/core": "^1.0.10",
     "big.js": "^6.1.1",
+    "clone": "^2.1.2",
     "echarts": "^5.2.2",
     "echarts-for-react": "^3.0.2",
     "lodash": "^4.17.21",
@@ -44,6 +45,7 @@
   },
   "devDependencies": {
     "@types/big.js": "^6.1.2",
+    "@types/clone": "^2.1.1",
     "@types/lodash": "^4.14.178",
     "@types/lodash-es": "^4.17.6",
     "@types/numeral": "^2.0.2"

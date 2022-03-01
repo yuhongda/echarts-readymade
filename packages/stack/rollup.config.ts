@@ -25,7 +25,8 @@ const config: RollupOptions = {
     'echarts/core',
     'echarts/charts',
     'echarts/components',
-    'echarts/renderers'
+    'echarts/renderers',
+    'big.js'
   ]
 }
 
