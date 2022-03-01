@@ -51,6 +51,7 @@
   },
   "peerDependencies": {
     "echarts": "^5.2.2",
-    "echarts-for-react": "^3.0.2"
+    "echarts-for-react": "^3.0.2",
+    "wordcloud": "^1.2.2"
   }
 }
