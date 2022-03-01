@@ -45,7 +45,9 @@
     "@types/lodash": "^4.14.178",
     "@types/numeral": "^2.0.2",
     "@types/styled-components": "^5.1.20",
-    "copyfiles": "^2.4.1"
+    "copyfiles": "^2.4.1",
+    "echarts": "^5.2.2",
+    "echarts-for-react": "^3.0.2"
   },
   "peerDependencies": {
     "wordcloud": "^1.2.2"

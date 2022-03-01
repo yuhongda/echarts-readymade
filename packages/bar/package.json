@@ -44,7 +44,9 @@
     "@types/clone": "^2.1.1",
     "@types/lodash": "^4.14.178",
     "@types/lodash-es": "^4.17.6",
-    "@types/numeral": "^2.0.2"
+    "@types/numeral": "^2.0.2",
+    "echarts": "^5.2.2",
+    "echarts-for-react": "^3.0.2"
   },
   "peerDependencies": {
     "echarts": "^5.2.2",
