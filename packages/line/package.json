@@ -1,6 +1,6 @@
 {
   "name": "@echarts-readymade/line",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Line chart",
   "main": "lib/index.js",
   "module": "lib/es/index.es.js",
