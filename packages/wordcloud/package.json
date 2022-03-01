@@ -38,8 +38,7 @@
   "dependencies": {
     "@echarts-readymade/core": "^1.0.11",
     "big.js": "^6.1.1",
-    "styled-components": "^5.3.3",
-    "wordcloud": "^1.2.2"
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@rollup/plugin-image": "^2.1.1",
@@ -47,5 +46,8 @@
     "@types/numeral": "^2.0.2",
     "@types/styled-components": "^5.1.20",
     "copyfiles": "^2.4.1"
+  },
+  "peerDependencies": {
+    "wordcloud": "^1.2.2"
   }
 }
