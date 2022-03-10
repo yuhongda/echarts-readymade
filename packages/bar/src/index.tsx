@@ -165,12 +165,14 @@ export const Bar = forwardRef<
 
                 return {
                   value: result.round(v.decimalLength || 0).toNumber(),
-                  isPercent: v.isPercent
+                  isPercent: v.isPercent,
+                  decimalLength: v.decimalLength
                 }
               }
               return {
                 value: 0,
-                isPercent: v.isPercent
+                isPercent: v.isPercent,
+                decimalLength: v.decimalLength
               }
             }),
             yAxisIndex: v.yAxisIndex || 0
@@ -210,12 +212,14 @@ export const Bar = forwardRef<
                   }
                   return {
                     value: result.round(v.decimalLength || 0).toNumber(),
-                    isPercent: v.isPercent
+                    isPercent: v.isPercent,
+                    decimalLength: v.decimalLength
                   }
                 }
                 return {
                   value: 0,
-                  isPercent: v.isPercent
+                  isPercent: v.isPercent,
+                  decimalLength: v.decimalLength
                 }
               }),
             yAxisIndex: v.yAxisIndex || 0

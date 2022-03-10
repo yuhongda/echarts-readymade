@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { ChartProvider, ChartContext } from '@echarts-readymade/core'
-import { Line } from '@echarts-readymade/line'
+import { ChartProvider, ChartContext } from '../../../packages/core/src'
+import { Line } from '../../../packages/line/src'
 import type { LegendPosition } from '@echarts-readymade/core'
 import styled from 'styled-components'
 import type { Field } from '@echarts-readymade/core'
@@ -121,7 +121,8 @@ export const LineChart: React.FC = () => {
     },
     {
       fieldKey: 'v4',
-      fieldName: '占比2'
+      fieldName: '占比2',
+      decimalLength: 3
     },
     {
       fieldKey: 'v5',

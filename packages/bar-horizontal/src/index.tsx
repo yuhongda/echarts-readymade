@@ -128,7 +128,8 @@ export const BarHorizontal = forwardRef<
                     }
                   }
                 },
-                isPercent: v.isPercent
+                isPercent: v.isPercent,
+                decimalLength: v.decimalLength
               }
             })
           })
@@ -177,7 +178,8 @@ export const BarHorizontal = forwardRef<
                   }
                 }
               },
-              isPercent: v.isPercent
+              isPercent: v.isPercent,
+              decimalLength: v.decimalLength
             }
           })
         }
