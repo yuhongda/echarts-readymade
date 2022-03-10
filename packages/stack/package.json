@@ -1,6 +1,6 @@
 {
   "name": "@echarts-readymade/stack",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Stack chart",
   "main": "lib/index.js",
   "module": "lib/es/index.es.js",
