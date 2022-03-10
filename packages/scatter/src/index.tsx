@@ -193,7 +193,7 @@ export const Scatter = forwardRef<
                   <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:${
                     item.color
                   }"></span>
-                  <span>${truncate(item.name, 6)}:</span>
+                  <span>${item.name}:</span>
                   <div><span style="color: #595959;">${
                     _valueList[0].fieldName
                   }</span>:<span style="color: #262626;">${item.value[0]}${
@@ -512,7 +512,7 @@ export const Scatter = forwardRef<
                   <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:${
                     item.color
                   }"></span>
-                  <span>${truncate(item.name, 6)}:</span>
+                  <span>${item.name}:</span>
                   <div><span style="color: #595959;">${
                     _valueList[0].fieldName
                   }</span>:<span style="color: #262626;">${item.value[0]}${
