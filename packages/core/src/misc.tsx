@@ -66,9 +66,11 @@ export const echartsOptionsBase: any = {
                           : d.data.value == null
                           ? '--'
                           : d.data.isPercent
-                          ? d.data.value + '%'
-                          : Big(d.data.value).toFixed(
-                              d.data.decimalLength != null ? d.data.decimalLength : 2
+                          ? numberWithCommas(d.data.value) + '%'
+                          : numberWithCommas(
+                              Big(d.data.value).toFixed(
+                                d.data.decimalLength != null ? d.data.decimalLength : 2
+                              )
                             )
                       }</span>
                   </div>`
@@ -83,10 +85,12 @@ export const echartsOptionsBase: any = {
                           ? '--'
                           : d.data.isPercent
                           ? d.data.value != null
-                            ? `${d.data.value}%`
+                            ? `${numberWithCommas(d.data.value)}%`
                             : `--`
-                          : Big(d.data.value).toFixed(
-                              d.data.decimalLength != null ? d.data.decimalLength : 2
+                          : numberWithCommas(
+                              Big(d.data.value).toFixed(
+                                d.data.decimalLength != null ? d.data.decimalLength : 2
+                              )
                             )
                       }</span>
                   </div>`
@@ -100,10 +104,10 @@ export const echartsOptionsBase: any = {
                         d.data.value == null
                           ? '--'
                           : d.data.isPercent
-                          ? d.data.value + '%'
-                          : Big(d.data.value).toFixed(
+                          ? numberWithCommas(d.data.value) + '%'
+                          : numberWithCommas(Big(d.data.value).toFixed(
                               d.data.decimalLength != null ? d.data.decimalLength : 2
-                            )
+                            ))
                       }</span>
                   </div>`
           }
