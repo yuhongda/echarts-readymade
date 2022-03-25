@@ -2,7 +2,7 @@ import React, { useContext, useState, useCallback } from 'react'
 import Big from 'big.js'
 import cloneDeep from 'clone'
 import type { ChartProps, Field } from '@echarts-readymade/core'
-import { mergeOption, COLOR_LIST } from '@echarts-readymade/core'
+import { mergeOption, COLOR_LIST, numberWithCommas } from '@echarts-readymade/core'
 import styled from 'styled-components'
 import { Table as AntdTable, Tooltip } from 'antd'
 import { InfoCircleOutlined, CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
@@ -92,8 +92,11 @@ const StyledTable = styled(AntdTable)<{ color: string[]; dimensionCount: number 
   }
 `
 
-const ValueCell = styled.span`
-  color: ${(props) => (props.isSum ? props.color[1] : 'color: rgba(0, 0, 0, 0.65)')};
+const ValueCell = styled.span<{ colors: string[]; isSum: boolean }>`
+  color: ${(props) =>
+    props.isSum
+      ? (props.colors && props.colors[1]) || 'color: rgba(0, 0, 0, 0.65)'
+      : 'color: rgba(0, 0, 0, 0.65)'};
 `
 
 const TitleSortLeft = styled.span`
@@ -209,53 +212,32 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
               compareList.find((compareListItem: any) => compareListItem.name == c) || {}
             let _value = itemOfColumn[v.fieldKey] != null ? itemOfColumn[v.fieldKey] : ''
 
-            if (v.chartDataOption.label.formatType == 'percent') {
+            if (v.isPercent) {
               try {
                 _value =
-                  itemOfColumn[v.fieldKeyAlias] != null && !isNaN(itemOfColumn[v.fieldKeyAlias])
+                  itemOfColumn[v.fieldKey] != null && !isNaN(itemOfColumn[v.fieldKey])
                     ? `${numberWithCommas(
-                        (parseFloat(itemOfColumn[v.fieldKeyAlias]) * 100).toFixed(
-                          typeof v.chartDataOption.label.decimalLength == 'number'
-                            ? v.chartDataOption.label.decimalLength
-                            : 2
-                        )
+                        (parseFloat(itemOfColumn[v.fieldKey]) * 100).toFixed(v.decimalLength || 0)
                       )}%`
                     : ''
               } catch {
-                _value = itemOfColumn[v.fieldKeyAlias] != null ? itemOfColumn[v.fieldKeyAlias] : ''
-              }
-            } else if (v.chartDataOption.label.formatType == 'decimal') {
-              try {
-                _value =
-                  itemOfColumn[v.fieldKeyAlias] != null
-                    ? numberWithCommas(
-                        itemOfColumn[v.fieldKeyAlias].toFixed(
-                          typeof v.chartDataOption.label.decimalLength == 'number'
-                            ? v.chartDataOption.label.decimalLength
-                            : 2
-                        )
-                      )
-                    : ''
-              } catch {
-                _value = itemOfColumn[v.fieldKeyAlias] != null ? itemOfColumn[v.fieldKeyAlias] : ''
+                _value = itemOfColumn[v.fieldKey] != null ? itemOfColumn[v.fieldKey] : ''
               }
             } else {
               try {
                 _value =
-                  itemOfColumn[v.fieldKeyAlias] != null
-                    ? numberWithCommas(
-                        itemOfColumn[v.fieldKeyAlias].toFixed(v.isRoundNumber ? 0 : 2)
-                      )
+                  itemOfColumn[v.fieldKey] != null
+                    ? numberWithCommas(itemOfColumn[v.fieldKey].toFixed(v.decimalLength || 0))
                     : ''
               } catch {
-                _value = itemOfColumn[v.fieldKeyAlias] != null ? itemOfColumn[v.fieldKeyAlias] : ''
+                _value = itemOfColumn[v.fieldKey] != null ? itemOfColumn[v.fieldKey] : ''
               }
             }
 
             return (
               <ValueCell
                 title={_value}
-                color={localStore.colors}
+                colors={colors}
                 isSum={
                   '总计' == c || '总计' == row[dimensionList[0] && dimensionList[0].fieldKeyAlias]
                 }
