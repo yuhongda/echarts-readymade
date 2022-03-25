@@ -183,71 +183,61 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
         columns = ['总计', ...columns]
       }
 
-      const getColumn = (v: Field, index, item, c, isShowCompareColumnTitle) => {
+      const getColumn = (
+        v: Field,
+        index: number,
+        item: Field,
+        c: string,
+        isShowCompareColumnTitle: boolean
+      ) => {
         return {
           title: isShowCompareColumnTitle ? (
             <span title={c}>{c}</span>
           ) : (
-            <span title={v.fieldNameAlias || v.fieldName}>{v.fieldNameAlias || v.fieldName}</span>
+            <span title={v.fieldName}>{v.fieldName}</span>
           ),
-          key: `${v.fieldKeyAlias}_${index}`,
-          dataIndex: v.fieldKeyAlias,
+          key: `${v.fieldKey}_${index}`,
+          dataIndex: v.fieldKey,
           width: COLUMN_WIDTH,
-          render: (text, row, i) => {
+          render: (text: string, row: any, i: number) => {
             if ('总计' == c && i == 0) {
               return ''
             }
 
             const { compareList } = row
             const itemOfColumn =
-              compareList.find((compareListItem) => compareListItem.name == c) || {}
-            let _value = itemOfColumn[v.fieldKeyAlias] != null ? itemOfColumn[v.fieldKeyAlias] : ''
+              compareList.find((compareListItem: any) => compareListItem.name == c) || {}
+            let _value = itemOfColumn[v.fieldKey] != null ? itemOfColumn[v.fieldKey] : ''
 
-            if (v.chartDataOption) {
-              if (v.chartDataOption.label.formatType == 'percent') {
-                try {
-                  _value =
-                    itemOfColumn[v.fieldKeyAlias] != null && !isNaN(itemOfColumn[v.fieldKeyAlias])
-                      ? `${numberWithCommas(
-                          (parseFloat(itemOfColumn[v.fieldKeyAlias]) * 100).toFixed(
-                            typeof v.chartDataOption.label.decimalLength == 'number'
-                              ? v.chartDataOption.label.decimalLength
-                              : 2
-                          )
-                        )}%`
-                      : ''
-                } catch {
-                  _value =
-                    itemOfColumn[v.fieldKeyAlias] != null ? itemOfColumn[v.fieldKeyAlias] : ''
-                }
-              } else if (v.chartDataOption.label.formatType == 'decimal') {
-                try {
-                  _value =
-                    itemOfColumn[v.fieldKeyAlias] != null
-                      ? numberWithCommas(
-                          itemOfColumn[v.fieldKeyAlias].toFixed(
-                            typeof v.chartDataOption.label.decimalLength == 'number'
-                              ? v.chartDataOption.label.decimalLength
-                              : 2
-                          )
+            if (v.chartDataOption.label.formatType == 'percent') {
+              try {
+                _value =
+                  itemOfColumn[v.fieldKeyAlias] != null && !isNaN(itemOfColumn[v.fieldKeyAlias])
+                    ? `${numberWithCommas(
+                        (parseFloat(itemOfColumn[v.fieldKeyAlias]) * 100).toFixed(
+                          typeof v.chartDataOption.label.decimalLength == 'number'
+                            ? v.chartDataOption.label.decimalLength
+                            : 2
                         )
-                      : ''
-                } catch {
-                  _value =
-                    itemOfColumn[v.fieldKeyAlias] != null ? itemOfColumn[v.fieldKeyAlias] : ''
-                }
-              } else {
-                try {
-                  _value =
-                    itemOfColumn[v.fieldKeyAlias] != null
-                      ? numberWithCommas(
-                          itemOfColumn[v.fieldKeyAlias].toFixed(v.isRoundNumber ? 0 : 2)
+                      )}%`
+                    : ''
+              } catch {
+                _value = itemOfColumn[v.fieldKeyAlias] != null ? itemOfColumn[v.fieldKeyAlias] : ''
+              }
+            } else if (v.chartDataOption.label.formatType == 'decimal') {
+              try {
+                _value =
+                  itemOfColumn[v.fieldKeyAlias] != null
+                    ? numberWithCommas(
+                        itemOfColumn[v.fieldKeyAlias].toFixed(
+                          typeof v.chartDataOption.label.decimalLength == 'number'
+                            ? v.chartDataOption.label.decimalLength
+                            : 2
                         )
-                      : ''
-                } catch {
-                  _value =
-                    itemOfColumn[v.fieldKeyAlias] != null ? itemOfColumn[v.fieldKeyAlias] : ''
-                }
+                      )
+                    : ''
+              } catch {
+                _value = itemOfColumn[v.fieldKeyAlias] != null ? itemOfColumn[v.fieldKeyAlias] : ''
               }
             } else {
               try {
