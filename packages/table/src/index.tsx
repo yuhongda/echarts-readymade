@@ -6,6 +6,7 @@ import { mergeOption, COLOR_LIST, numberWithCommas } from '@echarts-readymade/co
 import styled from 'styled-components'
 import { Table as AntdTable, Tooltip } from 'antd'
 import { InfoCircleOutlined, CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
+import useLocalStorageState from 'use-local-storage-state'
 
 const COLUMN_WIDTH = 100
 
@@ -137,6 +138,7 @@ export interface TableChartProps extends Omit<ChartProps, 'echartsSeries' | 'set
   colorList?: string[]
   showRank?: boolean
   showSum?: boolean
+  hideDimensionCompareTitle?: boolean
 }
 
 export const Table: React.FC<TableChartProps> = (props, ref) => {
@@ -148,6 +150,7 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
     colorList,
     showRank,
     showSum,
+    hideDimensionCompareTitle,
     ...restSettings
   } = props
   const { data } = useContext(context)
@@ -159,8 +162,14 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
   const colors = colorList || COLOR_LIST
 
   // feat: move columns
-  const [moveItem, setMoveItem] = useState(null)
-  const [moveUpdateKey, setMoveUpdateKey] = useState(null)
+  const [moveItem, setMoveItem] = useState<any>(null)
+  const [moveUpdateKey, setMoveUpdateKey] = useState<number | null>(null)
+  const [sortedTableColumnsKeys, setSortedTableColumnsKeys] = useLocalStorageState<string[]>(
+    'NPD.Platform.Internal.selectedCategory',
+    {
+      defaultValue: []
+    }
+  )
 
   const getColSpan = (text: string, index: number, dimAndVal: Field[], fieldKey: string) => {
     let count = 1
@@ -238,9 +247,7 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
               <ValueCell
                 title={_value}
                 colors={colors}
-                isSum={
-                  '总计' == c || '总计' == row[dimensionList[0] && dimensionList[0].fieldKeyAlias]
-                }
+                isSum={'总计' == c || '总计' == row[dimension[0].fieldKey]}
               >
                 {_value}
               </ValueCell>
@@ -249,67 +256,42 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
         }
       }
 
-      const dimensionListCompareColumn = dimensionListCompare.map((item) => {
+      const dimensionListCompareColumn = compareDimension.map((item) => {
         return columns.map((c, index) => {
-          if (
-            valueList.length == 1 &&
-            source.chartData.chartOption.table &&
-            source.chartData.chartOption.table.hideDimensionCompareTitle != undefined &&
-            !source.chartData.chartOption.table.hideDimensionCompareTitle
-          ) {
+          if (valueList.length == 1 && hideDimensionCompareTitle) {
             // 隐藏对比维度
             return getColumn(valueList[0], index, item, c, true)
           } else {
             // 显示对比维度
             let _c = c
-            if (item.isTimeSimplify && source.chartData.chartOption.timeSimplify) {
-              if (!isNaN(moment(c).month())) {
-                _c = `${moment(c).month() + 1}月`
-              }
-            }
-
-            if (item.isChannel) {
-              _c =
-                (source.store.common.channelLabelMap.find((c) => c.code == _c) &&
-                  source.store.common.channelLabelMap.find((c) => c.code == _c).name) ||
-                _c
-            } else if (item.isDataType) {
-              _c = getDataTypeName(_c)
-            }
 
             return {
               key: _c,
-              className: cx({
-                columnTitleCell: true
-              }),
+              className: 'columnTitleCell',
               title: (
                 <>
-                  <if condition={!is4ReportEditor}>
-                    <TitleSortLeft
-                      className="sortBtn"
-                      onClick={() => {
-                        setMoveItem({ key: _c, direction: 'left', hasCompare: true })
-                        setMoveUpdateKey(+new Date())
-                      }}
-                    >
-                      <CaretLeftOutlined />
-                    </TitleSortLeft>
-                  </if>
+                  <TitleSortLeft
+                    className="sortBtn"
+                    onClick={() => {
+                      setMoveItem({ key: _c, direction: 'left', hasCompare: true })
+                      setMoveUpdateKey(+new Date())
+                    }}
+                  >
+                    <CaretLeftOutlined />
+                  </TitleSortLeft>
                   <span title={_c}>{_c}</span>
-                  <if condition={!is4ReportEditor}>
-                    <TitleSortRight
-                      className="sortBtn"
-                      onClick={() => {
-                        setMoveItem({ key: _c, direction: 'right', hasCompare: true })
-                        setMoveUpdateKey(+new Date())
-                      }}
-                    >
-                      <CaretRightOutlined />
-                    </TitleSortRight>
-                  </if>
+                  <TitleSortRight
+                    className="sortBtn"
+                    onClick={() => {
+                      setMoveItem({ key: _c, direction: 'right', hasCompare: true })
+                      setMoveUpdateKey(+new Date())
+                    }}
+                  >
+                    <CaretRightOutlined />
+                  </TitleSortRight>
                 </>
               ),
-              children: source.chartData.valueList.map((v) => {
+              children: valueList.map((v) => {
                 return getColumn(v, index, item, c, false)
               })
             }
@@ -317,15 +299,7 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
         })
       })
 
-      const isShowRank =
-        source.chartData.chartOption.table && source.chartData.chartOption.table.showRank
-      const needFixed =
-        dimensionListCompare.length > 0 &&
-        source.blockWrapRect &&
-        source.blockWrapRect.width * ((source.blockWidth || 100) / 100) <
-          columns.length * source.chartData.valueList.length * 100 + (isShowRank ? 300 : 100)
-
-      const sumColumn = isShowSum
+      const sumColumn = showSum
         ? [
             {
               key: 'sum',
@@ -336,22 +310,9 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
           ]
         : []
 
-      let top =
-        (source.chartData.chartOption.table &&
-          source.chartData.chartOption.table.showTop &&
-          source.chartData.chartOption.table.top) ||
-        10
-
-      if (is4ReportEditor && top > 50) {
-        top = 50
-      }
-
       // feat: move columns
-      const sortedTableColumnsKeys =
-        source.chartData.chartOption.table &&
-        source.chartData.chartOption.table.sortedTableColumnsKeys
       let originColumns = [...(dimensionListCompareColumn[0] || [])]
-      const sortedColumns = []
+      const sortedColumns: any[] = []
       ;(sortedTableColumnsKeys || []).forEach((key) => {
         let found = false
         originColumns = originColumns.filter((item) => {
@@ -364,45 +325,26 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
       })
 
       const dimensionListColumns = [
-        ...dimensionList.map((item, i) => {
+        ...dimension.map((item, i) => {
           return {
-            key: item.fieldKeyAlias,
-            title: (
-              <span title={item.fieldNameAlias || item.fieldName}>
-                {item.fieldNameAlias || item.fieldName}
-              </span>
-            ),
-            dataIndex: item.fieldKeyAlias,
+            key: item.fieldKey,
+            title: <span title={item.fieldName}>{item.fieldName}</span>,
+            dataIndex: item.fieldKey,
             width: COLUMN_WIDTH,
-            fixed: needFixed ? 'left' : false,
-            render: (text, row, index) => {
+            fixed: 'left',
+            render: (text: any, row: any, index: number) => {
               let _value = ''
               try {
-                _value = numberWithCommas(text.toFixed(item.isRoundNumber ? 0 : 2))
+                _value = numberWithCommas(text.toFixed(item.decimalLength || 0))
               } catch {
                 _value = text
-              }
-
-              if (item.isTimeSimplify && source.chartData.chartOption.timeSimplify) {
-                if (!isNaN(moment(_value).month())) {
-                  _value = `${moment(_value).month() + 1}月`
-                }
-              }
-
-              if (item.isChannel) {
-                _value =
-                  (source.store.common.channelLabelMap.find((c) => c.code == _value) &&
-                    source.store.common.channelLabelMap.find((c) => c.code == _value).name) ||
-                  _value
-              } else if (item.isDataType) {
-                _value = getDataTypeName(_value)
               }
 
               return {
                 children: (
                   <ValueCell
                     title={_value}
-                    color={localStore.colors}
+                    colors={colors}
                     isSum={'总计' == row[dimensionList[0] && dimensionList[0].fieldKeyAlias]}
                   >
                     {i == 0 &&
@@ -1048,6 +990,137 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
       return rdata
     }
   }
+
+  const tableHeight =
+    slideType == 4
+      ? chartData.chartOption.title.show
+        ? blockWrapHeight / 2 - 50
+        : blockWrapHeight / 2 - 40
+      : chartData.chartOption.title.show
+      ? blockWrapHeight - 100
+      : blockWrapHeight - 40
+
+  const _dimensionList = chartData.dimension.filter((item) => !item.isCompare)
+  const _dimensionListCompare = chartData.dimension.filter((item) => item.isCompare)
+  const scroll = {}
+  const [rect, setRect] = useState(null)
+  const wrapperRef = useCallback((node) => {
+    if (node !== null) {
+      setRect(node.getBoundingClientRect())
+    }
+  }, [])
+  const isShowSum = chartData.chartOption.table && chartData.chartOption.table.showSum
+
+  if (rect && rect.height / (slideType == 4 ? 2 : 1) < localStore.tableData.length * 53 + 50 + 40) {
+    scroll.y =
+      slideType == 4
+        ? chartData.chartOption.title.show
+          ? blockWrapHeight / 2 -
+            (isInsight ? 50 : 80) -
+            (_dimensionListCompare.length > 0 ? 50 : 0)
+          : blockWrapHeight / 2 - (isInsight ? 0 : 50) - (_dimensionListCompare.length > 0 ? 50 : 0)
+        : chartData.chartOption.title.show
+        ? blockWrapHeight - 170 - (_dimensionListCompare.length > 0 ? 50 : 0)
+        : blockWrapHeight - 90 - (_dimensionListCompare.length > 0 ? 50 : 0)
+  }
+
+  const _blockWidth = (blockWrapRect && blockWrapRect.width * ((blockWidth || 100) / 100)) || 0
+  const compareColumns = [
+    ...new Set(
+      chartData.data.map(
+        (d) => d[_dimensionListCompare[0] && _dimensionListCompare[0].fieldKeyAlias]
+      )
+    )
+  ]
+
+  if (_dimensionListCompare.length > 0) {
+    let _top =
+      (chartData.chartOption.table &&
+        chartData.chartOption.table.showTop &&
+        chartData.chartOption.table.top) ||
+      10
+
+    if (is4ReportEditor && _top > 50) {
+      _top = 50
+    }
+    const _compareColumnsCount = Math.min(
+      _top - _dimensionList.length - (isShowSum ? 1 : 0),
+      compareColumns.length
+    )
+
+    if (
+      _blockWidth <
+      _compareColumnsCount * chartData.valueList.length * COLUMN_WIDTH +
+        _dimensionList.length * COLUMN_WIDTH
+    ) {
+      scroll.x =
+        _compareColumnsCount * chartData.valueList.length * COLUMN_WIDTH +
+        _dimensionList.length * COLUMN_WIDTH
+    }
+  } else {
+    if (_blockWidth < localStore.tableColumns.length * COLUMN_WIDTH + 100) {
+      scroll.x = true
+    }
+  }
+
+  const colorList = (chartData && chartData.colorList) || COLOR_LIST[0].colors
+  const bgColor = colorList ? colorList[0] : 'transparent'
+
+  // feat: move columns
+  useEffect(() => {
+    const setSortedTableColumnsKeys = (keys, isNotChangePageSavedState) => {
+      const _currentChartData = slideEditor.currentChartData()
+      const _chartOption = _currentChartData.chartOption
+      if (_chartOption.table) {
+        _chartOption.table.sortedTableColumnsKeys = keys
+      } else {
+        _chartOption.table = {
+          sortedTableColumnsKeys: keys
+        }
+      }
+      slideEditor.setChartOption(_chartOption, null, isNotChangePageSavedState)
+    }
+    const sortedTableColumnsKeys =
+      chartData.chartOption.table && chartData.chartOption.table.sortedTableColumnsKeys
+    if (moveItem) {
+      const _index = sortedTableColumnsKeys.findIndex((item) => item == moveItem.key)
+      if (moveItem.direction == 'left') {
+        if (_index > 0) {
+          sortedTableColumnsKeys.splice(_index - 1, 0, sortedTableColumnsKeys.splice(_index, 1)[0])
+          setSortedTableColumnsKeys(sortedTableColumnsKeys)
+        }
+      } else if (moveItem.direction == 'right') {
+        if (_index < sortedTableColumnsKeys.length - 1) {
+          sortedTableColumnsKeys.splice(_index + 1, 0, sortedTableColumnsKeys.splice(_index, 1)[0])
+          setSortedTableColumnsKeys(sortedTableColumnsKeys)
+        }
+      }
+      setMoveItem(null)
+    } else {
+      setSortedTableColumnsKeys(
+        toJS(localStore.tableColumns).map((item) => item.key),
+        true
+      )
+    }
+  }, [moveUpdateKey])
+
+  // feat: 停止表格滚动事件冒泡
+  const ref = useRef(null)
+  useEffect(() => {
+    const MouseWheelEvent = (ev) => {
+      ev.stopPropagation()
+      ev.stopImmediatePropagation()
+      return false
+    }
+    if (ref && ref.current) {
+      ref.current.addEventListener('wheel', MouseWheelEvent)
+    }
+    return () => {
+      if (ref && ref.current) {
+        ref.current.removeEventListener('wheel', MouseWheelEvent)
+      }
+    }
+  }, [ref && ref.current])
 
   return (
     <StyledTable
