@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from 'react'
+import React, { useContext, useState, useCallback, useEffect } from 'react'
 import Big from 'big.js'
 import cloneDeep from 'clone'
 import type { ChartProps, Field } from '@echarts-readymade/core'
@@ -139,9 +139,10 @@ export interface TableChartProps extends Omit<ChartProps, 'echartsSeries' | 'set
   showRank?: boolean
   showSum?: boolean
   hideDimensionCompareTitle?: boolean
+  blockWrapHeight?: number
 }
 
-export const Table: React.FC<TableChartProps> = (props, ref) => {
+export const Table: React.FC<TableChartProps> = (props) => {
   const {
     context,
     dimension = [],
@@ -151,6 +152,7 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
     showRank,
     showSum,
     hideDimensionCompareTitle,
+    blockWrapHeight = 500,
     ...restSettings
   } = props
   const { data } = useContext(context)
@@ -345,19 +347,17 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
                   <ValueCell
                     title={_value}
                     colors={colors}
-                    isSum={'总计' == row[dimensionList[0] && dimensionList[0].fieldKeyAlias]}
+                    isSum={'总计' == row[dimension[0].fieldKey]}
                   >
-                    {i == 0 &&
-                    source.chartData.chartOption.table &&
-                    source.chartData.chartOption.table.showRank ? (
-                      isShowSum && !source.chartData.chartOption.table.reverseRow ? (
+                    {i == 0 && showRank ? (
+                      showSum ? (
                         index > 0 ? (
-                          <Rank color={localStore.colors[1]}>{index}</Rank>
+                          <Rank color={colors[1]}>{index}</Rank>
                         ) : (
                           ''
                         )
                       ) : (
-                        <Rank color={localStore.colors[1]}>{index + 1}</Rank>
+                        <Rank color={colors[1]}>{index + 1}</Rank>
                       )
                     ) : (
                       ''
@@ -366,7 +366,7 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
                   </ValueCell>
                 ),
                 props: {
-                  colSpan: getColSpan(text, index, dimensionListAndValueList, item.fieldKeyAlias)
+                  colSpan: getColSpan(text, index, dimensionListAndValueList, item.fieldKey)
                 }
               }
             }
@@ -382,40 +382,21 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
           ].filter((item) => item != null)
         : [...dimensionListColumns, ...originColumns].filter((item) => item != null)
 
-      // 截取last top
-      if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverse) {
-        returnColumns.reverse()
-      }
-
-      returnColumns = returnColumns.slice(0, top)
-
-      // 截取last top
-      if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverse) {
-        returnColumns.reverse()
-      }
-
       return returnColumns
     } else {
-      const sumColumn = isShowSum
+      // 无对比维度
+      const sumColumn = showSum
         ? [
             {
               key: 'sum',
               title: '总计',
               dataIndex: 'sum',
               width: COLUMN_WIDTH,
-              render: (text, row, index) => {
-                if (
-                  index == 0 &&
-                  source.chartData.chartOption.table &&
-                  !source.chartData.chartOption.table.reverseRow
-                ) {
-                  return ''
-                }
-
+              render: (text: string, row: any, index: number) => {
                 const isAllPercent =
-                  source.chartData.valueList
+                  valueList
                     .map((v) => {
-                      return v.chartDataOption && v.chartDataOption.label.formatType == 'percent'
+                      return v.isPercent
                     })
                     .filter((item) => !item).length == 0
 
@@ -430,7 +411,7 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
                 }
 
                 return (
-                  <ValueCell title={text} color={localStore.colors} isSum={true}>
+                  <ValueCell title={text} colors={colors} isSum={true}>
                     {_value}
                   </ValueCell>
                 )
@@ -439,12 +420,10 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
           ]
         : []
 
-      const mapFunc = (isDimensionList) => (item, i) => {
+      const mapFunc = (isDimensionList: boolean) => (item: Field, i: number) => {
         return {
-          key: item.fieldKeyAlias,
-          className: cx({
-            columnTitleCell: true
-          }),
+          key: item.fieldKey,
+          className: 'columnTitleCell',
           title: (
             <>
               {/* <TitleSortLeft
@@ -455,9 +434,7 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
                       }}>
                       <CaretLeftOutlined />
                     </TitleSortLeft> */}
-              <span title={item.fieldNameAlias || item.fieldName}>
-                {item.fieldNameAlias || item.fieldName}
-              </span>
+              <span title={item.fieldName}>{item.fieldName}</span>
               {/* <TitleSortRight
                       className="sortBtn"
                       onClick={() => {
@@ -468,68 +445,27 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
                     </TitleSortRight> */}
             </>
           ),
-          dataIndex: item.fieldKeyAlias,
+          dataIndex: item.fieldKey,
           width: 100,
-          render: (text, row, index) => {
+          render: (text: any, row: any, index: number) => {
             let _value = ''
 
-            if (item.chartDataOption) {
-              if (item.chartDataOption.label.formatType == 'percent') {
-                try {
-                  _value =
-                    row[item.fieldKeyAlias] && !isNaN(text)
-                      ? `${numberWithCommas(
-                          (parseFloat(text) * 100).toFixed(
-                            typeof item.chartDataOption.label.decimalLength == 'number'
-                              ? item.chartDataOption.label.decimalLength
-                              : 2
-                          )
-                        )}%`
-                      : ''
-                } catch {
-                  _value = text
-                }
-              } else if (item.chartDataOption.label.formatType == 'decimal') {
-                try {
-                  _value = numberWithCommas(
-                    text.toFixed(
-                      typeof item.chartDataOption.label.decimalLength == 'number'
-                        ? item.chartDataOption.label.decimalLength
-                        : 2
-                    )
-                  )
-                } catch {
-                  _value = text
-                }
-              } else {
-                try {
-                  _value = numberWithCommas(text.toFixed(item.isRoundNumber ? 0 : 2))
-                } catch {
-                  _value = text
-                }
-              }
-            } else {
+            if (item.isPercent) {
               try {
-                _value = numberWithCommas(text.toFixed(item.isRoundNumber ? 0 : 2))
+                _value =
+                  row[item.fieldKey] && !isNaN(text)
+                    ? `${numberWithCommas(
+                        (parseFloat(text) * 100).toFixed(item.decimalLength || 0)
+                      )}%`
+                    : ''
               } catch {
                 _value = text
               }
-            }
-
-            if (isDimensionList) {
-              if (item.isTimeSimplify && source.chartData.chartOption.timeSimplify) {
-                if (!isNaN(moment(_value).month())) {
-                  _value = `${moment(_value).month() + 1}月`
-                }
-              }
-
-              if (item.isChannel) {
-                _value =
-                  (source.store.common.channelLabelMap.find((c) => c.code == _value) &&
-                    source.store.common.channelLabelMap.find((c) => c.code == _value).name) ||
-                  _value
-              } else if (item.isDataType) {
-                _value = getDataTypeName(_value)
+            } else {
+              try {
+                _value = numberWithCommas(text.toFixed(item.decimalLength || 0))
+              } catch {
+                _value = text
               }
             }
 
@@ -537,21 +473,18 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
               children: (
                 <ValueCell
                   title={_value}
-                  color={localStore.colors}
-                  isSum={'总计' == row[dimensionList[0] && dimensionList[0].fieldKeyAlias]}
+                  colors={colors}
+                  isSum={'总计' == row[dimension[0].fieldKey]}
                 >
-                  {i == 0 &&
-                  source.chartData.chartOption.table &&
-                  source.chartData.chartOption.table.showRank &&
-                  isDimensionList ? (
-                    isShowSum && !source.chartData.chartOption.table.reverseRow ? (
+                  {i == 0 && showRank && isDimensionList ? (
+                    showSum ? (
                       index > 0 ? (
-                        <Rank color={localStore.colors[1]}>{index}</Rank>
+                        <Rank color={colors[1]}>{index}</Rank>
                       ) : (
                         ''
                       )
                     ) : (
-                      <Rank color={localStore.colors[1]}>{index + 1}</Rank>
+                      <Rank color={colors[1]}>{index + 1}</Rank>
                     )
                   ) : (
                     ''
@@ -560,45 +493,19 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
                 </ValueCell>
               ),
               props: {
-                colSpan: getColSpan(text, index, dimensionListAndValueList, item.fieldKeyAlias)
+                colSpan: getColSpan(text, index, dimensionListAndValueList, item.fieldKey)
               }
             }
           }
         }
       }
 
-      let top =
-        (source.chartData.chartOption.table &&
-          source.chartData.chartOption.table.showTop &&
-          source.chartData.chartOption.table.top) ||
-        10
-
-      if (is4ReportEditor && top > 50) {
-        top = 50
-      }
-
-      // feat: move columns
-      const sortedTableColumnsKeys =
-        source.chartData.chartOption.table &&
-        source.chartData.chartOption.table.sortedTableColumnsKeys
-
       let originColumns = [
-        ...(dimensionList.map(mapFunc(true)) || []),
+        ...(dimension.map(mapFunc(true)) || []),
         ...sumColumn,
-        ...(valueList.map(mapFunc()) || [])
+        ...(valueList.map(mapFunc(false)) || [])
       ].filter((item) => item != null)
 
-      // 截取last top
-      if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverse) {
-        originColumns.reverse()
-      }
-
-      originColumns = originColumns.slice(0, top)
-
-      // 截取last top
-      if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverse) {
-        originColumns.reverse()
-      }
       // const sortedColumns = [];
       // (sortedTableColumnsKeys || []).forEach((key) => {
       //   let found = false;
@@ -616,36 +523,23 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
   }
 
   const tableData = () => {
-    const data = useWhere(source.chartData)
-    const dimensionList = source.chartData.dimension.filter((item) => !item.isCompare)
-    const dimensionListCompare = source.chartData.dimension.filter((item) => item.isCompare)
-    const isShowSum =
-      source.chartData.chartOption.table && source.chartData.chartOption.table.showSum
     const compareColumns = [
-      ...new Set(
-        source.chartData.data.map(
-          (d) => d[dimensionListCompare[0] && dimensionListCompare[0].fieldKeyAlias]
-        )
-      )
+      ...new Set(data.map((d) => d[(compareDimension && compareDimension[0].fieldKey) || '']))
     ]
-    // 合并为其他
-    let _others
-    const valueKeyList = source.chartData.valueList.map((item) => {
-      return getFieldKeyAlias(item)
+
+    const valueKeyList = valueList.map((item) => {
+      return item.fieldKey
     })
-    if (
-      source.chartData.chartOption.hasCompare &&
-      dimensionListCompare.length > 0 &&
-      dimensionList.length > 0
-    ) {
+
+    if (compareDimension && compareDimension.length > 0 && dimension.length > 0) {
       let progressData = []
       for (let i = 0; i < data.length; i++) {
         const d = data[i]
-        const progressDataItem = progressData.find((pData) => {
+        const progressDataItem: any = progressData.find((pData: any) => {
           // [deprecated!] 这里只汇总前两个维度 dimensionList.slice(0, 2).forEach
           let result = true
-          dimensionList.forEach((dimension) => {
-            if (pData[dimension.fieldKeyAlias] != d[dimension.fieldKeyAlias]) {
+          dimension.forEach((dimension) => {
+            if (pData[dimension.fieldKey] != d[dimension.fieldKey]) {
               result = false
             }
           })
@@ -653,33 +547,31 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
         })
         if (progressDataItem) {
           const _index = progressDataItem.compareList.findIndex(
-            (item) =>
-              item.name == d[dimensionListCompare[0] && dimensionListCompare[0].fieldKeyAlias]
+            (item: any) => item.name == d[compareDimension[0] && compareDimension[0].fieldKey]
           )
-          source.chartData.valueList.forEach((v) => {
-            progressDataItem.compareList[_index][v.fieldKeyAlias] = d[v.fieldKeyAlias]
+          valueList.forEach((v) => {
+            progressDataItem.compareList[_index][v.fieldKey] = d[v.fieldKey]
           })
         } else {
-          const dimensions = {}
-          dimensionList.forEach((dimension) => {
-            dimensions[dimension.fieldKeyAlias] = d[dimension.fieldKeyAlias]
+          const dimensions: { [key: string]: any } = {}
+          dimension.forEach((dim) => {
+            dimensions[dim.fieldKey] = d[dim.fieldKey]
           })
           const compareListSample = compareColumns.map((item) => {
-            const _item = {
+            const _item: { [key: string]: any } = {
               name: item
             }
-            source.chartData.valueList.forEach((v) => {
-              _item[v.fieldKeyAlias] = null
+            valueList.forEach((v) => {
+              _item[v.fieldKey] = null
             })
             return _item
           })
 
           const _index = compareListSample.findIndex(
-            (item) =>
-              item.name == d[dimensionListCompare[0] && dimensionListCompare[0].fieldKeyAlias]
+            (item) => item.name == d[compareDimension[0] && compareDimension[0].fieldKey]
           )
-          source.chartData.valueList.forEach((v) => {
-            compareListSample[_index][v.fieldKeyAlias] = d[v.fieldKeyAlias]
+          valueList.forEach((v) => {
+            compareListSample[_index][v.fieldKey] = d[v.fieldKey]
           })
 
           progressData.push({
@@ -689,399 +581,139 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
         }
       }
 
-      let sumRowData
+      let sumRowData: any
       // 计算总计（对比维度）
-      if (isShowSum) {
+      if (showSum) {
         if (progressData.length > 0) {
           sumRowData = cloneDeep(progressData[0])
-          dimensionList.forEach((dim, i) => {
-            sumRowData[dim.fieldKeyAlias] = i == 0 ? '总计' : ''
+          dimension.forEach((dim, i) => {
+            sumRowData[dim.fieldKey] = i == 0 ? '总计' : ''
           })
           sumRowData.compareList = compareColumns.map((item) => {
-            const _item = {}
-            source.chartData.valueList.forEach((v) => {
-              _item[v.fieldKeyAlias] = 0
+            const _item: any = {}
+            valueList.forEach((v) => {
+              _item[v.fieldKey] = 0
             })
             _item.name = item
             return _item
           })
 
-          if (
-            source.chartData.chartOption.table &&
-            source.chartData.chartOption.table.showTopRow &&
-            source.chartData.chartOption.table.topRow
-          ) {
-            // 截取last top
-            if (source.chartData.chartOption.table.reverseRow) {
-              progressData.reverse()
-            }
-
-            if (is4ReportEditor && source.chartData.chartOption.table.topRow > 50) {
-              progressData = progressData.slice(0, 50 - 1)
-            } else {
-              progressData = progressData.slice(0, source.chartData.chartOption.table.topRow - 1)
-            }
-
-            // 截取last top
-            if (source.chartData.chartOption.table.reverseRow) {
-              progressData.reverse()
-            }
-          } else {
-            // 截取last top
-            if (
-              source.chartData.chartOption.table &&
-              source.chartData.chartOption.table.reverseRow
-            ) {
-              progressData.reverse()
-            }
-
-            progressData = progressData.slice(0, 10)
-
-            // 截取last top
-            if (
-              source.chartData.chartOption.table &&
-              source.chartData.chartOption.table.reverseRow
-            ) {
-              progressData.reverse()
-            }
-          }
-
           sumRowData = progressData.reduce((s, c) => {
-            s.compareList.forEach((item, i) => {
-              source.chartData.valueList.forEach((v) => {
-                s.compareList[i][v.fieldKeyAlias] =
-                  s.compareList[i][v.fieldKeyAlias] +
-                  (c.compareList[i] ? c.compareList[i][v.fieldKeyAlias] : 0)
+            s.compareList.forEach((item: any, i: number) => {
+              valueList.forEach((v) => {
+                s.compareList[i][v.fieldKey] =
+                  s.compareList[i][v.fieldKey] +
+                  (c.compareList[i] ? c.compareList[i][v.fieldKey] : 0)
               })
             })
             return s
           }, sumRowData)
         }
 
-        progressData = isShowSum ? [sumRowData, ...progressData] : progressData
+        progressData = showSum ? [sumRowData, ...progressData] : progressData
 
         // 列总计
         progressData = progressData.map((d) => {
           const compareSum = cloneDeep(d.compareList[0])
           compareSum.name = '总计'
-          source.chartData.valueList.forEach((v) => {
-            compareSum[v.fieldKeyAlias] = 0
+          valueList.forEach((v) => {
+            compareSum[v.fieldKey] = 0
           })
 
-          let top =
-            (source.chartData.chartOption.table &&
-              source.chartData.chartOption.table.showTop &&
-              source.chartData.chartOption.table.top - dimensionList.length - 1) ||
-            10 - dimensionList.length - 1
-
-          if (is4ReportEditor && top > 50) {
-            top = 50
-          }
-
-          // 截取last top
-          if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverse) {
-            d.compareList.reverse()
-          }
-
-          d.compareList.slice(0, top).forEach((item) => {
-            source.chartData.valueList.forEach((v) => {
-              compareSum[v.fieldKeyAlias] =
-                (compareSum[v.fieldKeyAlias] || 0) + (item[v.fieldKeyAlias] || 0)
+          d.compareList.slice(0, top).forEach((item: any) => {
+            valueList.forEach((v) => {
+              compareSum[v.fieldKey] = (compareSum[v.fieldKey] || 0) + (item[v.fieldKey] || 0)
             })
           })
-
-          // 截取last top
-          if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverse) {
-            d.compareList.reverse()
-          }
 
           d.compareList.push(compareSum)
           return d
         })
       }
 
-      let topRow =
-        (source.chartData.chartOption.table &&
-          source.chartData.chartOption.table.showTopRow &&
-          source.chartData.chartOption.table.topRow) ||
-        10
+      const _data = progressData.map((item, i) => {
+        item.key = i
+        return item
+      })
 
-      if (is4ReportEditor && topRow > 50) {
-        topRow = 50
-      }
-
-      // 截取last top
-      if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverseRow) {
-        progressData.reverse()
-      }
-      if (
-        source.chartData.chartOption.table &&
-        source.chartData.chartOption.table.showTopRow &&
-        source.chartData.chartOption.table.topRow &&
-        source.chartData.chartOption.isCombineOthers &&
-        topRow < progressData.length
-      ) {
-        _others = progressData.slice(topRow).reduce((prev, current) => {
-          const _tmp = _.cloneDeep(prev)
-          _tmp.compareList = _tmp.compareList.map((item, i) => {
-            const _item = _.cloneDeep(item)
-            valueKeyList.forEach((key) => {
-              _item[key] =
-                (_item[key] ? _item[key] : 0) +
-                (current.compareList[i][key] ? current.compareList[i][key] : 0)
-            })
-            return _item
-          })
-          return _tmp
-        })
-
-        _others[
-          dimensionList[dimensionList.length - 1] &&
-            getFieldKeyAlias(dimensionList[dimensionList.length - 1])
-        ] = '其他'
-        _others.key = topRow
-      }
-      const _data = progressData
-        .map((item, i) => {
-          item.key = i
-          return item
-        })
-        .slice(0, topRow)
-
-      // 截取last top
-      if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverseRow) {
-        _data.reverse()
-      }
-
-      if (_others) {
-        _data.push(_others)
-      }
       return _data
     } else {
       // 计算总计
-      let sumRowData = {}
+      let sumRowData: { [key: string]: any } = {}
       let _data = cloneDeep(data)
 
-      if (
-        source.chartData.chartOption.table &&
-        source.chartData.chartOption.table.showTopRow &&
-        source.chartData.chartOption.table.topRow
-      ) {
-        // 截取last top
-        if (source.chartData.chartOption.table.reverseRow) {
-          _data.reverse()
-        }
-
-        if (is4ReportEditor && source.chartData.chartOption.table.topRow > 50) {
-          _data = _data.slice(0, 50 - 1)
-        } else {
-          _data = _data.slice(0, source.chartData.chartOption.table.topRow - 1)
-        }
-
-        // 截取last top
-        if (source.chartData.chartOption.table.reverseRow) {
-          _data.reverse()
-        }
-      } else {
-        // 截取last top
-        if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverseRow) {
-          _data.reverse()
-        }
-
-        _data = _data.slice(0, 10)
-
-        // 截取last top
-        if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverseRow) {
-          _data.reverse()
-        }
-      }
-
       // 行总计
-      dimensionList.forEach((dim, i) => {
-        sumRowData[dim.fieldKeyAlias] = i == 0 ? '总计' : ''
+      dimension.forEach((dim, i) => {
+        sumRowData[dim.fieldKey] = i == 0 ? '总计' : ''
       })
-      source.chartData.valueList.forEach((v) => {
-        sumRowData[v.fieldKeyAlias] = 0
+      valueList.forEach((v) => {
+        sumRowData[v.fieldKey] = 0
       })
       sumRowData = _data.reduce((s, c) => {
-        source.chartData.valueList.forEach((v) => {
-          s[v.fieldKeyAlias] = (s[v.fieldKeyAlias] || 0) + c[v.fieldKeyAlias]
+        valueList.forEach((v) => {
+          s[v.fieldKey] = (s[v.fieldKey] || 0) + c[v.fieldKey]
         })
         return s
       }, sumRowData)
 
-      _data = isShowSum ? [sumRowData, ...data] : data
-
-      let top =
-        (source.chartData.chartOption.table &&
-          source.chartData.chartOption.table.showTop &&
-          source.chartData.chartOption.table.top - dimensionList.length - 1) ||
-        10 - dimensionList.length - 1
-
-      if (is4ReportEditor && top > 50) {
-        top = 50
-      }
-
-      // 截取last top
-      if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverse) {
-        _data.reverse()
-      }
+      _data = showSum ? [sumRowData, ...data] : data
 
       // 列总计
       _data = _data.map((d) => {
-        d.sum = source.chartData.valueList.slice(0, top).reduce((s, c) => {
-          return s + d[c.fieldKeyAlias]
+        d.sum = valueList.reduce((s, c) => {
+          return s + d[c.fieldKey]
         }, 0)
         return d
       })
 
-      // 截取last top
-      if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverse) {
-        _data.reverse()
-      }
+      const rdata = _data.map((item, i) => {
+        item.key = i
+        return item
+      })
 
-      let topRow =
-        (source.chartData.chartOption.table &&
-          source.chartData.chartOption.table.showTopRow &&
-          source.chartData.chartOption.table.topRow) ||
-        10
-
-      if (is4ReportEditor && topRow > 50) {
-        topRow = 50
-      }
-
-      // 截取last top
-      if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverseRow) {
-        _data.reverse()
-      }
-      if (
-        source.chartData.chartOption.isCombineOthers &&
-        source.chartData.chartOption.table.topRow < _data.length
-      ) {
-        _others = _data.slice(topRow).reduce((prev, current) => {
-          const _tmp = _.cloneDeep(prev)
-          const _item = _.cloneDeep(_tmp)
-          valueKeyList.forEach((key) => {
-            _item[key] = (_item[key] ? _item[key] : 0) + (current[key] ? current[key] : 0)
-          })
-          return _item
-        })
-        _others[
-          dimensionList[dimensionList.length - 1] &&
-            getFieldKeyAlias(dimensionList[dimensionList.length - 1])
-        ] = '其他'
-        _others.key = source.chartData.chartOption.table.topRow
-      }
-      const rdata = _data
-        .map((item, i) => {
-          item.key = i
-          return item
-        })
-        .slice(0, topRow)
-
-      // 截取last top
-      if (source.chartData.chartOption.table && source.chartData.chartOption.table.reverseRow) {
-        rdata.reverse()
-      }
-
-      if (_others) {
-        rdata.push(_others)
-      }
       return rdata
     }
   }
 
-  const tableHeight =
-    slideType == 4
-      ? chartData.chartOption.title.show
-        ? blockWrapHeight / 2 - 50
-        : blockWrapHeight / 2 - 40
-      : chartData.chartOption.title.show
-      ? blockWrapHeight - 100
-      : blockWrapHeight - 40
-
-  const _dimensionList = chartData.dimension.filter((item) => !item.isCompare)
-  const _dimensionListCompare = chartData.dimension.filter((item) => item.isCompare)
-  const scroll = {}
-  const [rect, setRect] = useState(null)
+  const scroll: { [key: string]: any } = {}
+  const [rect, setRect] = useState<any>(null)
   const wrapperRef = useCallback((node) => {
     if (node !== null) {
       setRect(node.getBoundingClientRect())
     }
   }, [])
-  const isShowSum = chartData.chartOption.table && chartData.chartOption.table.showSum
 
-  if (rect && rect.height / (slideType == 4 ? 2 : 1) < localStore.tableData.length * 53 + 50 + 40) {
+  if (rect && rect.height < tableData.length * 53 + 50 + 40) {
     scroll.y =
-      slideType == 4
-        ? chartData.chartOption.title.show
-          ? blockWrapHeight / 2 -
-            (isInsight ? 50 : 80) -
-            (_dimensionListCompare.length > 0 ? 50 : 0)
-          : blockWrapHeight / 2 - (isInsight ? 0 : 50) - (_dimensionListCompare.length > 0 ? 50 : 0)
-        : chartData.chartOption.title.show
-        ? blockWrapHeight - 170 - (_dimensionListCompare.length > 0 ? 50 : 0)
-        : blockWrapHeight - 90 - (_dimensionListCompare.length > 0 ? 50 : 0)
+      blockWrapHeight - 90 - ((compareDimension && compareDimension.length > 0 ? 50 : 0) || 0)
   }
 
-  const _blockWidth = (blockWrapRect && blockWrapRect.width * ((blockWidth || 100) / 100)) || 0
+  const _blockWidth = rect?.width
   const compareColumns = [
-    ...new Set(
-      chartData.data.map(
-        (d) => d[_dimensionListCompare[0] && _dimensionListCompare[0].fieldKeyAlias]
-      )
-    )
+    ...new Set(data.map((d) => compareDimension && d[compareDimension[0].fieldKey]))
   ]
 
-  if (_dimensionListCompare.length > 0) {
-    let _top =
-      (chartData.chartOption.table &&
-        chartData.chartOption.table.showTop &&
-        chartData.chartOption.table.top) ||
-      10
-
-    if (is4ReportEditor && _top > 50) {
-      _top = 50
-    }
+  if (compareDimension && compareDimension.length > 0) {
     const _compareColumnsCount = Math.min(
-      _top - _dimensionList.length - (isShowSum ? 1 : 0),
+      dimension.length - (showSum ? 1 : 0),
       compareColumns.length
     )
 
     if (
       _blockWidth <
-      _compareColumnsCount * chartData.valueList.length * COLUMN_WIDTH +
-        _dimensionList.length * COLUMN_WIDTH
+      _compareColumnsCount * valueList.length * COLUMN_WIDTH + dimension.length * COLUMN_WIDTH
     ) {
       scroll.x =
-        _compareColumnsCount * chartData.valueList.length * COLUMN_WIDTH +
-        _dimensionList.length * COLUMN_WIDTH
+        _compareColumnsCount * valueList.length * COLUMN_WIDTH + dimension.length * COLUMN_WIDTH
     }
   } else {
-    if (_blockWidth < localStore.tableColumns.length * COLUMN_WIDTH + 100) {
+    if (_blockWidth < tableColumns.length * COLUMN_WIDTH + 100) {
       scroll.x = true
     }
   }
 
-  const colorList = (chartData && chartData.colorList) || COLOR_LIST[0].colors
-  const bgColor = colorList ? colorList[0] : 'transparent'
-
   // feat: move columns
   useEffect(() => {
-    const setSortedTableColumnsKeys = (keys, isNotChangePageSavedState) => {
-      const _currentChartData = slideEditor.currentChartData()
-      const _chartOption = _currentChartData.chartOption
-      if (_chartOption.table) {
-        _chartOption.table.sortedTableColumnsKeys = keys
-      } else {
-        _chartOption.table = {
-          sortedTableColumnsKeys: keys
-        }
-      }
-      slideEditor.setChartOption(_chartOption, null, isNotChangePageSavedState)
-    }
-    const sortedTableColumnsKeys =
-      chartData.chartOption.table && chartData.chartOption.table.sortedTableColumnsKeys
     if (moveItem) {
       const _index = sortedTableColumnsKeys.findIndex((item) => item == moveItem.key)
       if (moveItem.direction == 'left') {
@@ -1097,44 +729,21 @@ export const Table: React.FC<TableChartProps> = (props, ref) => {
       }
       setMoveItem(null)
     } else {
-      setSortedTableColumnsKeys(
-        toJS(localStore.tableColumns).map((item) => item.key),
-        true
-      )
+      setSortedTableColumnsKeys(tableColumns().map((item: any) => item.key))
     }
   }, [moveUpdateKey])
 
-  // feat: 停止表格滚动事件冒泡
-  const ref = useRef(null)
-  useEffect(() => {
-    const MouseWheelEvent = (ev) => {
-      ev.stopPropagation()
-      ev.stopImmediatePropagation()
-      return false
-    }
-    if (ref && ref.current) {
-      ref.current.addEventListener('wheel', MouseWheelEvent)
-    }
-    return () => {
-      if (ref && ref.current) {
-        ref.current.removeEventListener('wheel', MouseWheelEvent)
-      }
-    }
-  }, [ref && ref.current])
-
   return (
-    <StyledTable
-      size="small"
-      color={colors}
-      dimensionCount={chartData.dimension.filter((item) => !item.isCompare).length}
-      className={cx({
-        tableStyle: true,
-        tableShowBorder: chartData.chartOption.table && !!chartData.chartOption.table.showBorder
-      })}
-      columns={toJS(localStore.tableColumns)}
-      dataSource={localStore.tableData}
-      pagination={false}
-      scroll={scroll}
-    />
+    <div ref={wrapperRef}>
+      <StyledTable
+        size="small"
+        color={colors}
+        dimensionCount={dimension.length}
+        columns={tableColumns()}
+        dataSource={tableData()}
+        pagination={false}
+        scroll={scroll}
+      />
+    </div>
   )
 }
