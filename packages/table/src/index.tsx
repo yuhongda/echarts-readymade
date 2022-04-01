@@ -8,8 +8,6 @@ import { Table as AntdTable, Tooltip } from 'antd'
 import { InfoCircleOutlined, CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 import useLocalStorageState from 'use-local-storage-state'
 
-const COLUMN_WIDTH = 100
-
 const Rank = styled.span`
   display: inline-block;
   font-size: 14px;
@@ -28,13 +26,19 @@ const StyledInfoCircleOutlined = styled(InfoCircleOutlined)`
   right: 5px;
 `
 
-const StyledTable = styled(AntdTable)<{ color: string[]; dimensionCount: number }>`
+const StyledTable = styled(AntdTable)<{
+  color: string[]
+  dimensionCount: number
+  columnWidth: number
+  isCompareMode: boolean
+}>`
   width: 100% !important;
+  border-right: ${(props) => (props.isCompareMode ? 1 : 0)}px solid ${(props) => props.color[0]} !important;
   .ant-table {
-    background: ${(props) => props.color[0]} !important;
+    /* background: ${(props) => props.color[0]} !important; */
   }
   .ant-table-thead > tr > th {
-    background: ${(props) => props.color[1]} !important;
+    background: ${(props) => props.color[0]} !important;
     border-right: 1px solid rgba(0, 0, 0, 0.2);
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -48,26 +52,32 @@ const StyledTable = styled(AntdTable)<{ color: string[]; dimensionCount: number 
   }
   .ant-table-thead > tr > th,
   .ant-table-tbody > tr > td {
-    border-bottom: 1px solid ${(props) => props.color[1]};
-    border-right: 1px solid ${(props) => props.color[1]};
+    border-bottom: 1px solid ${(props) => props.color[0]};
+    border-right: 1px solid ${(props) => props.color[0]};
     text-align: center;
     max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     /* font-size: ${(props) => props.fontSize}px; */
   }
   .ant-table-thead > tr:first-child > th:first-child {
     /* text-align: ${(props) => (props.reverse ? 'center' : 'left')}; */
-    border-left: 1px solid ${(props) => props.color[1]};
+    border-left: 1px solid ${(props) => props.color[0]};
+  }
+  .ant-table-thead > tr > th {
+    color: ${(props) => props.color[1]};
   }
   .ant-table-tbody > tr > td:first-child {
     text-align: left;
-    border-left: 1px solid ${(props) => props.color[1]};
+    border-left: 1px solid ${(props) => props.color[0]};
   }
   .ant-table-cell-fix-left,
   .ant-table-cell-fix-right {
-    background: ${(props) => props.color[0]} !important;
+    /* background: ${(props) => props.color[0]} !important; */
   }
   .ant-table-fixed {
-    background: ${(props) => props.color[0]} !important;
+    /* background: ${(props) => props.color[0]} !important; */
   }
   .ant-table-thead
     > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)
@@ -79,7 +89,7 @@ const StyledTable = styled(AntdTable)<{ color: string[]; dimensionCount: number 
   }
   .ant-table-fixed-left {
     width: ${(props) => {
-      return props.dimensionCount * COLUMN_WIDTH
+      return props.dimensionCount * props.columnWidth
     }}px;
   }
   .columnTitleCell {
@@ -96,7 +106,7 @@ const StyledTable = styled(AntdTable)<{ color: string[]; dimensionCount: number 
 const ValueCell = styled.span<{ colors: string[]; isSum: boolean }>`
   color: ${(props) =>
     props.isSum
-      ? (props.colors && props.colors[1]) || 'color: rgba(0, 0, 0, 0.65)'
+      ? (props.colors && props.colors[2]) || 'color: rgba(0, 0, 0, 0.65)'
       : 'color: rgba(0, 0, 0, 0.65)'};
 `
 
@@ -135,11 +145,17 @@ const TitleSortRight = styled.span`
 `
 
 export interface TableChartProps extends Omit<ChartProps, 'echartsSeries' | 'setOption'> {
+  /**
+   * @description ['边框和表头颜色', '表头文字颜色', '汇总列颜色']
+   */
   colorList?: string[]
   showRank?: boolean
   showSum?: boolean
   hideDimensionCompareTitle?: boolean
   blockWrapHeight?: number
+  antdOptions?: any
+  sortKey?: string // 用于记录列排序的key
+  columnWidth?: number
 }
 
 export const Table: React.FC<TableChartProps> = (props) => {
@@ -148,14 +164,18 @@ export const Table: React.FC<TableChartProps> = (props) => {
     dimension = [],
     compareDimension,
     valueList = [],
-    colorList,
+    colorList = ['#fafafa'],
     showRank,
     showSum,
     hideDimensionCompareTitle,
     blockWrapHeight = 500,
+    antdOptions,
+    sortKey,
+    columnWidth,
     ...restSettings
   } = props
   const { data } = useContext(context)
+  const COLUMN_WIDTH = columnWidth || 150
 
   if (!data) {
     return null
@@ -167,7 +187,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
   const [moveItem, setMoveItem] = useState<any>(null)
   const [moveUpdateKey, setMoveUpdateKey] = useState<number | null>(null)
   const [sortedTableColumnsKeys, setSortedTableColumnsKeys] = useLocalStorageState<string[]>(
-    'NPD.Platform.Internal.selectedCategory',
+    `[@echarts-readymade/table]sortedTableColumnsKeys-${sortKey}`,
     {
       defaultValue: []
     }
@@ -352,12 +372,12 @@ export const Table: React.FC<TableChartProps> = (props) => {
                     {i == 0 && showRank ? (
                       showSum ? (
                         index > 0 ? (
-                          <Rank color={colors[1]}>{index}</Rank>
+                          <Rank color={colors[0]}>{index}</Rank>
                         ) : (
                           ''
                         )
                       ) : (
-                        <Rank color={colors[1]}>{index + 1}</Rank>
+                        <Rank color={colors[0]}>{index + 1}</Rank>
                       )
                     ) : (
                       ''
@@ -479,12 +499,12 @@ export const Table: React.FC<TableChartProps> = (props) => {
                   {i == 0 && showRank && isDimensionList ? (
                     showSum ? (
                       index > 0 ? (
-                        <Rank color={colors[1]}>{index}</Rank>
+                        <Rank color={colors[0]}>{index}</Rank>
                       ) : (
                         ''
                       )
                     ) : (
-                      <Rank color={colors[1]}>{index + 1}</Rank>
+                      <Rank color={colors[0]}>{index + 1}</Rank>
                     )
                   ) : (
                     ''
@@ -683,9 +703,9 @@ export const Table: React.FC<TableChartProps> = (props) => {
     }
   }, [])
 
-  if (rect && rect.height < tableData.length * 53 + 50 + 40) {
+  if (rect && rect.height < tableData().length * 53 + 50 + 40) {
     scroll.y =
-      blockWrapHeight - 90 - ((compareDimension && compareDimension.length > 0 ? 50 : 0) || 0)
+      blockWrapHeight - 40 - ((compareDimension && compareDimension.length > 0 ? 50 : 0) || 0)
   }
 
   const _blockWidth = rect?.width
@@ -707,7 +727,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
         _compareColumnsCount * valueList.length * COLUMN_WIDTH + dimension.length * COLUMN_WIDTH
     }
   } else {
-    if (_blockWidth < tableColumns.length * COLUMN_WIDTH + 100) {
+    if (_blockWidth < tableColumns().length * COLUMN_WIDTH + 100) {
       scroll.x = true
     }
   }
@@ -734,7 +754,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
   }, [moveUpdateKey])
 
   return (
-    <div ref={wrapperRef}>
+    <div ref={wrapperRef} style={{ height: blockWrapHeight || 500 }}>
       <StyledTable
         size="small"
         color={colors}
@@ -743,6 +763,9 @@ export const Table: React.FC<TableChartProps> = (props) => {
         dataSource={tableData()}
         pagination={false}
         scroll={scroll}
+        columnWidth={COLUMN_WIDTH}
+        isCompareMode={compareDimension && compareDimension.length > 0}
+        {...antdOptions}
       />
     </div>
   )

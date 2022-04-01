@@ -149,16 +149,28 @@ export const TableChart: React.FC = () => {
       <ChartProvider data={data}>
         <Row gutter={16} style={{ height: 500 }}>
           <Col span={12}>
-            <Table context={ChartContext} dimension={dimension} valueList={valueList} />
+            <Table
+              context={ChartContext}
+              dimension={dimension}
+              valueList={valueList}
+              sortKey={'normal'}
+              blockWrapHeight={500}
+              showSum
+              colorList={['#fafafa', '#333', '#ffc000']}
+            />
           </Col>
           <Col span={12}>
-            {/* <Line
+            <Table
               context={ChartContext}
               dimension={dimension}
               compareDimension={compareDimension}
               valueList={valueList}
-              legendPosition={legendPosition as LegendPosition}
-            /> */}
+              colorList={['#002fa7', '#fff', '#ffc000']}
+              antdOptions={{
+                size: 'small'
+              }}
+              sortKey={'compare'}
+            />
           </Col>
         </Row>
       </ChartProvider>
