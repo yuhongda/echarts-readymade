@@ -67,7 +67,10 @@ const StyledTable = styled(AntdTable)<{
     color: ${(props) => props.color[1]};
   }
   .ant-table-tbody > tr > td {
-    color: ${(props) => props.color[4]};
+    color: ${(props) => props.color[5]};
+  }
+  .ant-table-tbody > tr:hover > td {
+    background: ${(props) => props.color[4]};
   }
   .ant-table-tbody > tr > td:first-child {
     text-align: left;
@@ -147,7 +150,7 @@ const TitleSortRight = styled.span`
 
 export interface TableChartProps extends Omit<ChartProps, 'echartsSeries' | 'setOption'> {
   /**
-   * @description ['边框和表头', '表头文字', '汇总列', '表格背景', '表格字体']
+   * @description ['边框和表头', '表头文字', '汇总列', '表格背景', '行hover背景', '表格字体']
    */
   colorList?: string[]
   showRank?: boolean
