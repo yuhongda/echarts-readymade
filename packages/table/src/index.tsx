@@ -59,10 +59,8 @@ const StyledTable = styled(AntdTable)<{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* font-size: ${(props) => props.fontSize}px; */
   }
   .ant-table-thead > tr:first-child > th:first-child {
-    /* text-align: ${(props) => (props.reverse ? 'center' : 'left')}; */
     border-left: 1px solid ${(props) => props.color[0]};
   }
   .ant-table-thead > tr > th {
