@@ -156,7 +156,7 @@ export const TableChart: React.FC = () => {
               sortKey={'normal'}
               blockWrapHeight={500}
               showSum
-              colorList={['#fafafa', '#333', '#ffc000']}
+              colorList={['#fafafa', '#333', '#ffc000', '#333', '#fff']}
             />
           </Col>
           <Col span={12}>

@@ -35,7 +35,7 @@ const StyledTable = styled(AntdTable)<{
   width: 100% !important;
   border-right: ${(props) => (props.isCompareMode ? 1 : 0)}px solid ${(props) => props.color[0]} !important;
   .ant-table {
-    /* background: ${(props) => props.color[0]} !important; */
+    background: ${(props) => props.color[3]} !important;
   }
   .ant-table-thead > tr > th {
     background: ${(props) => props.color[0]} !important;
@@ -65,6 +65,9 @@ const StyledTable = styled(AntdTable)<{
   }
   .ant-table-thead > tr > th {
     color: ${(props) => props.color[1]};
+  }
+  .ant-table-tbody > tr > td {
+    color: ${(props) => props.color[4]};
   }
   .ant-table-tbody > tr > td:first-child {
     text-align: left;
@@ -144,7 +147,7 @@ const TitleSortRight = styled.span`
 
 export interface TableChartProps extends Omit<ChartProps, 'echartsSeries' | 'setOption'> {
   /**
-   * @description ['边框和表头颜色', '表头文字颜色', '汇总列颜色']
+   * @description ['边框和表头', '表头文字', '汇总列', '表格背景', '表格字体']
    */
   colorList?: string[]
   showRank?: boolean
@@ -703,7 +706,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
 
   if (rect && rect.height < tableData().length * 53 + 50 + 40) {
     scroll.y =
-      blockWrapHeight - 40 - ((compareDimension && compareDimension.length > 0 ? 50 : 0) || 0)
+      blockWrapHeight - 40 - ((compareDimension && compareDimension.length > 0 ? 40 : 0) || 0)
   }
 
   const _blockWidth = rect?.width
