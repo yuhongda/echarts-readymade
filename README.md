@@ -17,7 +17,7 @@
 ## 🎨 Features
 
 - 🌈 Easy to use (provide default layout and style)
-- 🌟 Available components: `<Bar />` `<Line />` `<Pie />` `<Stack />` `<Scatter />` `<Wordcloud />` `<BarHorizontal />`
+- 🌟 Available components: `<Bar />` `<Line />` `<Pie />` `<Stack />` `<Scatter />` `<Wordcloud />` `<BarHorizontal />` `<Table />`
 - 🎁 Support `Compare Dimension`, which means you can indicate another dimension field to compare base on one dimension.
 - 💪 Typescript support
 
@@ -240,6 +240,19 @@ Base on [wordcloud2.js](https://github.com/timdream/wordcloud2.js)
 | yAxisData | Will replace the data of yAxis with this | `any[]` | `undefined` |
 | legendPosition | Position of legend | `'top' \| 'left' \| 'right' \| 'bottom'` | `undefined` |
 
+###  `<Table />` (1.0.21)
+
+| Property | Description | Type | Default |
+| :------- | :---------- | :--- | ------: |
+| colorList | A set of color to decorate table. ['border and header bg', 'header text', 'sum column text', 'body bg', 'row bg on hover', 'body text'] | `string[]` | `undefined` |
+| showRank | Show the index column | `boolean` | `undefined` |
+| showSum | Show the sum column | `boolean` | `undefined` |
+| hideDimensionCompareTitle | Hide the same header for compare dimension | `boolean` | `undefined` |
+| blockWrapHeight | The height of the table wrapper | `number` | `500` |
+| sortKey | The unique string that use to save the order of table column | `string` | `undefined` |
+| columnWidth | Column width | `150` | `undefined` |
+| antdOptions | Ant Design table options  | `TableProps` | `undefined` |
+
 
 ## Q/A
 ### Q: How to get the instance of `echarts`?
@@ -269,6 +282,7 @@ useEffect(() => {
 
 - [x] `<Wordcloud />` Chart component
 - [x] `<BarHorizontal /> ` Chart component
+- [x] `<Table /> ` Chart component
 - [ ] `<Polar /> ` Chart component
 - [x] Online demo
 - [ ] Test

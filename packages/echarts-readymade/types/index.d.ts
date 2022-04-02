@@ -1,5 +1,6 @@
 import * as React from 'react';
 import React__default from 'react';
+import { TableChartProps } from '@echarts-readymade/table';
 import { ECharts } from 'echarts';
 import { BarHorizontalChartProps } from '@echarts-readymade/bar-horizontal';
 import { WordcloudChartProps } from '@echarts-readymade/wordcloud';
@@ -10,6 +11,10 @@ import { LineChartProps } from '@echarts-readymade/line';
 import * as echarts_types_dist_echarts from 'echarts/types/dist/echarts';
 import { BarChartProps } from '@echarts-readymade/bar';
 export * from '@echarts-readymade/core';
+
+interface ITableChartProps extends Omit<TableChartProps, 'context'> {
+}
+declare const Table: React__default.FC<ITableChartProps>;
 
 interface IBarHorizontalChartProps extends Omit<BarHorizontalChartProps, 'context'> {
 }
@@ -71,6 +76,7 @@ declare const _default: {
     BarHorizontal: React.ForwardRefExoticComponent<IBarHorizontalChartProps & React.RefAttributes<{
         getEchartsInstance: () => echarts_types_dist_echarts.ECharts | undefined;
     }>>;
+    Table: React.FC<ITableChartProps>;
 };
 
-export { Bar, BarHorizontal, Line, Pie, Scatter, Stack, Wordcloud, _default as default };
+export { Bar, BarHorizontal, Line, Pie, Scatter, Stack, Table, Wordcloud, _default as default };

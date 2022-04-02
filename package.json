@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "build": "lerna run build",
-    "patch": "lerna version patch",
+    "patch": "lerna version patch --force-publish",
     "release": "lerna run release --npm-client=npm",
     "test": "NODE_ENV=test jest",
     "jest:clear": "jest --clearCache",

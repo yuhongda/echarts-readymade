@@ -3,7 +3,7 @@ import { ChartProps } from '@echarts-readymade/core';
 
 interface TableChartProps extends Omit<ChartProps, 'echartsSeries' | 'setOption'> {
     /**
-     * @description ['边框和表头颜色', '表头文字颜色', '汇总列颜色']
+     * @description ['边框和表头', '表头文字', '汇总列', '表格背景', '行hover背景', '表格字体']
      */
     colorList?: string[];
     showRank?: boolean;
