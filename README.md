@@ -162,6 +162,10 @@ const valueList: Field[] = [
 
 ```
 
+🪄 Boom!
+
+![截屏2022-04-29 16 01 20](https://user-images.githubusercontent.com/259410/165906305-dc9c93da-b612-4aec-b276-035f0cfd79e7.png)
+
 ## Options
 ###  `<ChartProvider />`
 
