@@ -1,5 +1,5 @@
 import * as React from 'react';
-import React__default from 'react';
+import React__default, { ReactNode } from 'react';
 import { EChartsReactProps, EChartsOption } from 'echarts-for-react';
 
 interface ChartContextValue<T = any> {
@@ -10,6 +10,7 @@ interface ChartContextValue<T = any> {
 }
 declare const ChartContext: React__default.Context<ChartContextValue<any>>;
 interface ChartProviderProps<T = any> extends Omit<ChartContextValue<T>, 'echartsOptionsBase' | 'userOptions'> {
+    children: ReactNode;
 }
 declare const ChartProvider: React__default.FC<ChartProviderProps>;
 
