@@ -1,4 +1,5 @@
 import React from 'react'
+import type { ReactNode } from 'react'
 import type { EChartsReactProps, EChartsOption } from 'echarts-for-react'
 import { echartsOptionsBase } from './misc'
 
@@ -13,7 +14,9 @@ export const ChartContext = React.createContext<ChartContextValue>({})
 const { Provider } = ChartContext
 
 export interface ChartProviderProps<T = any>
-  extends Omit<ChartContextValue<T>, 'echartsOptionsBase' | 'userOptions'> {}
+  extends Omit<ChartContextValue<T>, 'echartsOptionsBase' | 'userOptions'> {
+  children: ReactNode
+}
 
 export const ChartProvider: React.FC<ChartProviderProps> = (props) => {
   const { data, echartsOptions } = props

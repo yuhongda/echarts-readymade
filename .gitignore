@@ -2,3 +2,5 @@ node_modules
 lib
 
 /__test__/coverage
+/packages/core/yarn-error.log
+/yarn-error.log
