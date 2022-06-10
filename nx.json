@@ -1,0 +1,40 @@
+{
+  "extends": "nx/presets/npm.json",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "dev",
+          "build",
+          "lib",
+          "cjs",
+          "esm",
+          "umd",
+          "min",
+          "dts",
+          "clear",
+          "test",
+          "jest:clear",
+          "cover",
+          "make-badges",
+          "ci",
+          "release",
+          "release:next",
+          "image"
+        ]
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "affected": {
+    "defaultBase": "main"
+  }
+}

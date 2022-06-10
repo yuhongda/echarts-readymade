@@ -4,10 +4,7 @@
     "jsx": "react",
     "outDir": "./dist",
     "module": "ESNext",
-    "lib": [
-      "ESNext",
-      "dom"
-    ],
+    "lib": ["ESNext", "dom"],
     "sourceMap": false,
     "target": "esnext",
     "moduleResolution": "node",
@@ -20,6 +17,6 @@
     "strictNullChecks": true,
     "noImplicitAny": true,
     "removeComments": false,
-    "resolveJsonModule": true,
-  },
+    "resolveJsonModule": true
+  }
 }
