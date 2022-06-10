@@ -4,3 +4,5 @@ lib
 /__test__/coverage
 /packages/core/yarn-error.log
 /yarn-error.log
+/packages/wordcloud/src/assets/.DS_Store
+/packages/wordcloud/.DS_Store

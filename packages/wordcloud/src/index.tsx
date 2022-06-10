@@ -510,13 +510,6 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
       return result
     }
 
-    if (wrapperRect) {
-      ref.current.height = wrapperRect.width * 2
-      ref.current.style.height = `${wrapperRect.width}px`
-      ref.current.width = wrapperRect.width * 2
-      ref.current.style.width = `${wrapperRect.width}px`
-    }
-
     let maskImage: string = maskJoy
     if (typeof shape === 'string' && shape.includes('mask-')) {
       switch (shape) {
@@ -558,6 +551,14 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
           maskCanvas.width = img.width
           maskCanvas.height = img.height
           const ctx = maskCanvas.getContext('2d')
+
+          if (ref.current && wrapperRect) {
+            ref.current.width = wrapperRect.width * 2
+            ref.current.style.width = `${wrapperRect.width}px`
+            const _height = (wrapperRect.width * img.height) / img.width
+            ref.current.height = _height * 2
+            ref.current.style.height = `${_height}px`
+          }
 
           if (ctx) {
             ctx.drawImage(img, 0, 0, img.width, img.height)
@@ -723,7 +724,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
     _dimension && JSON.stringify(_dimension),
     _valueList && JSON.stringify(_valueList),
     getColor,
-    JSON.stringify(wrapperRect),
+    // JSON.stringify(wrapperRect),
     ref.current,
     data,
     props

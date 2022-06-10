@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-// import { ChartProvider, Wordcloud } from 'echarts-readymade'
-import { ChartProvider, Wordcloud } from 'echarts-readymade'
+import { ChartProvider, ChartContext } from '../../../packages/core/src'
+import { Wordcloud } from '../../../packages/wordcloud/src'
 import type { Field } from 'echarts-readymade'
 import styled from 'styled-components'
 import { Button, Row, Col } from 'antd'
+import maskRect from '../assets/mask-rect.png'
 import maskBad from '../assets/mask-bad.png'
 
 const Container = styled.div`
   width: 100%;
-  height: 650px;
 `
 
 export const WordcloudChart: React.FC = () => {
@@ -1224,9 +1224,10 @@ export const WordcloudChart: React.FC = () => {
         Reload
       </Button>
       <ChartProvider data={data}>
-        <Row gutter={16} style={{ height: 500 }}>
+        <Row gutter={16}>
           <Col span={12}>
             <Wordcloud
+              context={ChartContext}
               dimension={dimension}
               valueList={valueList}
               wordcloudStop={() => console.log('Stop!')}
@@ -1234,6 +1235,7 @@ export const WordcloudChart: React.FC = () => {
           </Col>
           <Col span={12}>
             <Wordcloud
+              context={ChartContext}
               dimension={dimension}
               valueList={valueList}
               colorList={[
@@ -1249,7 +1251,7 @@ export const WordcloudChart: React.FC = () => {
                 '#be5abb'
               ]}
               fontSizeMode="byValue"
-              shape="mask-cloud"
+              shape={maskBad}
             />
           </Col>
         </Row>
