@@ -12,7 +12,7 @@
   "scripts": {
     "build": "nx run-many --target=build --all",
     "patch": "lerna version patch --force-publish",
-    "release": "nx run-many --target=release --all --npm-client=npm",
+    "release": "lerna run release --npm-client=npm",
     "test": "NODE_ENV=test jest",
     "jest:clear": "jest --clearCache",
     "cover": "yarn run jest:clear && jest --coverage --config=jest.config.ts"
@@ -58,7 +58,6 @@
     "rollup-plugin-typescript2": "^0.31.1",
     "rollup-plugin-visualizer": "^5.5.2",
     "ts-node": "^10.4.0",
-    "typescript": "^4.3.5",
-    "nx": "14.2.4"
+    "typescript": "^4.3.5"
   }
 }
