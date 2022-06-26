@@ -1,6 +1,6 @@
 {
   "name": "echarts-readymade",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "A collection of echarts templates for React. Based on echarts-for-react",
   "main": "lib/index.js",
   "module": "lib/es/index.es.js",
@@ -35,14 +35,14 @@
     "release:next": "npm publish --tag next"
   },
   "dependencies": {
-    "@echarts-readymade/bar": "^1.0.24",
-    "@echarts-readymade/bar-horizontal": "^1.0.24",
-    "@echarts-readymade/core": "^1.0.24",
-    "@echarts-readymade/line": "^1.0.24",
-    "@echarts-readymade/pie": "^1.0.24",
-    "@echarts-readymade/scatter": "^1.0.24",
-    "@echarts-readymade/stack": "^1.0.24",
-    "@echarts-readymade/wordcloud": "^1.0.24",
+    "@echarts-readymade/bar": "^1.0.25",
+    "@echarts-readymade/bar-horizontal": "^1.0.25",
+    "@echarts-readymade/core": "^1.0.25",
+    "@echarts-readymade/line": "^1.0.25",
+    "@echarts-readymade/pie": "^1.0.25",
+    "@echarts-readymade/scatter": "^1.0.25",
+    "@echarts-readymade/stack": "^1.0.25",
+    "@echarts-readymade/wordcloud": "^1.0.25",
     "wordcloud": "^1.2.2"
   },
   "devDependencies": {
