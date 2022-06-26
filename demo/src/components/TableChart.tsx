@@ -116,7 +116,8 @@ export const TableChart: React.FC = () => {
     {
       fieldKey: 'v6',
       fieldName: '占比1',
-      isPercent: true
+      isPercent: true,
+      width: 100
     },
     {
       fieldKey: 'v4',
@@ -126,6 +127,31 @@ export const TableChart: React.FC = () => {
     {
       fieldKey: 'v5',
       fieldName: '占比3'
+    },
+    {
+      fieldKey: 'v5',
+      fieldName: '占比3'
+    },
+    {
+      fieldKey: 'v5',
+      fieldName: '占比3'
+    },
+    {
+      fieldKey: 'v5',
+      fieldName: '占比3'
+    },
+    {
+      fieldKey: 'v5',
+      fieldName: '占比3'
+    },
+    {
+      fieldKey: 'v5',
+      fieldName: '占比3'
+    },
+    {
+      fieldKey: 'v5',
+      fieldName: '占比3占比3占比3占比3',
+      width: 300
     }
   ]
 

@@ -34,6 +34,7 @@ declare type Field = {
     yAxisIndex?: number;
     isPercent?: boolean;
     decimalLength?: number;
+    width?: number;
 };
 interface ChartProps extends Omit<EChartsReactProps, 'option'> {
     context: typeof ChartContext;

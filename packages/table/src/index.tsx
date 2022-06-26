@@ -59,6 +59,7 @@ const StyledTable = styled(AntdTable)<{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: ${(props) => props.columnWidth}px !important;
   }
   .ant-table-thead > tr:first-child > th:first-child {
     border-left: 1px solid ${(props) => props.color[0]};
@@ -236,7 +237,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
           ),
           key: `${v.fieldKey}_${index}`,
           dataIndex: v.fieldKey,
-          width: COLUMN_WIDTH,
+          width: v.width || COLUMN_WIDTH,
           render: (text: string, row: any, i: number) => {
             if ('总计' == c && i == 0) {
               return ''
@@ -356,7 +357,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
             key: item.fieldKey,
             title: <span title={item.fieldName}>{item.fieldName}</span>,
             dataIndex: item.fieldKey,
-            width: COLUMN_WIDTH,
+            width: item.width || COLUMN_WIDTH,
             fixed: 'left',
             render: (text: any, row: any, index: number) => {
               let _value = ''
@@ -470,7 +471,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
             </>
           ),
           dataIndex: item.fieldKey,
-          width: 100,
+          width: item.width || COLUMN_WIDTH,
           render: (text: any, row: any, index: number) => {
             let _value = ''
 
@@ -723,16 +724,22 @@ export const Table: React.FC<TableChartProps> = (props) => {
       compareColumns.length
     )
 
-    if (
-      _blockWidth <
-      _compareColumnsCount * valueList.length * COLUMN_WIDTH + dimension.length * COLUMN_WIDTH
-    ) {
-      scroll.x =
-        _compareColumnsCount * valueList.length * COLUMN_WIDTH + dimension.length * COLUMN_WIDTH
+    const dimensionWidth = valueList.reduce((s, c) => {
+      s = s + (c.width || COLUMN_WIDTH)
+      return s
+    }, 0)
+
+    const valueListWidth = valueList.reduce((s, c) => {
+      s = s + (c.width || COLUMN_WIDTH)
+      return s
+    }, 0)
+
+    if (_blockWidth < _compareColumnsCount * valueListWidth + dimensionWidth) {
+      scroll.x = _compareColumnsCount * valueListWidth + dimensionWidth
     }
   } else {
     if (_blockWidth < tableColumns().length * COLUMN_WIDTH + 100) {
-      scroll.x = true
+      scroll.x = '100%'
     }
   }
 
