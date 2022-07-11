@@ -5,7 +5,9 @@ import type { ChartProps, Field } from '@echarts-readymade/core'
 import { mergeOption, COLOR_LIST, numberWithCommas } from '@echarts-readymade/core'
 import styled from 'styled-components'
 import { Table as AntdTable, Tooltip } from 'antd'
-import { InfoCircleOutlined, CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
+import InfoCircleOutlined from '@ant-design/icons/InfoCircleOutlined'
+import CaretLeftOutlined from '@ant-design/icons/CaretLeftOutlined'
+import CaretRightOutlined from '@ant-design/icons/CaretRightOutlined'
 import useLocalStorageState from 'use-local-storage-state'
 
 const Rank = styled.span`
