@@ -155,7 +155,7 @@ export const Line = forwardRef<
               shadowOffsetY: 1
             },
             data: _data.map((d) => {
-              if (d[v.fieldKey] != null) {
+              if (d[v.fieldKey] !== null && typeof d[v.fieldKey] !== 'undefined') {
                 let result = Big(d[v.fieldKey])
                 if (v.isPercent) {
                   result = result.times(100)
@@ -166,8 +166,9 @@ export const Line = forwardRef<
                   decimalLength: v.decimalLength
                 }
               }
+
               return {
-                value: 0,
+                value: null,
                 isPercent: v.isPercent,
                 decimalLength: v.decimalLength
               }
@@ -204,7 +205,7 @@ export const Line = forwardRef<
             data:
               data &&
               data.map((d) => {
-                if (d[v.fieldKey] != null) {
+                if (d[v.fieldKey] !== null && typeof d[v.fieldKey] !== 'undefined') {
                   let result = Big(d[v.fieldKey])
                   if (v.isPercent) {
                     result = result.times(100)
@@ -216,7 +217,7 @@ export const Line = forwardRef<
                   }
                 }
                 return {
-                  value: 0,
+                  value: null,
                   isPercent: v.isPercent,
                   decimalLength: v.decimalLength
                 }
