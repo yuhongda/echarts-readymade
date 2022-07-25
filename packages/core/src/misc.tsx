@@ -253,7 +253,7 @@ export const truncate = (str: string, n: number) => {
 }
 
 export function numberWithCommas(x: string | number) {
-  if (!x) {
+  if (x === null || typeof x === 'undefined') {
     return '--'
   }
   const parts = x.toString().split('.')
