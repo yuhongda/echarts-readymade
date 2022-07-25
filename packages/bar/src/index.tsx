@@ -156,7 +156,11 @@ export const Bar = forwardRef<
               shadowOffsetY: 1
             },
             data: _data.map((d) => {
-              if (d[v.fieldKey] != null && typeof d[v.fieldKey] !== 'undefined') {
+              if (
+                d[v.fieldKey] != null &&
+                typeof d[v.fieldKey] !== 'undefined' &&
+                !isNaN(d[v.fieldKey])
+              ) {
                 let result = new Big(d[v.fieldKey])
 
                 if (v.isPercent) {
@@ -205,7 +209,11 @@ export const Bar = forwardRef<
             data:
               data &&
               data.map((d) => {
-                if (d[v.fieldKey] != null && typeof d[v.fieldKey] !== 'undefined') {
+                if (
+                  d[v.fieldKey] != null &&
+                  typeof d[v.fieldKey] !== 'undefined' &&
+                  !isNaN(d[v.fieldKey])
+                ) {
                   let result = Big(d[v.fieldKey])
                   if (v.isPercent) {
                     result = result.times(100)
