@@ -1,3 +1,5 @@
+English ｜ [简体中文](./README.zh-CN.md)
+
 # 📦 echarts-readymade
 > Make echarts come in handy for React. Based on [echarts-for-react](https://github.com/hustcc/echarts-for-react)
 
