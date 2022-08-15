@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { ChartProvider, ChartContext } from '@echarts-readymade/core'
-import { Scatter } from '@echarts-readymade/scatter'
-import type { LegendPosition } from '@echarts-readymade/core'
+import { ChartProvider, ChartContext } from '../../../packages/core/src'
+import { Scatter } from '../../../packages/scatter/src'
+import type { LegendPosition } from '../../../packages/core/src'
 import styled from 'styled-components'
-import type { Field } from '@echarts-readymade/core'
+import type { Field } from '../../../packages/core/src'
 import { Radio, Button, Row, Col } from 'antd'
 import { optionalCallExpression } from '@babel/types'
 

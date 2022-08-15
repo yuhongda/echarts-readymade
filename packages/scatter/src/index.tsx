@@ -130,9 +130,11 @@ export const Scatter = forwardRef<
       const getSymbolSize = useCallback(
         (dotValue: number) => {
           const scale =
-            Big(dotValueMax - dotValueMin)
-              .div(maxSymbolSize - minSymbolSize)
-              .toNumber() || 1
+            _valueList.length === 3
+              ? Big(dotValueMax - dotValueMin)
+                  .div(maxSymbolSize - minSymbolSize)
+                  .toNumber() || 1
+              : 1
           return _valueList.length === 3
             ? Big(dotValue - dotValueMin)
                 .div(scale)
@@ -406,8 +408,12 @@ export const Scatter = forwardRef<
             values[i] = values[i].round(v.decimalLength || 0).toNumber()
           }
         })
-
-        return [...values, d[_dimension[0].fieldKey]]
+        
+        if (_valueList.length === 3) {
+          return [...values, d[_dimension[0].fieldKey]]
+        } else {
+          return [...values, 1, d[_dimension[0].fieldKey]]
+        }
       })
 
       let userColorFromSetOption: string[] | null = null
@@ -443,9 +449,11 @@ export const Scatter = forwardRef<
           const min = symbolList[0]
           const max = symbolList[symbolList.length - 1]
           const scale =
-            Big(max - min)
-              .div(maxSymbolSize - minSymbolSize)
-              .toNumber() || 1
+            _valueList.length === 3
+              ? Big(max - min)
+                  .div(maxSymbolSize - minSymbolSize)
+                  .toNumber() || 1
+              : 1
 
           list.forEach((item, index) => {
             item[4] =
