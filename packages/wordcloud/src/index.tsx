@@ -51,7 +51,7 @@ export interface WordcloudChartProps
   shape?: WordcloudShape | string
   wordcloudOptions?: WordcloudOptions
   wordcloudStop?: () => void
-  setOption?: <T>(list: any[]) => T[]
+  setWordcloudOption?: <T>(list: any[]) => T[]
 }
 
 export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
@@ -64,7 +64,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
     wordcloudOptions,
     shape,
     wordcloudStop,
-    setOption,
+    setWordcloudOption,
     ...restSettings
   } = props
   const { data } = useContext(context)
@@ -662,8 +662,8 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
     if (ref.current) {
       let _list = sortedData()
 
-      if (setOption) {
-        _list = setOption(cloneDeep(_list))
+      if (setWordcloudOption) {
+        _list = setWordcloudOption(cloneDeep(_list))
       }
 
       const _defaultOptions: WordcloudOptions = {

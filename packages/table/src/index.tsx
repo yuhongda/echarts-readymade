@@ -163,7 +163,7 @@ export interface TableChartProps extends Omit<ChartProps, 'echartsSeries' | 'set
   antdOptions?: any
   sortKey?: string // 用于记录列排序的key
   columnWidth?: number
-  setOption?: <T, K>(columns: any[], dataSource: any[]) => { columns: T[]; dataSource: K[] }
+  setTableOption?: <T, K>(columns: any[], dataSource: any[]) => { columns: T[]; dataSource: K[] }
 }
 
 export const Table: React.FC<TableChartProps> = (props) => {
@@ -180,7 +180,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
     antdOptions,
     sortKey,
     columnWidth,
-    setOption,
+    setTableOption,
     ...restSettings
   } = props
   const { data } = useContext(context)
@@ -772,8 +772,8 @@ export const Table: React.FC<TableChartProps> = (props) => {
     columns: tableColumns(),
     dataSource: tableData()
   }
-  if (setOption) {
-    const { columns, dataSource } = setOption(options.columns, options.dataSource)
+  if (setTableOption) {
+    const { columns, dataSource } = setTableOption(options.columns, options.dataSource)
     options.columns = columns
     options.dataSource = dataSource
   }

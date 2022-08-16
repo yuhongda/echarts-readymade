@@ -13,7 +13,7 @@ interface TableChartProps extends Omit<ChartProps, 'echartsSeries' | 'setOption'
     antdOptions?: any;
     sortKey?: string;
     columnWidth?: number;
-    setOption?: <T, K>(columns: any[], dataSource: any[]) => {
+    setTableOption?: <T, K>(columns: any[], dataSource: any[]) => {
         columns: T[];
         dataSource: K[];
     };
