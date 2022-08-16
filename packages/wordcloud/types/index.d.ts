@@ -12,6 +12,7 @@ interface WordcloudChartProps extends Omit<ChartProps, 'compareDimension' | 'ech
     shape?: WordcloudShape | string;
     wordcloudOptions?: WordcloudOptions;
     wordcloudStop?: () => void;
+    setOption?: <T>(list: any[]) => T[];
 }
 declare const Wordcloud: React.FC<WordcloudChartProps>;
 interface IPosition {

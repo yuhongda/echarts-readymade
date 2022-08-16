@@ -183,6 +183,13 @@ export const TableChart: React.FC = () => {
               blockWrapHeight={500}
               showSum
               colorList={['#fafafa', '#333', '#ffc000', '#333', 'rgba(0, 0, 0, 0.5)', '#fff']}
+              setOption={(columns, dataSource) => {
+                console.log({ columns, dataSource })
+                return {
+                  columns,
+                  dataSource
+                }
+              }}
             />
           </Col>
           <Col span={12}>

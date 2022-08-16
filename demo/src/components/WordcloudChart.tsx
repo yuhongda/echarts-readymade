@@ -1231,6 +1231,10 @@ export const WordcloudChart: React.FC = () => {
               dimension={dimension}
               valueList={valueList}
               wordcloudStop={() => console.log('Stop!')}
+              // setOption={(list) => {
+              //   console.log(list)
+              //   return list
+              // }}
             />
           </Col>
           <Col span={12}>

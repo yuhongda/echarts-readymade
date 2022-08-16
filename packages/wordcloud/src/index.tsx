@@ -22,6 +22,7 @@ import maskRect from './assets/mask-rect.png'
 import maskCloud from './assets/mask-cloud.png'
 import styled from 'styled-components'
 import { useRect } from './useRect'
+import cloneDeep from 'clone'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -50,6 +51,7 @@ export interface WordcloudChartProps
   shape?: WordcloudShape | string
   wordcloudOptions?: WordcloudOptions
   wordcloudStop?: () => void
+  setOption?: <T>(list: any[]) => T[]
 }
 
 export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
@@ -62,6 +64,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
     wordcloudOptions,
     shape,
     wordcloudStop,
+    setOption,
     ...restSettings
   } = props
   const { data } = useContext(context)
@@ -657,7 +660,12 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
 
     let _locker: NodeJS.Timeout | null = null
     if (ref.current) {
-      const _list = sortedData()
+      let _list = sortedData()
+
+      if (setOption) {
+        _list = setOption(cloneDeep(_list))
+      }
+
       const _defaultOptions: WordcloudOptions = {
         list: _list,
         gridSize: 20, //Math.round(100 * ref.current.clientWidth / 1024),
