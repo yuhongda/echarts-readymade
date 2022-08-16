@@ -1,6 +1,6 @@
 {
   "name": "@echarts-readymade/scatter",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "description": "Scatter chart",
   "main": "lib/index.js",
   "module": "lib/es/index.es.js",
@@ -35,7 +35,7 @@
     "release:next": "npm publish --tag next"
   },
   "dependencies": {
-    "@echarts-readymade/core": "^1.0.32",
+    "@echarts-readymade/core": "^1.0.33",
     "big.js": "^6.1.1",
     "clone": "^2.1.2"
   },
