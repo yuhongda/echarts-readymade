@@ -239,6 +239,7 @@ const valueList: Field[] = [
 | fontSizeMode | 词云文字大小设置模式 `bySort`-按照排序设置大小；`byValue`-按照词的数值（如：词频）设置字体大小 | `'bySort' \| 'byValue'` | `undefined` |
 | shape | 词云形状 | `'mask-joy' \| 'mask-great' \| 'mask-bad' \| 'mask-oval' \| 'mask-rect' \| 'mask-cloud' \| 'mask-circle' \| 'mask-diamond'` Or `image string from import` | `undefined` |
 | wordcloudOptions | `wordcloud2.js` 配置 | `WordcloudOptions` | `undefined` |
+| setOption | 可设置处理后的list数据 | `<T>(list: any[]) => T[]` | `undefined` |
 
 ###  `<BarHorizontal />` (1.0.6)
 
@@ -259,6 +260,7 @@ const valueList: Field[] = [
 | sortKey | 表格列排序localstorage的key | `string` | `undefined` |
 | columnWidth | 列宽度 | `150` | `undefined` |
 | antdOptions | Ant Design table 配置  | `TableProps` | `undefined` |
+| setOption | 可用来设置处理后的 `columns` 和 `dataSource` | `<T, K>(columns: any[], dataSource: any[]) => { columns: T[]; dataSource: K[] }` | `undefined` |
 
 
 ## 常见问题 <a name="qa"></a>

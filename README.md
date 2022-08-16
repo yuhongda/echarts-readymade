@@ -239,6 +239,7 @@ Base on [wordcloud2.js](https://github.com/timdream/wordcloud2.js)
 | fontSizeMode | The mode of calculating font size | `'bySort' \| 'byValue'` | `undefined` |
 | shape | The shape of wordcloud | `'mask-joy' \| 'mask-great' \| 'mask-bad' \| 'mask-oval' \| 'mask-rect' \| 'mask-cloud' \| 'mask-circle' \| 'mask-diamond'` Or `image string from import` | `undefined` |
 | wordcloudOptions | `wordcloud2.js` options | `WordcloudOptions` | `undefined` |
+| setOption | An opportunity to change the data list | `<T>(list: any[]) => T[]` | `undefined` |
 
 ###  `<BarHorizontal />` (1.0.6)
 
@@ -259,6 +260,7 @@ Base on [wordcloud2.js](https://github.com/timdream/wordcloud2.js)
 | sortKey | The unique string that use to save the order of table column | `string` | `undefined` |
 | columnWidth | Column width | `150` | `undefined` |
 | antdOptions | Ant Design table options  | `TableProps` | `undefined` |
+| setOption | An opportunity to change the `columns` and `dataSource` of Table | `<T, K>(columns: any[], dataSource: any[]) => { columns: T[]; dataSource: K[] }` | `undefined` |
 
 
 ## Q/A
