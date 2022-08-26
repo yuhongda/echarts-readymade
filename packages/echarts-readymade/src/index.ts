@@ -1,4 +1,14 @@
-export * from '@echarts-readymade/core'
+// export * from '@echarts-readymade/core'
+export type { LegendPosition, Field, ChartProps } from '@echarts-readymade/core'
+export {
+  ChartProvider,
+  ChartContext,
+  mergeOption,
+  buildChartOption,
+  numberWithCommas,
+  COLOR_LIST,
+  truncate
+} from '@echarts-readymade/core'
 import { Bar } from './bar'
 import { Line } from './line'
 import { Pie } from './pie'

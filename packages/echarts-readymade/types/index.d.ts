@@ -1,7 +1,7 @@
 import * as React from 'react';
 import React__default from 'react';
 import * as echarts_types_dist_echarts from 'echarts/types/dist/echarts';
-export * from '@echarts-readymade/core';
+export { COLOR_LIST, ChartContext, ChartProps, ChartProvider, Field, LegendPosition, buildChartOption, mergeOption, numberWithCommas, truncate } from '@echarts-readymade/core';
 import { ECharts } from 'echarts';
 import { BarChartProps } from '@echarts-readymade/bar';
 import { LineChartProps } from '@echarts-readymade/line';
