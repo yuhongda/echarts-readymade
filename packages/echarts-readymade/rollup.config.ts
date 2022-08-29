@@ -77,7 +77,12 @@ if (format === 'umd') {
   config.output = {
     format,
     name: 'EchartsReadymade',
-    file: process.env.NODE_ENV === 'production' ? 'lib/umd/index.min.js' : 'lib/umd/index.js'
+    file: process.env.NODE_ENV === 'production' ? 'lib/umd/index.min.js' : 'lib/umd/index.js',
+    globals: {
+      react: 'React',
+      'react-dom': 'ReactDOM',
+      echarts: 'echarts'
+    }
   }
   config.plugins?.push(
     replace({
