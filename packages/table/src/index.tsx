@@ -278,7 +278,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
               <ValueCell
                 title={_value}
                 colors={colors}
-                isSum={'总计' == c || '总计' == row[dimension[0].fieldKey]}
+                isSum={'总计' == c || '总计' == (dimension[0] && row[dimension[0].fieldKey])}
               >
                 {_value}
               </ValueCell>
