@@ -1,6 +1,6 @@
 {
   "name": "@echarts-readymade/wordcloud",
-  "version": "1.0.37",
+  "version": "1.0.38",
   "description": "Wordcloud chart",
   "main": "lib/index.js",
   "module": "lib/es/index.es.js",
@@ -36,7 +36,7 @@
     "release:next": "npm publish --tag next"
   },
   "dependencies": {
-    "@echarts-readymade/core": "^1.0.37",
+    "@echarts-readymade/core": "^1.0.38",
     "big.js": "^6.1.1",
     "styled-components": "^5.3.3"
   },
