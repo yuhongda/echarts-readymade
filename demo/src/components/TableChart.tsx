@@ -13,10 +13,29 @@ export const TableChart: React.FC = () => {
   const [data, setData] = useState([
     {
       v6: 0.8141021277904137,
-      d1: '2020-12-31',
+      d1: '2020年',
       d2: '北京',
       v4: 50.028318723339325,
-      v5: 27.577454409512264
+      v5: 27.577454409512264,
+      children: [
+        {
+          v6: 0.8141021277904137,
+          d1: '2020-Q4',
+          d2: '北京',
+          v4: 50.028318723339325,
+          v5: 27.577454409512264,
+          children: [
+            {
+              v6: 0.8141021277904137,
+              d1: '2020-12-31',
+              d2: '北京',
+              v4: 50.028318723339325,
+              v5: 27.577454409512264,
+              children: []
+            }
+          ]
+        }
+      ]
     },
     {
       v6: 0.3141021277904137,
@@ -127,31 +146,6 @@ export const TableChart: React.FC = () => {
     {
       fieldKey: 'v5',
       fieldName: '占比3'
-    },
-    {
-      fieldKey: 'v5',
-      fieldName: '占比3'
-    },
-    {
-      fieldKey: 'v5',
-      fieldName: '占比3'
-    },
-    {
-      fieldKey: 'v5',
-      fieldName: '占比3'
-    },
-    {
-      fieldKey: 'v5',
-      fieldName: '占比3'
-    },
-    {
-      fieldKey: 'v5',
-      fieldName: '占比3'
-    },
-    {
-      fieldKey: 'v5',
-      fieldName: '占比3占比3占比3占比3',
-      width: 300
     }
   ]
 

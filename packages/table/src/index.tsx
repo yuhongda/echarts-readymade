@@ -561,54 +561,71 @@ export const Table: React.FC<TableChartProps> = (props) => {
     })
 
     if (compareDimension && compareDimension.length > 0 && dimension.length > 0) {
-      let progressData = []
-      for (let i = 0; i < data.length; i++) {
-        const d = data[i]
-        const progressDataItem: any = progressData.find((pData: any) => {
-          // [deprecated!] 这里只汇总前两个维度 dimensionList.slice(0, 2).forEach
-          let result = true
-          dimension.forEach((dimension) => {
-            if (pData[dimension.fieldKey] != d[dimension.fieldKey]) {
-              result = false
-            }
-          })
-          return result
-        })
-        if (progressDataItem) {
-          const _index = progressDataItem.compareList.findIndex(
-            (item: any) => item.name == d[compareDimension[0] && compareDimension[0].fieldKey]
-          )
-          valueList.forEach((v) => {
-            progressDataItem.compareList[_index][v.fieldKey] = d[v.fieldKey]
-          })
-        } else {
-          const dimensions: { [key: string]: any } = {}
-          dimension.forEach((dim) => {
-            dimensions[dim.fieldKey] = d[dim.fieldKey]
-          })
-          const compareListSample = compareColumns.map((item) => {
-            const _item: { [key: string]: any } = {
-              name: item
-            }
-            valueList.forEach((v) => {
-              _item[v.fieldKey] = null
+      let progressData: any[] = []
+
+      function processData(_data: any) {
+        let tempPD: any[] = []
+
+        for (let i = 0; i < _data.length; i++) {
+          const d = _data[i]
+
+          const progressDataItem: any = tempPD.find((pData: any) => {
+            // [deprecated!] 这里只汇总前两个维度 dimensionList.slice(0, 2).forEach
+            let result = true
+            dimension.forEach((dimension) => {
+              if (pData[dimension.fieldKey] != d[dimension.fieldKey]) {
+                result = false
+              }
             })
-            return _item
+            return result
           })
+          if (progressDataItem) {
+            const _index = progressDataItem.compareList.findIndex(
+              (item: any) => item.name == d[compareDimension![0].fieldKey]
+            )
+            valueList.forEach((v) => {
+              progressDataItem.compareList[_index][v.fieldKey] = d[v.fieldKey]
+            })
+            if (d.children?.length > 0) {
+              progressDataItem.children = processData(d.children) || []
+            } else {
+              progressDataItem.children = undefined
+            }
 
-          const _index = compareListSample.findIndex(
-            (item) => item.name == d[compareDimension[0] && compareDimension[0].fieldKey]
-          )
-          valueList.forEach((v) => {
-            compareListSample[_index][v.fieldKey] = d[v.fieldKey]
-          })
+          } else {
+            const dimensions: { [key: string]: any } = {}
+            dimension.forEach((dim) => {
+              dimensions[dim.fieldKey] = d[dim.fieldKey]
+            })
+            const compareListSample = compareColumns.map((item) => {
+              const _item: { [key: string]: any } = {
+                name: item
+              }
+              valueList.forEach((v) => {
+                _item[v.fieldKey] = null
+              })
+              return _item
+            })
 
-          progressData.push({
-            ...dimensions,
-            compareList: compareListSample
-          })
+            const _index = compareListSample.findIndex(
+              (item) => item.name == d[compareDimension![0].fieldKey]
+            )
+            valueList.forEach((v) => {
+              compareListSample[_index][v.fieldKey] = d[v.fieldKey]
+            })
+
+            tempPD.push({
+              ...dimensions,
+              compareList: compareListSample,
+              children: d.children?.length > 0 ? processData(d.children) || [] : undefined
+            })
+          }
         }
+
+        return tempPD
       }
+
+      progressData = processData(data)
 
       let sumRowData: any
       // 计算总计（对比维度）
