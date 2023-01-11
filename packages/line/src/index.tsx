@@ -145,6 +145,7 @@ export const Line = forwardRef<
               valueList.length > 1
                 ? `${compareDimensionName}~${v.fieldName}`
                 : compareDimensionName,
+            payload: v,
             type: v.type || 'line',
             barGap: 0,
             barMaxWidth: 60,
@@ -199,6 +200,7 @@ export const Line = forwardRef<
         valueList?.map((v) => {
           return {
             name: v.fieldName,
+            payload: v,
             type: v.type || 'line',
             lineStyle: {
               shadowColor: 'rgba(0,0,0,0.15)',

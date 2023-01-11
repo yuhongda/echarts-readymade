@@ -145,7 +145,7 @@ export const Bar = forwardRef<
               valueList.length > 1
                 ? `${compareDimensionName}~${v.fieldName}`
                 : compareDimensionName,
-
+            payload: v,
             type: v.type || 'bar',
             barMaxWidth: 60,
             barGap: 0,
@@ -203,6 +203,7 @@ export const Bar = forwardRef<
         valueList?.map((v) => {
           return {
             name: v.fieldName,
+            payload: v,
             type: v.type || 'bar',
             barMaxWidth: 60,
             barGap: 0,
