@@ -132,7 +132,13 @@ export const ScatterChart: React.FC = () => {
   ]
 
   const [legendPosition, setLegendPosition] = useState('top')
-
+  const onScatterEvents = {
+    click: (params: any) => {
+      if (params?.data) {
+        console.log(params)
+      }
+    },
+  }
   return (
     <Container>
       <Radio.Group
@@ -162,6 +168,7 @@ export const ScatterChart: React.FC = () => {
       <ChartProvider
         data={data}
         echartsOptions={{
+          onEvents: onScatterEvents,
           option: {
             title: {
               text: 'Scatter Chart'

@@ -218,7 +218,7 @@ export const Scatter = forwardRef<
               pd.data.map((d: any, j: number) => {
                 const itemColor = getColor(i)
 
-                let _value = _valueList.map((v: Field) => {
+                let _value = [..._valueList.map((v: Field) => {
                   let _v: number | Big = 0
                   if (d[v.fieldKey] != null) {
                     _v = Big(d[v.fieldKey])
@@ -228,7 +228,7 @@ export const Scatter = forwardRef<
                     _v = _v.round(v.decimalLength || 0).toNumber()
                   }
                   return _v || 0
-                })
+                }), d]
 
                 return {
                   name: pd.name + '-' + d[_dimension[0].fieldKey],
@@ -410,9 +410,9 @@ export const Scatter = forwardRef<
         })
         
         if (_valueList.length === 3) {
-          return [...values, d[_dimension[0].fieldKey]]
+          return [...values, d[_dimension[0].fieldKey], d]
         } else {
-          return [...values, 1, d[_dimension[0].fieldKey]]
+          return [...values, 1, d[_dimension[0].fieldKey], d]
         }
       })
 
@@ -456,7 +456,7 @@ export const Scatter = forwardRef<
               : 1
 
           list.forEach((item, index) => {
-            item[4] =
+            item[5] =
               _valueList.length === 3
                 ? Big(item[2] - min)
                     .div(scale)
@@ -464,7 +464,7 @@ export const Scatter = forwardRef<
                     .round(2)
                     .toNumber()
                 : 80
-            item[5] = getColor(index)
+            item[6] = getColor(index)
           })
           return list
         },
@@ -539,12 +539,12 @@ export const Scatter = forwardRef<
         {
           type: 'scatter',
           symbolSize: (data: any[]) => {
-            return data[4]
+            return data[5]
           },
           itemStyle: {
             normal: {
               color: (seriesIndex: any) => {
-                return seriesIndex.value[5]
+                return seriesIndex.value[6]
               }
             }
           },
