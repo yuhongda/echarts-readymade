@@ -44,7 +44,7 @@ const StyledTable = styled(AntdTable)<{
     border-right: 1px solid rgba(0, 0, 0, 0.2);
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     text-align: center;
-    padding: '5px' !important;
+    padding: 5px !important;
     &.ant-table-cell-scrollbar {
       border-right: 0;
     }
@@ -78,13 +78,6 @@ const StyledTable = styled(AntdTable)<{
   .ant-table-tbody > tr > td:first-child {
     text-align: left;
     border-left: 1px solid ${(props) => props.color[0]};
-  }
-  .ant-table-cell-fix-left,
-  .ant-table-cell-fix-right {
-    /* background: ${(props) => props.color[0]} !important; */
-  }
-  .ant-table-fixed {
-    /* background: ${(props) => props.color[0]} !important; */
   }
   .ant-table-thead
     > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)

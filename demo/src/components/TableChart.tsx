@@ -176,7 +176,7 @@ export const TableChart: React.FC = () => {
               sortKey={'normal'}
               blockWrapHeight={500}
               showSum
-              colorList={['#fafafa', '#333', '#ffc000', '#333', 'rgba(0, 0, 0, 0.5)', '#fff']}
+              // colorList={['#fafafa', '#333', '#ffc000', '#333', 'rgba(0, 0, 0, 0.5)', '#fff']}
               setOption={(columns, dataSource) => {
                 console.log({ columns, dataSource })
                 return {
@@ -192,10 +192,10 @@ export const TableChart: React.FC = () => {
               dimension={dimension}
               compareDimension={compareDimension}
               valueList={valueList}
-              colorList={['#002fa7', '#fff', '#ffc000']}
-              antdOptions={{
-                size: 'small'
-              }}
+              // colorList={['#002fa7', '#fff', '#ffc000']}
+              // antdOptions={{
+              //   size: 'small'
+              // }}
               sortKey={'compare'}
             />
           </Col>

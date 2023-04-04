@@ -42,8 +42,7 @@
     "@echarts-readymade/pie": "^1.0.40",
     "@echarts-readymade/scatter": "^1.0.40",
     "@echarts-readymade/stack": "^1.0.40",
-    "@echarts-readymade/wordcloud": "^1.0.40",
-    "wordcloud": "^1.2.2"
+    "@echarts-readymade/wordcloud": "^1.0.40"
   },
   "devDependencies": {
     "@rollup/plugin-image": "^2.1.1",
@@ -51,6 +50,7 @@
     "echarts-for-react": "^3.0.2"
   },
   "peerDependencies": {
+    "antd": "^4.19.3 || ^5.0.0",
     "echarts": "^5.2.2",
     "echarts-for-react": "^3.0.2",
     "wordcloud": "^1.2.2"
