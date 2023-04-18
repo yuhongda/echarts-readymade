@@ -11,6 +11,8 @@ export interface ScatterChartProps extends ChartProps {
    * 图例位置
    */
   legendPosition?: LegendPosition
+  minDotSize?: number
+  maxDotSize?: number
 }
 
 export const Scatter = forwardRef<
@@ -26,6 +28,8 @@ export const Scatter = forwardRef<
     valueList,
     echartsSeries,
     setOption,
+    minDotSize,
+    maxDotSize,
     ...restSettings
   } = props
   const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = useContext(context)
@@ -125,8 +129,8 @@ export const Scatter = forwardRef<
       )
 
       // 散点大小
-      const minSymbolSize = 50
-      const maxSymbolSize = 100
+      const minSymbolSize = minDotSize ?? 50
+      const maxSymbolSize = maxDotSize ?? 100
       const getSymbolSize = useCallback(
         (dotValue: number) => {
           const scale =
@@ -437,8 +441,8 @@ export const Scatter = forwardRef<
         [userOptions?.color, userColorFromSetOption]
       )
 
-      const minSymbolSize = 50
-      const maxSymbolSize = 100
+      const minSymbolSize = minDotSize ?? 50
+      const maxSymbolSize = maxDotSize ?? 100
       const getSymbolSize = useCallback(
         (list: any[]) => {
           const symbolList = list
