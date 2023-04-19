@@ -50,7 +50,7 @@ export const ScatterChart: React.FC = () => {
       v5: 34.85958873867998
     },
     {
-      v6: 2.070474009247233,
+      v6: 0.070474009247233,
       d1: '2021-04-30',
       d2: '北京',
       v4: 99.60320028422093,
@@ -117,17 +117,18 @@ export const ScatterChart: React.FC = () => {
 
   const valueList: Field[] = [
     {
-      fieldKey: 'v6',
+      fieldKey: 'v4',
       fieldName: '占比1',
       isPercent: true
     },
     {
-      fieldKey: 'v4',
+      fieldKey: 'v5',
       fieldName: '占比2'
     },
     {
-      fieldKey: 'v5',
-      fieldName: '占比3'
+      fieldKey: 'v6',
+      fieldName: '占比3',
+      decimalLength: 2
     }
   ]
 
@@ -213,10 +214,13 @@ export const ScatterChart: React.FC = () => {
                 // option.color = legendPosition == 'left' ? ['#ccc'] : option.color
                 return option
               }}
-              colorMap={[{
-                name: '北京',
-                color: '#ccc'
-              }]}
+              minDotSize={30}
+              colorMap={[
+                {
+                  name: '北京',
+                  color: '#ccc'
+                }
+              ]}
             />
           </Col>
         </Row>

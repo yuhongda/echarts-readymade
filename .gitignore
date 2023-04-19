@@ -7,3 +7,4 @@ lib
 /packages/wordcloud/src/assets/.DS_Store
 /packages/wordcloud/.DS_Store
 stats.html
+/.DS_Store

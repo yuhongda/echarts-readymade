@@ -57,7 +57,7 @@ export const Scatter = forwardRef<
       let _preProcessData: { name: string; data: any[] }[] = []
       let _processData: { name: string; data: any[] }[] = []
       let compareDimensionValues: string[] = []
-      let dotValueMin = 0
+      let dotValueMin = 100
       let dotValueMax = 0
 
       // 对比维度全量值
@@ -141,6 +141,7 @@ export const Scatter = forwardRef<
                   .div(maxSymbolSize - minSymbolSize)
                   .toNumber() || 1
               : 1
+
           return _valueList.length === 3
             ? Big(dotValue - dotValueMin)
                 .div(scale)
