@@ -223,7 +223,7 @@ export const Scatter = forwardRef<
                 const itemColor = getColor(i)
 
                 let _value = [..._valueList.map((v: Field) => {
-                  let _v: number | Big = 0
+                  let _v: number | Big
                   if (d[v.fieldKey] != null) {
                     _v = Big(d[v.fieldKey])
                     if (v.isPercent) {
@@ -231,7 +231,7 @@ export const Scatter = forwardRef<
                     }
                     _v = _v.round(v.decimalLength || 0).toNumber()
                   }
-                  return _v || 0
+                  return _v
                 }), d]
 
                 return {
