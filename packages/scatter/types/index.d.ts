@@ -9,6 +9,10 @@ interface ScatterChartProps extends ChartProps {
     legendPosition?: LegendPosition;
     minDotSize?: number;
     maxDotSize?: number;
+    colorMap?: {
+        name: string;
+        color: string;
+    }[];
 }
 declare const Scatter: React.ForwardRefExoticComponent<ScatterChartProps & React.RefAttributes<{
     getEchartsInstance: () => ECharts | undefined;

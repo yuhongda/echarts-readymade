@@ -38,8 +38,7 @@ export const buildChartOption = (
         _option.legend.padding = [5, 5]
         _option.grid.top = 110
         _option.grid.left = 'scatter' == chartType ? 70 : 20
-        _option.grid.right =
-          'scatter' == chartType ? 100 : 'bar-horizontal' == chartType ? 50 : 20
+        _option.grid.right = 'scatter' == chartType ? 100 : 'bar-horizontal' == chartType ? 50 : 20
         _option.grid.bottom = 'scatter' == chartType ? 100 : 45
         _option.legend.orient = 'horizontal'
         break
@@ -50,8 +49,7 @@ export const buildChartOption = (
         _option.legend.padding = [5, 5]
         _option.grid.top = 70
         _option.grid.left = 'scatter' == chartType ? 70 : 20
-        _option.grid.right =
-          'scatter' == chartType ? 50 : 'bar-horizontal' == chartType ? 50 : 20
+        _option.grid.right = 'scatter' == chartType ? 50 : 'bar-horizontal' == chartType ? 50 : 20
         _option.grid.bottom = 'scatter' == chartType ? 100 : 45
         _option.legend.orient = 'horizontal'
         break
@@ -127,7 +125,6 @@ export const buildChartOption = (
         const textStyle = {
           padding: [2, 0, 0, 0]
         }
-
         return {
           name: item.name,
           icon: 'circle',
@@ -141,6 +138,12 @@ export const buildChartOption = (
         padding: [2, 0, 0, 0]
         // color: 'rgba(0,0,0,0.85)',
         // fontWeight: 'lighter',
+      }
+      let itemStyle: any
+      if (item.data?.[0]?.itemStyle?.color) {
+        itemStyle = {
+          color: item.data[0].itemStyle.color
+        }
       }
 
       switch (item.type) {
@@ -158,7 +161,8 @@ export const buildChartOption = (
       return {
         name: `${item.name}`, //`${item.name}`
         icon: icon,
-        textStyle
+        textStyle,
+        itemStyle
       }
     })
 

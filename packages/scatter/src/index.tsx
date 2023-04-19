@@ -13,6 +13,7 @@ export interface ScatterChartProps extends ChartProps {
   legendPosition?: LegendPosition
   minDotSize?: number
   maxDotSize?: number
+  colorMap?: { name: string; color: string }[]
 }
 
 export const Scatter = forwardRef<
@@ -30,6 +31,7 @@ export const Scatter = forwardRef<
     setOption,
     minDotSize,
     maxDotSize,
+    colorMap,
     ...restSettings
   } = props
   const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = useContext(context)
@@ -220,19 +222,28 @@ export const Scatter = forwardRef<
           const _d =
             (pd.data &&
               pd.data.map((d: any, j: number) => {
-                const itemColor = getColor(i)
-
-                let _value = [..._valueList.map((v: Field) => {
-                  let _v: number | Big
-                  if (d[v.fieldKey] != null) {
-                    _v = Big(d[v.fieldKey])
-                    if (v.isPercent) {
-                      _v = _v.times(100)
-                    }
-                    _v = _v.round(v.decimalLength || 0).toNumber()
+                let itemColor = getColor(i)
+                if (colorMap && colorMap.length > 0) {
+                  const foudColor = colorMap.find((item) => item.name === pd.name)
+                  if (foudColor) {
+                    itemColor = foudColor.color
                   }
-                  return _v
-                }), d]
+                }
+
+                let _value = [
+                  ..._valueList.map((v: Field) => {
+                    let _v: number | Big | undefined = undefined
+                    if (d[v.fieldKey] != null) {
+                      _v = Big(d[v.fieldKey])
+                      if (v.isPercent) {
+                        _v = _v.times(100)
+                      }
+                      _v = _v.round(v.decimalLength || 0).toNumber()
+                    }
+                    return _v
+                  }),
+                  d
+                ]
 
                 return {
                   name: pd.name + '-' + d[_dimension[0].fieldKey],
@@ -412,7 +423,7 @@ export const Scatter = forwardRef<
             values[i] = values[i].round(v.decimalLength || 0).toNumber()
           }
         })
-        
+
         if (_valueList.length === 3) {
           return [...values, d[_dimension[0].fieldKey], d]
         } else {

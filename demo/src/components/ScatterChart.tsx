@@ -137,7 +137,7 @@ export const ScatterChart: React.FC = () => {
       if (params?.data) {
         console.log(params)
       }
-    },
+    }
   }
   return (
     <Container>
@@ -213,6 +213,10 @@ export const ScatterChart: React.FC = () => {
                 // option.color = legendPosition == 'left' ? ['#ccc'] : option.color
                 return option
               }}
+              colorMap={[{
+                name: '北京',
+                color: '#ccc'
+              }]}
             />
           </Col>
         </Row>
