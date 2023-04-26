@@ -170,7 +170,8 @@ export const Bar = forwardRef<
                 return {
                   value: result.round(v.decimalLength || 0).toNumber(),
                   isPercent: v.isPercent,
-                  decimalLength: v.decimalLength
+                  decimalLength: v.decimalLength,
+                  payload: d
                 }
               }
               return {
@@ -222,7 +223,8 @@ export const Bar = forwardRef<
                   return {
                     value: result.round(v.decimalLength || 0).toNumber(),
                     isPercent: v.isPercent,
-                    decimalLength: v.decimalLength
+                    decimalLength: v.decimalLength,
+                    payload: d,
                   }
                 }
                 return {

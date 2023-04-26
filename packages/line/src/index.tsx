@@ -168,7 +168,8 @@ export const Line = forwardRef<
                 return {
                   value: result.round(v.decimalLength || 0).toNumber(),
                   isPercent: v.isPercent,
-                  decimalLength: v.decimalLength
+                  decimalLength: v.decimalLength,
+                  payload: d
                 }
               }
 
@@ -229,7 +230,8 @@ export const Line = forwardRef<
                 return {
                   value: null,
                   isPercent: v.isPercent,
-                  decimalLength: v.decimalLength
+                  decimalLength: v.decimalLength,
+                  payload: d
                 }
               }),
             yAxisIndex: v.yAxisIndex || 0
