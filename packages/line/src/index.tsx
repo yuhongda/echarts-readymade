@@ -39,7 +39,7 @@ export const Line = forwardRef<
 
   if (_chartOption) {
     let _xAxis = []
-    const _preProcessData: any[] = []
+    let _preProcessData: any[] = []
     let _processData = []
     let compareDimensionValues = []
     if (compareDimension && compareDimension.length > 0) {
@@ -72,6 +72,11 @@ export const Line = forwardRef<
             data: [d]
           })
         }
+      })
+
+      // 按照name排序
+      _preProcessData = _preProcessData.sort((a, b) => {
+        return `${a.name}`.localeCompare(`${b.name}`)
       })
 
       // 在维度分组基础上，分组对比维度
