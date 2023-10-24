@@ -113,7 +113,9 @@ export const Bar = forwardRef<
             return _dimension && d[_dimension[0].fieldKey]
           })
         )
-      ]
+      ].sort((a, b) => {
+        return `${a}`.localeCompare(`${b}`)
+      })
 
       _xAxis = [
         {
