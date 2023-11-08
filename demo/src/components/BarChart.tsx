@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 // import { ChartContext, ChartProvider } from '@echarts-readymade/core'
 // import { Bar } from '@echarts-readymade/bar'
-import { ChartProvider, Bar } from 'echarts-readymade'
-import type { LegendPosition, Field } from 'echarts-readymade'
+// import { ChartProvider, Bar } from 'echarts-readymade'
+// import type { LegendPosition, Field } from 'echarts-readymade'
+import { ChartProvider, ChartContext, LegendPosition } from '../../../packages/core/src'
+import { Bar } from '../../../packages/bar/src'
 import styled from 'styled-components'
 import { Radio, Button, Row, Col } from 'antd'
 
@@ -12,6 +14,17 @@ const Container = styled.div`
 `
 
 export const BarChart: React.FC = () => {
+  const ref = useRef(null)
+  useEffect(() => {
+    if (ref.current) {
+      // boom!!
+      const instance = ref.current?.getEchartsInstance()
+      console.log(instance)
+      // so next, you can use Echarts instance api
+      // instance.setOption(...)
+    }
+  }, [ref.current])
+
   const [data, setData] = useState([
     {
       v6: 0.8141021277904137,
@@ -179,6 +192,8 @@ export const BarChart: React.FC = () => {
         <Row gutter={16} style={{ height: 500 }}>
           <Col span={12}>
             <Bar
+              ref={ref}
+              context={ChartContext}
               dimension={dimension}
               valueList={valueList}
               legendPosition={legendPosition as LegendPosition}
@@ -186,6 +201,7 @@ export const BarChart: React.FC = () => {
           </Col>
           <Col span={12}>
             <Bar
+              context={ChartContext}
               dimension={dimension}
               compareDimension={compareDimension}
               valueList={valueList}

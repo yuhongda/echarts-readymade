@@ -1,4 +1,11 @@
-import React, { useContext, forwardRef, useImperativeHandle, useState, useCallback } from 'react'
+import React, {
+  useContext,
+  forwardRef,
+  useImperativeHandle,
+  useState,
+  useCallback,
+  useRef
+} from 'react'
 import type { ECharts } from 'echarts'
 import Big from 'big.js'
 import cloneDeep from 'clone'
@@ -116,7 +123,7 @@ export const Bar = forwardRef<
           })
         )
       ]
-      
+
       if (sortXAxis) {
         _data = _data.sort((a, b) => {
           return `${a}`.localeCompare(`${b}`)
@@ -237,7 +244,7 @@ export const Bar = forwardRef<
                     value: result.round(v.decimalLength || 0).toNumber(),
                     isPercent: v.isPercent,
                     decimalLength: v.decimalLength,
-                    payload: d,
+                    payload: d
                   }
                 }
                 return {
@@ -262,25 +269,22 @@ export const Bar = forwardRef<
   /**
    * forward the ref for getEchartsInstance()
    */
-  const [reactEchartsNode, setReactEchartsNode] = useState<ReactEcharts | null>(null)
-  const reactEchartsRef = useCallback((node) => {
-    if (node !== null) {
-      setReactEchartsNode(node)
-    }
-  }, [])
+  const reactEchartsRef = useRef<ReactEcharts | null>(null)
   useImperativeHandle(
     ref,
     () => ({
       getEchartsInstance: () => {
-        return reactEchartsNode?.getEchartsInstance()
+        return reactEchartsRef?.current?.getEchartsInstance()
       }
     }),
-    [reactEchartsNode]
+    [reactEchartsRef]
   )
 
   return (
     <ReactEcharts
-      ref={reactEchartsRef}
+      ref={(e) => {
+        reactEchartsRef.current = e
+      }}
       option={{ ...cloneDeep(options) }}
       notMerge={true}
       opts={{ renderer: 'svg' }}

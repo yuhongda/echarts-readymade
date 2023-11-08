@@ -1,4 +1,11 @@
-import React, { useContext, useState, useCallback, useImperativeHandle, forwardRef } from 'react'
+import React, {
+  useContext,
+  useState,
+  useCallback,
+  useImperativeHandle,
+  forwardRef,
+  useRef
+} from 'react'
 import type { ECharts } from 'echarts'
 import Big from 'big.js'
 import cloneDeep from 'clone'
@@ -382,26 +389,23 @@ export const Stack = forwardRef<
   /**
    * forward the ref for getEchartsInstance()
    */
-  const [reactEchartsNode, setReactEchartsNode] = useState<ReactEcharts | null>(null)
-  const reactEchartsRef = useCallback((node) => {
-    if (node !== null) {
-      setReactEchartsNode(node)
-    }
-  }, [])
+  const reactEchartsRef = useRef<ReactEcharts | null>(null)
   useImperativeHandle(
     ref,
     () => ({
       getEchartsInstance: () => {
-        return reactEchartsNode?.getEchartsInstance()
+        return reactEchartsRef?.current?.getEchartsInstance()
       }
     }),
-    [reactEchartsNode]
+    [reactEchartsRef]
   )
 
   return (
     <>
       <ReactEcharts
-        ref={reactEchartsRef}
+        ref={(e) => {
+          reactEchartsRef.current = e
+        }}
         option={{ ...cloneDeep(options) }}
         notMerge={true}
         opts={{ renderer: 'svg' }}

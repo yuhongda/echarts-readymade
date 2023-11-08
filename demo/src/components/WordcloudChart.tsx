@@ -12,6 +12,7 @@ const Container = styled.div`
 `
 
 export const WordcloudChart: React.FC = () => {
+  
   const [data, setData] = useState([
     {
       d1: '啤酒',
