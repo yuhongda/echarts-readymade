@@ -809,7 +809,7 @@ const KeywordValueComp: React.FC<IKeywordValueCompProps> = forwardRef<
 >((props, ref) => {
   const { position, value, visible } = props
   const [tooltipNode, setTooltipNode] = useState<HTMLSpanElement | null>(null)
-  const tooltipRef = useCallback((node) => {
+  const tooltipRef = useCallback((node: HTMLSpanElement) => {
     if (node !== null) {
       setTooltipNode(node)
     }

@@ -716,7 +716,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
 
   const scroll: { [key: string]: any } = {}
   const [rect, setRect] = useState<any>(null)
-  const wrapperRef = useCallback((node) => {
+  const wrapperRef = useCallback((node: HTMLDivElement) => {
     if (node !== null) {
       setRect(node.getBoundingClientRect())
     }

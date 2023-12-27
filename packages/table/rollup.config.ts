@@ -28,7 +28,8 @@ const config: RollupOptions = {
     'echarts/components',
     'echarts/renderers',
     'big.js',
-    'antd'
+    'antd',
+    'use-local-storage-state'
   ]
 }
 
