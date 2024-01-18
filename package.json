@@ -60,6 +60,7 @@
     "rollup-plugin-visualizer": "^5.5.2",
     "styled-components": "^6.1.3",
     "ts-node": "^10.4.0",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "wordcloud": "^1.2.2"
   }
 }

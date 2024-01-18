@@ -1244,7 +1244,6 @@ export const WordcloudChart: React.FC = () => {
               dimension={dimension}
               valueList={valueList}
               colorList={[
-                '#6f6f79',
                 '#c94682',
                 '#6197db',
                 '#7f285d',
