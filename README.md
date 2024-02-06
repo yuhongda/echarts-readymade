@@ -1,4 +1,4 @@
-English ｜ [简体中文](./README.zh-CN.md) ｜ [AI Doc](https://chat.openai.com/g/g-XkL1Qzyrb-echarts-readymade)
+English ｜ [简体中文](./README.zh-CN.md) ｜ 🤖 [AI Doc](https://chat.openai.com/g/g-XkL1Qzyrb-echarts-readymade)
 
 # 📦 echarts-readymade
 > Make echarts come in handy for React. Based on [echarts-for-react](https://github.com/hustcc/echarts-for-react)
