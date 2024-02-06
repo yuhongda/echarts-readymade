@@ -1,4 +1,4 @@
-[English](./README.md) ｜ 简体中文
+[English](./README.md) ｜ 简体中文 ｜ 🤖 [AI Doc](https://chat.openai.com/g/g-XkL1Qzyrb-echarts-readymade)
 
 # 📦 echarts-readymade
 > 三行代码画出echarts图表。 基于 [echarts-for-react](https://github.com/hustcc/echarts-for-react)
