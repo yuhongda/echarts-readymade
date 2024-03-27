@@ -323,6 +323,76 @@
   resolved "http://registry.m.jd.com/@ctrl/tinycolor/download/@ctrl/tinycolor-3.6.0.tgz#53fa5fe9c34faee89469e48f91d51a3766108bc8"
   integrity sha1-U/pf6cNPruiUaeSPkdUaN2YQi8g=
 
+"@echarts-readymade/bar-horizontal@^1.1.2":
+  version "1.1.2"
+  resolved "http://registry.m.jd.com/@echarts-readymade/bar-horizontal/download/@echarts-readymade/bar-horizontal-1.1.2.tgz#80cd5d51ae71318a7f7d7a7bd6d922c2f0ba21ed"
+  integrity sha1-gM1dUa5xMYp/fXp71tkiwvC6Ie0=
+  dependencies:
+    "@echarts-readymade/core" "^1.1.2"
+    big.js "^6.1.1"
+    clone "^2.1.2"
+
+"@echarts-readymade/bar@^1.1.2":
+  version "1.1.2"
+  resolved "http://registry.m.jd.com/@echarts-readymade/bar/download/@echarts-readymade/bar-1.1.2.tgz#6afe72ea363f83fd6799a417cd913ff9bdaf2776"
+  integrity sha1-av5y6jY/g/1nmaQXzZE/+b2vJ3Y=
+  dependencies:
+    "@echarts-readymade/core" "^1.1.2"
+    big.js "^6.1.1"
+    clone "^2.1.2"
+
+"@echarts-readymade/core@^1.1.2":
+  version "1.1.2"
+  resolved "http://registry.m.jd.com/@echarts-readymade/core/download/@echarts-readymade/core-1.1.2.tgz#742f9436f0475ceb5b07e8233b8a984fc5220fef"
+  integrity sha1-dC+UNvBHXOtbB+gjO4qYT8UiD+8=
+  dependencies:
+    big.js "^6.1.1"
+
+"@echarts-readymade/line@^1.1.2":
+  version "1.1.2"
+  resolved "http://registry.m.jd.com/@echarts-readymade/line/download/@echarts-readymade/line-1.1.2.tgz#abed2f989926d7ab59ce7c96a2bf71cd76fa73c3"
+  integrity sha1-q+0vmJkm16tZznyWor9xzXb6c8M=
+  dependencies:
+    "@echarts-readymade/core" "^1.1.2"
+    big.js "^6.1.1"
+    clone "^2.1.2"
+
+"@echarts-readymade/pie@^1.1.2":
+  version "1.1.2"
+  resolved "http://registry.m.jd.com/@echarts-readymade/pie/download/@echarts-readymade/pie-1.1.2.tgz#5cb512b58b088ffba9c401febf323b2725eb23a6"
+  integrity sha1-XLUStYsIj/upxAH+vzI7JyXrI6Y=
+  dependencies:
+    "@echarts-readymade/core" "^1.1.2"
+    big.js "^6.1.1"
+    clone "^2.1.2"
+
+"@echarts-readymade/scatter@^1.1.2":
+  version "1.1.2"
+  resolved "http://registry.m.jd.com/@echarts-readymade/scatter/download/@echarts-readymade/scatter-1.1.2.tgz#66d9b253c1b88474a2624bd2800602830b65a55b"
+  integrity sha1-ZtmyU8G4hHSiYkvSgAYCgwtlpVs=
+  dependencies:
+    "@echarts-readymade/core" "^1.1.2"
+    big.js "^6.1.1"
+    clone "^2.1.2"
+
+"@echarts-readymade/stack@^1.1.2":
+  version "1.1.2"
+  resolved "http://registry.m.jd.com/@echarts-readymade/stack/download/@echarts-readymade/stack-1.1.2.tgz#91e4e51db4c8a0e0b8c1cc0e98aeb9ab06420ac3"
+  integrity sha1-keTlHbTIoOC4wcwOmK65qwZCCsM=
+  dependencies:
+    "@echarts-readymade/core" "^1.1.2"
+    big.js "^6.1.1"
+    clone "^2.1.2"
+
+"@echarts-readymade/wordcloud@^1.1.2":
+  version "1.1.2"
+  resolved "http://registry.m.jd.com/@echarts-readymade/wordcloud/download/@echarts-readymade/wordcloud-1.1.2.tgz#009201ebf0a7299e1c3f664d05419357fc5aa1a4"
+  integrity sha1-AJIB6/CnKZ4cP2ZNBUGTV/xaoaQ=
+  dependencies:
+    "@echarts-readymade/core" "^1.1.2"
+    big.js "^6.1.1"
+    styled-components "^5.3.3"
+
 "@emotion/hash@^0.8.0":
   version "0.8.0"
   resolved "http://registry.m.jd.com/@emotion/hash/download/@emotion/hash-0.8.0.tgz#bbbff68978fefdbe68ccb533bc8cbe1d1afb5413"
@@ -567,6 +637,11 @@ babel-plugin-syntax-jsx@^6.18.0:
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz#0af32a9a6e13ca7a3fd5069e62d7b0f58d0d8946"
   integrity sha1-CvMqmm4Tyno/1QaeYtew9Y0NiUY=
 
+big.js@^6.1.1:
+  version "6.2.1"
+  resolved "http://registry.m.jd.com/big.js/download/big.js-6.2.1.tgz#7205ce763efb17c2e41f26f121c420c6a7c2744f"
+  integrity sha1-cgXOdj77F8LkHybxIcQgxqfCdE8=
+
 browserslist@^4.17.5:
   version "4.18.1"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.18.1.tgz#60d3920f25b6860eb917c6c7b185576f4d8b017f"
@@ -606,6 +681,11 @@ classnames@^2.3.1, classnames@^2.3.2:
   version "2.3.2"
   resolved "http://registry.m.jd.com/classnames/download/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
   integrity sha1-NR2BO/ATf8xqdqFriCCNJWCg2SQ=
+
+clone@^2.1.2:
+  version "2.1.2"
+  resolved "http://registry.m.jd.com/clone/download/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
+  integrity sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
 
 color-convert@^1.9.0:
   version "1.9.3"
@@ -678,6 +758,20 @@ dom-align@^1.7.0:
   version "1.12.2"
   resolved "https://registry.yarnpkg.com/dom-align/-/dom-align-1.12.2.tgz#0f8164ebd0c9c21b0c790310493cd855892acd4b"
   integrity sha512-pHuazgqrsTFrGU2WLDdXxCFabkdQDx72ddkraZNih1KsMcN5qsRSTR9O4VJRlwTPCPb5COYg3LOfiMHHcPInHg==
+
+echarts-readymade@^1.1.2:
+  version "1.1.2"
+  resolved "http://registry.m.jd.com/echarts-readymade/download/echarts-readymade-1.1.2.tgz#8800e982fe6013c5eea4749c1c23dc7df0f0e6ee"
+  integrity sha1-iADpgv5gE8XupHScHCPcffDw5u4=
+  dependencies:
+    "@echarts-readymade/bar" "^1.1.2"
+    "@echarts-readymade/bar-horizontal" "^1.1.2"
+    "@echarts-readymade/core" "^1.1.2"
+    "@echarts-readymade/line" "^1.1.2"
+    "@echarts-readymade/pie" "^1.1.2"
+    "@echarts-readymade/scatter" "^1.1.2"
+    "@echarts-readymade/stack" "^1.1.2"
+    "@echarts-readymade/wordcloud" "^1.1.2"
 
 electron-to-chromium@^1.3.896:
   version "1.4.11"

@@ -9,7 +9,6 @@ import { optionalCallExpression } from '@babel/types'
 
 const Container = styled.div`
   width: 100%;
-  height: 600px;
 `
 
 export const ScatterChart: React.FC = () => {
@@ -190,8 +189,8 @@ export const ScatterChart: React.FC = () => {
           }
         }}
       >
-        <Row gutter={16} style={{ height: 500 }}>
-          <Col span={12}>
+        <Row gutter={16}>
+          <Col span={12} style={{ height: 500 }}>
             <Scatter
               context={ChartContext}
               dimension={dimension}
@@ -203,7 +202,7 @@ export const ScatterChart: React.FC = () => {
               }}
             />
           </Col>
-          <Col span={12}>
+          <Col span={12} style={{ height: 500 }}>
             <Scatter
               context={ChartContext}
               dimension={dimension}
@@ -221,6 +220,17 @@ export const ScatterChart: React.FC = () => {
                   color: '#ccc'
                 }
               ]}
+            />
+          </Col>
+          <Col span={24} style={{ height: 500 }}>
+            <Scatter
+              context={ChartContext}
+              dimension={dimension}
+              valueList={valueList}
+              legendPosition={legendPosition as LegendPosition}
+              setOption={(option) => {
+                return option
+              }}
             />
           </Col>
         </Row>
