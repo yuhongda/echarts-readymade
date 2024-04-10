@@ -205,6 +205,9 @@ export const Bar = forwardRef<
         })
       }
       _chartOption.xAxis.data = xAxisData || _data
+      if (valueList?.find((v) => v.yAxisIndex === 1) && _chartOption.yAxis?.[1]) {
+        _chartOption.yAxis[1].show = true
+      }
       _chartOption.series = echartsSeries || _seriesValueList
     } else {
       // 无对比维度
@@ -218,6 +221,9 @@ export const Bar = forwardRef<
                 return `${value}`
               }
             }))
+      }
+      if (valueList?.find((v) => v.yAxisIndex === 1) && _chartOption.yAxis?.[1]) {
+        _chartOption.yAxis[1].show = true
       }
       _chartOption.series =
         echartsSeries ||
