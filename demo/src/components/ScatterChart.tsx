@@ -5,7 +5,7 @@ import type { LegendPosition } from '../../../packages/core/src'
 import styled from 'styled-components'
 import type { Field } from '../../../packages/core/src'
 import { Radio, Button, Row, Col } from 'antd'
-import { optionalCallExpression } from '@babel/types'
+import { quadrantSetting } from '../../../packages/scatter/src'
 
 const Container = styled.div`
   width: 100%;
@@ -229,6 +229,29 @@ export const ScatterChart: React.FC = () => {
               valueList={valueList}
               legendPosition={legendPosition as LegendPosition}
               setOption={(option) => {
+                // 象限设置
+                quadrantSetting(option, {
+                  show: true,
+                  bgColors: [
+                    '#c23531',
+                    '#2f4554',
+                    '#61a0a8',
+                    '#d48265',
+                    '#91c7ae',
+                    '#749f83',
+                    '#ca8622',
+                    '#bda29a',
+                    '#6e7074',
+                    '#546570',
+                    '#c4ccd3'
+                  ],
+                  quadrant1Name: '1象限',
+                  quadrant2Name: '2象限',
+                  quadrant3Name: '3象限',
+                  quadrant4Name: '4象限',
+                  quadrantType: 'median'
+                })
+
                 return option
               }}
             />
