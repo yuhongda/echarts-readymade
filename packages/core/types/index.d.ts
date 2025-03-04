@@ -19,15 +19,15 @@ declare const mergeOption: (baseOptions: EChartsOption, userOptions?: EChartsOpt
 declare const truncate: (str: string, n: number) => string;
 declare function numberWithCommas(x: string | number): string;
 
-declare type ChartSettings = {
+type ChartSettings = {
     legendPosition?: 'top' | 'right' | 'bottom' | 'left';
 };
-declare type ChartType = 'line' | 'bar' | 'pie' | 'stack' | 'line-stack' | 'line-bar' | 'bar-horizontal' | 'table' | 'high-relation-scatter' | 'map' | 'wordcloud' | 'scatter';
+type ChartType = 'line' | 'bar' | 'pie' | 'stack' | 'line-stack' | 'line-bar' | 'bar-horizontal' | 'table' | 'high-relation-scatter' | 'map' | 'wordcloud' | 'scatter';
 declare const buildChartOption: (chartOptions: EChartsOption, settings: ChartSettings, chartType: ChartType) => EChartsOption;
 
-declare type LegendPosition = 'top' | 'left' | 'right' | 'bottom';
-declare type SeriesType = 'line' | 'bar' | 'pie' | 'scatter';
-declare type Field = {
+type LegendPosition = 'top' | 'left' | 'right' | 'bottom';
+type SeriesType = 'line' | 'bar' | 'pie' | 'scatter';
+type Field = {
     fieldKey: string;
     fieldName: string;
     type?: SeriesType;

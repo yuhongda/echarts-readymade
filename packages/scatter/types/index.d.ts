@@ -18,7 +18,7 @@ declare const Scatter: React.ForwardRefExoticComponent<ScatterChartProps & React
     getEchartsInstance: () => ECharts | undefined;
 }>>;
 
-declare type QuadrantSettingOptionProps = {
+type QuadrantSettingOptionProps = {
     show: boolean;
     bgColors: string[];
     quadrant1Name: string;

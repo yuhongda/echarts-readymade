@@ -797,7 +797,7 @@ export interface IPosition {
 }
 
 export interface IKeywordValueCompProps {
-  ref: React.Ref<any>
+  ref: React.Ref<any> | string
   position: IPosition
   value: string
   visible: boolean

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChartProps } from '@echarts-readymade/core';
 
-declare type WordcloudShape = 'mask-joy' | 'mask-great' | 'mask-bad' | 'mask-oval' | 'mask-rect' | 'mask-cloud' | 'mask-circle' | 'mask-diamond';
+type WordcloudShape = 'mask-joy' | 'mask-great' | 'mask-bad' | 'mask-oval' | 'mask-rect' | 'mask-cloud' | 'mask-circle' | 'mask-diamond';
 interface WordcloudOptions extends Omit<WordCloudTypes.Options, 'shape'> {
     shrinkToFit?: boolean;
     shape?: WordcloudShape | string | ((theta: number) => number) | undefined;
@@ -22,7 +22,7 @@ interface IPosition {
     height: number;
 }
 interface IKeywordValueCompProps {
-    ref: React.Ref<any>;
+    ref: React.Ref<any> | string;
     position: IPosition;
     value: string;
     visible: boolean;

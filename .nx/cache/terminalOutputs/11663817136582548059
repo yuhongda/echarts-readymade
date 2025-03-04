@@ -1,0 +1,42 @@
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ yarn run clear && yarn run lib && yarn run dts && yarn run cjs && yarn run esm && yarn run umd && yarn run min[22m
+[2K[1G[2m$ rm -rf lib/ && rm -rf types/[22m
+[2K[1G[2m$ babel src --out-dir lib --extensions ".js,.jsx,.ts,.tsx" --config-file "../../.babelrc.js"[22m
+Successfully compiled 3 files with Babel (395ms).
+[2K[1G[2m$ FORMAT=dts rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
+[36m
+[1m./src/index.tsx[22m → [1mtypes/index.d.ts[22m...[39m
+[32mcreated [1mtypes/index.d.ts[22m in [1m1.7s[22m[39m
+[2K[1G[2m$ FORMAT=cjs rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
+[36m
+[1m./src/index.tsx[22m → [1mlib/cjs/index.cjs.js[22m...[39m
+[1m[33m(!) Unresolved dependencies[39m[22m
+[90mhttps://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency[39m
+[1m@echarts-readymade/core[22m (imported by src/Scatter.tsx)
+[32mcreated [1mlib/cjs/index.cjs.js[22m in [1m274ms[22m[39m
+[2K[1G[2m$ FORMAT=es rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
+[36m
+[1m./src/index.tsx[22m → [1mlib/es/index.es.js[22m...[39m
+[1m[33m(!) Unresolved dependencies[39m[22m
+[90mhttps://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency[39m
+[1m@echarts-readymade/core[22m (imported by src/Scatter.tsx)
+[32mcreated [1mlib/es/index.es.js[22m in [1m294ms[22m[39m
+[2K[1G[2m$ NODE_ENV=development FORMAT=umd rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
+[36m
+[1m./src/index.tsx[22m → [1mlib/umd/index.js[22m...[39m
+[1m[33m(!) Missing global variable names[39m[22m
+Use output.globals to specify browser global variable names corresponding to external modules
+[1mreact[22m (guessing 'React')
+[1mbig.js[22m (guessing 'Big')
+[1mecharts[22m (guessing 'echarts')
+[32mcreated [1mlib/umd/index.js[22m in [1m464ms[22m[39m
+[2K[1G[2m$ NODE_ENV=production FORMAT=umd rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
+[36m
+[1m./src/index.tsx[22m → [1mlib/umd/index.min.js[22m...[39m
+[1m[33m(!) Missing global variable names[39m[22m
+Use output.globals to specify browser global variable names corresponding to external modules
+[1mreact[22m (guessing 'B')
+[1mbig.js[22m (guessing 'i')
+[1mecharts[22m (guessing 'echarts')
+[32mcreated [1mlib/umd/index.min.js[22m in [1m344ms[22m[39m
+[2K[1GDone in 22.17s.

@@ -1,0 +1,27 @@
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ yarn run clear && yarn run lib && yarn run dts && yarn run cjs && yarn run esm && yarn run umd && yarn run min[22m
+[2K[1G[2m$ rm -rf lib/ && rm -rf types/[22m
+[2K[1G[2m$ babel src --out-dir lib --extensions ".js,.jsx,.ts,.tsx" --config-file "../../.babelrc.js"[22m
+Successfully compiled 9 files with Babel (257ms).
+[2K[1G[2m$ FORMAT=dts rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
+[36m
+[1m./src/index.ts[22m → [1mtypes/index.d.ts[22m...[39m
+src/bar/index.tsx(4,33): error TS7016: Could not find a declaration file for module '@echarts-readymade/bar'. '/Users/hongdayu/code/echarts-readymade/node_modules/@echarts-readymade/bar/lib/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/echarts-readymade__bar` if it exists or add a new declaration (.d.ts) file containing `declare module '@echarts-readymade/bar';`
+src/bar/index.tsx(5,36): error TS7016: Could not find a declaration file for module '@echarts-readymade/bar'. '/Users/hongdayu/code/echarts-readymade/node_modules/@echarts-readymade/bar/lib/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/echarts-readymade__bar` if it exists or add a new declaration (.d.ts) file containing `declare module '@echarts-readymade/bar';`
+
+[1m[31m[!] [1m(plugin dts) Error: Failed to compile. Check the logs above.[22m[1m[39m[22m
+src/bar/index.tsx
+[2mError: Failed to compile. Check the logs above.
+    at error (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@2.79.2/node_modules/rollup/dist/shared/rollup.js:198:30)
+    at throwPluginError (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@2.79.2/node_modules/rollup/dist/shared/rollup.js:21718:12)
+    at Object.error (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@2.79.2/node_modules/rollup/dist/shared/rollup.js:22672:20)
+    at Object.error (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@2.79.2/node_modules/rollup/dist/shared/rollup.js:21895:42)
+    at Object.transform (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup-plugin-dts@3.0.2_rollup@2.79.2_typescript@4.9.5/node_modules/rollup-plugin-dts/dist/rollup-plugin-dts.cjs:1515:26)
+    at /Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@2.79.2/node_modules/rollup/dist/shared/rollup.js:22879:40[22m
+
+[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[34minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
+[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[34minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.

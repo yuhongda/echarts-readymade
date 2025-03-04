@@ -356,12 +356,12 @@ export const Table: React.FC<TableChartProps> = (props) => {
             dataIndex: item.fieldKey,
             width: item.width || COLUMN_WIDTH,
             fixed: 'left',
-            render: (text: any, row: any, index: number) => {
+            onCell: (row: any, index: number) => {
               let _value = ''
               try {
-                _value = numberWithCommas(text.toFixed(item.decimalLength || 0))
+                _value = numberWithCommas(row[item.fieldKey].toFixed(item.decimalLength || 0))
               } catch {
-                _value = text
+                _value = row[item.fieldKey]
               }
 
               return {
@@ -388,7 +388,12 @@ export const Table: React.FC<TableChartProps> = (props) => {
                   </ValueCell>
                 ),
                 props: {
-                  colSpan: getColSpan(text, index, dimensionListAndValueList, item.fieldKey)
+                  colSpan: getColSpan(
+                    row[item.fieldKey],
+                    index,
+                    dimensionListAndValueList,
+                    item.fieldKey
+                  )
                 }
               }
             }
@@ -414,7 +419,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
               title: '总计',
               dataIndex: 'sum',
               width: COLUMN_WIDTH,
-              render: (text: string, row: any, index: number) => {
+              onCell: (row: any, index: number) => {
                 const isAllPercent =
                   valueList
                     .map((v) => {
@@ -432,11 +437,13 @@ export const Table: React.FC<TableChartProps> = (props) => {
                   _value = row.sum ? row.sum.toFixed(2) : ''
                 }
 
-                return (
-                  <ValueCell title={text} colors={colors} isSum={true}>
-                    {_value}
-                  </ValueCell>
-                )
+                return {
+                  children: (
+                    <ValueCell title={row.sum} colors={colors} isSum={true}>
+                      {_value}
+                    </ValueCell>
+                  )
+                }
               }
             }
           ]
@@ -469,25 +476,25 @@ export const Table: React.FC<TableChartProps> = (props) => {
           ),
           dataIndex: item.fieldKey,
           width: item.width || COLUMN_WIDTH,
-          render: (text: any, row: any, index: number) => {
+          onCell: (row: any, index: number) => {
             let _value = ''
 
             if (item.isPercent) {
               try {
                 _value =
-                  row[item.fieldKey] && !isNaN(text)
+                  row[item.fieldKey] && !isNaN(row[item.fieldKey])
                     ? `${numberWithCommas(
-                        (parseFloat(text) * 100).toFixed(item.decimalLength || 0)
+                        (parseFloat(row[item.fieldKey]) * 100).toFixed(item.decimalLength || 0)
                       )}%`
                     : ''
               } catch {
-                _value = text
+                _value = row[item.fieldKey]
               }
             } else {
               try {
-                _value = numberWithCommas(text.toFixed(item.decimalLength || 0))
+                _value = numberWithCommas(row[item.fieldKey].toFixed(item.decimalLength || 0))
               } catch {
-                _value = text
+                _value = row[item.fieldKey]
               }
             }
 
@@ -515,7 +522,12 @@ export const Table: React.FC<TableChartProps> = (props) => {
                 </ValueCell>
               ),
               props: {
-                colSpan: getColSpan(text, index, dimensionListAndValueList, item.fieldKey)
+                colSpan: getColSpan(
+                  row[item.fieldKey],
+                  index,
+                  dimensionListAndValueList,
+                  item.fieldKey
+                )
               }
             }
           }
@@ -584,7 +596,6 @@ export const Table: React.FC<TableChartProps> = (props) => {
             } else {
               progressDataItem.children = undefined
             }
-
           } else {
             const dimensions: { [key: string]: any } = {}
             dimension.forEach((dim) => {

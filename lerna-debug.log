@@ -1,0 +1,20 @@
+0 silly argv { _: [ 'version' ], lernaVersion: '8.2.1', '$0': 'lerna' }
+1 notice cli v8.2.1
+2 verbose packageConfigs Explicit "packages" configuration found in lerna.json. Resolving packages using the configured glob(s): ["packages/*"]
+3 verbose rootPath /Users/hongdayu/code/echarts-readymade
+4 error Error: Cannot find module 'nx/presets/npm.json'
+4 error Require stack:
+4 error - /Users/hongdayu/.nvm/versions/node/v22.14.0/lib/node_modules/lerna/node_modules/nx/src/config/nx-json.js
+4 error - /Users/hongdayu/.nvm/versions/node/v22.14.0/lib/node_modules/lerna/node_modules/nx/src/daemon/client/client.js
+4 error - /Users/hongdayu/.nvm/versions/node/v22.14.0/lib/node_modules/lerna/node_modules/nx/src/utils/workspace-context.js
+4 error - /Users/hongdayu/.nvm/versions/node/v22.14.0/lib/node_modules/lerna/node_modules/nx/src/daemon/server/server.js
+4 error - /Users/hongdayu/.nvm/versions/node/v22.14.0/lib/node_modules/lerna/node_modules/nx/src/daemon/server/start.js
+4 error     at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+4 error     at Function.resolve (node:internal/modules/helpers:146:19)
+4 error     at readNxJson (/Users/hongdayu/.nvm/versions/node/v22.14.0/lib/node_modules/lerna/node_modules/nx/src/config/nx-json.js:14:48)
+4 error     at getPlugins (/Users/hongdayu/.nvm/versions/node/v22.14.0/lib/node_modules/lerna/node_modules/nx/src/project-graph/plugins/get-plugins.js:23:59)
+4 error     at getCachedSerializedProjectGraphPromise (/Users/hongdayu/.nvm/versions/node/v22.14.0/lib/node_modules/lerna/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:41:60)
+4 error     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+4 error     at async handleRequestProjectGraph (/Users/hongdayu/.nvm/versions/node/v22.14.0/lib/node_modules/lerna/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+4 error     at async handleResult (/Users/hongdayu/.nvm/versions/node/v22.14.0/lib/node_modules/lerna/node_modules/nx/src/daemon/server/server.js:183:16)
+4 error     at async handleMessage (/Users/hongdayu/.nvm/versions/node/v22.14.0/lib/node_modules/lerna/node_modules/nx/src/daemon/server/server.js:109:9)

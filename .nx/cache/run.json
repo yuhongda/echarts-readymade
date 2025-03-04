@@ -1,0 +1,120 @@
+{
+  "run": {
+    "command": "lerna run build --sort --include-dependencies",
+    "startTime": "2025-03-04T11:07:30.435Z",
+    "endTime": "2025-03-04T11:08:01.455Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "@echarts-readymade/core:build",
+      "target": "build",
+      "projectName": "@echarts-readymade/core",
+      "hash": "7904029759287999109",
+      "startTime": "2025-03-04T11:07:30.445Z",
+      "endTime": "2025-03-04T11:07:30.450Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "@echarts-readymade/line:build",
+      "target": "build",
+      "projectName": "@echarts-readymade/line",
+      "hash": "10364198983051302691",
+      "startTime": "2025-03-04T11:07:30.445Z",
+      "endTime": "2025-03-04T11:07:30.450Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "@echarts-readymade/wordcloud:build",
+      "target": "build",
+      "projectName": "@echarts-readymade/wordcloud",
+      "hash": "2494418549146354793",
+      "startTime": "2025-03-04T11:07:30.445Z",
+      "endTime": "2025-03-04T11:07:30.451Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "@echarts-readymade/scatter:build",
+      "target": "build",
+      "projectName": "@echarts-readymade/scatter",
+      "hash": "11663817136582548059",
+      "startTime": "2025-03-04T11:07:30.445Z",
+      "endTime": "2025-03-04T11:07:30.452Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "@echarts-readymade/bar:build",
+      "target": "build",
+      "projectName": "@echarts-readymade/bar",
+      "hash": "4695201656020375869",
+      "startTime": "2025-03-04T11:07:30.445Z",
+      "endTime": "2025-03-04T11:07:30.453Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "@echarts-readymade/bar-horizontal:build",
+      "target": "build",
+      "projectName": "@echarts-readymade/bar-horizontal",
+      "hash": "14790590452474215881",
+      "startTime": "2025-03-04T11:07:30.445Z",
+      "endTime": "2025-03-04T11:07:30.453Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "@echarts-readymade/pie:build",
+      "target": "build",
+      "projectName": "@echarts-readymade/pie",
+      "hash": "16016885977781163843",
+      "startTime": "2025-03-04T11:07:30.445Z",
+      "endTime": "2025-03-04T11:07:30.454Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "@echarts-readymade/table:build",
+      "target": "build",
+      "projectName": "@echarts-readymade/table",
+      "hash": "17340795627865121320",
+      "startTime": "2025-03-04T11:07:30.445Z",
+      "endTime": "2025-03-04T11:07:30.454Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "@echarts-readymade/stack:build",
+      "target": "build",
+      "projectName": "@echarts-readymade/stack",
+      "hash": "16933067625180825387",
+      "startTime": "2025-03-04T11:07:30.445Z",
+      "endTime": "2025-03-04T11:07:40.135Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "echarts-readymade:build",
+      "target": "build",
+      "projectName": "echarts-readymade",
+      "hash": "3718651142030290186",
+      "startTime": "2025-03-04T11:07:30.445Z",
+      "endTime": "2025-03-04T11:08:01.453Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
+}
