@@ -11,132 +11,132 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": ".babelrc.js",
-        "hash": "2208503405545938645"
-      },
-      {
-        "file": ".eslintrc",
-        "hash": "2230674511197175997"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "482136075762345142"
-      },
-      {
-        "file": ".npmrc",
-        "hash": "7644138987896314243"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "13042240888450833742"
-      },
-      {
-        "file": "LICENSE",
-        "hash": "15290267373341219394"
+        "file": "__test__/wordcloud.test.tsx",
+        "hash": "10281428216403295910"
       },
       {
         "file": "README.md",
         "hash": "11610332892631289748"
       },
       {
-        "file": "README.zh-CN.md",
-        "hash": "14103290845053472714"
-      },
-      {
-        "file": "__test__/__snapshots__/core.test.tsx.snap",
-        "hash": "14029871078634329015"
-      },
-      {
-        "file": "__test__/bar-horizontal.test.tsx",
-        "hash": "1496812082309318725"
-      },
-      {
-        "file": "__test__/bar.test.tsx",
-        "hash": "1028410170613455753"
-      },
-      {
-        "file": "__test__/core.test.tsx",
-        "hash": "17244146350298663355"
-      },
-      {
-        "file": "__test__/cssTransform.js",
-        "hash": "17102088679922940097"
-      },
-      {
-        "file": "__test__/echarts-readymade.test.tsx",
-        "hash": "87413824971831105"
-      },
-      {
-        "file": "__test__/fileTransform.js",
-        "hash": "1661329672609510880"
+        "file": ".npmrc",
+        "hash": "7644138987896314243"
       },
       {
         "file": "__test__/jest.babelrc",
         "hash": "13702341610862442169"
       },
       {
-        "file": "__test__/line.test.tsx",
-        "hash": "17292051604393133880"
-      },
-      {
-        "file": "__test__/pie.test.tsx",
-        "hash": "6468957315275287030"
-      },
-      {
-        "file": "__test__/scatter.test.tsx",
-        "hash": "5628729804261954285"
-      },
-      {
-        "file": "__test__/setup.js",
-        "hash": "7578035548354132439"
-      },
-      {
-        "file": "__test__/stack.test.tsx",
-        "hash": "100634089456272744"
-      },
-      {
-        "file": "__test__/wordcloud.test.tsx",
-        "hash": "10281428216403295910"
-      },
-      {
-        "file": "jest.config.ts",
-        "hash": "12470290884625851146"
-      },
-      {
         "file": "lerna-debug.log",
         "hash": "14510539188637270530"
       },
       {
-        "file": "lerna.json",
-        "hash": "17979577733166590251"
+        "file": "LICENSE",
+        "hash": "15290267373341219394"
       },
       {
-        "file": "nx.json",
-        "hash": "5530928307949384841"
-      },
-      {
-        "file": "package-lock.json",
-        "hash": "4710314768426298135"
-      },
-      {
-        "file": "package.json",
-        "hash": "14219639905257919586"
+        "file": "__test__/bar-horizontal.test.tsx",
+        "hash": "1496812082309318725"
       },
       {
         "file": "packages/.DS_Store",
         "hash": "18090672593416643437"
       },
       {
+        "file": ".prettierrc",
+        "hash": "13042240888450833742"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "12470290884625851146"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "4710314768426298135"
+      },
+      {
+        "file": "lerna.json",
+        "hash": "17979577733166590251"
+      },
+      {
+        "file": "__test__/core.test.tsx",
+        "hash": "17244146350298663355"
+      },
+      {
+        "file": ".babelrc.js",
+        "hash": "2208503405545938645"
+      },
+      {
+        "file": "package.json",
+        "hash": "14219639905257919586"
+      },
+      {
+        "file": "__test__/scatter.test.tsx",
+        "hash": "5628729804261954285"
+      },
+      {
         "file": "pnpm-lock.yaml",
         "hash": "9980915336431112013"
+      },
+      {
+        "file": "__test__/fileTransform.js",
+        "hash": "1661329672609510880"
+      },
+      {
+        "file": "__test__/pie.test.tsx",
+        "hash": "6468957315275287030"
+      },
+      {
+        "file": "nx.json",
+        "hash": "5530928307949384841"
+      },
+      {
+        "file": "__test__/echarts-readymade.test.tsx",
+        "hash": "87413824971831105"
+      },
+      {
+        "file": "__test__/cssTransform.js",
+        "hash": "17102088679922940097"
+      },
+      {
+        "file": "__test__/line.test.tsx",
+        "hash": "17292051604393133880"
       },
       {
         "file": "pnpm-workspace.yaml",
         "hash": "2213562884875381374"
       },
       {
+        "file": "__test__/setup.js",
+        "hash": "7578035548354132439"
+      },
+      {
+        "file": ".eslintrc",
+        "hash": "2230674511197175997"
+      },
+      {
+        "file": "README.zh-CN.md",
+        "hash": "14103290845053472714"
+      },
+      {
+        "file": "__test__/stack.test.tsx",
+        "hash": "100634089456272744"
+      },
+      {
         "file": "tsconfig.json",
         "hash": "1823938575115386973"
+      },
+      {
+        "file": "__test__/bar.test.tsx",
+        "hash": "1028410170613455753"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "482136075762345142"
+      },
+      {
+        "file": "__test__/__snapshots__/core.test.tsx.snap",
+        "hash": "14029871078634329015"
       },
       {
         "file": "yarn.lock",
