@@ -486,3 +486,22 @@ Node.js v22.14.0
 [NX Daemon Server] - 2025-03-04T14:11:30.754Z - [WATCHER]: Stopping the watcher for /Users/hongdayu/code/echarts-readymade (sources)
 [NX Daemon Server] - 2025-03-04T14:11:30.755Z - [WATCHER]: Stopping the watcher for /Users/hongdayu/code/echarts-readymade (outputs)
 [NX Daemon Server] - 2025-03-04T14:11:30.757Z - Server stopped because: "10800000ms of inactivity"
+[NX Daemon Server] - 2025-03-05T10:04:31.448Z - Started listening on: /var/folders/_4/8lsl2b8s30d7zd24m76fj2zw0000gn/T/564a868650b9e7e7552b/d.sock
+[NX Daemon Server] - 2025-03-05T10:04:31.452Z - [WATCHER]: Subscribed to changes within: /Users/hongdayu/code/echarts-readymade (native)
+[NX Daemon Server] - 2025-03-05T10:04:31.455Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-03-05T10:04:31.455Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2025-03-05T10:04:31.456Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-03-05T10:04:31.457Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2025-03-05T10:04:31.466Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2025-03-05T10:04:31.466Z - [REQUEST]: 
+[NX Daemon Server] - 2025-03-05T10:04:31.466Z - [REQUEST]: 
+[NX Daemon Server] - 2025-03-05T10:04:31.630Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2025-03-05T10:04:31.630Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2025-03-05T10:04:31.631Z - Time taken for 'total for creating and serializing project graph' 173.315834ms
+[NX Daemon Server] - 2025-03-05T10:04:31.631Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2025-03-05T10:04:31.636Z - Done responding to the client project-graph
+[NX Daemon Server] - 2025-03-05T10:04:31.636Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 173. Response time: 6.
+[NX Daemon Server] - 2025-03-05T10:04:31.641Z - [REQUEST]: Responding to the client. handleContextFileData
+[NX Daemon Server] - 2025-03-05T10:04:31.642Z - Done responding to the client handleContextFileData
+[NX Daemon Server] - 2025-03-05T10:04:31.642Z - Handled GET_CONTEXT_FILE_DATA. Handling time: 0. Response time: 1.
+[NX Daemon Server] - 2025-03-05T10:04:32.975Z - Closed a connection. Number of open connections: 0

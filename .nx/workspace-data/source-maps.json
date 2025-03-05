@@ -1,4 +1,174 @@
 {
+  "demo": {
+    "root": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "sourceRoot": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "name": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "tags": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "tags.npm:public": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.0": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.1": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.2": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.description": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageName": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageExports": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageMain": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.isInPackageManagerWorkspaces": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.dev": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.dev.executor": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.dev.options": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.dev.metadata": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.dev.options.script": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.dev.metadata.scriptContent": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.dev.metadata.runCommand": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.executor": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.options": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.metadata": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.options.script": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.metadata.scriptContent": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.metadata.runCommand": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve.executor": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve.options": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve.metadata": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve.options.script": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve.metadata.scriptContent": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve.metadata.runCommand": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.executor": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.dependsOn": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.options": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ]
+  },
   "packages/bar": {
     "root": [
       "packages/bar/package.json",

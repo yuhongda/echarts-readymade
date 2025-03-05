@@ -2322,6 +2322,79 @@
         },
         "implicitDependencies": []
       }
+    },
+    "demo": {
+      "name": "demo",
+      "type": "lib",
+      "data": {
+        "root": "demo",
+        "sourceRoot": "demo",
+        "name": "demo",
+        "tags": [
+          "npm:public"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "dev",
+              "build",
+              "serve"
+            ]
+          },
+          "js": {
+            "packageName": "demo",
+            "isInPackageManagerWorkspaces": true
+          }
+        },
+        "targets": {
+          "dev": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev"
+            },
+            "metadata": {
+              "scriptContent": "vite",
+              "runCommand": "yarn dev"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "tsc && vite build",
+              "runCommand": "yarn build"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "serve": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "serve"
+            },
+            "metadata": {
+              "scriptContent": "vite preview",
+              "runCommand": "yarn serve"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "nx-release-publish": {
+            "executor": "@nx/js:release-publish",
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "options": {},
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
     }
   },
   "externalNodes": {
@@ -15397,6 +15470,18 @@
       {
         "source": "@echarts-readymade/pie",
         "target": "npm:clone",
+        "type": "static"
+      }
+    ],
+    "demo": [
+      {
+        "source": "demo",
+        "target": "npm:@types/styled-components",
+        "type": "static"
+      },
+      {
+        "source": "demo",
+        "target": "echarts-readymade",
         "type": "static"
       }
     ],
@@ -32425,5 +32510,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1741086455303
+  "computedAt": 1741169071625
 }
