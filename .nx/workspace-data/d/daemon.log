@@ -505,3 +505,15 @@ Node.js v22.14.0
 [NX Daemon Server] - 2025-03-05T10:04:31.642Z - Done responding to the client handleContextFileData
 [NX Daemon Server] - 2025-03-05T10:04:31.642Z - Handled GET_CONTEXT_FILE_DATA. Handling time: 0. Response time: 1.
 [NX Daemon Server] - 2025-03-05T10:04:32.975Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2025-03-05T10:05:04.283Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-03-05T10:05:04.284Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2025-03-05T10:05:04.285Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-03-05T10:05:04.286Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2025-03-05T10:05:04.286Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2025-03-05T10:05:04.286Z - Time taken for 'total for creating and serializing project graph' 0.33029199999873526ms
+[NX Daemon Server] - 2025-03-05T10:05:04.289Z - Done responding to the client project-graph
+[NX Daemon Server] - 2025-03-05T10:05:04.289Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 3.
+[NX Daemon Server] - 2025-03-05T10:05:04.294Z - [REQUEST]: Responding to the client. handleContextFileData
+[NX Daemon Server] - 2025-03-05T10:05:04.295Z - Done responding to the client handleContextFileData
+[NX Daemon Server] - 2025-03-05T10:05:04.295Z - Handled GET_CONTEXT_FILE_DATA. Handling time: 0. Response time: 1.
+[NX Daemon Server] - 2025-03-05T10:05:05.611Z - Closed a connection. Number of open connections: 0
