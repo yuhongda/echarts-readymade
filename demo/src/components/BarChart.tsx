@@ -14,11 +14,11 @@ const Container = styled.div`
 `
 
 export const BarChart: React.FC = () => {
-  const ref = useRef(null)
+  const ref = useRef<any>(null)
   useEffect(() => {
     if (ref.current) {
       // boom!!
-      const instance = ref.current?.getEchartsInstance()
+      const instance = ref.current.getEchartsInstance()
       console.log(instance)
       // so next, you can use Echarts instance api
       // instance.setOption(...)
