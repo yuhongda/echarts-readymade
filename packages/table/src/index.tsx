@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback, useEffect } from 'react'
+import React, { use, useState, useCallback, useEffect } from 'react'
 import Big from 'big.js'
 import cloneDeep from 'clone'
 import type { ChartProps, Field } from '@echarts-readymade/core'
@@ -176,7 +176,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
     setTableOption,
     ...restSettings
   } = props
-  const { data } = useContext(context)
+  const { data } = use(context)
   const COLUMN_WIDTH = columnWidth || 150
 
   if (!data) {

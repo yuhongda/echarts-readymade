@@ -1,10 +1,10 @@
 import React, {
-  useContext,
+  use,
   forwardRef,
   useImperativeHandle,
   useState,
   useCallback,
-  useRef
+  useRef,
 } from 'react'
 import type { ECharts } from 'echarts'
 import Big from 'big.js'
@@ -36,7 +36,7 @@ export const Bar = forwardRef<
     sortXAxis,
     ...restSettings
   } = props
-  const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = useContext(context)
+  const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = use(context)
   const { option, ...resetOptions } = echartsOptions || {}
 
   if (!data) {
@@ -204,25 +204,39 @@ export const Bar = forwardRef<
           })
         })
       }
-      _chartOption.xAxis.data = xAxisData || _data
-      if (valueList?.find((v) => v.yAxisIndex === 1) && _chartOption.yAxis?.[1]) {
+      if (_chartOption.xAxis) {
+        _chartOption.xAxis = {
+          ..._chartOption.xAxis,
+          data: xAxisData || _data
+        }
+      }
+      if (
+        valueList?.find((v) => v.yAxisIndex === 1) &&
+        Array.isArray(_chartOption.yAxis) &&
+        _chartOption.yAxis[1]
+      ) {
         _chartOption.yAxis[1].show = true
       }
       _chartOption.series = echartsSeries || _seriesValueList
     } else {
       // 无对比维度
       if (_chartOption.xAxis) {
-        _chartOption.xAxis.data =
-          xAxisData ||
-          (data &&
-            data.map((d) => {
-              const value = dimension && d[dimension?.[0]?.fieldKey]
-              if (value != null) {
-                return `${value}`
-              }
-            }))
+        _chartOption.xAxis = {
+          ..._chartOption.xAxis,
+          data: xAxisData || [
+            ...new Set(
+              data?.map((d) => {
+                return _dimension && d[_dimension[0].fieldKey]
+              })
+            )
+          ]
+        } 
       }
-      if (valueList?.find((v) => v.yAxisIndex === 1) && _chartOption.yAxis?.[1]) {
+      if (
+        valueList?.find((v) => v.yAxisIndex === 1) &&
+        Array.isArray(_chartOption.yAxis) &&
+        _chartOption.yAxis[1]
+      ) {
         _chartOption.yAxis[1].show = true
       }
       _chartOption.series =

@@ -1,5 +1,5 @@
 import React, {
-  useContext,
+  use,
   useState,
   useCallback,
   useImperativeHandle,
@@ -50,7 +50,7 @@ export const Stack = forwardRef<
     isLineStack,
     ...restSettings
   } = props
-  const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = useContext(context)
+  const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = use(context)
   const { option, ...resetOptions } = echartsOptions || {}
 
   if (!data) {

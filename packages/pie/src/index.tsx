@@ -1,5 +1,5 @@
 import React, {
-  useContext,
+  use,
   useState,
   useCallback,
   useImperativeHandle,
@@ -26,7 +26,7 @@ export const Pie = forwardRef<
 >((props, ref) => {
   const { context, dimension, valueList, echartsSeries, showInRing, setOption, ...restSettings } =
     props
-  const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = useContext(context)
+  const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = use(context)
   const { option, ...resetOptions } = echartsOptions || {}
 
   if (!data) {

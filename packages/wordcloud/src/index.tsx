@@ -1,5 +1,5 @@
 import React, {
-  useContext,
+  use,
   useRef,
   useCallback,
   useState,
@@ -67,7 +67,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
     setWordcloudOption,
     ...restSettings
   } = props
-  const { data } = useContext(context)
+  const { data } = use(context)
 
   if (!data) {
     return null
