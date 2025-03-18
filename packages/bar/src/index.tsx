@@ -19,13 +19,9 @@ export interface BarChartProps extends ChartProps {
   legendPosition?: LegendPosition
 }
 
-export const Bar = forwardRef<
-  {
-    getEchartsInstance: () => ECharts | undefined
-  },
-  BarChartProps
->((props, ref) => {
+export const Bar = (props: BarChartProps) => {
   const {
+    ref,
     context,
     dimension,
     compareDimension,
@@ -286,25 +282,9 @@ export const Bar = forwardRef<
     options = setOption(cloneDeep(options))
   }
 
-  /**
-   * forward the ref for getEchartsInstance()
-   */
-  const reactEchartsRef = useRef<ReactEcharts | null>(null)
-  useImperativeHandle(
-    ref,
-    () => ({
-      getEchartsInstance: () => {
-        return reactEchartsRef?.current?.getEchartsInstance()
-      }
-    }),
-    [reactEchartsRef]
-  )
-
   return (
     <ReactEcharts
-      ref={(e) => {
-        reactEchartsRef.current = e
-      }}
+      ref={ref}
       option={{ ...cloneDeep(options) }}
       notMerge={true}
       opts={{ renderer: 'svg' }}
@@ -312,4 +292,4 @@ export const Bar = forwardRef<
       {...resetOptions}
     />
   )
-})
+}

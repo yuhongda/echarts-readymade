@@ -8,6 +8,7 @@ import { Bar } from '../../../packages/bar/src'
 import styled from 'styled-components'
 import { Radio, Button, Row, Col } from 'antd'
 import type { Field } from 'echarts-readymade'
+import type { EChartsInstance } from 'echarts-for-react'
 
 const Container = styled.div`
   width: 100%;
@@ -15,7 +16,7 @@ const Container = styled.div`
 `
 
 export const BarChart: React.FC = () => {
-  const ref = useRef<any>(null)
+  const ref = useRef<EChartsInstance>(null)
   useEffect(() => {
     if (ref.current) {
       // boom!!
