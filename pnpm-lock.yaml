@@ -223,6 +223,12 @@ importers:
       echarts-for-react:
         specifier: ^3.0.2
         version: 3.0.3(echarts@5.6.0)(react@19.0.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.0.0(react@19.0.0)
 
   packages/bar-horizontal:
     dependencies:
@@ -254,6 +260,12 @@ importers:
       echarts-for-react:
         specifier: ^3.0.2
         version: 3.0.3(echarts@5.6.0)(react@19.0.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.0.0(react@19.0.0)
 
   packages/core:
     dependencies:
@@ -270,6 +282,12 @@ importers:
       echarts-for-react:
         specifier: ^3.0.2
         version: 3.0.3(echarts@5.6.0)(react@19.0.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.0.0(react@19.0.0)
 
   packages/echarts-readymade:
     dependencies:
@@ -313,6 +331,12 @@ importers:
       echarts-for-react:
         specifier: ^3.0.2
         version: 3.0.3(echarts@5.6.0)(react@19.0.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.0.0(react@19.0.0)
 
   packages/line:
     dependencies:
@@ -338,6 +362,12 @@ importers:
       echarts-for-react:
         specifier: ^3.0.2
         version: 3.0.3(echarts@5.6.0)(react@19.0.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.0.0(react@19.0.0)
 
   packages/pie:
     dependencies:
@@ -366,6 +396,12 @@ importers:
       echarts-for-react:
         specifier: ^3.0.2
         version: 3.0.3(echarts@5.6.0)(react@19.0.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.0.0(react@19.0.0)
 
   packages/scatter:
     dependencies:
@@ -394,6 +430,12 @@ importers:
       echarts-for-react:
         specifier: ^3.0.2
         version: 3.0.3(echarts@5.6.0)(react@19.0.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.0.0(react@19.0.0)
 
   packages/stack:
     dependencies:
@@ -422,6 +464,12 @@ importers:
       echarts-for-react:
         specifier: ^3.0.2
         version: 3.0.3(echarts@5.6.0)(react@19.0.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.0.0(react@19.0.0)
 
   packages/table:
     dependencies:
@@ -450,6 +498,12 @@ importers:
       antd:
         specifier: ^4.19.3
         version: 4.24.16(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.0.0(react@19.0.0)
       use-local-storage-state:
         specifier: ^17.0.0
         version: 17.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -484,6 +538,12 @@ importers:
       copyfiles:
         specifier: ^2.4.1
         version: 2.4.1
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.0.0(react@19.0.0)
 
 packages:
 
