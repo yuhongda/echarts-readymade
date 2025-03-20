@@ -1,5 +1,4 @@
 import React from 'react';
-import { ECharts } from 'echarts';
 import { ChartProps, LegendPosition } from '@echarts-readymade/core';
 
 interface LineChartProps extends ChartProps {
@@ -7,8 +6,6 @@ interface LineChartProps extends ChartProps {
     sortXAxis?: boolean;
     legendPosition?: LegendPosition;
 }
-declare const Line: React.ForwardRefExoticComponent<LineChartProps & React.RefAttributes<{
-    getEchartsInstance: () => ECharts | undefined;
-}>>;
+declare const Line: (props: LineChartProps) => React.JSX.Element | null;
 
 export { Line, LineChartProps };

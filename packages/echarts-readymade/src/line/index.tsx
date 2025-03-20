@@ -6,11 +6,6 @@ import type { LineChartProps } from '@echarts-readymade/line'
 
 export interface ILineChartProps extends Omit<LineChartProps, 'context'> {}
 
-export const Line = forwardRef<
-  {
-    getEchartsInstance: () => ECharts | undefined
-  },
-  ILineChartProps
->((props, ref) => {
+export const Line = ({ref, ...props}: ILineChartProps) => {
   return <LineChart ref={ref} context={ChartContext} {...props} />
-})
+}

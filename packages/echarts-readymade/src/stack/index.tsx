@@ -6,11 +6,6 @@ import type { StackChartProps } from '@echarts-readymade/stack'
 
 export interface IStackChartProps extends Omit<StackChartProps, 'context'> {}
 
-export const Stack = forwardRef<
-  {
-    getEchartsInstance: () => ECharts | undefined
-  },
-  IStackChartProps
->((props, ref) => {
+export const Stack = ({ref, ...props}: IStackChartProps) => {
   return <StackChart ref={ref} context={ChartContext} {...props} />
-})
+}

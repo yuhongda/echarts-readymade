@@ -6,11 +6,6 @@ import type { PieChartProps } from '@echarts-readymade/pie'
 
 export interface IPieChartProps extends Omit<PieChartProps, 'context'> {}
 
-export const Pie = forwardRef<
-  {
-    getEchartsInstance: () => ECharts | undefined
-  },
-  IPieChartProps
->((props, ref) => {
+export const Pie = ({ref, ...props}: IPieChartProps) => {
   return <PieChart ref={ref} context={ChartContext} {...props} />
-})
+}

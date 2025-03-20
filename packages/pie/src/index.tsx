@@ -1,11 +1,4 @@
-import React, {
-  use,
-  useState,
-  useCallback,
-  useImperativeHandle,
-  forwardRef,
-  useRef
-} from 'react'
+import React, { use, useState, useCallback, useImperativeHandle, forwardRef, useRef } from 'react'
 import type { ECharts } from 'echarts'
 import Big from 'big.js'
 import cloneDeep from 'clone'
@@ -18,14 +11,17 @@ export interface PieChartProps extends ChartProps {
   legendPosition?: LegendPosition
 }
 
-export const Pie = forwardRef<
-  {
-    getEchartsInstance: () => ECharts | undefined
-  },
-  PieChartProps
->((props, ref) => {
-  const { context, dimension, valueList, echartsSeries, showInRing, setOption, ...restSettings } =
-    props
+export const Pie = (props: PieChartProps) => {
+  const {
+    ref,
+    context,
+    dimension,
+    valueList,
+    echartsSeries,
+    showInRing,
+    setOption,
+    ...restSettings
+  } = props
   const { data, echartsOptions, echartsOptionsBase: chartOption, userOptions } = use(context)
   const { option, ...resetOptions } = echartsOptions || {}
 
@@ -170,26 +166,10 @@ export const Pie = forwardRef<
     options = setOption(cloneDeep(options))
   }
 
-  /**
-   * forward the ref for getEchartsInstance()
-   */
-  const reactEchartsRef = useRef<ReactEcharts | null>(null)
-  useImperativeHandle(
-    ref,
-    () => ({
-      getEchartsInstance: () => {
-        return reactEchartsRef?.current?.getEchartsInstance()
-      }
-    }),
-    [reactEchartsRef]
-  )
-
   return (
     <>
       <ReactEcharts
-        ref={(e) => {
-          reactEchartsRef.current = e
-        }}
+        ref={ref}
         option={{ ...cloneDeep(options) }}
         notMerge={true}
         opts={{ renderer: 'svg' }}
@@ -198,4 +178,4 @@ export const Pie = forwardRef<
       />
     </>
   )
-})
+}

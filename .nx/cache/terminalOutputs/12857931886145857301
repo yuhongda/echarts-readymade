@@ -1,0 +1,38 @@
+
+> @echarts-readymade/wordcloud@1.2.0 build /Users/hongdayu/code/echarts-readymade/packages/wordcloud
+> yarn run clear && yarn run lib && yarn run dts && yarn run cjs && yarn run esm && yarn run umd && yarn run min && yarn run image
+
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ rm -rf lib/ && rm -rf types/[22m
+[2K[1GDone in 0.08s.
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ babel src --out-dir lib --extensions ".js,.jsx,.ts,.tsx" --config-file "../../.babelrc.js"[22m
+Successfully compiled 2 files with Babel (447ms).
+[2K[1GDone in 2.08s.
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ FORMAT=dts rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
+[36m
+[1m./src/index.tsx[22m → [1mtypes/index.d.ts[22m...[39m
+src/index.tsx(78,31): error TS2345: Argument of type 'RefObject<null>' is not assignable to parameter of type 'RefObject<HTMLElement>'.
+  Type 'null' is not assignable to type 'HTMLElement'.
+src/index.tsx(806,7): error TS2322: Type 'ForwardRefExoticComponent<Omit<IKeywordValueCompProps, "ref"> & RefAttributes<{ getRect: () => DOMRect | undefined; }>>' is not assignable to type 'FC<IKeywordValueCompProps>'.
+  Types of parameters 'props' and 'props' are incompatible.
+    Type 'IKeywordValueCompProps' is not assignable to type 'Omit<IKeywordValueCompProps, "ref"> & RefAttributes<{ getRect: () => DOMRect | undefined; }>'.
+      Type 'IKeywordValueCompProps' is not assignable to type 'RefAttributes<{ getRect: () => DOMRect | undefined; }>'.
+        Types of property 'ref' are incompatible.
+          Type 'string | Ref<any>' is not assignable to type 'Ref<{ getRect: () => DOMRect | undefined; }> | undefined'.
+            Type 'string' is not assignable to type 'Ref<{ getRect: () => DOMRect | undefined; }> | undefined'.
+
+[1m[31m[!] [1m(plugin dts) RollupError: [plugin dts] src/index.tsx: Failed to compile. Check the logs above.[22m[1m[39m[22m
+src/index.tsx
+[2m    at getRollupError (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@4.36.0/node_modules/rollup/dist/shared/parseAst.js:285:41)
+    at Object.error (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@4.36.0/node_modules/rollup/dist/shared/parseAst.js:281:42)
+    at Object.error (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@4.36.0/node_modules/rollup/dist/shared/rollup.js:888:32)
+    at Object.error (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@4.36.0/node_modules/rollup/dist/shared/rollup.js:21931:42)
+    at Object.transform (file:///Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup-plugin-dts@3.0.2_rollup@2.79.2_typescript@5.8.2/node_modules/rollup-plugin-dts/dist/rollup-plugin-dts.mjs:1485:26)
+    at /Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@4.36.0/node_modules/rollup/dist/shared/rollup.js:1073:40[22m
+
+
+[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[34minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 1.[39m

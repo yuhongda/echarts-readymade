@@ -1,5 +1,4 @@
 import React from 'react';
-import { ECharts } from 'echarts';
 import { ChartProps, LegendPosition } from '@echarts-readymade/core';
 
 interface BarChartProps extends ChartProps {
@@ -7,8 +6,6 @@ interface BarChartProps extends ChartProps {
     sortXAxis?: boolean;
     legendPosition?: LegendPosition;
 }
-declare const Bar: React.ForwardRefExoticComponent<BarChartProps & React.RefAttributes<{
-    getEchartsInstance: () => ECharts | undefined;
-}>>;
+declare const Bar: (props: BarChartProps) => React.JSX.Element | null;
 
 export { Bar, BarChartProps };

@@ -1,0 +1,30 @@
+
+> echarts-readymade@1.2.0 build /Users/hongdayu/code/echarts-readymade/packages/echarts-readymade
+> yarn run clear && yarn run lib && yarn run dts && yarn run cjs && yarn run esm && yarn run umd && yarn run min
+
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ rm -rf lib/ && rm -rf types/[22m
+[2K[1GDone in 0.06s.
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ babel src --out-dir lib --extensions ".js,.jsx,.ts,.tsx" --config-file "../../.babelrc.js"[22m
+Successfully compiled 9 files with Babel (321ms).
+[2K[1GDone in 1.84s.
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ FORMAT=dts rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
+[36m
+[1m./src/index.ts[22m → [1mtypes/index.d.ts[22m...[39m
+src/line/index.tsx(9,23): error TS2339: Property 'ref' does not exist on type 'ILineChartProps'.
+
+[1m[31m[!] [1m(plugin dts) RollupError: [plugin dts] src/line/index.tsx: Failed to compile. Check the logs above.[22m[1m[39m[22m
+src/line/index.tsx
+[2m    at getRollupError (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@4.36.0/node_modules/rollup/dist/shared/parseAst.js:285:41)
+    at Object.error (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@4.36.0/node_modules/rollup/dist/shared/parseAst.js:281:42)
+    at Object.error (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@4.36.0/node_modules/rollup/dist/shared/rollup.js:888:32)
+    at Object.error (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@4.36.0/node_modules/rollup/dist/shared/rollup.js:21931:42)
+    at Object.transform (file:///Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup-plugin-dts@3.0.2_rollup@2.79.2_typescript@5.8.2/node_modules/rollup-plugin-dts/dist/rollup-plugin-dts.mjs:1485:26)
+    at /Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@4.36.0/node_modules/rollup/dist/shared/rollup.js:1073:40[22m
+
+
+[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[34minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 1.[39m

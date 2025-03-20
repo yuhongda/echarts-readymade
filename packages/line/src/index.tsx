@@ -1,11 +1,4 @@
-import React, {
-  use,
-  useState,
-  useCallback,
-  useImperativeHandle,
-  forwardRef,
-  useRef
-} from 'react'
+import React, { use, useState, useCallback, useImperativeHandle, forwardRef, useRef } from 'react'
 import type { ECharts } from 'echarts'
 import Big from 'big.js'
 import cloneDeep from 'clone'
@@ -19,13 +12,9 @@ export interface LineChartProps extends ChartProps {
   legendPosition?: LegendPosition
 }
 
-export const Line = forwardRef<
-  {
-    getEchartsInstance: () => ECharts | undefined
-  },
-  LineChartProps
->((props, ref) => {
+export const Line = (props: LineChartProps) => {
   const {
+    ref,
     context,
     dimension,
     compareDimension,
@@ -202,24 +191,40 @@ export const Line = forwardRef<
           })
         })
       }
-      _chartOption.xAxis.data = xAxisData || _data
-      if (valueList?.find((v) => v.yAxisIndex === 1) && _chartOption.yAxis?.[1]) {
+
+      _chartOption.xAxis = {
+        ..._chartOption.xAxis,
+        data: xAxisData || _data
+      }
+
+      if (
+        valueList?.find((v) => v.yAxisIndex === 1) &&
+        Array.isArray(_chartOption.yAxis) &&
+        _chartOption.yAxis?.[1]
+      ) {
         _chartOption.yAxis[1].show = true
       }
       _chartOption.series = echartsSeries || _seriesValueList
     } else {
       // 无对比维度
-      _chartOption.xAxis.data =
-        xAxisData ||
-        (data &&
-          data.map((d) => {
-            const value = dimension && d[dimension?.[0]?.fieldKey]
-            if (value != null) {
-              return `${value}`
-            }
-          }))
+      _chartOption.xAxis = {
+        ..._chartOption.xAxis,
+        data:
+          xAxisData ||
+          (data &&
+            data.map((d) => {
+              const value = dimension && d[dimension?.[0]?.fieldKey]
+              if (value != null) {
+                return `${value}`
+              }
+            }))
+      }
 
-      if (valueList?.find((v) => v.yAxisIndex === 1) && _chartOption.yAxis?.[1]) {
+      if (
+        valueList?.find((v) => v.yAxisIndex === 1) &&
+        Array.isArray(_chartOption.yAxis) &&
+        _chartOption.yAxis?.[1]
+      ) {
         _chartOption.yAxis[1].show = true
       }
       _chartOption.series =
@@ -273,25 +278,9 @@ export const Line = forwardRef<
     options = setOption(cloneDeep(options))
   }
 
-  /**
-   * forward the ref for getEchartsInstance()
-   */
-  const reactEchartsRef = useRef<ReactEcharts | null>(null)
-  useImperativeHandle(
-    ref,
-    () => ({
-      getEchartsInstance: () => {
-        return reactEchartsRef?.current?.getEchartsInstance()
-      }
-    }),
-    [reactEchartsRef]
-  )
-
   return (
     <ReactEcharts
-      ref={(e) => {
-        reactEchartsRef.current = e
-      }}
+      ref={ref}
       option={{ ...cloneDeep(options) }}
       notMerge={true}
       opts={{ renderer: 'svg' }}
@@ -299,4 +288,4 @@ export const Line = forwardRef<
       {...resetOptions}
     />
   )
-})
+}

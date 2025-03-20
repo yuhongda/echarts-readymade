@@ -161,6 +161,7 @@ export interface TableChartProps extends Omit<ChartProps, 'echartsSeries' | 'set
 
 export const Table: React.FC<TableChartProps> = (props) => {
   const {
+    ref,
     context,
     dimension = [],
     compareDimension,
@@ -802,6 +803,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
   return (
     <div ref={wrapperRef} style={{ height: blockWrapHeight || 500 }}>
       <StyledTable
+        ref={ref}
         size="small"
         color={colors}
         dimensionCount={dimension.length}

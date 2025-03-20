@@ -46,7 +46,7 @@ importers:
         version: 21.1.0(rollup@2.79.2)
       '@rollup/plugin-typescript':
         specifier: ^8.3.0
-        version: 8.5.0(rollup@2.79.2)(tslib@2.8.1)(typescript@4.9.5)
+        version: 8.5.0(rollup@2.79.2)(tslib@2.8.1)(typescript@5.8.2)
       '@testing-library/jest-dom':
         specifier: ^5.16.1
         version: 5.17.0
@@ -94,7 +94,7 @@ importers:
         version: 1.9.0
       jest:
         specifier: ^27.0.6
-        version: 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5))
+        version: 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2))
       jest-canvas-mock:
         specifier: ^2.3.1
         version: 2.5.2
@@ -103,7 +103,7 @@ importers:
         version: 4.4.2
       jest-enzyme:
         specifier: ^7.1.2
-        version: 7.1.2(enzyme@3.11.0)(jest@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5)))(react@19.0.0)
+        version: 7.1.2(enzyme@3.11.0)(jest@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2)))(react@19.0.0)
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -115,7 +115,7 @@ importers:
         version: 2.79.2
       rollup-plugin-dts:
         specifier: ^3.0.2
-        version: 3.0.2(rollup@2.79.2)(typescript@4.9.5)
+        version: 3.0.2(rollup@2.79.2)(typescript@5.8.2)
       rollup-plugin-esbuild:
         specifier: ^4.7.2
         version: 4.10.3(esbuild@0.14.54)(rollup@2.79.2)
@@ -127,7 +127,7 @@ importers:
         version: 2.2.0
       rollup-plugin-typescript2:
         specifier: ^0.31.1
-        version: 0.31.2(rollup@2.79.2)(typescript@4.9.5)
+        version: 0.31.2(rollup@2.79.2)(typescript@5.8.2)
       rollup-plugin-visualizer:
         specifier: ^5.5.2
         version: 5.14.0(rollup@2.79.2)
@@ -136,10 +136,10 @@ importers:
         version: 6.1.16(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       ts-node:
         specifier: ^10.4.0
-        version: 10.9.2(@types/node@22.13.10)(typescript@4.9.5)
+        version: 10.9.2(@types/node@22.13.10)(typescript@5.8.2)
       typescript:
-        specifier: ^4.3.5
-        version: 4.9.5
+        specifier: ^5.8.2
+        version: 5.8.2
       wordcloud:
         specifier: ^1.2.2
         version: 1.2.3
@@ -233,8 +233,8 @@ importers:
   packages/bar-horizontal:
     dependencies:
       '@echarts-readymade/core':
-        specifier: ^1.2.0
-        version: 1.2.0
+        specifier: workspace:*
+        version: link:../core
       big.js:
         specifier: ^6.1.1
         version: 6.2.2
@@ -5679,11 +5679,6 @@ packages:
   typedarray-to-buffer@3.1.5:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}
 
-  typescript@4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
-
   typescript@5.8.2:
     resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
     engines: {node: '>=14.17'}
@@ -7271,7 +7266,7 @@ snapshots:
       jest-util: 27.5.1
       slash: 3.0.0
 
-  '@jest/core@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5))':
+  '@jest/core@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2))':
     dependencies:
       '@jest/console': 27.5.1
       '@jest/reporters': 27.5.1
@@ -7285,7 +7280,7 @@ snapshots:
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-changed-files: 27.5.1
-      jest-config: 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5))
+      jest-config: 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2))
       jest-haste-map: 27.5.1
       jest-message-util: 27.5.1
       jest-regex-util: 27.5.1
@@ -7613,12 +7608,12 @@ snapshots:
       mini-svg-data-uri: 1.4.4
       rollup: 4.36.0
 
-  '@rollup/plugin-typescript@8.5.0(rollup@2.79.2)(tslib@2.8.1)(typescript@4.9.5)':
+  '@rollup/plugin-typescript@8.5.0(rollup@2.79.2)(tslib@2.8.1)(typescript@5.8.2)':
     dependencies:
       '@rollup/pluginutils': 3.1.0(rollup@2.79.2)
       resolve: 1.22.10
       rollup: 2.79.2
-      typescript: 4.9.5
+      typescript: 5.8.2
     optionalDependencies:
       tslib: 2.8.1
 
@@ -9893,16 +9888,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  jest-cli@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5)):
+  jest-cli@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2)):
     dependencies:
-      '@jest/core': 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5))
+      '@jest/core': 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2))
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
       chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
       import-local: 3.2.0
-      jest-config: 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5))
+      jest-config: 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2))
       jest-util: 27.5.1
       jest-validate: 27.5.1
       prompts: 2.4.2
@@ -9914,7 +9909,7 @@ snapshots:
       - ts-node
       - utf-8-validate
 
-  jest-config@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5)):
+  jest-config@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2)):
     dependencies:
       '@babel/core': 7.26.10
       '@jest/test-sequencer': 27.5.1
@@ -9941,7 +9936,7 @@ snapshots:
       slash: 3.0.0
       strip-json-comments: 3.1.1
     optionalDependencies:
-      ts-node: 10.9.2(@types/node@22.13.10)(typescript@4.9.5)
+      ts-node: 10.9.2(@types/node@22.13.10)(typescript@5.8.2)
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -9980,10 +9975,10 @@ snapshots:
       jest-util: 27.5.1
       pretty-format: 27.5.1
 
-  jest-environment-enzyme@7.1.2(enzyme@3.11.0)(jest@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5)))(react@19.0.0):
+  jest-environment-enzyme@7.1.2(enzyme@3.11.0)(jest@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2)))(react@19.0.0):
     dependencies:
       enzyme: 3.11.0
-      jest: 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5))
+      jest: 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2))
       jest-environment-jsdom: 24.9.0
       react: 19.0.0
     transitivePeerDependencies:
@@ -10028,13 +10023,13 @@ snapshots:
       jest-mock: 27.5.1
       jest-util: 27.5.1
 
-  jest-enzyme@7.1.2(enzyme@3.11.0)(jest@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5)))(react@19.0.0):
+  jest-enzyme@7.1.2(enzyme@3.11.0)(jest@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2)))(react@19.0.0):
     dependencies:
       enzyme: 3.11.0
       enzyme-matchers: 7.1.2(enzyme@3.11.0)
       enzyme-to-json: 3.6.2(enzyme@3.11.0)
-      jest: 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5))
-      jest-environment-enzyme: 7.1.2(enzyme@3.11.0)(jest@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5)))(react@19.0.0)
+      jest: 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2))
+      jest-environment-enzyme: 7.1.2(enzyme@3.11.0)(jest@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2)))(react@19.0.0)
     transitivePeerDependencies:
       - bufferutil
       - react
@@ -10323,11 +10318,11 @@ snapshots:
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
-  jest@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5)):
+  jest@27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2)):
     dependencies:
-      '@jest/core': 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5))
+      '@jest/core': 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2))
       import-local: 3.2.0
-      jest-cli: 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5))
+      jest-cli: 27.5.1(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2))
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -11846,11 +11841,11 @@ snapshots:
     dependencies:
       glob: 7.2.3
 
-  rollup-plugin-dts@3.0.2(rollup@2.79.2)(typescript@4.9.5):
+  rollup-plugin-dts@3.0.2(rollup@2.79.2)(typescript@5.8.2):
     dependencies:
       magic-string: 0.25.9
       rollup: 2.79.2
-      typescript: 4.9.5
+      typescript: 5.8.2
     optionalDependencies:
       '@babel/code-frame': 7.26.2
 
@@ -11880,7 +11875,7 @@ snapshots:
       magic-string: 0.25.9
       rollup-pluginutils: 2.8.2
 
-  rollup-plugin-typescript2@0.31.2(rollup@2.79.2)(typescript@4.9.5):
+  rollup-plugin-typescript2@0.31.2(rollup@2.79.2)(typescript@5.8.2):
     dependencies:
       '@rollup/pluginutils': 4.2.1
       '@yarn-tool/resolve-package': 1.0.47
@@ -11889,7 +11884,7 @@ snapshots:
       resolve: 1.22.10
       rollup: 2.79.2
       tslib: 2.8.1
-      typescript: 4.9.5
+      typescript: 5.8.2
 
   rollup-plugin-visualizer@5.14.0(rollup@2.79.2):
     dependencies:
@@ -12419,7 +12414,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  ts-node@10.9.2(@types/node@22.13.10)(typescript@4.9.5):
+  ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
@@ -12433,7 +12428,7 @@ snapshots:
       create-require: 1.1.1
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 4.9.5
+      typescript: 5.8.2
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
@@ -12493,8 +12488,6 @@ snapshots:
   typedarray-to-buffer@3.1.5:
     dependencies:
       is-typedarray: 1.0.0
-
-  typescript@4.9.5: {}
 
   typescript@5.8.2: {}
 

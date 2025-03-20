@@ -36,7 +36,7 @@
     "release:next": "npm publish --tag next"
   },
   "dependencies": {
-    "@echarts-readymade/core": "^1.2.0",
+    "@echarts-readymade/core": "workspace:*",
     "big.js": "^6.1.1",
     "styled-components": "^5.3.3"
   },

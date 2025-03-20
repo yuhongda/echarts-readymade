@@ -35,14 +35,14 @@
     "release:next": "npm publish --tag next"
   },
   "dependencies": {
-    "@echarts-readymade/bar": "^1.2.0",
-    "@echarts-readymade/bar-horizontal": "^1.2.0",
-    "@echarts-readymade/core": "^1.2.0",
-    "@echarts-readymade/line": "^1.2.0",
-    "@echarts-readymade/pie": "^1.2.0",
-    "@echarts-readymade/scatter": "^1.2.0",
-    "@echarts-readymade/stack": "^1.2.0",
-    "@echarts-readymade/wordcloud": "^1.2.0"
+    "@echarts-readymade/bar": "workspace:*",
+    "@echarts-readymade/bar-horizontal": "workspace:*",
+    "@echarts-readymade/core": "workspace:*",
+    "@echarts-readymade/line": "workspace:*",
+    "@echarts-readymade/pie": "workspace:*",
+    "@echarts-readymade/scatter": "workspace:*",
+    "@echarts-readymade/stack": "workspace:*",
+    "@echarts-readymade/wordcloud": "workspace:*"
   },
   "devDependencies": {
     "@rollup/plugin-image": "^2.1.1",

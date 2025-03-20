@@ -1,11 +1,4 @@
-import React, {
-  use,
-  useState,
-  useCallback,
-  useImperativeHandle,
-  forwardRef,
-  useRef
-} from 'react'
+import React, { use, useState, useCallback, useImperativeHandle, forwardRef, useRef } from 'react'
 import type { ECharts } from 'echarts'
 import Big from 'big.js'
 import cloneDeep from 'clone'
@@ -23,13 +16,9 @@ export interface ScatterChartProps extends ChartProps {
   colorMap?: { name: string; color: string }[]
 }
 
-export const Scatter = forwardRef<
-  {
-    getEchartsInstance: () => ECharts | undefined
-  },
-  ScatterChartProps
->((props, ref) => {
+export const Scatter = (props: ScatterChartProps) => {
   const {
+    ref,
     context,
     dimension,
     compareDimension,
@@ -116,7 +105,7 @@ export const Scatter = forwardRef<
       })
 
       // 散点颜色
-      let userColorFromSetOption: string[] | null = null
+      let userColorFromSetOption: any = undefined
       if (setOption) {
         const option = setOption(cloneDeep(_chartOption))
         userColorFromSetOption = option.color
@@ -128,7 +117,7 @@ export const Scatter = forwardRef<
 
           if (userColorFromSetOption) {
             return userColorFromSetOption[index % userColorFromSetOption.length]
-          } else if (userColor) {
+          } else if (userColor && Array.isArray(userColor)) {
             return userColor[index % userColor.length]
           } else {
             return COLOR_LIST[index % COLOR_LIST.length]
@@ -160,43 +149,68 @@ export const Scatter = forwardRef<
         [getColor]
       )
 
-      _chartOption.grid.x = 70
-      _chartOption.grid.x2 = 130
-      _chartOption.grid.top = 50
-      _chartOption.grid.bottom = 130
-      _chartOption.xAxis.name = _valueList[0].fieldName
-      _chartOption.xAxis.nameLocation = 'center'
-      _chartOption.xAxis.nameTextStyle = {
-        color: '#666'
-      }
-      _chartOption.xAxis.nameGap = 40
-      _chartOption.xAxis.type = 'value'
-      _chartOption.xAxis.show = true
-      _chartOption.xAxis.axisLabel.formatter = (value: any) => {
-        return `${value}${_valueList[0].isPercent ? '%' : ''}`
+      _chartOption.grid = {
+        ..._chartOption.grid,
+        left: 70,
+        right: 130,
+        top: 50,
+        bottom: 130
       }
 
-      _chartOption.yAxis[0].show = true
-
-      _chartOption.yAxis[0].name = _valueList[1].fieldName
-      // _chartOption.yAxis[0].nameRotate = -90;
-      _chartOption.yAxis[0].nameGap = 60
-      _chartOption.yAxis[0].nameLocation = 'center'
-      _chartOption.yAxis[0].nameTextStyle = {
-        color: '#666'
+      if (!Array.isArray(_chartOption.xAxis)) {
+        _chartOption.xAxis = {
+          ..._chartOption.xAxis,
+          name: _valueList[0].fieldName,
+          nameLocation: 'middle',
+          nameTextStyle: {
+            color: '#666'
+          },
+          nameGap: 40,
+          type: 'value',
+          show: true,
+          axisLabel: {
+            ...(_chartOption.xAxis?.axisLabel ?? {}),
+            formatter: (value: any) => {
+              return `${value}${_valueList[0].isPercent ? '%' : ''}`
+            }
+          },
+          boundaryGap: ['1%', '1%'],
+          axisLine: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          offset: 20
+        }
       }
-      _chartOption.yAxis[0].axisLabel.formatter = (value: any) => {
-        return `${value}${_valueList[1].isPercent ? '%' : ''}`
-      }
 
-      _chartOption.xAxis.boundaryGap = ['1%', '1%']
-      _chartOption.xAxis.axisLine.show = false
-      _chartOption.xAxis.axisTick.show = false
-      _chartOption.xAxis.offset = 20
-      _chartOption.yAxis[0].axisLine.show = false
-      _chartOption.yAxis[0].axisTick.show = false
-      _chartOption.yAxis[0].boundaryGap = ['1%', '1%']
-      _chartOption.yAxis[0].offset = 20
+      if (Array.isArray(_chartOption.yAxis)) {
+        _chartOption.yAxis[0] = {
+          ..._chartOption.yAxis[0],
+          show: true,
+          name: _valueList[1].fieldName,
+          nameGap: 60,
+          nameLocation: 'middle',
+          nameTextStyle: {
+            color: '#666'
+          },
+          axisLabel: {
+            ...(_chartOption.yAxis[0]?.axisLabel ?? {}),
+            formatter: (value: any) => {
+              return `${value}${_valueList[1].isPercent ? '%' : ''}`
+            }
+          },
+          axisLine: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          boundaryGap: ['1%', '1%'],
+          offset: 20
+        }
+      }
 
       _chartOption.tooltip = {
         show: true,
@@ -401,21 +415,30 @@ export const Scatter = forwardRef<
       _chartOption.dataZoom = _dataZoom
 
       // 为了使dataZoom中x轴的endValue生效，这里要设置下x轴的max
-      _chartOption.xAxis.max =
-        (xMax && Big(xMax).plus(Big(xMax).times(0.1).abs().toNumber()).toNumber()) || 100
-      _chartOption.yAxis[0].max =
-        (yMax && Big(yMax).plus(Big(yMax).times(0.1).abs().toNumber()).toNumber()) || 100
-      _chartOption.xAxis.axisLabel.formatter = (value: any) => {
-        if (xMax <= 100 && value > 100) {
-          return ''
+      if (!Array.isArray(_chartOption.xAxis) && Array.isArray(_chartOption.yAxis)) {
+        _chartOption.xAxis = {
+          ..._chartOption.xAxis,
+          max: (xMax && Big(xMax).plus(Big(xMax).times(0.1).abs().toNumber()).toNumber()) || 100,
+          axisLabel: {
+            ...(_chartOption.xAxis?.axisLabel ?? {}),
+            formatter: (value: any) => {
+              if (xMax <= 100 && value > 100) {
+                return ''
+              }
+              return `${value}${_valueList[0].isPercent ? '%' : ''}`
+            }
+          }
         }
-        return `${value}${_valueList[0].isPercent ? '%' : ''}`
-      }
-      _chartOption.yAxis[0].axisLabel.formatter = (value: any) => {
-        if (yMax <= 100 && value > 100) {
-          return ''
+          
+        _chartOption.yAxis[0].max =
+          (yMax && Big(yMax).plus(Big(yMax).times(0.1).abs().toNumber()).toNumber()) || 100
+
+        _chartOption.yAxis[0].axisLabel.formatter = (value: any) => {
+          if (yMax <= 100 && value > 100) {
+            return ''
+          }
+          return `${value}${_valueList[1].isPercent ? '%' : ''}`
         }
-        return `${value}${_valueList[1].isPercent ? '%' : ''}`
       }
     } else {
       // 无对比维度
@@ -711,25 +734,9 @@ export const Scatter = forwardRef<
     datazoom: onDataZoomChange
   }
 
-  /**
-   * forward the ref for getEchartsInstance()
-   */
-  const reactEchartsRef = useRef<ReactEcharts | null>(null)
-  useImperativeHandle(
-    ref,
-    () => ({
-      getEchartsInstance: () => {
-        return reactEchartsRef?.current?.getEchartsInstance()
-      }
-    }),
-    [reactEchartsRef]
-  )
-
   return (
     <ReactEcharts
-      ref={(e) => {
-        reactEchartsRef.current = e
-      }}
+      ref={ref}
       option={{ ...cloneDeep(options) }}
       notMerge={true}
       opts={{ renderer: 'svg' }}
@@ -738,4 +745,4 @@ export const Scatter = forwardRef<
       {...resetOptions}
     />
   )
-})
+}

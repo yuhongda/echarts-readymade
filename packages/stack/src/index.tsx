@@ -32,13 +32,9 @@ export interface StackChartProps extends ChartProps {
   isLineStack?: boolean
 }
 
-export const Stack = forwardRef<
-  {
-    getEchartsInstance: () => ECharts | undefined
-  },
-  StackChartProps
->((props, ref) => {
+export const Stack = (props: StackChartProps) => {
   const {
+    ref,
     context,
     dimension,
     compareDimension,
@@ -160,7 +156,11 @@ export const Stack = forwardRef<
         }
       })
 
-      _chartOption.xAxis.data = xAxisData || _dataXAxis
+      _chartOption.xAxis = {
+        ..._chartOption.xAxis,
+        data: xAxisData || _dataXAxis
+      }
+
       _chartOption.yAxis = [
         {
           show: true,
@@ -182,7 +182,7 @@ export const Stack = forwardRef<
             lineStyle: {}
           },
           min: 0,
-          max: isPercentMode ? 100 : null
+          max: isPercentMode ? 100 : undefined
         },
         {
           show: false,
@@ -266,7 +266,11 @@ export const Stack = forwardRef<
         })
       })
 
-      _chartOption.xAxis.data = xAxisData || _dataXAxis
+      _chartOption.xAxis = {
+        ..._chartOption.xAxis,
+        data: xAxisData || _dataXAxis
+      }
+
       _chartOption.yAxis = [
         {
           show: true,
@@ -288,7 +292,7 @@ export const Stack = forwardRef<
             lineStyle: {}
           },
           min: 0,
-          max: isPercentMode ? 100 : null
+          max: isPercentMode ? 100 : undefined
         },
         {
           show: false,
@@ -386,26 +390,10 @@ export const Stack = forwardRef<
     options = setOption(cloneDeep(options))
   }
 
-  /**
-   * forward the ref for getEchartsInstance()
-   */
-  const reactEchartsRef = useRef<ReactEcharts | null>(null)
-  useImperativeHandle(
-    ref,
-    () => ({
-      getEchartsInstance: () => {
-        return reactEchartsRef?.current?.getEchartsInstance()
-      }
-    }),
-    [reactEchartsRef]
-  )
-
   return (
     <>
       <ReactEcharts
-        ref={(e) => {
-          reactEchartsRef.current = e
-        }}
+        ref={ref}
         option={{ ...cloneDeep(options) }}
         notMerge={true}
         opts={{ renderer: 'svg' }}
@@ -414,4 +402,4 @@ export const Stack = forwardRef<
       />
     </>
   )
-})
+}

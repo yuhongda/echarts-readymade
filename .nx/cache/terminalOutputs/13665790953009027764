@@ -1,0 +1,102 @@
+
+> @echarts-readymade/scatter@1.2.0 build /Users/hongdayu/code/echarts-readymade/packages/scatter
+> yarn run clear && yarn run lib && yarn run dts && yarn run cjs && yarn run esm && yarn run umd && yarn run min
+
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ rm -rf lib/ && rm -rf types/[22m
+[2K[1GDone in 0.08s.
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ babel src --out-dir lib --extensions ".js,.jsx,.ts,.tsx" --config-file "../../.babelrc.js"[22m
+Successfully compiled 3 files with Babel (505ms).
+[2K[1GDone in 1.96s.
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ FORMAT=dts rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
+[36m
+[1m./src/index.tsx[22m → [1mtypes/index.d.ts[22m...[39m
+src/Scatter.tsx(28,5): error TS2339: Property 'ref' does not exist on type 'ScatterChartProps'.
+src/Scatter.tsx(118,9): error TS2322: Type 'ZRColor | ZRColor[] | undefined' is not assignable to type 'string[] | null'.
+  Type 'undefined' is not assignable to type 'string[] | null'.
+src/Scatter.tsx(128,20): error TS7053: Element implicitly has an 'any' type because expression of type 'number' can't be used to index type 'ZRColor | ZRColor[]'.
+  No index signature with a parameter of type 'number' was found on type 'ZRColor | ZRColor[]'.
+src/Scatter.tsx(128,48): error TS2339: Property 'length' does not exist on type 'ZRColor | ZRColor[]'.
+  Property 'length' does not exist on type 'LinearGradientObject'.
+src/Scatter.tsx(159,7): error TS18048: '_chartOption.grid' is possibly 'undefined'.
+src/Scatter.tsx(159,25): error TS2339: Property 'x' does not exist on type 'GridOption | GridOption[]'.
+  Property 'x' does not exist on type 'GridOption'.
+src/Scatter.tsx(160,7): error TS18048: '_chartOption.grid' is possibly 'undefined'.
+src/Scatter.tsx(160,25): error TS2339: Property 'x2' does not exist on type 'GridOption | GridOption[]'.
+  Property 'x2' does not exist on type 'GridOption'.
+src/Scatter.tsx(161,7): error TS18048: '_chartOption.grid' is possibly 'undefined'.
+src/Scatter.tsx(161,25): error TS2339: Property 'top' does not exist on type 'GridOption | GridOption[]'.
+  Property 'top' does not exist on type 'GridOption[]'.
+src/Scatter.tsx(162,7): error TS18048: '_chartOption.grid' is possibly 'undefined'.
+src/Scatter.tsx(162,25): error TS2339: Property 'bottom' does not exist on type 'GridOption | GridOption[]'.
+  Property 'bottom' does not exist on type 'GridOption[]'.
+src/Scatter.tsx(163,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/Scatter.tsx(163,26): error TS2339: Property 'name' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'name' does not exist on type 'XAXisOption[]'.
+src/Scatter.tsx(164,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/Scatter.tsx(164,26): error TS2339: Property 'nameLocation' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'nameLocation' does not exist on type 'XAXisOption[]'.
+src/Scatter.tsx(165,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/Scatter.tsx(165,26): error TS2339: Property 'nameTextStyle' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'nameTextStyle' does not exist on type 'XAXisOption[]'.
+src/Scatter.tsx(168,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/Scatter.tsx(168,26): error TS2339: Property 'nameGap' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'nameGap' does not exist on type 'XAXisOption[]'.
+src/Scatter.tsx(169,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/Scatter.tsx(169,26): error TS2339: Property 'type' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'type' does not exist on type 'XAXisOption[]'.
+src/Scatter.tsx(170,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/Scatter.tsx(170,26): error TS2339: Property 'show' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'show' does not exist on type 'XAXisOption[]'.
+src/Scatter.tsx(171,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/Scatter.tsx(171,26): error TS2339: Property 'axisLabel' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'axisLabel' does not exist on type 'XAXisOption[]'.
+src/Scatter.tsx(175,7): error TS18048: '_chartOption.yAxis' is possibly 'undefined'.
+src/Scatter.tsx(175,7): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type 'YAXisOption | YAXisOption[]'.
+  Property '0' does not exist on type 'YAXisOption | YAXisOption[]'.
+src/Scatter.tsx(177,7): error TS18048: '_chartOption.yAxis' is possibly 'undefined'.
+src/Scatter.tsx(177,7): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type 'YAXisOption | YAXisOption[]'.
+  Property '0' does not exist on type 'YAXisOption | YAXisOption[]'.
+src/Scatter.tsx(179,7): error TS18048: '_chartOption.yAxis' is possibly 'undefined'.
+src/Scatter.tsx(179,7): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type 'YAXisOption | YAXisOption[]'.
+  Property '0' does not exist on type 'YAXisOption | YAXisOption[]'.
+src/Scatter.tsx(180,7): error TS18048: '_chartOption.yAxis' is possibly 'undefined'.
+src/Scatter.tsx(180,7): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type 'YAXisOption | YAXisOption[]'.
+  Property '0' does not exist on type 'YAXisOption | YAXisOption[]'.
+src/Scatter.tsx(181,7): error TS18048: '_chartOption.yAxis' is possibly 'undefined'.
+src/Scatter.tsx(181,7): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type 'YAXisOption | YAXisOption[]'.
+  Property '0' does not exist on type 'YAXisOption | YAXisOption[]'.
+src/Scatter.tsx(184,7): error TS18048: '_chartOption.yAxis' is possibly 'undefined'.
+src/Scatter.tsx(184,7): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type 'YAXisOption | YAXisOption[]'.
+  Property '0' does not exist on type 'YAXisOption | YAXisOption[]'.
+src/Scatter.tsx(188,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/Scatter.tsx(188,26): error TS2339: Property 'boundaryGap' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'boundaryGap' does not exist on type 'AxisBaseOptionCommon & { gridIndex?: number | undefined; gridId?: string | undefined; position?: CartesianAxisPosition | undefined; offset?: number | undefined; categorySortInfo?: OrdinalSortInfo | undefined; } & { ...; }'.
+src/Scatter.tsx(189,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/Scatter.tsx(189,26): error TS2339: Property 'axisLine' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'axisLine' does not exist on type 'XAXisOption[]'.
+src/Scatter.tsx(190,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/Scatter.tsx(190,26): error TS2339: Property 'axisTick' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'axisTick' does not exist on type 'XAXisOption[]'.
+src/Scatter.tsx(191,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/Scatter.tsx(191,26): error TS2339: Property 'offset' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'offset' does not exist on type 'XAXisOption[]'.
+src/Scatter.tsx(192,7): error TS18048: '_chartOption.yAxis' is possibly 'undefined'.
+src/Scatter.tsx(192,7): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type 'YAXisOption | YAXisOption[]'.
+  Property '0' does not exist on type 'YAXisOption | YAXisOption[]'.
+src/Scatter.tsx(193,7): error TS18048: '_chartOption.yAxis' is possibly 'undefined'.
+src/Scatter.tsx(193,7): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type 'YAXisOption | YAXisOption[]'.
+  Property '0' does not exist on type 'YAXisOption | YAXisOption[]'.
+src/Scatter.tsx(194,7): error TS18048: '_chartOption.yAxis' is possibly 'undefined'.
+src/Scatter.tsx(194,7): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type 'YAXisOption | YAXisOption[]'.
+  Property '0' does not exist on type 'YAXisOption | YAXisOption[]'.
+src/Scatter.tsx(195,7): error TS18048: '_chartOption.yAxis' is possibly 'undefined'.
+src/Scatter.tsx(195,7): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type 'YAXisOption | YAXisOption[]'.
+  Property '0' does not exist on type 'YAXisOption | YAXisOption[]'.
+src/Scatter.tsx(400,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/Scatter.tsx(400,26): error TS2339: Property 'max' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'max' does not exist on type 'XAXisOption[][2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[34minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 1.[39m

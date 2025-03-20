@@ -74,7 +74,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
   }
 
   const ref = useRef<HTMLCanvasElement>(null)
-  const wrapperRef = useRef(null)
+  const wrapperRef = useRef<any>(null)
   const wrapperRect = useRect(wrapperRef)
   const textRef = useRef<HTMLSpanElement>(null)
   const tooltipRef = useRef<HTMLSpanElement & { getRect: () => DOMRect | undefined }>(null)
@@ -725,7 +725,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
         }
       }
 
-      const options = mergeOption(_defaultOptions, wordcloudOptions)
+      const options = mergeOption(_defaultOptions as any, wordcloudOptions as any)
       WordCloud(ref.current, options)
     }
   }, [
@@ -797,17 +797,14 @@ export interface IPosition {
 }
 
 export interface IKeywordValueCompProps {
-  ref: React.Ref<any> | string
+  ref: React.Ref<any>
   position: IPosition
   value: string
   visible: boolean
 }
 
-const KeywordValueComp: React.FC<IKeywordValueCompProps> = forwardRef<
-  { getRect: () => DOMRect | undefined },
-  IKeywordValueCompProps
->((props, ref) => {
-  const { position, value, visible } = props
+const KeywordValueComp: React.FC<IKeywordValueCompProps> = (props) => {
+  const { ref, position, value, visible } = props
   const [tooltipNode, setTooltipNode] = useState<HTMLSpanElement | null>(null)
   const tooltipRef = useCallback((node: HTMLSpanElement) => {
     if (node !== null) {
@@ -845,4 +842,4 @@ const KeywordValueComp: React.FC<IKeywordValueCompProps> = forwardRef<
       {value}
     </span>
   )
-})
+}

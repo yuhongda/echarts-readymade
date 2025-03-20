@@ -1,0 +1,40 @@
+
+> @echarts-readymade/stack@1.2.0 build /Users/hongdayu/code/echarts-readymade/packages/stack
+> yarn run clear && yarn run lib && yarn run dts && yarn run cjs && yarn run esm && yarn run umd && yarn run min
+
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ rm -rf lib/ && rm -rf types/[22m
+[2K[1GDone in 0.07s.
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ babel src --out-dir lib --extensions ".js,.jsx,.ts,.tsx" --config-file "../../.babelrc.js"[22m
+Successfully compiled 1 file with Babel (388ms).
+[2K[1GDone in 1.66s.
+[2K[1G[1myarn run v1.22.17[22m
+[2K[1G[2m$ FORMAT=dts rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
+[36m
+[1m./src/index.tsx[22m → [1mtypes/index.d.ts[22m...[39m
+src/index.tsx(37,5): error TS2339: Property 'ref' does not exist on type 'StackChartProps'.
+src/index.tsx(159,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/index.tsx(159,26): error TS2339: Property 'data' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'data' does not exist on type 'ValueAxisBaseOption & { gridIndex?: number | undefined; gridId?: string | undefined; position?: CartesianAxisPosition | undefined; offset?: number | undefined; categorySortInfo?: OrdinalSortInfo | undefined; } & { ...; }'.
+src/index.tsx(181,11): error TS2322: Type 'number | null' is not assignable to type 'ScaleDataValue | ((extent: { min: number; max: number; }) => ScaleDataValue) | undefined'.
+  Type 'null' is not assignable to type 'ScaleDataValue | ((extent: { min: number; max: number; }) => ScaleDataValue) | undefined'.
+src/index.tsx(265,7): error TS18048: '_chartOption.xAxis' is possibly 'undefined'.
+src/index.tsx(265,26): error TS2339: Property 'data' does not exist on type 'XAXisOption | XAXisOption[]'.
+  Property 'data' does not exist on type 'ValueAxisBaseOption & { gridIndex?: number | undefined; gridId?: string | undefined; position?: CartesianAxisPosition | undefined; offset?: number | undefined; categorySortInfo?: OrdinalSortInfo | undefined; } & { ...; }'.
+src/index.tsx(287,11): error TS2322: Type 'number | null' is not assignable to type 'ScaleDataValue | ((extent: { min: number; max: number; }) => ScaleDataValue) | undefined'.
+  Type 'null' is not assignable to type 'ScaleDataValue | ((extent: { min: number; max: number; }) => ScaleDataValue) | undefined'.
+
+[1m[31m[!] [1m(plugin dts) Error: Failed to compile. Check the logs above.[22m[1m[39m[22m
+src/index.tsx
+[2mError: Failed to compile. Check the logs above.
+    at error (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@2.79.2/node_modules/rollup/dist/shared/rollup.js:198:30)
+    at throwPluginError (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@2.79.2/node_modules/rollup/dist/shared/rollup.js:21718:12)
+    at Object.error (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@2.79.2/node_modules/rollup/dist/shared/rollup.js:22672:20)
+    at Object.error (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@2.79.2/node_modules/rollup/dist/shared/rollup.js:21895:42)
+    at Object.transform (/Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup-plugin-dts@3.0.2_rollup@2.79.2_typescript@5.8.2/node_modules/rollup-plugin-dts/dist/rollup-plugin-dts.cjs:1515:26)
+    at /Users/hongdayu/code/echarts-readymade/node_modules/.pnpm/rollup@2.79.2/node_modules/rollup/dist/shared/rollup.js:22879:40[22m
+
+[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[34minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 1.[39m

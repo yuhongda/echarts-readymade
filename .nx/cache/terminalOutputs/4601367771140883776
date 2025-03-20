@@ -1,23 +1,33 @@
+
+> @echarts-readymade/table@1.2.0 build /Users/hongdayu/code/echarts-readymade/packages/table
+> yarn run clear && yarn run lib && yarn run dts && yarn run cjs && yarn run esm && yarn run umd && yarn run min
+
 [2K[1G[1myarn run v1.22.17[22m
-[2K[1G[2m$ yarn run clear && yarn run lib && yarn run dts && yarn run cjs && yarn run esm && yarn run umd && yarn run min[22m
 [2K[1G[2m$ rm -rf lib/ && rm -rf types/[22m
+[2K[1GDone in 0.05s.
+[2K[1G[1myarn run v1.22.17[22m
 [2K[1G[2m$ babel src --out-dir lib --extensions ".js,.jsx,.ts,.tsx" --config-file "../../.babelrc.js"[22m
-Successfully compiled 1 file with Babel (385ms).
+Successfully compiled 1 file with Babel (483ms).
+[2K[1GDone in 1.32s.
+[2K[1G[1myarn run v1.22.17[22m
 [2K[1G[2m$ FORMAT=dts rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
 [36m
 [1m./src/index.tsx[22m → [1mtypes/index.d.ts[22m...[39m
-[32mcreated [1mtypes/index.d.ts[22m in [1m2.4s[22m[39m
+[32mcreated [1mtypes/index.d.ts[22m in [1m2.5s[22m[39m
+[2K[1GDone in 7.41s.
+[2K[1G[1myarn run v1.22.17[22m
 [2K[1G[2m$ FORMAT=cjs rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
 [36m
 [1m./src/index.tsx[22m → [1mlib/cjs/index.cjs.js[22m...[39m
-[1m[33m(!) Unresolved dependencies[39m[22m
-[90mhttps://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency[39m
-[1m@echarts-readymade/core[22m (imported by src/index.tsx)
-[32mcreated [1mlib/cjs/index.cjs.js[22m in [1m885ms[22m[39m
+[32mcreated [1mlib/cjs/index.cjs.js[22m in [1m597ms[22m[39m
+[2K[1GDone in 2.97s.
+[2K[1G[1myarn run v1.22.17[22m
 [2K[1G[2m$ FORMAT=es rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
 [36m
 [1m./src/index.tsx[22m → [1mlib/es/index.es.js[22m...[39m
-[32mcreated [1mlib/es/index.es.js[22m in [1m814ms[22m[39m
+[32mcreated [1mlib/es/index.es.js[22m in [1m415ms[22m[39m
+[2K[1GDone in 2.84s.
+[2K[1G[1myarn run v1.22.17[22m
 [2K[1G[2m$ NODE_ENV=development FORMAT=umd rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
 [36m
 [1m./src/index.tsx[22m → [1mlib/umd/index.js[22m...[39m
@@ -26,14 +36,16 @@ Use output.globals to specify browser global variable names corresponding to ext
 [1mreact[22m (guessing 'React$5')
 [1mantd[22m (guessing 'antd')
 [1muse-local-storage-state[22m (guessing 'useLocalStorageState')
-[32mcreated [1mlib/umd/index.js[22m in [1m394ms[22m[39m
+[32mcreated [1mlib/umd/index.js[22m in [1m404ms[22m[39m
+[2K[1GDone in 2.54s.
+[2K[1G[1myarn run v1.22.17[22m
 [2K[1G[2m$ NODE_ENV=production FORMAT=umd rollup -c rollup.config.ts --configPlugin rollup-plugin-typescript2[22m
 [36m
 [1m./src/index.tsx[22m → [1mlib/umd/index.min.js[22m...[39m
 [1m[33m(!) Missing global variable names[39m[22m
 Use output.globals to specify browser global variable names corresponding to external modules
-[1mreact[22m (guessing 'c$1')
+[1mreact[22m (guessing 'd')
 [1mantd[22m (guessing 'antd')
-[1muse-local-storage-state[22m (guessing 'Te$1')
-[32mcreated [1mlib/umd/index.min.js[22m in [1m344ms[22m[39m
-[2K[1GDone in 25.22s.
+[1muse-local-storage-state[22m (guessing '$e$1')
+[32mcreated [1mlib/umd/index.min.js[22m in [1m351ms[22m[39m
+[2K[1GDone in 2.01s.

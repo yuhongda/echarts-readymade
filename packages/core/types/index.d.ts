@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React$1 from 'react';
 import React__default, { ReactNode } from 'react';
 import { EChartsReactProps, EChartsOption } from 'echarts-for-react';
 
@@ -37,7 +37,7 @@ type Field = {
     width?: number;
 };
 interface ChartProps extends Omit<EChartsReactProps, 'option'> {
-    ref?: React.RefObject<any>;
+    ref: React.RefObject<any>;
     context: typeof ChartContext;
     dimension?: Field[];
     compareDimension?: Field[];
@@ -47,12 +47,12 @@ interface ChartProps extends Omit<EChartsReactProps, 'option'> {
 }
 
 declare const _default: {
-    ChartProvider: React.FC<ChartProviderProps<any>>;
-    ChartContext: React.Context<ChartContextValue<any>>;
-    mergeOption: (baseOptions: any, userOptions?: any) => any;
-    buildChartOption: (chartOptions: any, settings: {
-        legendPosition?: "top" | "left" | "right" | "bottom" | undefined;
-    }, chartType: "line" | "bar" | "pie" | "scatter" | "stack" | "line-stack" | "line-bar" | "bar-horizontal" | "table" | "high-relation-scatter" | "map" | "wordcloud") => any;
+    ChartProvider: React$1.FC<ChartProviderProps<any>>;
+    ChartContext: React$1.Context<ChartContextValue<any>>;
+    mergeOption: (baseOptions: EChartsOption, userOptions?: EChartsOption) => EChartsOption;
+    buildChartOption: (chartOptions: EChartsOption, settings: {
+        legendPosition?: "top" | "right" | "bottom" | "left";
+    }, chartType: "line" | "bar" | "pie" | "scatter" | "stack" | "line-stack" | "line-bar" | "bar-horizontal" | "table" | "high-relation-scatter" | "map" | "wordcloud") => EChartsOption;
     numberWithCommas: typeof numberWithCommas;
     COLOR_LIST: string[];
     truncate: (str: string, n: number) => string;

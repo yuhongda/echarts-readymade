@@ -16,6 +16,7 @@ type Field = {
   width?: number
 }
 interface ChartProps extends Omit<EChartsReactProps, 'option'> {
+  ref: React.RefObject<any>
   context: typeof ChartContext
   dimension?: Field[]
   compareDimension?: Field[]

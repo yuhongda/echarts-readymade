@@ -6,11 +6,6 @@ import type { ScatterChartProps } from '@echarts-readymade/scatter'
 
 export interface IScatterChartProps extends Omit<ScatterChartProps, 'context'> {}
 
-export const Scatter = forwardRef<
-  {
-    getEchartsInstance: () => ECharts | undefined
-  },
-  IScatterChartProps
->((props, ref) => {
+export const Scatter = ({ref, ...props}: IScatterChartProps) => {
   return <ScatterChart ref={ref} context={ChartContext} {...props} />
-})
+}

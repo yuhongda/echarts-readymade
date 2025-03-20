@@ -11,299 +11,159 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "__test__/wordcloud.test.tsx",
-        "hash": "10281428216403295910"
+        "file": "__test__/__snapshots__/core.test.tsx.snap",
+        "hash": "14029871078634329015"
       },
       {
-        "file": "README.md",
-        "hash": "11610332892631289748"
-      },
-      {
-        "file": ".npmrc",
-        "hash": "7644138987896314243"
-      },
-      {
-        "file": "__test__/jest.babelrc",
-        "hash": "13702341610862442169"
-      },
-      {
-        "file": "lerna-debug.log",
-        "hash": "14510539188637270530"
-      },
-      {
-        "file": "LICENSE",
-        "hash": "15290267373341219394"
-      },
-      {
-        "file": "__test__/bar-horizontal.test.tsx",
-        "hash": "1496812082309318725"
+        "file": "pnpm-lock.yaml",
+        "hash": "16313770788050345115"
       },
       {
         "file": "packages/.DS_Store",
         "hash": "18090672593416643437"
       },
       {
-        "file": ".prettierrc",
-        "hash": "13042240888450833742"
-      },
-      {
-        "file": "jest.config.ts",
-        "hash": "12470290884625851146"
-      },
-      {
-        "file": "package-lock.json",
-        "hash": "4710314768426298135"
-      },
-      {
-        "file": "lerna.json",
-        "hash": "17979577733166590251"
-      },
-      {
-        "file": "__test__/core.test.tsx",
-        "hash": "17244146350298663355"
-      },
-      {
-        "file": ".babelrc.js",
-        "hash": "2208503405545938645"
-      },
-      {
-        "file": "package.json",
-        "hash": "14219639905257919586"
-      },
-      {
-        "file": "__test__/scatter.test.tsx",
-        "hash": "5628729804261954285"
-      },
-      {
-        "file": "pnpm-lock.yaml",
-        "hash": "9980915336431112013"
-      },
-      {
-        "file": "__test__/fileTransform.js",
-        "hash": "1661329672609510880"
-      },
-      {
-        "file": "__test__/pie.test.tsx",
-        "hash": "6468957315275287030"
+        "file": ".changeset/README.md",
+        "hash": "4888845876018830777"
       },
       {
         "file": "nx.json",
         "hash": "5530928307949384841"
       },
       {
-        "file": "__test__/echarts-readymade.test.tsx",
-        "hash": "87413824971831105"
+        "file": "__test__/pie.test.tsx",
+        "hash": "6468957315275287030"
       },
       {
-        "file": "__test__/cssTransform.js",
-        "hash": "17102088679922940097"
+        "file": "package.json",
+        "hash": "15803852963034513066"
       },
       {
-        "file": "__test__/line.test.tsx",
-        "hash": "17292051604393133880"
+        "file": "__test__/bar-horizontal.test.tsx",
+        "hash": "1496812082309318725"
       },
       {
         "file": "pnpm-workspace.yaml",
         "hash": "2213562884875381374"
       },
       {
-        "file": "__test__/setup.js",
-        "hash": "7578035548354132439"
+        "file": "LICENSE",
+        "hash": "15290267373341219394"
       },
       {
-        "file": ".eslintrc",
-        "hash": "2230674511197175997"
+        "file": "README.md",
+        "hash": "11610332892631289748"
       },
       {
-        "file": "README.zh-CN.md",
-        "hash": "14103290845053472714"
+        "file": ".prettierrc",
+        "hash": "13042240888450833742"
+      },
+      {
+        "file": "__test__/line.test.tsx",
+        "hash": "17292051604393133880"
+      },
+      {
+        "file": "__test__/echarts-readymade.test.tsx",
+        "hash": "87413824971831105"
       },
       {
         "file": "__test__/stack.test.tsx",
         "hash": "100634089456272744"
       },
       {
+        "file": "package-lock.json",
+        "hash": "4710314768426298135"
+      },
+      {
+        "file": "__test__/setup.js",
+        "hash": "7578035548354132439"
+      },
+      {
         "file": "tsconfig.json",
-        "hash": "1823938575115386973"
+        "hash": "18378830213472743788"
+      },
+      {
+        "file": "__test__/wordcloud.test.tsx",
+        "hash": "10281428216403295910"
       },
       {
         "file": "__test__/bar.test.tsx",
         "hash": "1028410170613455753"
       },
       {
+        "file": ".babelrc.js",
+        "hash": "2208503405545938645"
+      },
+      {
+        "file": "README.zh-CN.md",
+        "hash": "14103290845053472714"
+      },
+      {
+        "file": ".vscode/settings.json",
+        "hash": "12719854460973574659"
+      },
+      {
+        "file": ".eslintrc",
+        "hash": "2230674511197175997"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "12470290884625851146"
+      },
+      {
+        "file": "__test__/scatter.test.tsx",
+        "hash": "5628729804261954285"
+      },
+      {
+        "file": "__test__/jest.babelrc",
+        "hash": "13702341610862442169"
+      },
+      {
+        "file": "__test__/core.test.tsx",
+        "hash": "17244146350298663355"
+      },
+      {
+        "file": ".npmrc",
+        "hash": "7644138987896314243"
+      },
+      {
+        "file": "lerna.json",
+        "hash": "17979577733166590251"
+      },
+      {
+        "file": "__test__/cssTransform.js",
+        "hash": "17102088679922940097"
+      },
+      {
+        "file": "__test__/fileTransform.js",
+        "hash": "1661329672609510880"
+      },
+      {
+        "file": ".changeset/config.json",
+        "hash": "6878007938558061715"
+      },
+      {
         "file": ".gitignore",
         "hash": "482136075762345142"
-      },
-      {
-        "file": "__test__/__snapshots__/core.test.tsx.snap",
-        "hash": "14029871078634329015"
-      },
-      {
-        "file": "yarn.lock",
-        "hash": "4461523056423907191"
       }
     ],
     "projectFileMap": {
-      "@echarts-readymade/table": [
-        {
-          "file": "packages/table/package.json",
-          "hash": "8607617691625243393",
-          "deps": [
-            "npm:@types/big.js",
-            "npm:@types/lodash",
-            "npm:@types/lodash-es",
-            "npm:@types/numeral",
-            "@echarts-readymade/core",
-            "npm:big.js"
-          ]
-        },
-        {
-          "file": "packages/table/rollup.config.ts",
-          "hash": "5659375023032432323"
-        },
-        {
-          "file": "packages/table/src/index.tsx",
-          "hash": "7515657445388825760"
-        },
-        {
-          "file": "packages/table/tsconfig.json",
-          "hash": "12681225385416204756"
-        },
-        {
-          "file": "packages/table/types/index.d.ts",
-          "hash": "5858609238192772359"
-        },
-        {
-          "file": "packages/table/typings/global.d.ts",
-          "hash": "16373321511254325664"
-        }
-      ],
-      "demo": [
-        {
-          "file": "demo/.DS_Store",
-          "hash": "16450424370477571161"
-        },
-        {
-          "file": "demo/index.html",
-          "hash": "1972257601806542787"
-        },
-        {
-          "file": "demo/package.json",
-          "hash": "8251593982828905090",
-          "deps": [
-            "npm:@types/styled-components",
-            "echarts-readymade"
-          ]
-        },
-        {
-          "file": "demo/pnpm-lock.yaml",
-          "hash": "12539254979879401834"
-        },
-        {
-          "file": "demo/src/App.css",
-          "hash": "5774098901545134521"
-        },
-        {
-          "file": "demo/src/App.tsx",
-          "hash": "7647498975835918199"
-        },
-        {
-          "file": "demo/src/api/axios.ts",
-          "hash": "12270406991499390443"
-        },
-        {
-          "file": "demo/src/api/hnApi.ts",
-          "hash": "18261710052155424937"
-        },
-        {
-          "file": "demo/src/assets/mask-bad.png",
-          "hash": "16641599411332461982"
-        },
-        {
-          "file": "demo/src/assets/mask-rect.png",
-          "hash": "16318250513964404267"
-        },
-        {
-          "file": "demo/src/components/BarChart.tsx",
-          "hash": "2884732771635876889"
-        },
-        {
-          "file": "demo/src/components/BarHorizontalChart.tsx",
-          "hash": "3014760735215857939"
-        },
-        {
-          "file": "demo/src/components/LineChart.tsx",
-          "hash": "13697498897742273899"
-        },
-        {
-          "file": "demo/src/components/PieChart.tsx",
-          "hash": "9801626083369048727"
-        },
-        {
-          "file": "demo/src/components/ScatterChart.tsx",
-          "hash": "16095018755094717329"
-        },
-        {
-          "file": "demo/src/components/StackChart.tsx",
-          "hash": "10862176524351429966"
-        },
-        {
-          "file": "demo/src/components/TableChart.tsx",
-          "hash": "1064044847313037748"
-        },
-        {
-          "file": "demo/src/components/WordcloudChart.tsx",
-          "hash": "6338986552541267062"
-        },
-        {
-          "file": "demo/src/favicon.svg",
-          "hash": "5570214330692728248"
-        },
-        {
-          "file": "demo/src/index.css",
-          "hash": "14056909652331273425"
-        },
-        {
-          "file": "demo/src/logo.svg",
-          "hash": "13356318757395577552"
-        },
-        {
-          "file": "demo/src/main.tsx",
-          "hash": "11732082910115465464"
-        },
-        {
-          "file": "demo/src/vite-env.d.ts",
-          "hash": "12946363841406869089"
-        },
-        {
-          "file": "demo/tsconfig.json",
-          "hash": "697412834187601468"
-        },
-        {
-          "file": "demo/typings/global.d.ts",
-          "hash": "5212717491555324436"
-        },
-        {
-          "file": "demo/vite.config.ts",
-          "hash": "8097659989875241464"
-        },
-        {
-          "file": "demo/yarn.lock",
-          "hash": "16591884607337671971"
-        }
-      ],
       "@echarts-readymade/wordcloud": [
         {
           "file": "packages/wordcloud/package.json",
-          "hash": "2983623051021171142",
+          "hash": "10189022792475186528",
           "deps": [
+            "npm:react",
+            "npm:react-dom",
+            "npm:wordcloud",
             "npm:@rollup/plugin-image",
             "npm:@types/lodash",
             "npm:@types/numeral",
             "npm:@types/styled-components",
             "npm:copyfiles",
             "@echarts-readymade/core",
-            "npm:big.js"
+            "npm:big.js",
+            "npm:styled-components@5.3.11"
           ]
         },
         {
@@ -352,7 +212,7 @@
         },
         {
           "file": "packages/wordcloud/src/index.tsx",
-          "hash": "7467978443499427346"
+          "hash": "16787909793661446377"
         },
         {
           "file": "packages/wordcloud/src/useRect.tsx",
@@ -363,21 +223,185 @@
           "hash": "12681225385416204756"
         },
         {
-          "file": "packages/wordcloud/types/index.d.ts",
-          "hash": "4342148810302045326"
-        },
-        {
           "file": "packages/wordcloud/typings/global.d.ts",
           "hash": "16582395658157940101"
+        }
+      ],
+      "demo": [
+        {
+          "file": "demo/.DS_Store",
+          "hash": "16450424370477571161"
+        },
+        {
+          "file": "demo/index.html",
+          "hash": "1972257601806542787"
+        },
+        {
+          "file": "demo/package.json",
+          "hash": "4995651089212482202",
+          "deps": [
+            "npm:@ant-design/icons",
+            "npm:@types/react",
+            "npm:@types/react-dom",
+            "npm:@types/styled-components",
+            "npm:@vitejs/plugin-react",
+            "npm:antd",
+            "npm:styled-components@5.3.11",
+            "npm:typescript",
+            "npm:vite",
+            "echarts-readymade",
+            "npm:react",
+            "npm:react-dom",
+            "npm:use-async-request",
+            "npm:wordcloud"
+          ]
+        },
+        {
+          "file": "demo/pnpm-lock.yaml",
+          "hash": "12539254979879401834"
+        },
+        {
+          "file": "demo/src/App.css",
+          "hash": "5774098901545134521"
+        },
+        {
+          "file": "demo/src/App.tsx",
+          "hash": "7647498975835918199"
+        },
+        {
+          "file": "demo/src/api/axios.ts",
+          "hash": "12270406991499390443"
+        },
+        {
+          "file": "demo/src/api/hnApi.ts",
+          "hash": "18261710052155424937"
+        },
+        {
+          "file": "demo/src/assets/mask-bad.png",
+          "hash": "16641599411332461982"
+        },
+        {
+          "file": "demo/src/assets/mask-rect.png",
+          "hash": "16318250513964404267"
+        },
+        {
+          "file": "demo/src/components/BarChart.tsx",
+          "hash": "3329941992080810456"
+        },
+        {
+          "file": "demo/src/components/BarHorizontalChart.tsx",
+          "hash": "3014760735215857939"
+        },
+        {
+          "file": "demo/src/components/LineChart.tsx",
+          "hash": "13697498897742273899"
+        },
+        {
+          "file": "demo/src/components/PieChart.tsx",
+          "hash": "9801626083369048727"
+        },
+        {
+          "file": "demo/src/components/ScatterChart.tsx",
+          "hash": "16095018755094717329"
+        },
+        {
+          "file": "demo/src/components/StackChart.tsx",
+          "hash": "10862176524351429966"
+        },
+        {
+          "file": "demo/src/components/TableChart.tsx",
+          "hash": "1064044847313037748"
+        },
+        {
+          "file": "demo/src/components/WordcloudChart.tsx",
+          "hash": "6338986552541267062"
+        },
+        {
+          "file": "demo/src/favicon.svg",
+          "hash": "5570214330692728248"
+        },
+        {
+          "file": "demo/src/index.css",
+          "hash": "14056909652331273425"
+        },
+        {
+          "file": "demo/src/logo.svg",
+          "hash": "13356318757395577552"
+        },
+        {
+          "file": "demo/src/main.tsx",
+          "hash": "4652498847829039493"
+        },
+        {
+          "file": "demo/src/vite-env.d.ts",
+          "hash": "12946363841406869089"
+        },
+        {
+          "file": "demo/tsconfig.json",
+          "hash": "697412834187601468"
+        },
+        {
+          "file": "demo/typings/global.d.ts",
+          "hash": "5212717491555324436"
+        },
+        {
+          "file": "demo/vite.config.ts",
+          "hash": "8097659989875241464"
+        },
+        {
+          "file": "demo/yarn.lock",
+          "hash": "16591884607337671971"
+        }
+      ],
+      "@echarts-readymade/bar": [
+        {
+          "file": "packages/bar/package.json",
+          "hash": "3584852316435667513",
+          "deps": [
+            "npm:echarts",
+            "npm:echarts-for-react",
+            "npm:react",
+            "npm:react-dom",
+            "npm:@types/big.js",
+            "npm:@types/clone",
+            "npm:@types/lodash",
+            "npm:@types/lodash-es",
+            "npm:@types/numeral",
+            "@echarts-readymade/core",
+            "npm:big.js",
+            "npm:clone"
+          ]
+        },
+        {
+          "file": "packages/bar/rollup.config.ts",
+          "hash": "14994205699612544015"
+        },
+        {
+          "file": "packages/bar/src/index.tsx",
+          "hash": "2711426140037380907"
+        },
+        {
+          "file": "packages/bar/tsconfig.json",
+          "hash": "12681225385416204756"
+        },
+        {
+          "file": "packages/bar/types/index.d.ts",
+          "hash": "6186240503184551577"
+        },
+        {
+          "file": "packages/bar/typings/global.d.ts",
+          "hash": "16373321511254325664"
         }
       ],
       "@echarts-readymade/stack": [
         {
           "file": "packages/stack/package.json",
-          "hash": "15780637439709442151",
+          "hash": "44756899177047378",
           "deps": [
             "npm:echarts",
             "npm:echarts-for-react",
+            "npm:react",
+            "npm:react-dom",
             "npm:@types/clone",
             "npm:@types/lodash",
             "npm:@types/numeral",
@@ -392,28 +416,150 @@
         },
         {
           "file": "packages/stack/src/index.tsx",
-          "hash": "1187011853252005911"
+          "hash": "7394256123110410254"
         },
         {
           "file": "packages/stack/tsconfig.json",
           "hash": "12681225385416204756"
         },
         {
-          "file": "packages/stack/types/index.d.ts",
-          "hash": "2788775756872824231"
-        },
-        {
           "file": "packages/stack/typings/global.d.ts",
           "hash": "16271568815684574184"
+        }
+      ],
+      "@echarts-readymade/bar-horizontal": [
+        {
+          "file": "packages/bar-horizontal/package.json",
+          "hash": "7916491149493323525",
+          "deps": [
+            "npm:echarts",
+            "npm:echarts-for-react",
+            "npm:react",
+            "npm:react-dom",
+            "npm:@types/big.js",
+            "npm:@types/clone",
+            "npm:@types/lodash",
+            "npm:@types/numeral",
+            "@echarts-readymade/core",
+            "npm:big.js",
+            "npm:clone"
+          ]
+        },
+        {
+          "file": "packages/bar-horizontal/rollup.config.ts",
+          "hash": "3492513153667226129"
+        },
+        {
+          "file": "packages/bar-horizontal/src/index.tsx",
+          "hash": "11322049448445162557"
+        },
+        {
+          "file": "packages/bar-horizontal/tsconfig.json",
+          "hash": "12681225385416204756"
+        },
+        {
+          "file": "packages/bar-horizontal/types/index.d.ts",
+          "hash": "2783854734580522402"
+        },
+        {
+          "file": "packages/bar-horizontal/typings/global.d.ts",
+          "hash": "16373321511254325664"
+        }
+      ],
+      "@echarts-readymade/core": [
+        {
+          "file": "packages/core/package.json",
+          "hash": "14809654710069805510",
+          "deps": [
+            "npm:react",
+            "npm:react-dom",
+            "npm:@types/numeral",
+            "npm:echarts",
+            "npm:echarts-for-react",
+            "npm:big.js"
+          ]
+        },
+        {
+          "file": "packages/core/rollup.config.ts",
+          "hash": "16064467815793129791"
+        },
+        {
+          "file": "packages/core/src/ChartProvider.tsx",
+          "hash": "11070917449330928955"
+        },
+        {
+          "file": "packages/core/src/chartOptionBuilder.tsx",
+          "hash": "8697118932617334956"
+        },
+        {
+          "file": "packages/core/src/index.ts",
+          "hash": "2998187501677859300"
+        },
+        {
+          "file": "packages/core/src/misc.tsx",
+          "hash": "13117454537859300693"
+        },
+        {
+          "file": "packages/core/tsconfig.json",
+          "hash": "12681225385416204756"
+        },
+        {
+          "file": "packages/core/types/index.d.ts",
+          "hash": "2290319883295124491"
+        },
+        {
+          "file": "packages/core/typings/global.d.ts",
+          "hash": "13338817489089768806"
+        }
+      ],
+      "@echarts-readymade/table": [
+        {
+          "file": "packages/table/package.json",
+          "hash": "5157433721035992563",
+          "deps": [
+            "npm:@ant-design/icons@4.8.3",
+            "npm:antd@4.24.16",
+            "npm:react",
+            "npm:react-dom",
+            "npm:use-local-storage-state",
+            "npm:@types/big.js",
+            "npm:@types/lodash",
+            "npm:@types/lodash-es",
+            "npm:@types/numeral",
+            "@echarts-readymade/core",
+            "npm:big.js"
+          ]
+        },
+        {
+          "file": "packages/table/rollup.config.ts",
+          "hash": "5659375023032432323"
+        },
+        {
+          "file": "packages/table/src/index.tsx",
+          "hash": "15339129880138624517"
+        },
+        {
+          "file": "packages/table/tsconfig.json",
+          "hash": "12681225385416204756"
+        },
+        {
+          "file": "packages/table/types/index.d.ts",
+          "hash": "5858609238192772359"
+        },
+        {
+          "file": "packages/table/typings/global.d.ts",
+          "hash": "16373321511254325664"
         }
       ],
       "@echarts-readymade/line": [
         {
           "file": "packages/line/package.json",
-          "hash": "6167013411607564380",
+          "hash": "16336019209918080111",
           "deps": [
             "npm:echarts",
             "npm:echarts-for-react",
+            "npm:react",
+            "npm:react-dom",
             "npm:@types/clone",
             "npm:@types/lodash",
             "@echarts-readymade/core",
@@ -427,20 +573,66 @@
         },
         {
           "file": "packages/line/src/index.tsx",
-          "hash": "11029334567483884211"
+          "hash": "5708405314357049842"
         },
         {
           "file": "packages/line/types/index.d.ts",
-          "hash": "15789886445283432909"
+          "hash": "6198864924204806897"
+        }
+      ],
+      "@echarts-readymade/scatter": [
+        {
+          "file": "packages/scatter/package.json",
+          "hash": "7766883944350523615",
+          "deps": [
+            "npm:echarts",
+            "npm:echarts-for-react",
+            "npm:react",
+            "npm:react-dom",
+            "npm:@types/clone",
+            "npm:@types/lodash",
+            "npm:@types/numeral",
+            "@echarts-readymade/core",
+            "npm:big.js",
+            "npm:clone"
+          ]
+        },
+        {
+          "file": "packages/scatter/rollup.config.ts",
+          "hash": "8170053978592416048"
+        },
+        {
+          "file": "packages/scatter/src/Scatter.tsx",
+          "hash": "7341057460041522602"
+        },
+        {
+          "file": "packages/scatter/src/index.tsx",
+          "hash": "16086958778103695513"
+        },
+        {
+          "file": "packages/scatter/src/plugins/quadrant.ts",
+          "hash": "13100091998850711841"
+        },
+        {
+          "file": "packages/scatter/tsconfig.json",
+          "hash": "12681225385416204756"
+        },
+        {
+          "file": "packages/scatter/typings/global.d.ts",
+          "hash": "16271568815684574184"
         }
       ],
       "echarts-readymade": [
         {
           "file": "packages/echarts-readymade/package.json",
-          "hash": "1987262096457481246",
+          "hash": "2297844396592810940",
           "deps": [
+            "npm:antd",
             "npm:echarts",
             "npm:echarts-for-react",
+            "npm:react",
+            "npm:react-dom",
+            "npm:wordcloud",
             "npm:@rollup/plugin-image",
             "@echarts-readymade/bar",
             "@echarts-readymade/bar-horizontal",
@@ -458,11 +650,11 @@
         },
         {
           "file": "packages/echarts-readymade/src/bar-horizontal/index.tsx",
-          "hash": "7316345482023538413"
+          "hash": "12227839365946685071"
         },
         {
           "file": "packages/echarts-readymade/src/bar/index.tsx",
-          "hash": "13100575238146118936"
+          "hash": "8238752730670993212"
         },
         {
           "file": "packages/echarts-readymade/src/index.ts",
@@ -470,19 +662,19 @@
         },
         {
           "file": "packages/echarts-readymade/src/line/index.tsx",
-          "hash": "7152853940616277141"
+          "hash": "14894108275049897946"
         },
         {
           "file": "packages/echarts-readymade/src/pie/index.tsx",
-          "hash": "6612538798338475504"
+          "hash": "12173399226905720084"
         },
         {
           "file": "packages/echarts-readymade/src/scatter/index.tsx",
-          "hash": "1433941557452574340"
+          "hash": "6018414436823963347"
         },
         {
           "file": "packages/echarts-readymade/src/stack/index.tsx",
-          "hash": "3706857366836898883"
+          "hash": "6797611913442109522"
         },
         {
           "file": "packages/echarts-readymade/src/table/index.tsx",
@@ -493,184 +685,19 @@
           "hash": "5819300465193912970"
         },
         {
-          "file": "packages/echarts-readymade/types/index.d.ts",
-          "hash": "10021722441684166753"
-        },
-        {
           "file": "packages/echarts-readymade/typings/global.d.ts",
-          "hash": "16271568815684574184"
-        }
-      ],
-      "@echarts-readymade/bar": [
-        {
-          "file": "packages/bar/package.json",
-          "hash": "12549816294359705439",
-          "deps": [
-            "npm:echarts",
-            "npm:echarts-for-react",
-            "npm:@types/big.js",
-            "npm:@types/clone",
-            "npm:@types/lodash",
-            "npm:@types/lodash-es",
-            "npm:@types/numeral",
-            "@echarts-readymade/core",
-            "npm:big.js",
-            "npm:clone"
-          ]
-        },
-        {
-          "file": "packages/bar/rollup.config.ts",
-          "hash": "14994205699612544015"
-        },
-        {
-          "file": "packages/bar/src/index.tsx",
-          "hash": "13696569207406318035"
-        },
-        {
-          "file": "packages/bar/tsconfig.json",
-          "hash": "12681225385416204756"
-        },
-        {
-          "file": "packages/bar/types/index.d.ts",
-          "hash": "15920897457163608762"
-        },
-        {
-          "file": "packages/bar/typings/global.d.ts",
-          "hash": "16373321511254325664"
-        }
-      ],
-      "@echarts-readymade/core": [
-        {
-          "file": "packages/core/package.json",
-          "hash": "8335891185557404504",
-          "deps": [
-            "npm:@types/numeral",
-            "npm:echarts",
-            "npm:echarts-for-react",
-            "npm:big.js"
-          ]
-        },
-        {
-          "file": "packages/core/rollup.config.ts",
-          "hash": "16064467815793129791"
-        },
-        {
-          "file": "packages/core/src/ChartProvider.tsx",
-          "hash": "11070917449330928955"
-        },
-        {
-          "file": "packages/core/src/chartOptionBuilder.tsx",
-          "hash": "9973164367170421300"
-        },
-        {
-          "file": "packages/core/src/index.ts",
-          "hash": "1452677386219928916"
-        },
-        {
-          "file": "packages/core/src/misc.tsx",
-          "hash": "13117454537859300693"
-        },
-        {
-          "file": "packages/core/tsconfig.json",
-          "hash": "12681225385416204756"
-        },
-        {
-          "file": "packages/core/types/index.d.ts",
-          "hash": "4972315110941492033"
-        },
-        {
-          "file": "packages/core/typings/global.d.ts",
-          "hash": "13338817489089768806"
-        }
-      ],
-      "@echarts-readymade/bar-horizontal": [
-        {
-          "file": "packages/bar-horizontal/package.json",
-          "hash": "17950627412824366900",
-          "deps": [
-            "npm:echarts",
-            "npm:echarts-for-react",
-            "npm:@types/big.js",
-            "npm:@types/clone",
-            "npm:@types/lodash",
-            "npm:@types/numeral",
-            "@echarts-readymade/core",
-            "npm:big.js",
-            "npm:clone"
-          ]
-        },
-        {
-          "file": "packages/bar-horizontal/rollup.config.ts",
-          "hash": "3492513153667226129"
-        },
-        {
-          "file": "packages/bar-horizontal/src/index.tsx",
-          "hash": "5480157577219602391"
-        },
-        {
-          "file": "packages/bar-horizontal/tsconfig.json",
-          "hash": "12681225385416204756"
-        },
-        {
-          "file": "packages/bar-horizontal/types/index.d.ts",
-          "hash": "10092623073838852037"
-        },
-        {
-          "file": "packages/bar-horizontal/typings/global.d.ts",
-          "hash": "16373321511254325664"
-        }
-      ],
-      "@echarts-readymade/scatter": [
-        {
-          "file": "packages/scatter/package.json",
-          "hash": "6089054584782829465",
-          "deps": [
-            "npm:echarts",
-            "npm:echarts-for-react",
-            "npm:@types/clone",
-            "npm:@types/lodash",
-            "npm:@types/numeral",
-            "@echarts-readymade/core",
-            "npm:big.js",
-            "npm:clone"
-          ]
-        },
-        {
-          "file": "packages/scatter/rollup.config.ts",
-          "hash": "8170053978592416048"
-        },
-        {
-          "file": "packages/scatter/src/Scatter.tsx",
-          "hash": "13773009811478043431"
-        },
-        {
-          "file": "packages/scatter/src/index.tsx",
-          "hash": "16086958778103695513"
-        },
-        {
-          "file": "packages/scatter/src/plugins/quadrant.ts",
-          "hash": "13100091998850711841"
-        },
-        {
-          "file": "packages/scatter/tsconfig.json",
-          "hash": "12681225385416204756"
-        },
-        {
-          "file": "packages/scatter/types/index.d.ts",
-          "hash": "15884522839131167291"
-        },
-        {
-          "file": "packages/scatter/typings/global.d.ts",
           "hash": "16271568815684574184"
         }
       ],
       "@echarts-readymade/pie": [
         {
           "file": "packages/pie/package.json",
-          "hash": "8899554172327671805",
+          "hash": "4659898966557356650",
           "deps": [
             "npm:echarts",
             "npm:echarts-for-react",
+            "npm:react",
+            "npm:react-dom",
             "npm:@types/clone",
             "npm:@types/lodash",
             "npm:@types/numeral",
@@ -685,7 +712,7 @@
         },
         {
           "file": "packages/pie/src/index.tsx",
-          "hash": "5146489284461648981"
+          "hash": "16247259245906813873"
         },
         {
           "file": "packages/pie/tsconfig.json",
@@ -693,7 +720,7 @@
         },
         {
           "file": "packages/pie/types/index.d.ts",
-          "hash": "14620168416787908684"
+          "hash": "13832383065868396624"
         },
         {
           "file": "packages/pie/typings/global.d.ts",

@@ -6,11 +6,6 @@ import type { BarChartProps } from '@echarts-readymade/bar'
 
 export interface IBarChartProps extends Omit<BarChartProps, 'context'> {}
 
-export const Bar = forwardRef<
-  {
-    getEchartsInstance: () => ECharts | undefined
-  },
-  IBarChartProps
->((props, ref) => {
+export const Bar = ({ref, ...props}: IBarChartProps) => {
   return <BarChart ref={ref} context={ChartContext} {...props} />
-})
+}

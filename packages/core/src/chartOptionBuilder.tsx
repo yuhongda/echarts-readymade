@@ -26,66 +26,102 @@ export const buildChartOption = (
 ): EChartsOption => {
   const _option = chartOptions || {}
   const { legendPosition = 'top' } = settings || {}
+  _option.legend = _option.legend || {}
+  _option.grid = _option.grid || {}
+  _option.tooltip = _option.tooltip || {}
 
   // legend
   if (legendPosition) {
     // position
     switch (legendPosition) {
       case 'top':
-        _option.legend.top = 60
-        _option.legend.bottom = 'auto'
-        _option.legend.left = 'center'
-        _option.legend.padding = [5, 5]
-        _option.grid.top = 110
-        _option.grid.left = 'scatter' == chartType ? 70 : 20
-        _option.grid.right = 'scatter' == chartType ? 100 : 'bar-horizontal' == chartType ? 50 : 20
-        _option.grid.bottom = 'scatter' == chartType ? 100 : 45
-        _option.legend.orient = 'horizontal'
+        _option.legend = {
+          ..._option.legend,
+          top: 60,
+          bottom: 'auto',
+          left: 'center',
+          padding: [5, 5],
+          orient: 'horizontal'
+        }
+
+        _option.grid = {
+          ..._option.grid,
+          top: 110,
+          left: 'scatter' == chartType ? 70 : 20,
+          right: 'scatter' == chartType ? 100 : 'bar-horizontal' == chartType ? 50 : 20,
+          bottom: 'scatter' == chartType ? 100 : 45
+        }
         break
       case 'bottom':
-        _option.legend.top = 'auto'
-        _option.legend.bottom = 'scatter' == chartType ? 40 : 20
-        _option.legend.left = 'center'
-        _option.legend.padding = [5, 5]
-        _option.grid.top = 70
-        _option.grid.left = 'scatter' == chartType ? 70 : 20
-        _option.grid.right = 'scatter' == chartType ? 50 : 'bar-horizontal' == chartType ? 50 : 20
-        _option.grid.bottom = 'scatter' == chartType ? 100 : 45
-        _option.legend.orient = 'horizontal'
+        _option.legend = {
+          ..._option.legend,
+          top: 'auto',
+          bottom: 'scatter' == chartType ? 40 : 20,
+          left: 'center',
+          padding: [5, 5],
+          orient: 'horizontal'
+        }
+        _option.grid = {
+          ..._option.grid,
+          top: 70,
+          left: 'scatter' == chartType ? 70 : 20,
+          right: 'scatter' == chartType ? 50 : 'bar-horizontal' == chartType ? 50 : 20,
+          bottom: 'scatter' == chartType ? 100 : 45
+        }
         break
       case 'left':
-        _option.legend.top = 60
-        _option.legend.bottom = 60
-        _option.legend.left = 20
-        _option.legend.right = 'auto'
-        _option.legend.padding = [5, 5]
-        _option.grid.top = 70
-        _option.grid.left = 150
-        _option.grid.right = 'scatter' == chartType ? 50 : 20
-        _option.grid.bottom = 'scatter' == chartType ? 100 : 20
-        _option.legend.orient = 'vertical'
+        _option.legend = {
+          ..._option.legend,
+          top: 60,
+          bottom: 60,
+          left: 20,
+          right: 'auto',
+          padding: [5, 5],
+          orient: 'vertical'
+        }
+        
+        _option.grid = {
+          ..._option.grid,
+          top: 70,
+          left: 150,
+          right: 'scatter' == chartType ? 50 : 20,
+          bottom: 'scatter' == chartType ? 100 : 20
+        }
         break
       case 'right':
-        _option.legend.top = 60
-        _option.legend.bottom = 60
-        _option.legend.left = 'auto'
-        _option.legend.right = 'scatter' == chartType ? 50 : 20
-        _option.legend.padding = [5, 5]
-        _option.grid.top = 70
-        _option.grid.left = 'scatter' == chartType ? 70 : 20
-        _option.grid.right = 'scatter' == chartType ? 170 : 200
-        _option.grid.bottom = 'scatter' == chartType ? 100 : 20
-        _option.legend.orient = 'vertical'
+        _option.legend = {
+          ..._option.legend,
+          top: 60,
+          bottom: 60,
+          left: 'auto',
+          right: 'scatter' == chartType ? 50 : 20,
+          padding: [5, 5],
+          orient: 'vertical'
+        }
+
+        _option.grid = {
+          ..._option.grid,
+          top: 70,
+          left: 'scatter' == chartType ? 70 : 20,
+          right: 'scatter' == chartType ? 170 : 200,
+          bottom: 'scatter' == chartType ? 100 : 20
+        }
         break
       default:
-        _option.legend.top = 'auto'
-        _option.legend.bottom = '6%'
-        _option.legend.left = 'center'
-        // _option.legend.right = 'center';
-        _option.grid.top = '18%'
-        _option.grid.left = '8%'
-        _option.grid.right = '8%'
-        _option.grid.bottom = '15%'
+        _option.legend = {
+          ..._option.legend,
+          top: 'auto',
+          bottom: '6%',
+          left: 'center',
+        }
+        
+        _option.grid = {
+          ..._option.grid,
+          top: '18%',
+          left: '8%',
+          right: '8%',
+          bottom: '15%'
+        }
         break
     }
 
@@ -101,15 +137,21 @@ export const buildChartOption = (
       _option.grid.bottom = 'scatter' == chartType ? 60 : 20
     }
   } else {
-    _option.legend.top = 'auto'
-    _option.legend.bottom = '6%'
-    _option.legend.left = 'center'
-    // _option.legend.right = 'center';
-    _option.grid.top = '18%'
-    _option.grid.left = '8%'
-    _option.grid.right = '8%'
-    _option.grid.bottom = '15%'
-    _option.legend.orient = 'horizontal'
+    _option.legend = {
+      ..._option.legend,
+      top: 'auto',
+      bottom: '6%',
+      left: 'center',
+      orient: 'horizontal'
+    }
+    
+    _option.grid = {
+      ..._option.grid,
+      top: '18%',
+      left: '8%',
+      right: '8%',
+      bottom: '15%'
+    }
   }
 
   const iconRect =
@@ -119,8 +161,8 @@ export const buildChartOption = (
   const iconLineWithRing =
     'path://M14,4h-2.1C11.4,1.7,9.4,0,7,0S2.6,1.7,2.1,4H0v2h2.1c0.5,2.3,2.5,4,4.9,4s4.4-1.7,4.9-4H14V4z M7,8  C5.3,8,4,6.7,4,5s1.3-3,3-3s3,1.3,3,3S8.7,8,7,8z'
   if (chartType == 'pie') {
-    _option.legend.data =
-      _option.series[0] &&
+    if(_option.series && Array.isArray(_option.series) && _option.series[0].data && Array.isArray(_option.series[0].data)) {
+      _option.legend.data =
       _option.series[0].data.map((item: any) => {
         const textStyle = {
           padding: [2, 0, 0, 0]
@@ -131,8 +173,9 @@ export const buildChartOption = (
           textStyle
         }
       })
+    }
   } else {
-    const _legendData = _option.series?.map((item: any) => {
+    const _legendData = (Array.isArray(_option.series) && _option.series.map((item: any) => {
       let icon = 'circle'
       const textStyle = {
         padding: [2, 0, 0, 0]
@@ -164,7 +207,7 @@ export const buildChartOption = (
         textStyle,
         itemStyle
       }
-    })
+    })) || []
 
     if (
       _option.legend.show &&
@@ -173,33 +216,36 @@ export const buildChartOption = (
       (chartType == 'stack' || chartType == 'line-stack')
     ) {
       _option.legend.data = _legendData.reverse()
-      _option.tooltip.formatter = function (data: any) {
-        return `<div>${data[0].name}</div>${data
-          .reverse()
-          .map((d: any) => {
-            switch (d.seriesType) {
-              case 'pie':
-                return `<div>
-                        <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:${
-                          d.color
-                        }"></span>
-                        <span>${
-                          d.data.label ? d.data.label.formatter(d, true) : d.data.value
-                        }</span>
-                    </div>`
-              default:
-                return `<div>
-                        <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:${
-                          d.color
-                        }"></span>
-                        <span>${d.seriesName}:</span>
-                        <span>${
-                          d.data.label ? d.data.label.formatter(d, true) : d.data.value
-                        }</span>
-                    </div>`
-            }
-          })
-          .join('')}`
+      _option.tooltip = {
+        ..._option.tooltip,
+        formatter: function (data: any) {
+          return `<div>${data[0].name}</div>${data
+            .reverse()
+            .map((d: any) => {
+              switch (d.seriesType) {
+                case 'pie':
+                  return `<div>
+                          <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:${
+                            d.color
+                          }"></span>
+                          <span>${
+                            d.data.label ? d.data.label.formatter(d, true) : d.data.value
+                          }</span>
+                      </div>`
+                default:
+                  return `<div>
+                          <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:${
+                            d.color
+                          }"></span>
+                          <span>${d.seriesName}:</span>
+                          <span>${
+                            d.data.label ? d.data.label.formatter(d, true) : d.data.value
+                          }</span>
+                      </div>`
+              }
+            })
+            .join('')}`
+        }
       }
     } else {
       _option.legend.data = _legendData
@@ -216,7 +262,10 @@ export const buildChartOption = (
   }
 
   // tooltip
-  _option.tooltip.trigger = ['pie', 'scatter'].includes(chartType) ? 'item' : 'axis'
+  _option.tooltip = {
+    ..._option.tooltip,
+    trigger: ['pie', 'scatter'].includes(chartType) ? 'item' : 'axis'
+  }
 
   return _option
 }
