@@ -429,15 +429,19 @@ export const Scatter = (props: ScatterChartProps) => {
             }
           }
         }
-          
-        _chartOption.yAxis[0].max =
-          (yMax && Big(yMax).plus(Big(yMax).times(0.1).abs().toNumber()).toNumber()) || 100
 
-        _chartOption.yAxis[0].axisLabel.formatter = (value: any) => {
-          if (yMax <= 100 && value > 100) {
-            return ''
+        _chartOption.yAxis[0] = {
+          ..._chartOption.yAxis[0],
+          max: (yMax && Big(yMax).plus(Big(yMax).times(0.1).abs().toNumber()).toNumber()) || 100,
+          axisLabel: {
+            ...(_chartOption.yAxis[0]?.axisLabel ?? {}),
+            formatter: (value: any) => {
+              if (yMax <= 100 && value > 100) {
+                return ''
+              }
+              return `${value}${_valueList[1].isPercent ? '%' : ''}`
+            }
           }
-          return `${value}${_valueList[1].isPercent ? '%' : ''}`
         }
       }
     } else {
