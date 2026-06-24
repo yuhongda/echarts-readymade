@@ -178,7 +178,7 @@ importers:
         version: link:../packages/wordcloud
       echarts-readymade:
         specifier: ^1.2.0
-        version: 1.2.0(@babel/core@7.29.7)(antd@5.29.3(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(wordcloud@1.2.3)
+        version: 1.2.0(@babel/core@7.29.7)(antd@5.29.3(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(wordcloud@1.2.3)
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -248,11 +248,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.5
       echarts:
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^6.1.0
+        version: 6.1.0
       echarts-for-react:
-        specifier: ^3.0.2
-        version: 3.0.6(echarts@5.2.2)(react@19.2.7)
+        specifier: ^3.0.6
+        version: 3.0.6(echarts@6.1.0)(react@19.2.7)
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -285,11 +285,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.5
       echarts:
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^6.1.0
+        version: 6.1.0
       echarts-for-react:
-        specifier: ^3.0.2
-        version: 3.0.6(echarts@5.2.2)(react@19.2.7)
+        specifier: ^3.0.6
+        version: 3.0.6(echarts@6.1.0)(react@19.2.7)
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -310,11 +310,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.5
       echarts:
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^6.1.0
+        version: 6.1.0
       echarts-for-react:
-        specifier: ^3.0.2
-        version: 3.0.6(echarts@5.2.2)(react@19.2.7)
+        specifier: ^3.0.6
+        version: 3.0.6(echarts@6.1.0)(react@19.2.7)
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -365,11 +365,11 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1(rollup@2.80.0)
       echarts:
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^6.1.0
+        version: 6.1.0
       echarts-for-react:
-        specifier: ^3.0.2
-        version: 3.0.6(echarts@5.2.2)(react@19.2.7)
+        specifier: ^3.0.6
+        version: 3.0.6(echarts@6.1.0)(react@19.2.7)
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -399,11 +399,11 @@ importers:
         specifier: ^4.14.178
         version: 4.17.24
       echarts:
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^6.1.0
+        version: 6.1.0
       echarts-for-react:
-        specifier: ^3.0.2
-        version: 3.0.6(echarts@5.2.2)(react@19.2.7)
+        specifier: ^3.0.6
+        version: 3.0.6(echarts@6.1.0)(react@19.2.7)
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -436,11 +436,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.5
       echarts:
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^6.1.0
+        version: 6.1.0
       echarts-for-react:
-        specifier: ^3.0.2
-        version: 3.0.6(echarts@5.2.2)(react@19.2.7)
+        specifier: ^3.0.6
+        version: 3.0.6(echarts@6.1.0)(react@19.2.7)
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -473,11 +473,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.5
       echarts:
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^6.1.0
+        version: 6.1.0
       echarts-for-react:
-        specifier: ^3.0.2
-        version: 3.0.6(echarts@5.2.2)(react@19.2.7)
+        specifier: ^3.0.6
+        version: 3.0.6(echarts@6.1.0)(react@19.2.7)
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -510,11 +510,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.5
       echarts:
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^6.1.0
+        version: 6.1.0
       echarts-for-react:
-        specifier: ^3.0.2
-        version: 3.0.6(echarts@5.2.2)(react@19.2.7)
+        specifier: ^3.0.6
+        version: 3.0.6(echarts@6.1.0)(react@19.2.7)
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -555,6 +555,12 @@ importers:
       antd:
         specifier: ^4.19.3
         version: 4.24.16(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      echarts:
+        specifier: ^6.1.0
+        version: 6.1.0
+      echarts-for-react:
+        specifier: ^3.0.6
+        version: 3.0.6(echarts@6.1.0)(react@19.2.7)
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -607,6 +613,12 @@ importers:
       copyfiles:
         specifier: ^2.4.1
         version: 2.4.1
+      echarts:
+        specifier: ^6.1.0
+        version: 6.1.0
+      echarts-for-react:
+        specifier: ^3.0.6
+        version: 3.0.6(echarts@6.1.0)(react@19.2.7)
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -3584,8 +3596,8 @@ packages:
       echarts-for-react: ^3.0.2
       wordcloud: ^1.2.2
 
-  echarts@5.2.2:
-    resolution: {integrity: sha512-yxuBfeIH5c+0FsoRP60w4De6omXhA06c7eUYBsC1ykB6Ys2yK5fSteIYWvkJ4xJVLQgCvAdO8C4mN6MLeJpBaw==}
+  echarts@6.1.0:
+    resolution: {integrity: sha512-q0yaFPggC9FUdsWH4blavRWFmxdrIodbkoKNAjJudAI6CA9gNPxHtV2RcZNEepZVlk4yvBYkOkbk6HIVpIyHZA==}
 
   ejs@5.0.1:
     resolution: {integrity: sha512-COqBPFMxuPTPspXl2DkVYaDS3HtrD1GpzOGkNTJ1IYkifq/r9h8SVEFrjA3D9/VJGOEoMQcrlhpntcSUrM8k6A==}
@@ -7562,8 +7574,8 @@ packages:
     resolution: {integrity: sha512-U/PBtDf35ff0D8X8D0jfdzHYEPFxAI7jJlxZXwCSez5M3190m+QobIfh+sWDWSHMCWWJN2AWamkegn6vr6YBTw==}
     engines: {node: '>=18'}
 
-  zrender@5.2.1:
-    resolution: {integrity: sha512-M3bPGZuyLTNBC6LiNKXJwSCtglMp8XUEqEBG+2MdICDI3d1s500Y4P0CzldQGsqpRVB7fkvf3BKQQRxsEaTlsw==}
+  zrender@6.1.0:
+    resolution: {integrity: sha512-oEGMDB6pOP2S6OwRR4PdVv610zrjnA3Bh+JnSG12fYJlBKjtNAoEb5fSUoCOOINlH96I2fU38/A2UpRKs67xYQ==}
 
 snapshots:
 
@@ -8658,57 +8670,57 @@ snapshots:
 
   '@ctrl/tinycolor@3.6.1': {}
 
-  '@echarts-readymade/bar-horizontal@1.2.0(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)':
+  '@echarts-readymade/bar-horizontal@1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)':
     dependencies:
       '@echarts-readymade/core': 1.2.0
       big.js: 6.1.1
       clone: 2.1.2
-      echarts: 5.2.2
-      echarts-for-react: 3.0.6(echarts@5.2.2)(react@19.2.7)
+      echarts: 6.1.0
+      echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
 
-  '@echarts-readymade/bar@1.2.0(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)':
+  '@echarts-readymade/bar@1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)':
     dependencies:
       '@echarts-readymade/core': 1.2.0
       big.js: 6.1.1
       clone: 2.1.2
-      echarts: 5.2.2
-      echarts-for-react: 3.0.6(echarts@5.2.2)(react@19.2.7)
+      echarts: 6.1.0
+      echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
 
   '@echarts-readymade/core@1.2.0':
     dependencies:
       big.js: 6.1.1
 
-  '@echarts-readymade/line@1.2.0(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)':
+  '@echarts-readymade/line@1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)':
     dependencies:
       '@echarts-readymade/core': 1.2.0
       big.js: 6.1.1
       clone: 2.1.2
-      echarts: 5.2.2
-      echarts-for-react: 3.0.6(echarts@5.2.2)(react@19.2.7)
+      echarts: 6.1.0
+      echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
 
-  '@echarts-readymade/pie@1.2.0(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)':
+  '@echarts-readymade/pie@1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)':
     dependencies:
       '@echarts-readymade/core': 1.2.0
       big.js: 6.1.1
       clone: 2.1.2
-      echarts: 5.2.2
-      echarts-for-react: 3.0.6(echarts@5.2.2)(react@19.2.7)
+      echarts: 6.1.0
+      echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
 
-  '@echarts-readymade/scatter@1.2.0(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)':
+  '@echarts-readymade/scatter@1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)':
     dependencies:
       '@echarts-readymade/core': 1.2.0
       big.js: 6.1.1
       clone: 2.1.2
-      echarts: 5.2.2
-      echarts-for-react: 3.0.6(echarts@5.2.2)(react@19.2.7)
+      echarts: 6.1.0
+      echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
 
-  '@echarts-readymade/stack@1.2.0(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)':
+  '@echarts-readymade/stack@1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)':
     dependencies:
       '@echarts-readymade/core': 1.2.0
       big.js: 6.1.1
       clone: 2.1.2
-      echarts: 5.2.2
-      echarts-for-react: 3.0.6(echarts@5.2.2)(react@19.2.7)
+      echarts: 6.1.0
+      echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
 
   '@echarts-readymade/wordcloud@1.2.0(@babel/core@7.29.7)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(wordcloud@1.2.3)':
     dependencies:
@@ -11103,26 +11115,26 @@ snapshots:
       jsbn: 0.1.1
       safer-buffer: 2.1.2
 
-  echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7):
+  echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7):
     dependencies:
-      echarts: 5.2.2
+      echarts: 6.1.0
       fast-deep-equal: 3.1.3
       react: 19.2.7
       size-sensor: 1.0.3
 
-  echarts-readymade@1.2.0(@babel/core@7.29.7)(antd@5.29.3(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(wordcloud@1.2.3):
+  echarts-readymade@1.2.0(@babel/core@7.29.7)(antd@5.29.3(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(wordcloud@1.2.3):
     dependencies:
-      '@echarts-readymade/bar': 1.2.0(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)
-      '@echarts-readymade/bar-horizontal': 1.2.0(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)
+      '@echarts-readymade/bar': 1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)
+      '@echarts-readymade/bar-horizontal': 1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)
       '@echarts-readymade/core': 1.2.0
-      '@echarts-readymade/line': 1.2.0(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)
-      '@echarts-readymade/pie': 1.2.0(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)
-      '@echarts-readymade/scatter': 1.2.0(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)
-      '@echarts-readymade/stack': 1.2.0(echarts-for-react@3.0.6(echarts@5.2.2)(react@19.2.7))(echarts@5.2.2)
+      '@echarts-readymade/line': 1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)
+      '@echarts-readymade/pie': 1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)
+      '@echarts-readymade/scatter': 1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)
+      '@echarts-readymade/stack': 1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)
       '@echarts-readymade/wordcloud': 1.2.0(@babel/core@7.29.7)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(wordcloud@1.2.3)
       antd: 5.29.3(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      echarts: 5.2.2
-      echarts-for-react: 3.0.6(echarts@5.2.2)(react@19.2.7)
+      echarts: 6.1.0
+      echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
       wordcloud: 1.2.3
     transitivePeerDependencies:
       - '@babel/core'
@@ -11130,10 +11142,10 @@ snapshots:
       - react-dom
       - react-is
 
-  echarts@5.2.2:
+  echarts@6.1.0:
     dependencies:
       tslib: 2.3.0
-      zrender: 5.2.1
+      zrender: 6.1.0
 
   ejs@5.0.1: {}
 
@@ -16071,6 +16083,6 @@ snapshots:
 
   yoctocolors-cjs@2.1.3: {}
 
-  zrender@5.2.1:
+  zrender@6.1.0:
     dependencies:
       tslib: 2.3.0
