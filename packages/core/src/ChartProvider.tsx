@@ -11,7 +11,6 @@ export interface ChartContextValue<T = any> {
 }
 
 export const ChartContext = React.createContext<ChartContextValue>({})
-const { Provider } = ChartContext
 
 export interface ChartProviderProps<T = any>
   extends Omit<ChartContextValue<T>, 'echartsOptionsBase' | 'userOptions'> {
@@ -23,8 +22,8 @@ export const ChartProvider: React.FC<ChartProviderProps> = (props) => {
   const { option: userOptions } = echartsOptions || {}
 
   return (
-    <Provider value={{ data, echartsOptions, echartsOptionsBase, userOptions }}>
+    <ChartContext value={{ data, echartsOptions, echartsOptionsBase, userOptions }}>
       {props.children}
-    </Provider>
+    </ChartContext>
   )
 }

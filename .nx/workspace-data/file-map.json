@@ -1,6 +1,6 @@
 {
   "version": "6.0",
-  "nxVersion": "20.4.6",
+  "nxVersion": "22.7.5",
   "pathMappings": {},
   "nxJsonPlugins": [],
   "pluginsConfig": {
@@ -11,159 +11,163 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "__test__/__snapshots__/core.test.tsx.snap",
-        "hash": "14029871078634329015"
-      },
-      {
-        "file": "pnpm-lock.yaml",
-        "hash": "16313770788050345115"
+        "file": ".prettierrc",
+        "hash": "13042240888450833742"
       },
       {
         "file": "packages/.DS_Store",
         "hash": "18090672593416643437"
       },
       {
-        "file": ".changeset/README.md",
-        "hash": "4888845876018830777"
-      },
-      {
-        "file": "nx.json",
-        "hash": "5530928307949384841"
-      },
-      {
-        "file": "__test__/pie.test.tsx",
-        "hash": "6468957315275287030"
-      },
-      {
-        "file": "package.json",
-        "hash": "15803852963034513066"
-      },
-      {
-        "file": "__test__/bar-horizontal.test.tsx",
-        "hash": "1496812082309318725"
-      },
-      {
-        "file": "pnpm-workspace.yaml",
-        "hash": "2213562884875381374"
-      },
-      {
-        "file": "LICENSE",
-        "hash": "15290267373341219394"
-      },
-      {
-        "file": "README.md",
-        "hash": "11610332892631289748"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "13042240888450833742"
-      },
-      {
-        "file": "__test__/line.test.tsx",
-        "hash": "17292051604393133880"
-      },
-      {
-        "file": "__test__/echarts-readymade.test.tsx",
-        "hash": "87413824971831105"
-      },
-      {
         "file": "__test__/stack.test.tsx",
         "hash": "100634089456272744"
-      },
-      {
-        "file": "package-lock.json",
-        "hash": "4710314768426298135"
-      },
-      {
-        "file": "__test__/setup.js",
-        "hash": "7578035548354132439"
-      },
-      {
-        "file": "tsconfig.json",
-        "hash": "18378830213472743788"
-      },
-      {
-        "file": "__test__/wordcloud.test.tsx",
-        "hash": "10281428216403295910"
-      },
-      {
-        "file": "__test__/bar.test.tsx",
-        "hash": "1028410170613455753"
-      },
-      {
-        "file": ".babelrc.js",
-        "hash": "2208503405545938645"
-      },
-      {
-        "file": "README.zh-CN.md",
-        "hash": "14103290845053472714"
-      },
-      {
-        "file": ".vscode/settings.json",
-        "hash": "12719854460973574659"
-      },
-      {
-        "file": ".eslintrc",
-        "hash": "2230674511197175997"
-      },
-      {
-        "file": "jest.config.ts",
-        "hash": "12470290884625851146"
-      },
-      {
-        "file": "__test__/scatter.test.tsx",
-        "hash": "5628729804261954285"
-      },
-      {
-        "file": "__test__/jest.babelrc",
-        "hash": "13702341610862442169"
-      },
-      {
-        "file": "__test__/core.test.tsx",
-        "hash": "17244146350298663355"
-      },
-      {
-        "file": ".npmrc",
-        "hash": "7644138987896314243"
       },
       {
         "file": "lerna.json",
         "hash": "17979577733166590251"
       },
       {
+        "file": ".npmrc",
+        "hash": "7644138987896314243"
+      },
+      {
+        "file": "__test__/pie.test.tsx",
+        "hash": "6468957315275287030"
+      },
+      {
+        "file": "__test__/wordcloud.test.tsx",
+        "hash": "10281428216403295910"
+      },
+      {
+        "file": "__test__/core.test.tsx",
+        "hash": "17244146350298663355"
+      },
+      {
+        "file": "package.json",
+        "hash": "12721788396372817686"
+      },
+      {
+        "file": "__test__/__snapshots__/core.test.tsx.snap",
+        "hash": "14029871078634329015"
+      },
+      {
+        "file": "__test__/line.test.tsx",
+        "hash": "17292051604393133880"
+      },
+      {
+        "file": "__test__/bar-horizontal.test.tsx",
+        "hash": "1496812082309318725"
+      },
+      {
+        "file": "nx.json",
+        "hash": "5530928307949384841"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "18378830213472743788"
+      },
+      {
+        "file": "__test__/jest.babelrc",
+        "hash": "13702341610862442169"
+      },
+      {
         "file": "__test__/cssTransform.js",
         "hash": "17102088679922940097"
       },
       {
-        "file": "__test__/fileTransform.js",
-        "hash": "1661329672609510880"
+        "file": "__test__/echarts-readymade.test.tsx",
+        "hash": "87413824971831105"
+      },
+      {
+        "file": "pnpm-lock.yaml",
+        "hash": "8014725347555642507"
       },
       {
         "file": ".changeset/config.json",
         "hash": "6878007938558061715"
       },
       {
+        "file": ".vscode/settings.json",
+        "hash": "12719854460973574659"
+      },
+      {
+        "file": "__test__/fileTransform.js",
+        "hash": "1661329672609510880"
+      },
+      {
+        "file": "LICENSE",
+        "hash": "15290267373341219394"
+      },
+      {
+        "file": "pnpm-workspace.yaml",
+        "hash": "11379162052891258620"
+      },
+      {
+        "file": "__test__/bar.test.tsx",
+        "hash": "1028410170613455753"
+      },
+      {
+        "file": "README.zh-CN.md",
+        "hash": "14103290845053472714"
+      },
+      {
+        "file": "__test__/scatter.test.tsx",
+        "hash": "5628729804261954285"
+      },
+      {
+        "file": ".eslintrc",
+        "hash": "2230674511197175997"
+      },
+      {
         "file": ".gitignore",
-        "hash": "482136075762345142"
+        "hash": "9681958452574801986"
+      },
+      {
+        "file": ".babelrc.js",
+        "hash": "2208503405545938645"
+      },
+      {
+        "file": ".changeset/README.md",
+        "hash": "4888845876018830777"
+      },
+      {
+        "file": "README.md",
+        "hash": "11610332892631289748"
+      },
+      {
+        "file": "__test__/setup.js",
+        "hash": "7578035548354132439"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "12470290884625851146"
       }
     ],
     "projectFileMap": {
       "@echarts-readymade/wordcloud": [
         {
+          "file": "packages/wordcloud/nx.json",
+          "hash": "2449453735417155043"
+        },
+        {
           "file": "packages/wordcloud/package.json",
-          "hash": "10189022792475186528",
+          "hash": "8125296442059404601",
           "deps": [
             "npm:react",
             "npm:react-dom",
             "npm:wordcloud",
             "npm:@rollup/plugin-image",
+            "npm:@types/big.js",
+            "npm:@types/clone",
             "npm:@types/lodash",
+            "npm:@types/node@26.0.0",
             "npm:@types/numeral",
             "npm:@types/styled-components",
             "npm:copyfiles",
             "@echarts-readymade/core",
             "npm:big.js",
-            "npm:styled-components@5.3.11"
+            "npm:clone@2.1.2",
+            "npm:styled-components@5.3.3"
           ]
         },
         {
@@ -238,7 +242,7 @@
         },
         {
           "file": "demo/package.json",
-          "hash": "4995651089212482202",
+          "hash": "16803635631720246893",
           "deps": [
             "npm:@ant-design/icons",
             "npm:@types/react",
@@ -246,7 +250,7 @@
             "npm:@types/styled-components",
             "npm:@vitejs/plugin-react",
             "npm:antd",
-            "npm:styled-components@5.3.11",
+            "npm:styled-components@5.3.3",
             "npm:typescript",
             "npm:vite",
             "echarts-readymade",
@@ -255,10 +259,6 @@
             "npm:use-async-request",
             "npm:wordcloud"
           ]
-        },
-        {
-          "file": "demo/pnpm-lock.yaml",
-          "hash": "12539254979879401834"
         },
         {
           "file": "demo/src/App.css",
@@ -353,10 +353,14 @@
           "hash": "16591884607337671971"
         }
       ],
-      "@echarts-readymade/bar": [
+      "@echarts-readymade/pie": [
         {
-          "file": "packages/bar/package.json",
-          "hash": "3584852316435667513",
+          "file": "packages/pie/nx.json",
+          "hash": "2449453735417155043"
+        },
+        {
+          "file": "packages/pie/package.json",
+          "hash": "1124201233705837015",
           "deps": [
             "npm:echarts",
             "npm:echarts-for-react",
@@ -365,114 +369,37 @@
             "npm:@types/big.js",
             "npm:@types/clone",
             "npm:@types/lodash",
-            "npm:@types/lodash-es",
             "npm:@types/numeral",
             "@echarts-readymade/core",
             "npm:big.js",
-            "npm:clone"
+            "npm:clone@2.1.2"
           ]
         },
         {
-          "file": "packages/bar/rollup.config.ts",
-          "hash": "14994205699612544015"
+          "file": "packages/pie/rollup.config.ts",
+          "hash": "16569866556622649925"
         },
         {
-          "file": "packages/bar/src/index.tsx",
-          "hash": "2711426140037380907"
+          "file": "packages/pie/src/index.tsx",
+          "hash": "16247259245906813873"
         },
         {
-          "file": "packages/bar/tsconfig.json",
+          "file": "packages/pie/tsconfig.json",
           "hash": "12681225385416204756"
         },
         {
-          "file": "packages/bar/types/index.d.ts",
-          "hash": "6186240503184551577"
-        },
-        {
-          "file": "packages/bar/typings/global.d.ts",
-          "hash": "16373321511254325664"
-        }
-      ],
-      "@echarts-readymade/stack": [
-        {
-          "file": "packages/stack/package.json",
-          "hash": "44756899177047378",
-          "deps": [
-            "npm:echarts",
-            "npm:echarts-for-react",
-            "npm:react",
-            "npm:react-dom",
-            "npm:@types/clone",
-            "npm:@types/lodash",
-            "npm:@types/numeral",
-            "@echarts-readymade/core",
-            "npm:big.js",
-            "npm:clone"
-          ]
-        },
-        {
-          "file": "packages/stack/rollup.config.ts",
-          "hash": "10533263208881841538"
-        },
-        {
-          "file": "packages/stack/src/index.tsx",
-          "hash": "7394256123110410254"
-        },
-        {
-          "file": "packages/stack/tsconfig.json",
-          "hash": "12681225385416204756"
-        },
-        {
-          "file": "packages/stack/typings/global.d.ts",
+          "file": "packages/pie/typings/global.d.ts",
           "hash": "16271568815684574184"
-        }
-      ],
-      "@echarts-readymade/bar-horizontal": [
-        {
-          "file": "packages/bar-horizontal/package.json",
-          "hash": "7916491149493323525",
-          "deps": [
-            "npm:echarts",
-            "npm:echarts-for-react",
-            "npm:react",
-            "npm:react-dom",
-            "npm:@types/big.js",
-            "npm:@types/clone",
-            "npm:@types/lodash",
-            "npm:@types/numeral",
-            "@echarts-readymade/core",
-            "npm:big.js",
-            "npm:clone"
-          ]
-        },
-        {
-          "file": "packages/bar-horizontal/rollup.config.ts",
-          "hash": "3492513153667226129"
-        },
-        {
-          "file": "packages/bar-horizontal/src/index.tsx",
-          "hash": "11322049448445162557"
-        },
-        {
-          "file": "packages/bar-horizontal/tsconfig.json",
-          "hash": "12681225385416204756"
-        },
-        {
-          "file": "packages/bar-horizontal/types/index.d.ts",
-          "hash": "2783854734580522402"
-        },
-        {
-          "file": "packages/bar-horizontal/typings/global.d.ts",
-          "hash": "16373321511254325664"
         }
       ],
       "@echarts-readymade/core": [
         {
           "file": "packages/core/package.json",
-          "hash": "14809654710069805510",
+          "hash": "8862166567518273481",
           "deps": [
             "npm:react",
             "npm:react-dom",
+            "npm:@types/big.js",
             "npm:@types/numeral",
             "npm:echarts",
             "npm:echarts-for-react",
@@ -481,7 +408,7 @@
         },
         {
           "file": "packages/core/rollup.config.ts",
-          "hash": "16064467815793129791"
+          "hash": "16206288366573774147"
         },
         {
           "file": "packages/core/src/ChartProvider.tsx",
@@ -512,89 +439,65 @@
           "hash": "13338817489089768806"
         }
       ],
-      "@echarts-readymade/table": [
+      "@echarts-readymade/bar-horizontal": [
         {
-          "file": "packages/table/package.json",
-          "hash": "5157433721035992563",
-          "deps": [
-            "npm:@ant-design/icons@4.8.3",
-            "npm:antd@4.24.16",
-            "npm:react",
-            "npm:react-dom",
-            "npm:use-local-storage-state",
-            "npm:@types/big.js",
-            "npm:@types/lodash",
-            "npm:@types/lodash-es",
-            "npm:@types/numeral",
-            "@echarts-readymade/core",
-            "npm:big.js"
-          ]
+          "file": "packages/bar-horizontal/nx.json",
+          "hash": "2449453735417155043"
         },
         {
-          "file": "packages/table/rollup.config.ts",
-          "hash": "5659375023032432323"
-        },
-        {
-          "file": "packages/table/src/index.tsx",
-          "hash": "15339129880138624517"
-        },
-        {
-          "file": "packages/table/tsconfig.json",
-          "hash": "12681225385416204756"
-        },
-        {
-          "file": "packages/table/types/index.d.ts",
-          "hash": "5858609238192772359"
-        },
-        {
-          "file": "packages/table/typings/global.d.ts",
-          "hash": "16373321511254325664"
-        }
-      ],
-      "@echarts-readymade/line": [
-        {
-          "file": "packages/line/package.json",
-          "hash": "16336019209918080111",
+          "file": "packages/bar-horizontal/package.json",
+          "hash": "7916491149493323525",
           "deps": [
             "npm:echarts",
             "npm:echarts-for-react",
             "npm:react",
             "npm:react-dom",
+            "npm:@types/big.js",
             "npm:@types/clone",
             "npm:@types/lodash",
+            "npm:@types/numeral",
             "@echarts-readymade/core",
             "npm:big.js",
-            "npm:clone"
+            "npm:clone@2.1.2"
           ]
         },
         {
-          "file": "packages/line/rollup.config.ts",
-          "hash": "4986131907238665216"
+          "file": "packages/bar-horizontal/rollup.config.ts",
+          "hash": "3492513153667226129"
         },
         {
-          "file": "packages/line/src/index.tsx",
-          "hash": "5708405314357049842"
+          "file": "packages/bar-horizontal/src/index.tsx",
+          "hash": "11322049448445162557"
         },
         {
-          "file": "packages/line/types/index.d.ts",
-          "hash": "6198864924204806897"
+          "file": "packages/bar-horizontal/tsconfig.json",
+          "hash": "12681225385416204756"
+        },
+        {
+          "file": "packages/bar-horizontal/typings/global.d.ts",
+          "hash": "16373321511254325664"
         }
       ],
       "@echarts-readymade/scatter": [
         {
+          "file": "packages/scatter/nx.json",
+          "hash": "2449453735417155043"
+        },
+        {
           "file": "packages/scatter/package.json",
-          "hash": "7766883944350523615",
+          "hash": "1613005393680008423",
           "deps": [
             "npm:echarts",
             "npm:echarts-for-react",
             "npm:react",
             "npm:react-dom",
+            "npm:@types/big.js",
             "npm:@types/clone",
             "npm:@types/lodash",
             "npm:@types/numeral",
             "@echarts-readymade/core",
             "npm:big.js",
-            "npm:clone"
+            "npm:clone@2.1.2"
           ]
         },
         {
@@ -603,7 +506,7 @@
         },
         {
           "file": "packages/scatter/src/Scatter.tsx",
-          "hash": "7341057460041522602"
+          "hash": "5447301920162080603"
         },
         {
           "file": "packages/scatter/src/index.tsx",
@@ -622,7 +525,86 @@
           "hash": "16271568815684574184"
         }
       ],
+      "@echarts-readymade/table": [
+        {
+          "file": "packages/table/nx.json",
+          "hash": "2449453735417155043"
+        },
+        {
+          "file": "packages/table/package.json",
+          "hash": "15621245609658747411",
+          "deps": [
+            "npm:@ant-design/icons",
+            "npm:antd@4.24.16",
+            "npm:react",
+            "npm:react-dom",
+            "npm:use-local-storage-state",
+            "npm:@types/big.js",
+            "npm:@types/clone",
+            "npm:@types/lodash",
+            "npm:@types/lodash-es",
+            "npm:@types/numeral",
+            "@echarts-readymade/core",
+            "npm:big.js",
+            "npm:clone@2.1.2"
+          ]
+        },
+        {
+          "file": "packages/table/rollup.config.ts",
+          "hash": "6934886907494710991"
+        },
+        {
+          "file": "packages/table/src/index.tsx",
+          "hash": "15339129880138624517"
+        },
+        {
+          "file": "packages/table/tsconfig.json",
+          "hash": "12681225385416204756"
+        },
+        {
+          "file": "packages/table/typings/global.d.ts",
+          "hash": "16373321511254325664"
+        }
+      ],
+      "@echarts-readymade/line": [
+        {
+          "file": "packages/line/nx.json",
+          "hash": "2449453735417155043"
+        },
+        {
+          "file": "packages/line/package.json",
+          "hash": "3509744189771606490",
+          "deps": [
+            "npm:echarts",
+            "npm:echarts-for-react",
+            "npm:react",
+            "npm:react-dom",
+            "npm:@types/big.js",
+            "npm:@types/clone",
+            "npm:@types/lodash",
+            "@echarts-readymade/core",
+            "npm:big.js",
+            "npm:clone@2.1.2"
+          ]
+        },
+        {
+          "file": "packages/line/rollup.config.ts",
+          "hash": "4986131907238665216"
+        },
+        {
+          "file": "packages/line/src/index.tsx",
+          "hash": "5708405314357049842"
+        },
+        {
+          "file": "packages/line/tsconfig.json",
+          "hash": "12681225385416204756"
+        }
+      ],
       "echarts-readymade": [
+        {
+          "file": "packages/echarts-readymade/nx.json",
+          "hash": "2449453735417155043"
+        },
         {
           "file": "packages/echarts-readymade/package.json",
           "hash": "2297844396592810940",
@@ -685,48 +667,94 @@
           "hash": "5819300465193912970"
         },
         {
+          "file": "packages/echarts-readymade/tsconfig.json",
+          "hash": "12681225385416204756"
+        },
+        {
           "file": "packages/echarts-readymade/typings/global.d.ts",
           "hash": "16271568815684574184"
         }
       ],
-      "@echarts-readymade/pie": [
+      "@echarts-readymade/bar": [
         {
-          "file": "packages/pie/package.json",
-          "hash": "4659898966557356650",
+          "file": "packages/bar/nx.json",
+          "hash": "2449453735417155043"
+        },
+        {
+          "file": "packages/bar/package.json",
+          "hash": "3584852316435667513",
           "deps": [
             "npm:echarts",
             "npm:echarts-for-react",
             "npm:react",
             "npm:react-dom",
+            "npm:@types/big.js",
+            "npm:@types/clone",
+            "npm:@types/lodash",
+            "npm:@types/lodash-es",
+            "npm:@types/numeral",
+            "@echarts-readymade/core",
+            "npm:big.js",
+            "npm:clone@2.1.2"
+          ]
+        },
+        {
+          "file": "packages/bar/rollup.config.ts",
+          "hash": "14994205699612544015"
+        },
+        {
+          "file": "packages/bar/src/index.tsx",
+          "hash": "2711426140037380907"
+        },
+        {
+          "file": "packages/bar/tsconfig.json",
+          "hash": "12681225385416204756"
+        },
+        {
+          "file": "packages/bar/typings/global.d.ts",
+          "hash": "16373321511254325664"
+        }
+      ],
+      "@echarts-readymade/stack": [
+        {
+          "file": "packages/stack/nx.json",
+          "hash": "2449453735417155043"
+        },
+        {
+          "file": "packages/stack/package.json",
+          "hash": "662109649277397244",
+          "deps": [
+            "npm:echarts",
+            "npm:echarts-for-react",
+            "npm:react",
+            "npm:react-dom",
+            "npm:@types/big.js",
             "npm:@types/clone",
             "npm:@types/lodash",
             "npm:@types/numeral",
             "@echarts-readymade/core",
             "npm:big.js",
-            "npm:clone"
+            "npm:clone@2.1.2"
           ]
         },
         {
-          "file": "packages/pie/rollup.config.ts",
-          "hash": "16569866556622649925"
+          "file": "packages/stack/rollup.config.ts",
+          "hash": "10533263208881841538"
         },
         {
-          "file": "packages/pie/src/index.tsx",
-          "hash": "16247259245906813873"
+          "file": "packages/stack/src/index.tsx",
+          "hash": "7394256123110410254"
         },
         {
-          "file": "packages/pie/tsconfig.json",
+          "file": "packages/stack/tsconfig.json",
           "hash": "12681225385416204756"
         },
         {
-          "file": "packages/pie/types/index.d.ts",
-          "hash": "13832383065868396624"
-        },
-        {
-          "file": "packages/pie/typings/global.d.ts",
+          "file": "packages/stack/typings/global.d.ts",
           "hash": "16271568815684574184"
         }
       ]
     }
-  }
+  },
+  "externalNodesHash": "8123169721984521219"
 }

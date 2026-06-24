@@ -4,10 +4,6 @@
       "demo/package.json",
       "nx/core/package-json"
     ],
-    "sourceRoot": [
-      "demo/package.json",
-      "nx/core/package-json"
-    ],
     "name": [
       "demo/package.json",
       "nx/core/package-json"
@@ -49,6 +45,10 @@
       "nx/core/package-json"
     ],
     "metadata.js.packageName": [
+      "demo/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageVersion": [
       "demo/package.json",
       "nx/core/package-json"
     ],
@@ -151,30 +151,10 @@
     "targets.serve.metadata.runCommand": [
       "demo/package.json",
       "nx/core/package-json"
-    ],
-    "targets.nx-release-publish": [
-      "demo/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.executor": [
-      "demo/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.dependsOn": [
-      "demo/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.options": [
-      "demo/package.json",
-      "nx/core/package-json"
     ]
   },
   "packages/bar": {
     "root": [
-      "packages/bar/package.json",
-      "nx/core/package-json"
-    ],
-    "sourceRoot": [
       "packages/bar/package.json",
       "nx/core/package-json"
     ],
@@ -267,6 +247,10 @@
       "nx/core/package-json"
     ],
     "metadata.js.packageName": [
+      "packages/bar/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageVersion": [
       "packages/bar/package.json",
       "nx/core/package-json"
     ],
@@ -703,22 +687,6 @@
       "nx/core/package-json"
     ],
     "targets.release:next.metadata.runCommand": [
-      "packages/bar/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish": [
-      "packages/bar/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.executor": [
-      "packages/bar/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.dependsOn": [
-      "packages/bar/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.options": [
       "packages/bar/package.json",
       "nx/core/package-json"
     ]
@@ -728,10 +696,6 @@
       "packages/bar-horizontal/package.json",
       "nx/core/package-json"
     ],
-    "sourceRoot": [
-      "packages/bar-horizontal/package.json",
-      "nx/core/package-json"
-    ],
     "name": [
       "packages/bar-horizontal/package.json",
       "nx/core/package-json"
@@ -821,6 +785,10 @@
       "nx/core/package-json"
     ],
     "metadata.js.packageName": [
+      "packages/bar-horizontal/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageVersion": [
       "packages/bar-horizontal/package.json",
       "nx/core/package-json"
     ],
@@ -1257,22 +1225,6 @@
       "nx/core/package-json"
     ],
     "targets.release:next.metadata.runCommand": [
-      "packages/bar-horizontal/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish": [
-      "packages/bar-horizontal/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.executor": [
-      "packages/bar-horizontal/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.dependsOn": [
-      "packages/bar-horizontal/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.options": [
       "packages/bar-horizontal/package.json",
       "nx/core/package-json"
     ]
@@ -1282,10 +1234,6 @@
       "packages/core/package.json",
       "nx/core/package-json"
     ],
-    "sourceRoot": [
-      "packages/core/package.json",
-      "nx/core/package-json"
-    ],
     "name": [
       "packages/core/package.json",
       "nx/core/package-json"
@@ -1375,6 +1323,10 @@
       "nx/core/package-json"
     ],
     "metadata.js.packageName": [
+      "packages/core/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageVersion": [
       "packages/core/package.json",
       "nx/core/package-json"
     ],
@@ -1811,22 +1763,6 @@
       "nx/core/package-json"
     ],
     "targets.release:next.metadata.runCommand": [
-      "packages/core/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish": [
-      "packages/core/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.executor": [
-      "packages/core/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.dependsOn": [
-      "packages/core/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.options": [
       "packages/core/package.json",
       "nx/core/package-json"
     ]
@@ -1836,10 +1772,6 @@
       "packages/echarts-readymade/package.json",
       "nx/core/package-json"
     ],
-    "sourceRoot": [
-      "packages/echarts-readymade/package.json",
-      "nx/core/package-json"
-    ],
     "name": [
       "packages/echarts-readymade/package.json",
       "nx/core/package-json"
@@ -1929,6 +1861,10 @@
       "nx/core/package-json"
     ],
     "metadata.js.packageName": [
+      "packages/echarts-readymade/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageVersion": [
       "packages/echarts-readymade/package.json",
       "nx/core/package-json"
     ],
@@ -2365,22 +2301,6 @@
       "nx/core/package-json"
     ],
     "targets.release:next.metadata.runCommand": [
-      "packages/echarts-readymade/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish": [
-      "packages/echarts-readymade/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.executor": [
-      "packages/echarts-readymade/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.dependsOn": [
-      "packages/echarts-readymade/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.options": [
       "packages/echarts-readymade/package.json",
       "nx/core/package-json"
     ]
@@ -2390,10 +2310,6 @@
       "packages/line/package.json",
       "nx/core/package-json"
     ],
-    "sourceRoot": [
-      "packages/line/package.json",
-      "nx/core/package-json"
-    ],
     "name": [
       "packages/line/package.json",
       "nx/core/package-json"
@@ -2483,6 +2399,10 @@
       "nx/core/package-json"
     ],
     "metadata.js.packageName": [
+      "packages/line/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageVersion": [
       "packages/line/package.json",
       "nx/core/package-json"
     ],
@@ -2919,22 +2839,6 @@
       "nx/core/package-json"
     ],
     "targets.release:next.metadata.runCommand": [
-      "packages/line/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish": [
-      "packages/line/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.executor": [
-      "packages/line/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.dependsOn": [
-      "packages/line/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.options": [
       "packages/line/package.json",
       "nx/core/package-json"
     ]
@@ -2944,10 +2848,6 @@
       "packages/pie/package.json",
       "nx/core/package-json"
     ],
-    "sourceRoot": [
-      "packages/pie/package.json",
-      "nx/core/package-json"
-    ],
     "name": [
       "packages/pie/package.json",
       "nx/core/package-json"
@@ -3037,6 +2937,10 @@
       "nx/core/package-json"
     ],
     "metadata.js.packageName": [
+      "packages/pie/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageVersion": [
       "packages/pie/package.json",
       "nx/core/package-json"
     ],
@@ -3473,22 +3377,6 @@
       "nx/core/package-json"
     ],
     "targets.release:next.metadata.runCommand": [
-      "packages/pie/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish": [
-      "packages/pie/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.executor": [
-      "packages/pie/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.dependsOn": [
-      "packages/pie/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.options": [
       "packages/pie/package.json",
       "nx/core/package-json"
     ]
@@ -3498,10 +3386,6 @@
       "packages/scatter/package.json",
       "nx/core/package-json"
     ],
-    "sourceRoot": [
-      "packages/scatter/package.json",
-      "nx/core/package-json"
-    ],
     "name": [
       "packages/scatter/package.json",
       "nx/core/package-json"
@@ -3591,6 +3475,10 @@
       "nx/core/package-json"
     ],
     "metadata.js.packageName": [
+      "packages/scatter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageVersion": [
       "packages/scatter/package.json",
       "nx/core/package-json"
     ],
@@ -4027,22 +3915,6 @@
       "nx/core/package-json"
     ],
     "targets.release:next.metadata.runCommand": [
-      "packages/scatter/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish": [
-      "packages/scatter/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.executor": [
-      "packages/scatter/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.dependsOn": [
-      "packages/scatter/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.options": [
       "packages/scatter/package.json",
       "nx/core/package-json"
     ]
@@ -4052,10 +3924,6 @@
       "packages/stack/package.json",
       "nx/core/package-json"
     ],
-    "sourceRoot": [
-      "packages/stack/package.json",
-      "nx/core/package-json"
-    ],
     "name": [
       "packages/stack/package.json",
       "nx/core/package-json"
@@ -4145,6 +4013,10 @@
       "nx/core/package-json"
     ],
     "metadata.js.packageName": [
+      "packages/stack/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageVersion": [
       "packages/stack/package.json",
       "nx/core/package-json"
     ],
@@ -4581,22 +4453,6 @@
       "nx/core/package-json"
     ],
     "targets.release:next.metadata.runCommand": [
-      "packages/stack/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish": [
-      "packages/stack/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.executor": [
-      "packages/stack/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.dependsOn": [
-      "packages/stack/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.options": [
       "packages/stack/package.json",
       "nx/core/package-json"
     ]
@@ -4606,10 +4462,6 @@
       "packages/table/package.json",
       "nx/core/package-json"
     ],
-    "sourceRoot": [
-      "packages/table/package.json",
-      "nx/core/package-json"
-    ],
     "name": [
       "packages/table/package.json",
       "nx/core/package-json"
@@ -4699,6 +4551,10 @@
       "nx/core/package-json"
     ],
     "metadata.js.packageName": [
+      "packages/table/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageVersion": [
       "packages/table/package.json",
       "nx/core/package-json"
     ],
@@ -5137,30 +4993,10 @@
     "targets.release:next.metadata.runCommand": [
       "packages/table/package.json",
       "nx/core/package-json"
-    ],
-    "targets.nx-release-publish": [
-      "packages/table/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.executor": [
-      "packages/table/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.dependsOn": [
-      "packages/table/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.options": [
-      "packages/table/package.json",
-      "nx/core/package-json"
     ]
   },
   "packages/wordcloud": {
     "root": [
-      "packages/wordcloud/package.json",
-      "nx/core/package-json"
-    ],
-    "sourceRoot": [
       "packages/wordcloud/package.json",
       "nx/core/package-json"
     ],
@@ -5257,6 +5093,10 @@
       "nx/core/package-json"
     ],
     "metadata.js.packageName": [
+      "packages/wordcloud/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageVersion": [
       "packages/wordcloud/package.json",
       "nx/core/package-json"
     ],
@@ -5721,22 +5561,6 @@
       "nx/core/package-json"
     ],
     "targets.release:next.metadata.runCommand": [
-      "packages/wordcloud/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish": [
-      "packages/wordcloud/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.executor": [
-      "packages/wordcloud/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.dependsOn": [
-      "packages/wordcloud/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.nx-release-publish.options": [
       "packages/wordcloud/package.json",
       "nx/core/package-json"
     ]

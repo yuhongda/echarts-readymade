@@ -16,8 +16,8 @@ const config: RollupOptions = {
         moduleDirectory: 'node_modules'
       }
     }),
-    commonjs(),
-    visualizer()
+    commonjs()
+    // visualizer()
   ],
   external: [
     'react',

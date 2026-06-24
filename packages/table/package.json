@@ -36,11 +36,12 @@
   },
   "dependencies": {
     "@echarts-readymade/core": "workspace:*",
-    "big.js": "^6.1.1"
+    "big.js": "^6.1.1",
+    "clone": "^2.1.2"
   },
   "devDependencies": {
-    "@ant-design/icons": "^4.6.2",
     "@types/big.js": "^6.1.2",
+    "@types/clone": "^2.1.4",
     "@types/lodash": "^4.14.178",
     "@types/lodash-es": "^4.17.6",
     "@types/numeral": "^2.0.2",
@@ -50,10 +51,10 @@
     "use-local-storage-state": "^17.0.0"
   },
   "peerDependencies": {
-    "@ant-design/icons": "^4.6.2 || ^5.0.0",
-    "antd": "^4.19.3 || ^5.0.0",
+    "@ant-design/icons": "^5.6.1",
+    "antd": "^5.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "use-local-storage-state": "^17.0.0 || ^19.0.0"
+    "use-local-storage-state": "^19.0.0"
   }
 }

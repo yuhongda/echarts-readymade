@@ -7,7 +7,16 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "echarts-readymade": "^1.1.2",
+    "echarts-readymade": "^1.2.0",
+    "@echarts-readymade/bar": "workspace:*",
+    "@echarts-readymade/bar-horizontal": "workspace:*",
+    "@echarts-readymade/core": "workspace:*",
+    "@echarts-readymade/line": "workspace:*",
+    "@echarts-readymade/pie": "workspace:*",
+    "@echarts-readymade/scatter": "workspace:*",
+    "@echarts-readymade/stack": "workspace:*",
+    "@echarts-readymade/table": "workspace:*",
+    "@echarts-readymade/wordcloud": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "use-async-request": "^1.2.10",

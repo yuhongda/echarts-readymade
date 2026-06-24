@@ -17,7 +17,15 @@ const config: RollupOptions = {
       }
     }),
     commonjs(),
-    typescript()
+    typescript({
+      // 💡 关键修复：显式指定 tsconfig 路径，并把 outDir 设为你的 Rollup 输出目录（通常是 "dist"）
+      tsconfig: './tsconfig.json',
+      outDir: 'lib', 
+      
+      // 如果你还需要生成 .d.ts 声明文件，可以加上这两行
+      declaration: false,
+      declarationDir: `lib/${format}` 
+    })
   ],
 
   external: ['react', 'react-dom', 'echarts']

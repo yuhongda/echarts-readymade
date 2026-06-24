@@ -42,6 +42,7 @@
     "@echarts-readymade/pie": "workspace:*",
     "@echarts-readymade/scatter": "workspace:*",
     "@echarts-readymade/stack": "workspace:*",
+    "@echarts-readymade/table": "workspace:*",
     "@echarts-readymade/wordcloud": "workspace:*"
   },
   "devDependencies": {
@@ -52,6 +53,7 @@
     "react-dom": "^19.0.0"
   },
   "peerDependencies": {
+    "@ant-design/icons": "^5.6.1",
     "antd": "^4.19.3 || ^5.0.0",
     "echarts": "^5.2.2",
     "echarts-for-react": "^3.0.2",

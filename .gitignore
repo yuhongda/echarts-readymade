@@ -8,3 +8,4 @@ lib
 /packages/wordcloud/.DS_Store
 stats.html
 /.DS_Store
+/.nx

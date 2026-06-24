@@ -1,11 +1,10 @@
 import React, { use, useState, useCallback, useImperativeHandle, forwardRef, useRef } from 'react'
-import type { ECharts } from 'echarts'
+import type { ECharts, Color as ZRColor } from 'echarts'
 import Big from 'big.js'
 import cloneDeep from 'clone'
 import type { ChartProps, LegendPosition, Field } from '@echarts-readymade/core'
 import { mergeOption, buildChartOption, COLOR_LIST, truncate } from '@echarts-readymade/core'
 import ReactEcharts from 'echarts-for-react'
-
 export interface ScatterChartProps extends ChartProps {
   /**
    * 图例位置
@@ -227,13 +226,13 @@ export const Scatter = (props: ScatterChartProps) => {
                   <div><span style="color: #595959;">${
                     _valueList[0].fieldName
                   }</span>:<span style="color: #262626;">${item.value[0]}${
-            _valueList[0].isPercent ? '%' : ''
-          }</span></div>
+                    _valueList[0].isPercent ? '%' : ''
+                  }</span></div>
                   <div><span style="color: #595959;">${
                     _valueList[1].fieldName
                   }</span>:<span style="color: #262626;">${item.value[1]}${
-            _valueList[1].isPercent ? '%' : ''
-          }</span></div>
+                    _valueList[1].isPercent ? '%' : ''
+                  }</span></div>
               </div>`
         }
       }
@@ -466,10 +465,14 @@ export const Scatter = (props: ScatterChartProps) => {
         }
       })
 
-      let userColorFromSetOption: string[] | null = null
+      let userColorFromSetOption: ZRColor[] | undefined = undefined
       if (setOption) {
         const option = setOption(cloneDeep(_chartOption))
         userColorFromSetOption = option.color
+          ? Array.isArray(option.color)
+            ? option.color
+            : [option.color]
+          : undefined
       }
 
       const getColor = useCallback(
@@ -478,7 +481,7 @@ export const Scatter = (props: ScatterChartProps) => {
 
           if (userColorFromSetOption) {
             return userColorFromSetOption[index % userColorFromSetOption.length]
-          } else if (userColor) {
+          } else if (userColor && Array.isArray(userColor)) {
             return userColor[index % userColor.length]
           } else {
             return COLOR_LIST[index % COLOR_LIST.length]
@@ -521,6 +524,13 @@ export const Scatter = (props: ScatterChartProps) => {
         [getColor]
       )
 
+      // _chartOption.grid = {
+      //   ..._chartOption.grid,
+      //   x: 70,
+      //   x2: 130,
+      //   top: 50,
+      //   bottom: 130
+      // }
       _chartOption.grid.x = 70
       _chartOption.grid.x2 = 130
       _chartOption.grid.top = 50
@@ -574,13 +584,13 @@ export const Scatter = (props: ScatterChartProps) => {
                   <div><span style="color: #595959;">${
                     _valueList[0].fieldName
                   }</span>:<span style="color: #262626;">${item.value[0]}${
-            _valueList[0].isPercent ? '%' : ''
-          }</span></div>
+                    _valueList[0].isPercent ? '%' : ''
+                  }</span></div>
                   <div><span style="color: #595959;">${
                     _valueList[1].fieldName
                   }</span>:<span style="color: #262626;">${item.value[1]}${
-            _valueList[1].isPercent ? '%' : ''
-          }</span></div>
+                    _valueList[1].isPercent ? '%' : ''
+                  }</span></div>
               </div>`
         }
       }
