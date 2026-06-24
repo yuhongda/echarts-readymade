@@ -294,7 +294,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
               key: _c,
               className: 'columnTitleCell',
               title: (
-                <>
+                <div>
                   <TitleSortLeft
                     className="sortBtn"
                     onClick={() => {
@@ -314,7 +314,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
                   >
                     <CaretRightOutlined />
                   </TitleSortRight>
-                </>
+                </div>
               ),
               children: valueList.map((v) => {
                 return getColumn(v, index, item, c, false)
@@ -455,7 +455,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
           key: item.fieldKey,
           className: 'columnTitleCell',
           title: (
-            <>
+            <div>
               {/* <TitleSortLeft
                       className="sortBtn"
                       onClick={() => {
@@ -473,7 +473,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
                       }}>
                       <CaretRightOutlined />
                     </TitleSortRight> */}
-            </>
+            </div>
           ),
           dataIndex: item.fieldKey,
           width: item.width || COLUMN_WIDTH,

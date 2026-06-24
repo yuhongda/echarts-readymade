@@ -12981,3 +12981,46 @@ Deleted:
 [NX v22.7.5 Daemon Server] - 2026-06-24T14:04:08.921Z - Time taken for 'build typescript dependencies' 0.07191599905490875ms
 [NX v22.7.5 Daemon Server] - 2026-06-24T14:04:08.921Z - Time taken for 'createMetadata' 0.009208008646965027ms
 [NX v22.7.5 Daemon Server] - 2026-06-24T14:04:08.921Z - Time taken for 'serialize graph' 2.3632500022649765ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:11.932Z - [WATCHER]: packages/table/src/index.tsx was modified
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:11.932Z - [WATCHER]: File changes detected:
+Created:
+(none)
+Updated:
+  - packages/table/src/index.tsx
+Deleted:
+(none)
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:11.932Z - [SYNC]: clearing sync generators cache due to file changes
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:11.933Z - [WATCHER]: Processing file changes in outputs
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.336Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.336Z - [REQUEST]: packages/table/src/index.tsx
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.336Z - [REQUEST]: 
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.372Z - [SYNC]: collect registered sync generators
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.373Z - [SYNC]: project graph hash is the same, not collecting task sync generators
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.373Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.374Z - Time taken for 'hash changed files from watcher' 0.2737080007791519ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.374Z - Time taken for 'build-project-configs' 19.14554199576378ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.374Z - Time taken for 'nx/js/dependencies-and-lockfile:createNodes' 16.918707996606827ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.374Z - Time taken for 'nx/core/package-json:createNodes' 9.389541000127792ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.374Z - Time taken for 'nx/core/project-json:createNodes' 0.0747079998254776ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.374Z - Time taken for 'createNodes:merge' 1.6723750084638596ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.374Z - Time taken for 'get-all-workspace-files' 0.09416699409484863ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.374Z - Time taken for 'total execution time for createProjectGraph()' 13.235457986593246ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.374Z - Time taken for 'createDependencies' 7.885709002614021ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.374Z - Time taken for 'nx/js/dependencies-and-lockfile:createDependencies' 7.813374996185303ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.374Z - Time taken for 'build typescript dependencies' 1.648041993379593ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.374Z - Time taken for 'createMetadata' 0.006166994571685791ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:23:18.374Z - Time taken for 'serialize graph' 2.2362080067396164ms
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:24:22.750Z - [WATCHER]: .gitignore was modified
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:24:22.750Z - [WATCHER]: File changes detected:
+Created:
+(none)
+Updated:
+  - .gitignore
+Deleted:
+(none)
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:24:22.750Z - [SYNC]: clearing sync generators cache due to file changes
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:24:22.750Z - [WATCHER]: Processing file changes in outputs
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:24:22.750Z - [WATCHER]: Stopping the watcher for /Users/hongdayu/code/echarts-readymade (sources)
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:24:22.751Z - [WATCHER]: Stopping the watcher for /Users/hongdayu/code/echarts-readymade (outputs)
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:24:22.752Z - [LATEST-NX]: Cleaning up latest Nx installation from /private/tmp/tmp-24446-Xl5gGUaK7w2w
+[NX v22.7.5 Daemon Server] - 2026-06-24T14:24:22.752Z - Server stopped because: "Stopping the daemon the set of ignored files changed (native)"
