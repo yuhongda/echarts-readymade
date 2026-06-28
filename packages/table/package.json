@@ -48,7 +48,7 @@
     "antd": "^4.19.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "use-local-storage-state": "^17.0.0"
+    "use-local-storage-state": "^19.0.0"
   },
   "peerDependencies": {
     "@ant-design/icons": "^5.6.1",

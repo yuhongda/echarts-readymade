@@ -555,12 +555,6 @@ importers:
       antd:
         specifier: ^4.19.3
         version: 4.24.16(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      echarts:
-        specifier: ^6.1.0
-        version: 6.1.0
-      echarts-for-react:
-        specifier: ^3.0.6
-        version: 3.0.6(echarts@6.1.0)(react@19.2.7)
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -613,12 +607,6 @@ importers:
       copyfiles:
         specifier: ^2.4.1
         version: 2.4.1
-      echarts:
-        specifier: ^6.1.0
-        version: 6.1.0
-      echarts-for-react:
-        specifier: ^3.0.6
-        version: 3.0.6(echarts@6.1.0)(react@19.2.7)
       react:
         specifier: ^19.0.0
         version: 19.2.7
