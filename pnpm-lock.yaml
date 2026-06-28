@@ -562,8 +562,8 @@ importers:
         specifier: ^19.0.0
         version: 19.2.7(react@19.2.7)
       use-local-storage-state:
-        specifier: ^17.0.0
-        version: 17.4.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+        specifier: ^19.0.0
+        version: 19.5.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
 
   packages/wordcloud:
     dependencies:
@@ -7278,12 +7278,12 @@ packages:
   use-async-request@1.2.10:
     resolution: {integrity: sha512-ygMtKY7XG0/uduGWcXFzGF/2JHDzLUxbioQgewicQtCP1joeBNIaqyHiAWzUQscIa2XgAK2Pq+o2BQgOadRrbQ==}
 
-  use-local-storage-state@17.4.0:
-    resolution: {integrity: sha512-ubHup10jdEjLp6iZTsuJ+7VtmmDC39CTTr3rqEWNtEFzE+/GMT8bnEni+a1vxrwxcTsmTUdatm43+k5DLZWiig==}
-    engines: {node: '>=12'}
+  use-local-storage-state@19.5.0:
+    resolution: {integrity: sha512-sUJAyFvsmqMpBhdwaRr7GTKkkoxb6PWeNVvpBDrLuwQF1PpbJRKIbOYeLLeqJI7B3wdfFlLLCBbmOdopiSTBOw==}
+    engines: {node: '>=14'}
     peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
+      react: '>=18'
+      react-dom: '>=18'
 
   use@3.1.1:
     resolution: {integrity: sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==}
@@ -15815,7 +15815,7 @@ snapshots:
 
   use-async-request@1.2.10: {}
 
-  use-local-storage-state@17.4.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7):
+  use-local-storage-state@19.5.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7):
     dependencies:
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)

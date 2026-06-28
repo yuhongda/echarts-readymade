@@ -8216,9 +8216,9 @@
       "type": "npm",
       "name": "npm:echarts",
       "data": {
-        "version": "5.2.2",
+        "version": "6.1.0",
         "packageName": "echarts",
-        "hash": "sha512-yxuBfeIH5c+0FsoRP60w4De6omXhA06c7eUYBsC1ykB6Ys2yK5fSteIYWvkJ4xJVLQgCvAdO8C4mN6MLeJpBaw=="
+        "hash": "sha512-q0yaFPggC9FUdsWH4blavRWFmxdrIodbkoKNAjJudAI6CA9gNPxHtV2RcZNEepZVlk4yvBYkOkbk6HIVpIyHZA=="
       }
     },
     "npm:ejs": {
@@ -10772,7 +10772,7 @@
       "type": "npm",
       "name": "npm:jest-canvas-mock",
       "data": {
-        "version": "2.5.3",
+        "version": "2.5.2",
         "packageName": "jest-canvas-mock",
         "hash": "sha512-vgnpPupjOL6+L5oJXzxTxFrlGEIbHdZqFU+LFNdtLxZ3lRDCl17FlTMM7IatoRQkrcyOTMlDinjUguqmQ6bR2A=="
       }
@@ -16253,9 +16253,9 @@
       "type": "npm",
       "name": "npm:use-local-storage-state",
       "data": {
-        "version": "17.4.0",
+        "version": "19.5.0",
         "packageName": "use-local-storage-state",
-        "hash": "sha512-ubHup10jdEjLp6iZTsuJ+7VtmmDC39CTTr3rqEWNtEFzE+/GMT8bnEni+a1vxrwxcTsmTUdatm43+k5DLZWiig=="
+        "hash": "sha512-sUJAyFvsmqMpBhdwaRr7GTKkkoxb6PWeNVvpBDrLuwQF1PpbJRKIbOYeLLeqJI7B3wdfFlLLCBbmOdopiSTBOw=="
       }
     },
     "npm:use": {
@@ -16820,14 +16820,19 @@
       "type": "npm",
       "name": "npm:zrender",
       "data": {
-        "version": "5.2.1",
+        "version": "6.1.0",
         "packageName": "zrender",
-        "hash": "sha512-M3bPGZuyLTNBC6LiNKXJwSCtglMp8XUEqEBG+2MdICDI3d1s500Y4P0CzldQGsqpRVB7fkvf3BKQQRxsEaTlsw=="
+        "hash": "sha512-oEGMDB6pOP2S6OwRR4PdVv610zrjnA3Bh+JnSG12fYJlBKjtNAoEb5fSUoCOOINlH96I2fU38/A2UpRKs67xYQ=="
       }
     }
   },
   "dependencies": {
     "echarts-readymade": [
+      {
+        "source": "echarts-readymade",
+        "target": "npm:@ant-design/icons",
+        "type": "static"
+      },
       {
         "source": "echarts-readymade",
         "target": "npm:antd",
@@ -16896,6 +16901,11 @@
       {
         "source": "echarts-readymade",
         "target": "@echarts-readymade/stack",
+        "type": "static"
+      },
+      {
+        "source": "echarts-readymade",
+        "target": "@echarts-readymade/table",
         "type": "static"
       },
       {
@@ -17476,6 +17486,51 @@
       {
         "source": "demo",
         "target": "echarts-readymade",
+        "type": "static"
+      },
+      {
+        "source": "demo",
+        "target": "@echarts-readymade/bar",
+        "type": "static"
+      },
+      {
+        "source": "demo",
+        "target": "@echarts-readymade/bar-horizontal",
+        "type": "static"
+      },
+      {
+        "source": "demo",
+        "target": "@echarts-readymade/core",
+        "type": "static"
+      },
+      {
+        "source": "demo",
+        "target": "@echarts-readymade/line",
+        "type": "static"
+      },
+      {
+        "source": "demo",
+        "target": "@echarts-readymade/pie",
+        "type": "static"
+      },
+      {
+        "source": "demo",
+        "target": "@echarts-readymade/scatter",
+        "type": "static"
+      },
+      {
+        "source": "demo",
+        "target": "@echarts-readymade/stack",
+        "type": "static"
+      },
+      {
+        "source": "demo",
+        "target": "@echarts-readymade/table",
+        "type": "static"
+      },
+      {
+        "source": "demo",
+        "target": "@echarts-readymade/wordcloud",
         "type": "static"
       },
       {
@@ -39102,5 +39157,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1782224921123
+  "computedAt": 1782654307557
 }
