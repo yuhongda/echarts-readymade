@@ -13621,3 +13621,46 @@ Deleted:
 [NX v22.7.5 Daemon Server] - 2026-06-28T13:46:09.654Z - [WATCHER]: Processing file changes in outputs
 [NX v22.7.5 Daemon Server] - 2026-06-28T13:46:14.526Z - [WATCHER]: Processing file changes in outputs
 [NX v22.7.5 Daemon Server] - 2026-06-28T13:46:19.422Z - [WATCHER]: Processing file changes in outputs
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.236Z - Established a connection. Number of open connections: 1
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.236Z - Closed a connection. Number of open connections: 0
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.236Z - Established a connection. Number of open connections: 1
+[NX v22.7.5 Daemon Client] - 2026-06-28T13:51:19.236Z - [Messenger] Setting up socket listeners
+[NX v22.7.5 Daemon Client] - 2026-06-28T13:51:19.237Z - [Messenger] listen() complete
+[NX v22.7.5 Daemon Client] - 2026-06-28T13:51:19.249Z - [Messenger] Sending message type: REQUEST_PROJECT_GRAPH
+[NX v22.7.5 Daemon Client] - 2026-06-28T13:51:19.249Z - [Messenger] Message sent
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.250Z - Received raw message of length 4656
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.250Z - Received json message of type REQUEST_PROJECT_GRAPH
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.250Z - [REQUEST]: Client Request for Project Graph Received
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.251Z - Reusing in-memory cached project graph because no files changed.
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.251Z - Serializing response for REQUEST_PROJECT_GRAPH message in json mode
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.251Z - Responding to REQUEST_PROJECT_GRAPH message
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.251Z - [REQUEST]: Responding to the client. project-graph
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.252Z - Time taken for 'total for creating and serializing project graph' 0.3526659999624826ms
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.253Z - Done responding to the client project-graph
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.253Z - Handled json message REQUEST_PROJECT_GRAPH. Handling time: 1. Response time: 2.
+[NX v22.7.5 Daemon Client] - 2026-06-28T13:51:19.254Z - [Messenger] Received message, length: 902160
+[NX v22.7.5 Daemon Client] - 2026-06-28T13:51:19.258Z - [Messenger] Sending message type: GET_CONTEXT_FILE_DATA
+[NX v22.7.5 Daemon Client] - 2026-06-28T13:51:19.258Z - [Messenger] Message sent
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.258Z - Received raw message of length 32
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.258Z - Received json message of type GET_CONTEXT_FILE_DATA
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.258Z - Serializing response for GET_CONTEXT_FILE_DATA message in json mode
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.258Z - Responding to GET_CONTEXT_FILE_DATA message
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.258Z - [REQUEST]: Responding to the client. handleContextFileData
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.259Z - Done responding to the client handleContextFileData
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:19.259Z - Handled json message GET_CONTEXT_FILE_DATA. Handling time: 0. Response time: 1.
+[NX v22.7.5 Daemon Client] - 2026-06-28T13:51:19.259Z - [Messenger] Received message, length: 10021
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:21.020Z - Closed a connection. Number of open connections: 0
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:46.546Z - [WATCHER]: .gitignore was modified
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:46.546Z - [WATCHER]: File changes detected:
+Created:
+(none)
+Updated:
+  - .gitignore
+Deleted:
+(none)
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:46.547Z - [SYNC]: clearing sync generators cache due to file changes
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:46.547Z - [WATCHER]: Processing file changes in outputs
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:46.548Z - [WATCHER]: Stopping the watcher for /Users/hongdayu/code/echarts-readymade (sources)
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:46.549Z - [WATCHER]: Stopping the watcher for /Users/hongdayu/code/echarts-readymade (outputs)
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:46.550Z - [LATEST-NX]: Cleaning up latest Nx installation from /private/tmp/tmp-79094-xs77VjR9zeli
+[NX v22.7.5 Daemon Server] - 2026-06-28T13:51:46.551Z - Server stopped because: "Stopping the daemon the set of ignored files changed (native)"
