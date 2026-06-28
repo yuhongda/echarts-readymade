@@ -1,5 +1,6 @@
 node_modules
 lib
+.nx
 
 /__test__/coverage
 /packages/core/yarn-error.log
@@ -8,6 +9,3 @@ lib
 /packages/wordcloud/.DS_Store
 stats.html
 /.DS_Store
-/.nx
-/.nx
-/.nx
