@@ -198,7 +198,6 @@ export const echartsOptionsBase: any = {
       // min: 0,
     }
   ],
-  color: COLOR_LIST,
   textStyle: {},
   legend: {
     itemWidth: 10,

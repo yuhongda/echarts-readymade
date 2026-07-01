@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ChartProvider, ChartContext } from '../../../packages/core/src'
+import { ChartProvider, ChartContext, COLOR_LIST } from '../../../packages/core/src'
 import { Line } from '../../../packages/line/src'
 import type { LegendPosition } from '@echarts-readymade/core'
 import styled from 'styled-components'
@@ -171,7 +171,8 @@ export const LineChart: React.FC = () => {
                   formatter: '{value}%'
                 }
               }
-            ]
+            ],
+            color: COLOR_LIST
           }
         }}
       >
