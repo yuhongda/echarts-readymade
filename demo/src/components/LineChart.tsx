@@ -5,6 +5,7 @@ import type { LegendPosition } from '@echarts-readymade/core'
 import styled from 'styled-components'
 import type { Field } from '@echarts-readymade/core'
 import { Radio, Button, Row, Col } from 'antd'
+import { theme as themeStore } from '../store'
 
 const Container = styled.div`
   width: 100%;
@@ -96,7 +97,7 @@ export const LineChart: React.FC = () => {
       d2: '上海',
       v4: 41.51820080195095,
       v5: 21.872185824241658
-    },
+    }
   ])
 
   const dimension: Field[] = [
@@ -173,7 +174,8 @@ export const LineChart: React.FC = () => {
               }
             ],
             color: COLOR_LIST
-          }
+          },
+          theme: themeStore.value === 'light' ? 'light' : 'dark'
         }}
       >
         <Row gutter={16} style={{ height: 500 }}>
@@ -182,8 +184,7 @@ export const LineChart: React.FC = () => {
               context={ChartContext}
               dimension={dimension}
               valueList={valueList}
-              legendPosition={legendPosition as LegendPosition}
-            />
+              legendPosition={legendPosition as LegendPosition}            />
           </Col>
           <Col span={12}>
             <Line

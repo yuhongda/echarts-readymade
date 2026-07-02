@@ -7,7 +7,6 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "echarts-readymade": "^1.2.0",
     "@echarts-readymade/bar": "workspace:*",
     "@echarts-readymade/bar-horizontal": "workspace:*",
     "@echarts-readymade/core": "workspace:*",
@@ -17,6 +16,10 @@
     "@echarts-readymade/stack": "workspace:*",
     "@echarts-readymade/table": "workspace:*",
     "@echarts-readymade/wordcloud": "workspace:*",
+    "echarts-readymade": "^1.2.0",
+    "mobx": "^6.16.1",
+    "mobx-react-lite": "^4.1.1",
+    "mobx-value": "^1.10.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "use-async-request": "^1.2.10",
