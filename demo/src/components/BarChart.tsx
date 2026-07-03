@@ -8,7 +8,8 @@ import { Bar } from '../../../packages/bar/src'
 import styled from 'styled-components'
 import { Radio, Button, Row, Col } from 'antd'
 import type { Field } from 'echarts-readymade'
-import type { EChartsInstance } from 'echarts-for-react'
+import ReactEcharts from 'echarts-for-react'
+import { theme as themeStore } from '../store'
 
 const Container = styled.div`
   width: 100%;
@@ -16,7 +17,7 @@ const Container = styled.div`
 `
 
 export const BarChart: React.FC = () => {
-  const ref = useRef<EChartsInstance>(null)
+  const ref = useRef<InstanceType<typeof ReactEcharts>>(null);
   useEffect(() => {
     if (ref.current) {
       // boom!!
@@ -188,7 +189,8 @@ export const BarChart: React.FC = () => {
               }
             ]
             // color: ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
-          }
+          },
+          theme: themeStore.value === 'light' ? 'light' : 'dark'
         }}
       >
         <Row gutter={16} style={{ height: 500 }}>

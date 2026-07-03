@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { ChartProvider, ChartContext } from '@echarts-readymade/core'
-import { Stack } from '@echarts-readymade/stack'
+import { ChartProvider, ChartContext, COLOR_LIST } from '../../../packages/core/src'
+import { Stack } from '../../../packages/stack/src'
 import type { LegendPosition } from '@echarts-readymade/core'
 import styled from 'styled-components'
 import type { Field } from '@echarts-readymade/core'
 import { Radio, Button, Row, Col } from 'antd'
+import { theme as themeStore } from '../store'
 
 const Container = styled.div`
   width: 100%;
@@ -175,7 +176,8 @@ export const StackChart: React.FC = () => {
                 }
               }
             ]
-          }
+          },
+          theme: themeStore.value === 'light' ? 'light' : 'dark'
         }}
       >
         <Row gutter={16} style={{ height: 500 }}>

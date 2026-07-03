@@ -173,7 +173,7 @@ export const LineChart: React.FC = () => {
                 }
               }
             ],
-            color: COLOR_LIST
+            // color: COLOR_LIST
           },
           theme: themeStore.value === 'light' ? 'light' : 'dark'
         }}

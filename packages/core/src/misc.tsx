@@ -24,7 +24,6 @@ export const echartsOptionsBase: any = {
     left: 24,
     textAlign: 'left',
     textStyle: {
-      color: 'rgba(0,0,0,0.65)',
       fontSize: 16,
       lineHeight: 1
     }
@@ -40,18 +39,13 @@ export const echartsOptionsBase: any = {
   tooltip: {
     show: true,
     trigger: 'axis',
-    backgroundColor: 'rgba(255,255,255,0.9)',
-    extraCssText:
-      'box-shadow:  0px 0px 4px 0px rgba(0,0,0,0.25); border-radius: 2px; padding:10px 14px',
     formatter: function (data: any) {
       const _data = Array.isArray(data) ? data : [data]
 
       const _len = Big(_data.length)
       const _count = _len.div(10).round(0, Big.roundUp).toNumber()
 
-      return `<div style="color: #c8c8c8;">${
-        _data[0].name
-      }</div><div style="column-count: ${_count};">${_data
+      return `<div>${_data[0].name}</div><div style="column-count: ${_count};">${_data
         .map((d: any) => {
           switch (d.seriesType) {
             case 'pie':
@@ -59,19 +53,19 @@ export const echartsOptionsBase: any = {
                       <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:${
                         d.color
                       }"></span>
-                      <span style="color: #595959;">${d.seriesName}:</span>
-                      <span style="color: #262626;">${
+                      <span>${d.seriesName}:</span>
+                      <span>${
                         d.data.isShowPercentValue
                           ? d.percent + '%'
                           : d.data.value == null
-                          ? '--'
-                          : d.data.isPercent
-                          ? numberWithCommas(d.data.value) + '%'
-                          : numberWithCommas(
-                              Big(d.data.value).toFixed(
-                                d.data.decimalLength != null ? d.data.decimalLength : 2
-                              )
-                            )
+                            ? '--'
+                            : d.data.isPercent
+                              ? numberWithCommas(d.data.value) + '%'
+                              : numberWithCommas(
+                                  Big(d.data.value).toFixed(
+                                    d.data.decimalLength != null ? d.data.decimalLength : 2
+                                  )
+                                )
                       }</span>
                   </div>`
             case 'line':
@@ -79,19 +73,19 @@ export const echartsOptionsBase: any = {
                       <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:${
                         d.color
                       }"></span>
-                      <span style="color: #595959;">${d.seriesName}:</span>
-                      <span style="color: #262626;">${
+                      <span>${d.seriesName}:</span>
+                      <span>${
                         d.data.value == null
                           ? '--'
                           : d.data.isPercent
-                          ? d.data.value != null
-                            ? `${numberWithCommas(d.data.value)}%`
-                            : `--`
-                          : numberWithCommas(
-                              Big(d.data.value).toFixed(
-                                d.data.decimalLength != null ? d.data.decimalLength : 2
+                            ? d.data.value != null
+                              ? `${numberWithCommas(d.data.value)}%`
+                              : `--`
+                            : numberWithCommas(
+                                Big(d.data.value).toFixed(
+                                  d.data.decimalLength != null ? d.data.decimalLength : 2
+                                )
                               )
-                            )
                       }</span>
                   </div>`
             default:
@@ -99,15 +93,17 @@ export const echartsOptionsBase: any = {
                       <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:${
                         d.color
                       }"></span>
-                      <span style="color: #595959;">${d.seriesName}:</span>
-                      <span style="color: #262626;">${
+                      <span>${d.seriesName}:</span>
+                      <span>${
                         d.data.value == null
                           ? '--'
                           : d.data.isPercent
-                          ? numberWithCommas(d.data.value) + '%'
-                          : numberWithCommas(Big(d.data.value).toFixed(
-                              d.data.decimalLength != null ? d.data.decimalLength : 2
-                            ))
+                            ? numberWithCommas(d.data.value) + '%'
+                            : numberWithCommas(
+                                Big(d.data.value).toFixed(
+                                  d.data.decimalLength != null ? d.data.decimalLength : 2
+                                )
+                              )
                       }</span>
                   </div>`
           }
@@ -119,10 +115,7 @@ export const echartsOptionsBase: any = {
     type: 'category',
     offset: 0,
     axisLine: {
-      show: true,
-      lineStyle: {
-        color: '#D9D9D9'
-      }
+      show: true
     },
     axisTick: {
       show: true,
@@ -134,10 +127,7 @@ export const echartsOptionsBase: any = {
     },
     axisLabel: {
       rotate: 45,
-      align: 'right',
-      textStyle: {
-        color: '#8C8C8C'
-      }
+      align: 'right'
     },
     data: []
   },
@@ -150,21 +140,13 @@ export const echartsOptionsBase: any = {
       splitLine: {
         show: true,
         lineStyle: {
-          color: '#E7EAEF',
           type: 'dashed'
         }
       },
       axisLine: {
-        show: false,
-        lineStyle: {
-          color: '#D9D9D9'
-        }
+        show: false
       },
-      axisLabel: {
-        textStyle: {
-          color: '#8C8C8C'
-        }
-      },
+      axisLabel: {},
       axisTick: {
         show: false,
         lineStyle: {}
@@ -181,16 +163,9 @@ export const echartsOptionsBase: any = {
         lineStyle: {}
       },
       axisLine: {
-        show: false,
-        lineStyle: {
-          color: '#D9D9D9'
-        }
+        show: false
       },
-      axisLabel: {
-        textStyle: {
-          color: '#8C8C8C'
-        }
-      },
+      axisLabel: {},
       axisTick: {
         show: false,
         lineStyle: {}
