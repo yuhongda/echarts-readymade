@@ -1,6 +1,6 @@
 {
   "name": "@echarts-readymade/bar-horizontal",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Horizontal Bar chart",
   "main": "lib/index.js",
   "module": "lib/es/index.es.js",
