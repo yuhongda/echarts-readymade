@@ -214,23 +214,20 @@ export const Scatter = (props: ScatterChartProps) => {
       _chartOption.tooltip = {
         show: true,
         trigger: 'item',
-        backgroundColor: 'rgba(255,255,255,0.9)',
-        extraCssText:
-          'box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25); border-radius: 2px; padding:10px 14px',
         formatter: (item: any) => {
-          return `<div style="color: #c8c8c8;">
+          return `<div>
                   <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:${
                     item.color
                   }"></span>
                   <span>${item.name}:</span>
-                  <div><span style="color: #595959;">${
+                  <div><span>${
                     _valueList[0].fieldName
-                  }</span>:<span style="color: #262626;">${item.value[0]}${
+                  }</span>:<span>${item.value[0]}${
                     _valueList[0].isPercent ? '%' : ''
                   }</span></div>
-                  <div><span style="color: #595959;">${
+                  <div><span>${
                     _valueList[1].fieldName
-                  }</span>:<span style="color: #262626;">${item.value[1]}${
+                  }</span>:<span>${item.value[1]}${
                     _valueList[1].isPercent ? '%' : ''
                   }</span></div>
               </div>`
@@ -572,23 +569,20 @@ export const Scatter = (props: ScatterChartProps) => {
       _chartOption.tooltip = {
         show: true,
         trigger: 'item',
-        backgroundColor: 'rgba(255,255,255,0.9)',
-        extraCssText:
-          'box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25); border-radius: 2px; padding:10px 14px',
         formatter: (item: any) => {
-          return `<div style="color: #c8c8c8;">
+          return `<div>
                   <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:${
                     item.color
                   }"></span>
                   <span>${item.name}:</span>
-                  <div><span style="color: #595959;">${
+                  <div><span>${
                     _valueList[0].fieldName
-                  }</span>:<span style="color: #262626;">${item.value[0]}${
+                  }</span>:<span>${item.value[0]}${
                     _valueList[0].isPercent ? '%' : ''
                   }</span></div>
-                  <div><span style="color: #595959;">${
+                  <div><span>${
                     _valueList[1].fieldName
-                  }</span>:<span style="color: #262626;">${item.value[1]}${
+                  }</span>:<span>${item.value[1]}${
                     _valueList[1].isPercent ? '%' : ''
                   }</span></div>
               </div>`

@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import type { Field } from '../../../packages/core/src'
 import { Radio, Button, Row, Col } from 'antd'
 import { quadrantSetting } from '../../../packages/scatter/src'
+import { theme as themeStore } from '../store'
 
 const Container = styled.div`
   width: 100%;
@@ -173,20 +174,8 @@ export const ScatterChart: React.FC = () => {
             title: {
               text: 'Scatter Chart'
             }
-            // color: [
-            //   '#c23531',
-            //   '#2f4554',
-            //   '#61a0a8',
-            //   '#d48265',
-            //   '#91c7ae',
-            //   '#749f83',
-            //   '#ca8622',
-            //   '#bda29a',
-            //   '#6e7074',
-            //   '#546570',
-            //   '#c4ccd3'
-            // ]
-          }
+          },
+          theme: themeStore.value === 'light' ? 'light' : 'dark'
         }}
       >
         <Row gutter={16}>

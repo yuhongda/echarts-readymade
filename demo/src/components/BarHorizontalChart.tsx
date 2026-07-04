@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { ChartProvider, ChartContext } from '@echarts-readymade/core'
+import { ChartProvider, ChartContext } from '../../../packages/core/src'
 import { BarHorizontal } from '@echarts-readymade/bar-horizontal'
 import type { LegendPosition } from '@echarts-readymade/core'
 import styled from 'styled-components'
 import type { Field } from '@echarts-readymade/core'
 import { Radio, Button, Row, Col } from 'antd'
+import { theme as themeStore } from '../store'
 
 const Container = styled.div`
   width: 100%;
@@ -164,7 +165,8 @@ export const BarHorizontalChart: React.FC = () => {
             title: {
               text: 'Horizontal Bar Chart'
             }
-          }
+          },
+          theme: themeStore.value === 'light' ? 'light' : 'dark'
         }}
       >
         <Row gutter={16} style={{ height: 500 }}>

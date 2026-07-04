@@ -1,5 +1,4 @@
 import React, { use, useState, useCallback, useImperativeHandle, forwardRef, useRef } from 'react'
-import type { ECharts } from 'echarts'
 import Big from 'big.js'
 import cloneDeep from 'clone'
 import type { ChartProps, LegendPosition } from '@echarts-readymade/core'
