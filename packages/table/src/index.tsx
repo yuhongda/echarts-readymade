@@ -4,7 +4,7 @@ import cloneDeep from 'clone'
 import type { ChartProps, Field } from '@echarts-readymade/core'
 import { mergeOption, COLOR_LIST, numberWithCommas } from '@echarts-readymade/core'
 import styled from 'styled-components'
-import { Table as AntdTable, Tooltip } from 'antd'
+import { Table as AntdTable, Button, Tooltip } from 'antd'
 import InfoCircleOutlined from '@ant-design/icons/InfoCircleOutlined'
 import CaretLeftOutlined from '@ant-design/icons/CaretLeftOutlined'
 import CaretRightOutlined from '@ant-design/icons/CaretRightOutlined'
@@ -35,14 +35,15 @@ const StyledTable = styled(AntdTable)<{
   isCompareMode: boolean
 }>`
   width: 100% !important;
-  border-right: ${(props) => (props.isCompareMode ? 1 : 0)}px solid ${(props) => props.color[0]} !important;
+  /* border-right: ${(props) => (props.isCompareMode ? 1 : 0)}px solid ${(props) =>
+    props.color[0]} !important; */
   .ant-table {
-    background: ${(props) => props.color[3]} !important;
+    /* background: ${(props) => props.color[3]} !important; */
   }
   .ant-table-thead > tr > th {
-    background: ${(props) => props.color[0]} !important;
+    /* background: ${(props) => props.color[0]} !important;
     border-right: 1px solid rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
     text-align: center;
     padding: 5px !important;
     &.ant-table-cell-scrollbar {
@@ -54,8 +55,8 @@ const StyledTable = styled(AntdTable)<{
   }
   .ant-table-thead > tr > th,
   .ant-table-tbody > tr > td {
-    border-bottom: 1px solid ${(props) => props.color[0]};
-    border-right: 1px solid ${(props) => props.color[0]};
+    /* border-bottom: 1px solid ${(props) => props.color[0]};
+    border-right: 1px solid ${(props) => props.color[0]}; */
     text-align: center;
     max-width: 150px;
     white-space: nowrap;
@@ -64,7 +65,7 @@ const StyledTable = styled(AntdTable)<{
     width: ${(props) => props.columnWidth}px !important;
   }
   .ant-table-thead > tr:first-child > th:first-child {
-    border-left: 1px solid ${(props) => props.color[0]};
+    /* border-left: 1px solid ${(props) => props.color[0]}; */
   }
   .ant-table-thead > tr > th {
     color: ${(props) => props.color[1]};
@@ -77,7 +78,7 @@ const StyledTable = styled(AntdTable)<{
   }
   .ant-table-tbody > tr > td:first-child {
     text-align: left;
-    border-left: 1px solid ${(props) => props.color[0]};
+    /* border-left: 1px solid ${(props) => props.color[0]}; */
   }
   .ant-table-thead
     > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)
@@ -94,6 +95,10 @@ const StyledTable = styled(AntdTable)<{
   }
   .columnTitleCell {
     position: relative;
+    & > .sortBtn {
+      opacity: 0;
+      visibility: hidden;
+    }
     &:hover {
       & > .sortBtn {
         opacity: 1;
@@ -108,40 +113,6 @@ const ValueCell = styled.span<{ colors: string[]; isSum: boolean }>`
     props.isSum
       ? (props.colors && props.colors[2]) || 'color: rgba(0, 0, 0, 0.65)'
       : 'color: rgba(0, 0, 0, 0.65)'};
-`
-
-const TitleSortLeft = styled.span`
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
-  padding: 0 5px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.3);
-  color: #fff;
-`
-
-const TitleSortRight = styled.span`
-  position: absolute;
-  right: 0;
-  top: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
-  padding: 0 5px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.3);
-  color: #fff;
 `
 
 export interface TableChartProps extends Omit<ChartProps, 'echartsSeries' | 'setOption'> {
@@ -294,8 +265,9 @@ export const Table: React.FC<TableChartProps> = (props) => {
               key: _c,
               className: 'columnTitleCell',
               title: (
-                <div>
-                  <TitleSortLeft
+                <>
+                  <Button
+                    type="text"
                     className="sortBtn"
                     onClick={() => {
                       setMoveItem({ key: _c, direction: 'left', hasCompare: true })
@@ -303,9 +275,10 @@ export const Table: React.FC<TableChartProps> = (props) => {
                     }}
                   >
                     <CaretLeftOutlined />
-                  </TitleSortLeft>
+                  </Button>
                   <span title={_c}>{_c}</span>
-                  <TitleSortRight
+                  <Button
+                    type="text"
                     className="sortBtn"
                     onClick={() => {
                       setMoveItem({ key: _c, direction: 'right', hasCompare: true })
@@ -313,8 +286,8 @@ export const Table: React.FC<TableChartProps> = (props) => {
                     }}
                   >
                     <CaretRightOutlined />
-                  </TitleSortRight>
-                </div>
+                  </Button>
+                </>
               ),
               children: valueList.map((v) => {
                 return getColumn(v, index, item, c, false)

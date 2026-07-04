@@ -4,7 +4,6 @@ import { Table } from '../../../packages/table/src'
 import styled from 'styled-components'
 import type { Field } from '@echarts-readymade/core'
 import { Button, Row, Col } from 'antd'
-import { theme as themeStore } from '../store'
 
 const Container = styled.div`
   width: 100%;
