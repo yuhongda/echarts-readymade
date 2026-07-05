@@ -27,4 +27,5 @@ type QuadrantSettingOptionProps = {
 } | undefined;
 declare const quadrantSetting: (option: EChartsOption, quadrantSettingOption: QuadrantSettingOptionProps) => void;
 
-export { QuadrantSettingOptionProps, Scatter, ScatterChartProps, quadrantSetting };
+export { Scatter, quadrantSetting };
+export type { QuadrantSettingOptionProps, ScatterChartProps };

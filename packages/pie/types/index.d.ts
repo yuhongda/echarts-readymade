@@ -7,4 +7,5 @@ interface PieChartProps extends ChartProps {
 }
 declare const Pie: (props: PieChartProps) => React.JSX.Element | null;
 
-export { Pie, PieChartProps };
+export { Pie };
+export type { PieChartProps };

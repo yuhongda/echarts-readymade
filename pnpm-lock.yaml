@@ -43,10 +43,10 @@ importers:
         version: 2.31.0(@types/node@26.0.0)
       '@rollup/plugin-commonjs':
         specifier: ^21.0.1
-        version: 21.0.1(rollup@2.80.0)
+        version: 21.0.1(rollup@4.62.2)
       '@rollup/plugin-typescript':
         specifier: ^12.3.0
-        version: 12.3.0(rollup@2.80.0)(tslib@2.8.1)(typescript@5.8.2)
+        version: 12.3.0(rollup@4.62.2)(tslib@2.8.1)(typescript@6.0.3)
       '@testing-library/jest-dom':
         specifier: ^5.16.1
         version: 5.17.0
@@ -94,7 +94,7 @@ importers:
         version: 1.9.0
       jest:
         specifier: ^27.0.6
-        version: 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2))
+        version: 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3))
       jest-canvas-mock:
         specifier: 2.5.2
         version: 2.5.2
@@ -103,7 +103,7 @@ importers:
         version: 4.4.2
       jest-enzyme:
         specifier: ^7.1.2
-        version: 7.1.2(enzyme@3.11.0)(jest@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2)))(react@19.2.7)
+        version: 7.1.2(enzyme@3.11.0)(jest@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3)))(react@19.2.7)
       lerna:
         specifier: ^9.0.7
         version: 9.0.7(@types/node@26.0.0)
@@ -114,35 +114,35 @@ importers:
         specifier: ^19.0.0
         version: 19.2.7(react@19.2.7)
       rollup:
-        specifier: ^2.54.0
-        version: 2.80.0
+        specifier: ^4.62.2
+        version: 4.62.2
       rollup-plugin-dts:
-        specifier: ^3.0.2
-        version: 3.0.2(rollup@2.80.0)(typescript@5.8.2)
+        specifier: ^6.4.1
+        version: 6.4.1(rollup@4.62.2)(typescript@6.0.3)
       rollup-plugin-esbuild:
         specifier: ^4.7.2
-        version: 4.10.3(esbuild@0.14.2)(rollup@2.80.0)(supports-color@5.5.0)
+        version: 4.10.3(esbuild@0.14.2)(rollup@4.62.2)(supports-color@5.5.0)
       rollup-plugin-node-resolve:
         specifier: ^5.2.0
-        version: 5.2.0(rollup@2.80.0)
+        version: 5.2.0(rollup@4.62.2)
       rollup-plugin-replace:
         specifier: ^2.2.0
         version: 2.2.0
       rollup-plugin-typescript2:
         specifier: ^0.37.0
-        version: 0.37.0(rollup@2.80.0)(typescript@5.8.2)
+        version: 0.37.0(rollup@4.62.2)(typescript@6.0.3)
       rollup-plugin-visualizer:
         specifier: ^5.5.2
-        version: 5.5.2(rollup@2.80.0)
+        version: 5.5.2(rollup@4.62.2)
       styled-components:
         specifier: ^6.1.3
         version: 6.4.2(css-to-react-native@3.2.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       ts-node:
         specifier: ^10.4.0
-        version: 10.9.2(@types/node@26.0.0)(typescript@5.8.2)
+        version: 10.9.2(@types/node@26.0.0)(typescript@6.0.3)
       typescript:
-        specifier: ^5.8.2
-        version: 5.8.2
+        specifier: ^6.0.3
+        version: 6.0.3
       wordcloud:
         specifier: ^1.2.2
         version: 1.2.3
@@ -189,8 +189,8 @@ importers:
         specifier: ^3.0.6
         version: 3.0.6(echarts@6.1.0)(react@19.2.7)
       echarts-readymade:
-        specifier: ^1.2.0
-        version: 1.2.0(@babel/core@7.29.7)(antd@6.5.0(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(wordcloud@1.2.3)
+        specifier: ^2.0.0
+        version: 2.0.0(@ant-design/icons@6.3.2(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@babel/core@7.29.7)(antd@6.5.0(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(use-local-storage-state@19.5.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(wordcloud@1.2.3)
       mobx:
         specifier: ^6.16.1
         version: 6.16.1
@@ -374,8 +374,8 @@ importers:
         specifier: ^6.3.2
         version: 6.3.2(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@rollup/plugin-image':
-        specifier: ^2.1.1
-        version: 2.1.1(rollup@2.80.0)
+        specifier: ^3.0.3
+        version: 3.0.3(rollup@4.62.2)
       antd:
         specifier: ^6.5.0
         version: 6.5.0(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -599,8 +599,8 @@ importers:
         version: 1.2.3
     devDependencies:
       '@rollup/plugin-image':
-        specifier: ^2.1.1
-        version: 2.1.1(rollup@2.80.0)
+        specifier: ^3.0.3
+        version: 3.0.3(rollup@4.62.2)
       '@types/big.js':
         specifier: ^6.1.2
         version: 6.1.2
@@ -1404,48 +1404,74 @@ packages:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
 
-  '@echarts-readymade/bar-horizontal@1.2.0':
-    resolution: {integrity: sha512-4PILA5m/W6DWTD7N1RY6hDZi3FLNrxw3AY+VcHbKEEsajnIHfAnGx3PY+zD9iA6+VYId0rp+aQbaDufWwVC6Ew==}
+  '@echarts-readymade/bar-horizontal@2.0.0':
+    resolution: {integrity: sha512-ik5ACwKxS23iKx0QrhBYempBb0hElVPsG7GLx9w7fD+5xYgQ088gwqwtp7cBktjs7Bt5LOD6SkEmkSz5MldA5w==}
     peerDependencies:
-      echarts: ^5.2.2
-      echarts-for-react: ^3.0.2
+      echarts: ^6.1.0
+      echarts-for-react: ^3.0.6
+      react: ^19.0.0
+      react-dom: ^19.0.0
 
-  '@echarts-readymade/bar@1.2.0':
-    resolution: {integrity: sha512-YdclwVMURdOMWKTImPb2biHG0Wc5unnNIW/4MlHXOvxTJ7Vke3GYT4J7XKkTIJdmgGR8llWJu4c+ujEIVf+i6Q==}
+  '@echarts-readymade/bar@2.0.0':
+    resolution: {integrity: sha512-3IiacCSnPjbinmw9pCwbgresX1ETUwZCPuinaK0w3ev3NlwHbJ9mXfYAvDzz5T6du5WbxrDQAsxVSluwYcO/cQ==}
     peerDependencies:
-      echarts: ^5.2.2
-      echarts-for-react: ^3.0.2
+      echarts: ^6.1.0
+      echarts-for-react: ^3.0.6
+      react: ^19.0.0
+      react-dom: ^19.0.0
 
-  '@echarts-readymade/core@1.2.0':
-    resolution: {integrity: sha512-0KLRWwDg0eZT5eQdBic5uBMmhcXc13ouVf+3enChqrs1fMS5vgKKeI/RoXLhub+vp8D85n/NCvB2XvwCXH8zpQ==}
-
-  '@echarts-readymade/line@1.2.0':
-    resolution: {integrity: sha512-xGf94R2ZXap8jqUPnUxFSmToZuFVZBk7pBuDmmhF/jTsEZRuxM0+YRIG9dvHN8xKTVf9R64Mk9gkxgpjMx8Scw==}
+  '@echarts-readymade/core@2.0.0':
+    resolution: {integrity: sha512-5fQ3BAwltvQsYHezjuebVOHixH9iWQFj4GB81P5Ibu64Ma5zhkjXGX118av5CGQI0kULu2H1nvdlb59igk2woA==}
     peerDependencies:
-      echarts: ^5.2.2
-      echarts-for-react: ^3.0.2
+      react: ^19.0.0
+      react-dom: ^19.0.0
 
-  '@echarts-readymade/pie@1.2.0':
-    resolution: {integrity: sha512-G4YybDAvLryoMCGMVZFL7OrNN2Iqp6F9ywq4C0ldycLpl0uEUdNbAlFMIvjRID+kCuTM+r4mu7KxUvjdQuu/jw==}
+  '@echarts-readymade/line@2.0.0':
+    resolution: {integrity: sha512-eAlE3LCuSxJrcXnfxoFL1wbjyTCXOzD17pBPWwMfUt56mli8Tua24rOHthDbt5Tmf66qh0FCVd4lk7N8D36VQw==}
     peerDependencies:
-      echarts: ^5.2.2
-      echarts-for-react: ^3.0.2
+      echarts: ^6.1.0
+      echarts-for-react: ^3.0.6
+      react: ^19.0.0
+      react-dom: ^19.0.0
 
-  '@echarts-readymade/scatter@1.2.0':
-    resolution: {integrity: sha512-ZQ1g4PuO+ndW9lWaCap7CkdnHJZtz+otWSBwoj8rPKT66IwtsLDTKr3jkV6Q73v1jquJn5bOCQ7KtHp+dhUz0g==}
+  '@echarts-readymade/pie@2.0.0':
+    resolution: {integrity: sha512-MEqkmdfnUsbL1yf+sCAGCjWp1K7KOodQRabyZa10R3fIywqC2/pTjkMWV2Gaw82swgMg1qXjPllJX74chq5m1Q==}
     peerDependencies:
-      echarts: ^5.2.2
-      echarts-for-react: ^3.0.2
+      echarts: ^6.1.0
+      echarts-for-react: ^3.0.6
+      react: ^19.0.0
+      react-dom: ^19.0.0
 
-  '@echarts-readymade/stack@1.2.0':
-    resolution: {integrity: sha512-+rB8WVz1eYt7vWR3Yk5xzEg1JfrXQmCfuL2RWH3hj82imVJPRTQHq0QzojYO3zlcL8Z260LJ3tC0oLhNk0GdTg==}
+  '@echarts-readymade/scatter@2.0.0':
+    resolution: {integrity: sha512-MEyeEEjDD1FFhBB4aKpszOAXrXuJh56Ns1BX/if5NaE9z5JhDN5sLS7XQuwQ84f6Mvif/c+xRojyaJD6WhH+4Q==}
     peerDependencies:
-      echarts: ^5.2.2
-      echarts-for-react: ^3.0.2
+      echarts: ^6.1.0
+      echarts-for-react: ^3.0.6
+      react: ^19.0.0
+      react-dom: ^19.0.0
 
-  '@echarts-readymade/wordcloud@1.2.0':
-    resolution: {integrity: sha512-/YT98FDTzIVKUjHcSZFGEdLOpade+AszJYLlmnJIGYAiKWHY0yt4bS36GX6XqqrnATPKkHaWtb9MjxB4x2G0oA==}
+  '@echarts-readymade/stack@2.0.0':
+    resolution: {integrity: sha512-FjRsz9H+wY4Azk0OohDuAXZillUiwcAOmBZz1rVdSgiCz465kpy8t9oBHiNLcqNWQvNq4+rcBEzPheXh2YXo7Q==}
     peerDependencies:
+      echarts: ^6.1.0
+      echarts-for-react: ^3.0.6
+      react: ^19.0.0
+      react-dom: ^19.0.0
+
+  '@echarts-readymade/table@2.0.0':
+    resolution: {integrity: sha512-+ThjX4B+PoiG5CmHVU0UQBlPYpFLK9Ozh6tyf7Xab0L+uNkDOWDfOM1B3RuujUc/ntHhCPl11k4GTKvr7cPzLQ==}
+    peerDependencies:
+      '@ant-design/icons': ^5.6.1
+      antd: ^5.0.0
+      react: ^19.0.0
+      react-dom: ^19.0.0
+      use-local-storage-state: ^19.0.0
+
+  '@echarts-readymade/wordcloud@2.0.0':
+    resolution: {integrity: sha512-hvL0ma8Ep40QkaeN4pJo1oUDioVM9q0l3IUfVVFX2DEpMlINMzKarzh5g9fIKxMPNJAJWOlYL2BIFaWoLWnHlA==}
+    peerDependencies:
+      react: ^19.0.0
+      react-dom: ^19.0.0
       wordcloud: ^1.2.2
 
   '@emnapi/core@1.11.1':
@@ -1902,6 +1928,9 @@ packages:
 
   '@jridgewell/sourcemap-codec@1.5.0':
     resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
+
+  '@jridgewell/sourcemap-codec@1.5.5':
+    resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
@@ -2421,11 +2450,14 @@ packages:
     peerDependencies:
       rollup: ^2.38.3
 
-  '@rollup/plugin-image@2.1.1':
-    resolution: {integrity: sha512-AgP4U85zuQJdUopLUCM+hTf45RepgXeTb8EJsleExVy99dIoYpt3ZlDYJdKmAc2KLkNntCDg6BPJvgJU3uGF+g==}
-    engines: {node: '>= 8.0.0'}
+  '@rollup/plugin-image@3.0.3':
+    resolution: {integrity: sha512-qXWQwsXpvD4trSb8PeFPFajp8JLpRtqqOeNYRUKnEQNHm7e5UP7fuSRcbjQAJ7wDZBbnJvSdY5ujNBQd9B1iFg==}
+    engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: ^1.20.0 || ^2.0.0
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
 
   '@rollup/plugin-typescript@12.3.0':
     resolution: {integrity: sha512-7DP0/p7y3t67+NabT9f8oTBFE6gGkto4SA6Np2oudYmZE/m1dt8RB0SjL1msMxFpLo631qjRCcBlAbq1ml/Big==}
@@ -3741,12 +3773,15 @@ packages:
       echarts: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
       react: ^15.0.0 || >=16.0.0
 
-  echarts-readymade@1.2.0:
-    resolution: {integrity: sha512-HNfEtc3mz+OFeU3zsz6Ez/adBeWQXETdQPqt8N7KxwCTMjtttGWyU5VQtT9R9N9SSCTRs8F9Cpw/p+g/KmCB7Q==}
+  echarts-readymade@2.0.0:
+    resolution: {integrity: sha512-2u4my7Eb1Cv5H5ue7uVhctLghro5pOuhuxYE/cg/9WzpZV9AvuDHebdQ98cLxMIKogmmrMqSmEVC7dhOKRcDow==}
     peerDependencies:
+      '@ant-design/icons': ^5.6.1
       antd: ^4.19.3 || ^5.0.0
-      echarts: ^5.2.2
-      echarts-for-react: ^3.0.2
+      echarts: ^6.1.0
+      echarts-for-react: ^3.0.6
+      react: ^19.0.0
+      react-dom: ^19.0.0
       wordcloud: ^1.2.2
 
   echarts@6.1.0:
@@ -5317,6 +5352,9 @@ packages:
   magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
 
+  magic-string@0.30.21:
+    resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
+
   make-dir@2.1.0:
     resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
     engines: {node: '>=6'}
@@ -6312,12 +6350,12 @@ packages:
     deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
-  rollup-plugin-dts@3.0.2:
-    resolution: {integrity: sha512-hswlsdWu/x7k5pXzaLP6OvKRKcx8Bzprksz9i9mUe72zvt8LvqAb/AZpzs6FkLgmyRaN8B6rUQOVtzA3yEt9Yw==}
-    engines: {node: '>=v12.22.1'}
+  rollup-plugin-dts@6.4.1:
+    resolution: {integrity: sha512-l//F3Zf7ID5GoOfLfD8kroBjQKEKpy1qfhtAdnpibFZMffPaylrg1CoDC2vGkPeTeyxUe4bVFCln2EFuL7IGGg==}
+    engines: {node: '>=20'}
     peerDependencies:
-      rollup: ^2.48.0
-      typescript: ^4.2.4
+      rollup: ^3.29.4 || ^4
+      typescript: ^4.5 || ^5.0 || ^6.0
 
   rollup-plugin-esbuild@4.10.3:
     resolution: {integrity: sha512-RILwUCgnCL5vo8vyZ/ZpwcqRuE5KmLizEv6BujBQfgXFZ6ggcS0FiYvQN+gsTJfWCMaU37l0Fosh4eEufyO97Q==}
@@ -6351,11 +6389,6 @@ packages:
 
   rollup-pluginutils@2.8.2:
     resolution: {integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==}
-
-  rollup@2.80.0:
-    resolution: {integrity: sha512-cIFJOD1DESzpjOBl763Kp1AH7UE/0fcdHe6rZXUdQ9c50uvgigvW97u3IcSeBwOkgqL/PXPBktBCh0KEu5L8XQ==}
-    engines: {node: '>=10.0.0'}
-    hasBin: true
 
   rollup@4.62.2:
     resolution: {integrity: sha512-RFnrW4lhXA3s3eqHDZvN654g8OTjzRfqpIRJYczCGB6HzphckVAi/Qh4tbPUbRuDi7s1Llv8g/NspLkttY3gTA==}
@@ -6946,6 +6979,11 @@ packages:
 
   typescript@5.8.2:
     resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -8383,68 +8421,94 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  '@echarts-readymade/bar-horizontal@1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)':
+  '@echarts-readymade/bar-horizontal@2.0.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
-      '@echarts-readymade/core': 1.2.0
+      '@echarts-readymade/core': 2.0.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       big.js: 6.1.1
       clone: 2.1.2
       echarts: 6.1.0
       echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
 
-  '@echarts-readymade/bar@1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)':
+  '@echarts-readymade/bar@2.0.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
-      '@echarts-readymade/core': 1.2.0
+      '@echarts-readymade/core': 2.0.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       big.js: 6.1.1
       clone: 2.1.2
       echarts: 6.1.0
       echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
 
-  '@echarts-readymade/core@1.2.0':
+  '@echarts-readymade/core@2.0.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
       big.js: 6.1.1
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
 
-  '@echarts-readymade/line@1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)':
+  '@echarts-readymade/line@2.0.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
-      '@echarts-readymade/core': 1.2.0
-      big.js: 6.1.1
-      clone: 2.1.2
-      echarts: 6.1.0
-      echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
-
-  '@echarts-readymade/pie@1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)':
-    dependencies:
-      '@echarts-readymade/core': 1.2.0
+      '@echarts-readymade/core': 2.0.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       big.js: 6.1.1
       clone: 2.1.2
       echarts: 6.1.0
       echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
 
-  '@echarts-readymade/scatter@1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)':
+  '@echarts-readymade/pie@2.0.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
-      '@echarts-readymade/core': 1.2.0
+      '@echarts-readymade/core': 2.0.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       big.js: 6.1.1
       clone: 2.1.2
       echarts: 6.1.0
       echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
 
-  '@echarts-readymade/stack@1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)':
+  '@echarts-readymade/scatter@2.0.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
-      '@echarts-readymade/core': 1.2.0
+      '@echarts-readymade/core': 2.0.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       big.js: 6.1.1
       clone: 2.1.2
       echarts: 6.1.0
       echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
 
-  '@echarts-readymade/wordcloud@1.2.0(@babel/core@7.29.7)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(wordcloud@1.2.3)':
+  '@echarts-readymade/stack@2.0.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
-      '@echarts-readymade/core': 1.2.0
+      '@echarts-readymade/core': 2.0.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       big.js: 6.1.1
+      clone: 2.1.2
+      echarts: 6.1.0
+      echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
+
+  '@echarts-readymade/table@2.0.0(@ant-design/icons@6.3.2(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(antd@6.5.0(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(use-local-storage-state@19.5.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7))':
+    dependencies:
+      '@ant-design/icons': 6.3.2(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@echarts-readymade/core': 2.0.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      antd: 6.5.0(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      big.js: 6.1.1
+      clone: 2.1.2
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
+      use-local-storage-state: 19.5.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+
+  '@echarts-readymade/wordcloud@2.0.0(@babel/core@7.29.7)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(wordcloud@1.2.3)':
+    dependencies:
+      '@echarts-readymade/core': 2.0.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      big.js: 6.1.1
+      clone: 2.1.2
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
       styled-components: 5.3.3(@babel/core@7.29.7)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)
       wordcloud: 1.2.3
     transitivePeerDependencies:
       - '@babel/core'
-      - react
-      - react-dom
       - react-is
 
   '@emnapi/core@1.11.1':
@@ -8722,7 +8786,7 @@ snapshots:
       jest-util: 27.0.6
       slash: 3.0.0
 
-  '@jest/core@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2))':
+  '@jest/core@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3))':
     dependencies:
       '@jest/console': 27.0.6
       '@jest/reporters': 27.0.6(supports-color@5.5.0)
@@ -8736,7 +8800,7 @@ snapshots:
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-changed-files: 27.0.6
-      jest-config: 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2))
+      jest-config: 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3))
       jest-haste-map: 27.0.6
       jest-message-util: 27.0.6
       jest-regex-util: 27.0.6
@@ -8911,6 +8975,8 @@ snapshots:
   '@jridgewell/sourcemap-codec@1.4.14': {}
 
   '@jridgewell/sourcemap-codec@1.5.0': {}
+
+  '@jridgewell/sourcemap-codec@1.5.5': {}
 
   '@jridgewell/trace-mapping@0.3.31':
     dependencies:
@@ -9571,38 +9637,39 @@ snapshots:
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
 
-  '@rollup/plugin-commonjs@21.0.1(rollup@2.80.0)':
+  '@rollup/plugin-commonjs@21.0.1(rollup@4.62.2)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(rollup@2.80.0)
+      '@rollup/pluginutils': 3.1.0(rollup@4.62.2)
       commondir: 1.0.1
       estree-walker: 2.0.2
       glob: 7.2.0
       is-reference: 1.2.1
       magic-string: 0.25.9
       resolve: 1.22.12
-      rollup: 2.80.0
+      rollup: 4.62.2
 
-  '@rollup/plugin-image@2.1.1(rollup@2.80.0)':
+  '@rollup/plugin-image@3.0.3(rollup@4.62.2)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(rollup@2.80.0)
+      '@rollup/pluginutils': 5.4.0(rollup@4.62.2)
       mini-svg-data-uri: 1.4.4
-      rollup: 2.80.0
-
-  '@rollup/plugin-typescript@12.3.0(rollup@2.80.0)(tslib@2.8.1)(typescript@5.8.2)':
-    dependencies:
-      '@rollup/pluginutils': 5.4.0(rollup@2.80.0)
-      resolve: 1.22.12
-      typescript: 5.8.2
     optionalDependencies:
-      rollup: 2.80.0
+      rollup: 4.62.2
+
+  '@rollup/plugin-typescript@12.3.0(rollup@4.62.2)(tslib@2.8.1)(typescript@6.0.3)':
+    dependencies:
+      '@rollup/pluginutils': 5.4.0(rollup@4.62.2)
+      resolve: 1.22.12
+      typescript: 6.0.3
+    optionalDependencies:
+      rollup: 4.62.2
       tslib: 2.8.1
 
-  '@rollup/pluginutils@3.1.0(rollup@2.80.0)':
+  '@rollup/pluginutils@3.1.0(rollup@4.62.2)':
     dependencies:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.3.2
-      rollup: 2.80.0
+      rollup: 4.62.2
 
   '@rollup/pluginutils@4.1.1':
     dependencies:
@@ -9614,13 +9681,13 @@ snapshots:
       estree-walker: 2.0.2
       picomatch: 2.3.2
 
-  '@rollup/pluginutils@5.4.0(rollup@2.80.0)':
+  '@rollup/pluginutils@5.4.0(rollup@4.62.2)':
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
       picomatch: 4.0.4
     optionalDependencies:
-      rollup: 2.80.0
+      rollup: 4.62.2
 
   '@rollup/rollup-android-arm-eabi@4.62.2':
     optional: true
@@ -11010,25 +11077,28 @@ snapshots:
       react: 19.2.7
       size-sensor: 1.0.3
 
-  echarts-readymade@1.2.0(@babel/core@7.29.7)(antd@6.5.0(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(wordcloud@1.2.3):
+  echarts-readymade@2.0.0(@ant-design/icons@6.3.2(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@babel/core@7.29.7)(antd@6.5.0(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(use-local-storage-state@19.5.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(wordcloud@1.2.3):
     dependencies:
-      '@echarts-readymade/bar': 1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)
-      '@echarts-readymade/bar-horizontal': 1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)
-      '@echarts-readymade/core': 1.2.0
-      '@echarts-readymade/line': 1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)
-      '@echarts-readymade/pie': 1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)
-      '@echarts-readymade/scatter': 1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)
-      '@echarts-readymade/stack': 1.2.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)
-      '@echarts-readymade/wordcloud': 1.2.0(@babel/core@7.29.7)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(wordcloud@1.2.3)
+      '@ant-design/icons': 6.3.2(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@echarts-readymade/bar': 2.0.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@echarts-readymade/bar-horizontal': 2.0.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@echarts-readymade/core': 2.0.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@echarts-readymade/line': 2.0.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@echarts-readymade/pie': 2.0.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@echarts-readymade/scatter': 2.0.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@echarts-readymade/stack': 2.0.0(echarts-for-react@3.0.6(echarts@6.1.0)(react@19.2.7))(echarts@6.1.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@echarts-readymade/table': 2.0.0(@ant-design/icons@6.3.2(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(antd@6.5.0(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(use-local-storage-state@19.5.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7))
+      '@echarts-readymade/wordcloud': 2.0.0(@babel/core@7.29.7)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(wordcloud@1.2.3)
       antd: 6.5.0(date-fns@2.0.0)(moment@2.30.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       echarts: 6.1.0
       echarts-for-react: 3.0.6(echarts@6.1.0)(react@19.2.7)
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
       wordcloud: 1.2.3
     transitivePeerDependencies:
       - '@babel/core'
-      - react
-      - react-dom
       - react-is
+      - use-local-storage-state
 
   echarts@6.1.0:
     dependencies:
@@ -12320,16 +12390,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  jest-cli@27.0.6(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2)):
+  jest-cli@27.0.6(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3)):
     dependencies:
-      '@jest/core': 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2))
+      '@jest/core': 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3))
       '@jest/test-result': 27.0.6
       '@jest/types': 27.0.6
       chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
       import-local: 3.2.0
-      jest-config: 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2))
+      jest-config: 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3))
       jest-util: 27.0.6
       jest-validate: 27.0.6
       prompts: 2.4.2
@@ -12341,7 +12411,7 @@ snapshots:
       - ts-node
       - utf-8-validate
 
-  jest-config@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2)):
+  jest-config@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3)):
     dependencies:
       '@babel/core': 7.29.7(supports-color@5.5.0)
       '@jest/test-sequencer': 27.0.6
@@ -12365,7 +12435,7 @@ snapshots:
       micromatch: 4.0.8
       pretty-format: 27.0.6
     optionalDependencies:
-      ts-node: 10.9.2(@types/node@26.0.0)(typescript@5.8.2)
+      ts-node: 10.9.2(@types/node@26.0.0)(typescript@6.0.3)
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -12411,10 +12481,10 @@ snapshots:
       jest-util: 27.0.6
       pretty-format: 27.0.6
 
-  jest-environment-enzyme@7.1.2(enzyme@3.11.0)(jest@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2)))(react@19.2.7):
+  jest-environment-enzyme@7.1.2(enzyme@3.11.0)(jest@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3)))(react@19.2.7):
     dependencies:
       enzyme: 3.11.0
-      jest: 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2))
+      jest: 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3))
       jest-environment-jsdom: 24.0.0
       react: 19.2.7
     transitivePeerDependencies:
@@ -12452,13 +12522,13 @@ snapshots:
       jest-mock: 27.0.6
       jest-util: 27.0.6
 
-  jest-enzyme@7.1.2(enzyme@3.11.0)(jest@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2)))(react@19.2.7):
+  jest-enzyme@7.1.2(enzyme@3.11.0)(jest@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3)))(react@19.2.7):
     dependencies:
       enzyme: 3.11.0
       enzyme-matchers: 7.1.2(enzyme@3.11.0)
       enzyme-to-json: 3.6.2(enzyme@3.11.0)
-      jest: 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2))
-      jest-environment-enzyme: 7.1.2(enzyme@3.11.0)(jest@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2)))(react@19.2.7)
+      jest: 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3))
+      jest-environment-enzyme: 7.1.2(enzyme@3.11.0)(jest@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3)))(react@19.2.7)
     transitivePeerDependencies:
       - react
       - supports-color
@@ -12716,11 +12786,11 @@ snapshots:
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
-  jest@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2)):
+  jest@27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3)):
     dependencies:
-      '@jest/core': 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2))
+      '@jest/core': 27.0.6(supports-color@5.5.0)(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3))
       import-local: 3.2.0
-      jest-cli: 27.0.6(ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2))
+      jest-cli: 27.0.6(ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3))
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -13085,6 +13155,10 @@ snapshots:
   magic-string@0.25.9:
     dependencies:
       sourcemap-codec: 1.4.8
+
+  magic-string@0.30.21:
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.5.5
 
   make-dir@2.1.0:
     dependencies:
@@ -14299,15 +14373,18 @@ snapshots:
     dependencies:
       glob: 7.2.0
 
-  rollup-plugin-dts@3.0.2(rollup@2.80.0)(typescript@5.8.2):
+  rollup-plugin-dts@6.4.1(rollup@4.62.2)(typescript@6.0.3):
     dependencies:
-      magic-string: 0.25.9
-      rollup: 2.80.0
-      typescript: 5.8.2
+      '@jridgewell/remapping': 2.3.5
+      '@jridgewell/sourcemap-codec': 1.5.5
+      convert-source-map: 2.0.0
+      magic-string: 0.30.21
+      rollup: 4.62.2
+      typescript: 6.0.3
     optionalDependencies:
       '@babel/code-frame': 7.29.7
 
-  rollup-plugin-esbuild@4.10.3(esbuild@0.14.2)(rollup@2.80.0)(supports-color@5.5.0):
+  rollup-plugin-esbuild@4.10.3(esbuild@0.14.2)(rollup@4.62.2)(supports-color@5.5.0):
     dependencies:
       '@rollup/pluginutils': 4.1.1
       debug: 4.4.3(supports-color@5.5.0)
@@ -14315,17 +14392,17 @@ snapshots:
       esbuild: 0.14.2
       joycon: 3.1.1
       jsonc-parser: 3.0.0
-      rollup: 2.80.0
+      rollup: 4.62.2
     transitivePeerDependencies:
       - supports-color
 
-  rollup-plugin-node-resolve@5.2.0(rollup@2.80.0):
+  rollup-plugin-node-resolve@5.2.0(rollup@4.62.2):
     dependencies:
       '@types/resolve': 0.0.8
       builtin-modules: 3.1.0
       is-module: 1.0.0
       resolve: 1.22.12
-      rollup: 2.80.0
+      rollup: 4.62.2
       rollup-pluginutils: 2.8.2
 
   rollup-plugin-replace@2.2.0:
@@ -14333,31 +14410,27 @@ snapshots:
       magic-string: 0.25.9
       rollup-pluginutils: 2.8.2
 
-  rollup-plugin-typescript2@0.37.0(rollup@2.80.0)(typescript@5.8.2):
+  rollup-plugin-typescript2@0.37.0(rollup@4.62.2)(typescript@6.0.3):
     dependencies:
       '@rollup/pluginutils': 4.1.2
       find-cache-dir: 3.3.2
       fs-extra: 10.0.0
-      rollup: 2.80.0
+      rollup: 4.62.2
       semver: 7.8.5
       tslib: 2.8.1
-      typescript: 5.8.2
+      typescript: 6.0.3
 
-  rollup-plugin-visualizer@5.5.2(rollup@2.80.0):
+  rollup-plugin-visualizer@5.5.2(rollup@4.62.2):
     dependencies:
       nanoid: 3.3.14
       open: 7.4.2
-      rollup: 2.80.0
+      rollup: 4.62.2
       source-map: 0.7.6
       yargs: 16.2.2
 
   rollup-pluginutils@2.8.2:
     dependencies:
       estree-walker: 0.6.1
-
-  rollup@2.80.0:
-    optionalDependencies:
-      fsevents: 2.3.3
 
   rollup@4.62.2:
     dependencies:
@@ -14945,7 +15018,7 @@ snapshots:
 
   trim-newlines@3.0.1: {}
 
-  ts-node@10.9.2(@types/node@26.0.0)(typescript@5.8.2):
+  ts-node@10.9.2(@types/node@26.0.0)(typescript@6.0.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.12
@@ -14959,7 +15032,7 @@ snapshots:
       create-require: 1.1.1
       diff: 4.0.4
       make-error: 1.3.6
-      typescript: 5.8.2
+      typescript: 6.0.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
@@ -15041,6 +15114,8 @@ snapshots:
   typedarray@0.0.6: {}
 
   typescript@5.8.2: {}
+
+  typescript@6.0.3: {}
 
   uglify-js@3.19.3:
     optional: true

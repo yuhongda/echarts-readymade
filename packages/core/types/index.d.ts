@@ -52,10 +52,11 @@ declare const _default: {
     mergeOption: (baseOptions: EChartsOption, userOptions?: EChartsOption) => EChartsOption;
     buildChartOption: (chartOptions: EChartsOption, settings: {
         legendPosition?: "top" | "right" | "bottom" | "left";
-    }, chartType: "line" | "bar" | "pie" | "scatter" | "stack" | "line-stack" | "line-bar" | "bar-horizontal" | "table" | "high-relation-scatter" | "map" | "wordcloud") => EChartsOption;
+    }, chartType: "line" | "bar" | "pie" | "stack" | "line-stack" | "line-bar" | "bar-horizontal" | "table" | "high-relation-scatter" | "map" | "wordcloud" | "scatter") => EChartsOption;
     numberWithCommas: typeof numberWithCommas;
     COLOR_LIST: string[];
     truncate: (str: string, n: number) => string;
 };
 
-export { COLOR_LIST, ChartContext, ChartProps, ChartProvider, Field, LegendPosition, buildChartOption, _default as default, mergeOption, numberWithCommas, truncate };
+export { COLOR_LIST, ChartContext, ChartProvider, buildChartOption, _default as default, mergeOption, numberWithCommas, truncate };
+export type { ChartProps, Field, LegendPosition };

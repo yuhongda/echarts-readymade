@@ -21,4 +21,5 @@ interface StackChartProps extends ChartProps {
 }
 declare const Stack: (props: StackChartProps) => React.JSX.Element | null;
 
-export { Stack, StackChartProps };
+export { Stack };
+export type { StackChartProps };

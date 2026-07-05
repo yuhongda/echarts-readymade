@@ -8,4 +8,5 @@ interface LineChartProps extends ChartProps {
 }
 declare const Line: (props: LineChartProps) => React.JSX.Element | null;
 
-export { Line, LineChartProps };
+export { Line };
+export type { LineChartProps };

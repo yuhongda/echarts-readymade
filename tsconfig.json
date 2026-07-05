@@ -7,7 +7,7 @@
     "lib": ["ESNext", "dom"],
     "sourceMap": false,
     "target": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "declaration": true,
     "allowJs": true,

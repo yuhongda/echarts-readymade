@@ -20,7 +20,7 @@
     "antd": "^6.5.0",
     "echarts": "^6.1.0",
     "echarts-for-react": "^3.0.6",
-    "echarts-readymade": "^1.2.0",
+    "echarts-readymade": "^2.0.0",
     "mobx": "^6.16.1",
     "mobx-react-lite": "^4.1.1",
     "mobx-value": "^1.10.0",

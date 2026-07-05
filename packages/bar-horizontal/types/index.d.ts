@@ -7,4 +7,5 @@ interface BarHorizontalChartProps extends ChartProps {
 }
 declare const BarHorizontal: (props: BarHorizontalChartProps) => React.JSX.Element | null;
 
-export { BarHorizontal, BarHorizontalChartProps };
+export { BarHorizontal };
+export type { BarHorizontalChartProps };

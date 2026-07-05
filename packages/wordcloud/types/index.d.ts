@@ -28,4 +28,5 @@ interface IKeywordValueCompProps {
     visible: boolean;
 }
 
-export { IKeywordValueCompProps, IPosition, Wordcloud, WordcloudChartProps, WordcloudOptions, WordcloudShape };
+export { Wordcloud };
+export type { IKeywordValueCompProps, IPosition, WordcloudChartProps, WordcloudOptions, WordcloudShape };

@@ -8,4 +8,5 @@ interface BarChartProps extends ChartProps {
 }
 declare const Bar: (props: BarChartProps) => React.JSX.Element | null;
 
-export { Bar, BarChartProps };
+export { Bar };
+export type { BarChartProps };

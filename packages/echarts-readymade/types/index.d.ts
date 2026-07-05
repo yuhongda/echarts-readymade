@@ -53,4 +53,5 @@ declare const _default: {
     Table: React.FC<ITableChartProps>;
 };
 
-export { Bar, BarHorizontal, IBarChartProps, IBarHorizontalChartProps, ILineChartProps, IPieChartProps, IScatterChartProps, IStackChartProps, ITableChartProps, IWordcloudChartProps, Line, Pie, Scatter, Stack, Table, Wordcloud, _default as default };
+export { Bar, BarHorizontal, Line, Pie, Scatter, Stack, Table, Wordcloud, _default as default };
+export type { IBarChartProps, IBarHorizontalChartProps, ILineChartProps, IPieChartProps, IScatterChartProps, IStackChartProps, ITableChartProps, IWordcloudChartProps };

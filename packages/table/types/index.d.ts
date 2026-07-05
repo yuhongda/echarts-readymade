@@ -20,4 +20,5 @@ interface TableChartProps extends Omit<ChartProps, 'echartsSeries' | 'setOption'
 }
 declare const Table: React.FC<TableChartProps>;
 
-export { Table, TableChartProps };
+export { Table };
+export type { TableChartProps };

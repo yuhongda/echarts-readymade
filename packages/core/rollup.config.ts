@@ -1,4 +1,4 @@
-import dts from 'rollup-plugin-dts'
+import { dts } from 'rollup-plugin-dts'
 import esbuild from 'rollup-plugin-esbuild'
 import replace from 'rollup-plugin-replace'
 import resolve from 'rollup-plugin-node-resolve'
@@ -20,11 +20,11 @@ const config: RollupOptions = {
     typescript({
       // 💡 关键修复：显式指定 tsconfig 路径，并把 outDir 设为你的 Rollup 输出目录（通常是 "dist"）
       tsconfig: './tsconfig.json',
-      outDir: 'lib', 
-      
+      outDir: 'lib',
+
       // 如果你还需要生成 .d.ts 声明文件，可以加上这两行
       declaration: false,
-      declarationDir: `lib/${format}` 
+      declarationDir: `lib/${format}`
     })
   ],
 
@@ -42,33 +42,34 @@ if (format === 'es' || format === 'cjs' || format === 'umd') {
           : `lib/${format}/index.${format}.js`
         : `lib/${format}/index.${format}.js`
   }
-
-  config.plugins?.push(
-    esbuild({
-      // All options are optional
-      include: /\.[jt]sx?$/, // default, inferred from `loaders` option
-      exclude: /node_modules/, // default
-      sourceMap: false, // default
-      minify: process.env.NODE_ENV === 'production',
-      target: 'es2017', // default, or 'es20XX', 'esnext'
-      jsx: 'transform', // default, or 'preserve'
-      jsxFactory: 'React.createElement',
-      jsxFragment: 'React.Fragment',
-      // Like @rollup/plugin-replace
-      define: {
-        __VERSION__: '"x.y.z"'
-      },
-      tsconfig: 'tsconfig.json', // default
-      // Add extra loaders
-      loaders: {
-        // Add .json files support
-        // require @rollup/plugin-commonjs
-        '.json': 'json',
-        // Enable JSX in .js files too
-        '.js': 'jsx'
-      }
-    })
-  )
+  if (config.plugins && Array.isArray(config.plugins)) {
+    config.plugins?.push(
+      esbuild({
+        // All options are optional
+        include: /\.[jt]sx?$/, // default, inferred from `loaders` option
+        exclude: /node_modules/, // default
+        sourceMap: false, // default
+        minify: process.env.NODE_ENV === 'production',
+        target: 'es2017', // default, or 'es20XX', 'esnext'
+        jsx: 'transform', // default, or 'preserve'
+        jsxFactory: 'React.createElement',
+        jsxFragment: 'React.Fragment',
+        // Like @rollup/plugin-replace
+        define: {
+          __VERSION__: '"x.y.z"'
+        },
+        tsconfig: 'tsconfig.json', // default
+        // Add extra loaders
+        loaders: {
+          // Add .json files support
+          // require @rollup/plugin-commonjs
+          '.json': 'json',
+          // Enable JSX in .js files too
+          '.js': 'jsx'
+        }
+      })
+    )
+  }
 }
 
 if (format === 'umd') {
@@ -77,11 +78,13 @@ if (format === 'umd') {
     name: 'EchartsReadymadeCore',
     file: process.env.NODE_ENV === 'production' ? 'lib/umd/index.min.js' : 'lib/umd/index.js'
   }
-  config.plugins?.push(
-    replace({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
-  )
+  if (config.plugins && Array.isArray(config.plugins)) {
+    config.plugins?.push(
+      replace({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      })
+    )
+  }
 }
 
 if (format === 'dts') {
