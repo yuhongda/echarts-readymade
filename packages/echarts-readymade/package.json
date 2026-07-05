@@ -46,15 +46,17 @@
     "@echarts-readymade/wordcloud": "workspace:*"
   },
   "devDependencies": {
+    "@ant-design/icons": "^6.3.2",
     "@rollup/plugin-image": "^2.1.1",
+    "antd": "^6.5.0",
     "echarts": "^6.1.0",
     "echarts-for-react": "^3.0.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "peerDependencies": {
-    "@ant-design/icons": "^5.6.1",
-    "antd": "^4.19.3 || ^5.0.0",
+    "@ant-design/icons": "^6.3.2",
+    "antd": "^6.5.0",
     "echarts": "^6.1.0",
     "echarts-for-react": "^3.0.6",
     "react": "^19.0.0",

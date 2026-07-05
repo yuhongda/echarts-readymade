@@ -220,14 +220,10 @@ export const Scatter = (props: ScatterChartProps) => {
                     item.color
                   }"></span>
                   <span>${item.name}:</span>
-                  <div><span>${
-                    _valueList[0].fieldName
-                  }</span>:<span>${item.value[0]}${
+                  <div><span>${_valueList[0].fieldName}</span>:<span>${item.value[0]}${
                     _valueList[0].isPercent ? '%' : ''
                   }</span></div>
-                  <div><span>${
-                    _valueList[1].fieldName
-                  }</span>:<span>${item.value[1]}${
+                  <div><span>${_valueList[1].fieldName}</span>:<span>${item.value[1]}${
                     _valueList[1].isPercent ? '%' : ''
                   }</span></div>
               </div>`
@@ -575,14 +571,10 @@ export const Scatter = (props: ScatterChartProps) => {
                     item.color
                   }"></span>
                   <span>${item.name}:</span>
-                  <div><span>${
-                    _valueList[0].fieldName
-                  }</span>:<span>${item.value[0]}${
+                  <div><span>${_valueList[0].fieldName}</span>:<span>${item.value[0]}${
                     _valueList[0].isPercent ? '%' : ''
                   }</span></div>
-                  <div><span>${
-                    _valueList[1].fieldName
-                  }</span>:<span>${item.value[1]}${
+                  <div><span>${_valueList[1].fieldName}</span>:<span>${item.value[1]}${
                     _valueList[1].isPercent ? '%' : ''
                   }</span></div>
               </div>`
@@ -596,10 +588,8 @@ export const Scatter = (props: ScatterChartProps) => {
             return data[5]
           },
           itemStyle: {
-            normal: {
-              color: (seriesIndex: any) => {
-                return seriesIndex.value[6]
-              }
+            color: (seriesIndex: any) => {
+              return seriesIndex.value[6]
             }
           },
           data: getSymbolSize(processedData || []).map((item) => {

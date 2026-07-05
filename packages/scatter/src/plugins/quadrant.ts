@@ -15,7 +15,10 @@ export type QuadrantSettingOptionProps =
       quadrantType: 'median' | 'equal' | 'max' | 'min' | 'average'
     }
   | undefined
-export const quadrantSetting = (option: EChartsOption, quadrantSettingOption: QuadrantSettingOptionProps): void => {
+export const quadrantSetting = (
+  option: EChartsOption,
+  quadrantSettingOption: QuadrantSettingOptionProps
+): void => {
   if (quadrantSettingOption && quadrantSettingOption.show) {
     const _data =
       Array.isArray(option.series) && option.series?.length
@@ -81,12 +84,9 @@ export const quadrantSetting = (option: EChartsOption, quadrantSettingOption: Qu
               show: false
             },
             lineStyle: {
-              normal: {
-                color: 'rgba(255,255,255,0.5)',
-                // color: 'rgba(0,0,0,0.5)',
-                type: 'dotted',
-                width: 1
-              }
+              color: 'rgba(255,255,255,0.5)',
+              type: 'dotted',
+              width: 1
             },
             data:
               quadrantType === 'equal'
@@ -130,14 +130,14 @@ export const quadrantSetting = (option: EChartsOption, quadrantSettingOption: Qu
                     quadrantType === 'equal'
                       ? `${maxX / 2}`
                       : quadrantType === 'median'
-                      ? `${medianX}`
-                      : quadrantType,
+                        ? `${medianX}`
+                        : quadrantType,
                   yAxis:
                     quadrantType === 'equal'
                       ? `${maxY / 2}`
                       : quadrantType === 'median'
-                      ? `${medianY}`
-                      : quadrantType
+                        ? `${medianY}`
+                        : quadrantType
                 },
                 {
                   xAxis: 'max',
@@ -154,8 +154,8 @@ export const quadrantSetting = (option: EChartsOption, quadrantSettingOption: Qu
                     quadrantType === 'equal'
                       ? `${maxX / 2}`
                       : quadrantType === 'median'
-                      ? `${medianX}`
-                      : quadrantType,
+                        ? `${medianX}`
+                        : quadrantType,
                   yAxis: 0
                 },
                 {
@@ -164,8 +164,8 @@ export const quadrantSetting = (option: EChartsOption, quadrantSettingOption: Qu
                     quadrantType === 'equal'
                       ? `${maxY / 2}`
                       : quadrantType === 'median'
-                      ? `${medianY}`
-                      : quadrantType
+                        ? `${medianY}`
+                        : quadrantType
                 }
               ],
               [
@@ -179,16 +179,16 @@ export const quadrantSetting = (option: EChartsOption, quadrantSettingOption: Qu
                     quadrantType === 'equal'
                       ? `${maxY / 2}`
                       : quadrantType === 'median'
-                      ? `${medianY}`
-                      : quadrantType
+                        ? `${medianY}`
+                        : quadrantType
                 },
                 {
                   xAxis:
                     quadrantType === 'equal'
                       ? `${maxX / 2}`
                       : quadrantType === 'median'
-                      ? `${medianX}`
-                      : quadrantType,
+                        ? `${medianX}`
+                        : quadrantType,
                   yAxis: 'max'
                 }
               ],
@@ -206,14 +206,14 @@ export const quadrantSetting = (option: EChartsOption, quadrantSettingOption: Qu
                     quadrantType === 'equal'
                       ? `${maxX / 2}`
                       : quadrantType === 'median'
-                      ? `${medianX}`
-                      : quadrantType,
+                        ? `${medianX}`
+                        : quadrantType,
                   yAxis:
                     quadrantType === 'equal'
                       ? `${maxY / 2}`
                       : quadrantType === 'median'
-                      ? `${medianY}`
-                      : quadrantType
+                        ? `${medianY}`
+                        : quadrantType
                 }
               ]
             ]
