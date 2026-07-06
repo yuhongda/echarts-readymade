@@ -1,6 +1,6 @@
 {
   "name": "@echarts-readymade/wordcloud",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Wordcloud chart",
   "main": "lib/index.js",
   "module": "lib/es/index.es.js",

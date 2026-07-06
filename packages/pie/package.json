@@ -1,6 +1,6 @@
 {
   "name": "@echarts-readymade/pie",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Pie chart",
   "main": "lib/index.js",
   "module": "lib/es/index.es.js",
