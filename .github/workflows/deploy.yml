@@ -3,9 +3,9 @@ name: Deploy Demo to Cloudflare Pages
 on:
   push:
     branches:
-      - main # 或者你的主分支名称
+      - main
     paths:
-      - 'demo/**' # 只有当 demo 文件夹有变更时才触发
+      - 'demo/**'
 
 jobs:
   build-and-deploy:
@@ -37,10 +37,8 @@ jobs:
         working-directory: demo
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: 'your-project-name'
-          directory: 'dist/apps/demo'
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy demo/dist --project-name=echarts-readymade
