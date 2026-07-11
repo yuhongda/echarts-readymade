@@ -43,6 +43,9 @@ jobs:
       - name: Build Demo
         run: pnpm build
         working-directory: demo
+      
+      - name: Install Wrangler Globally
+        run: pnpm add -g wrangler@3.90.0
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
