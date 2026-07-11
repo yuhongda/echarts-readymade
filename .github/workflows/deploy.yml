@@ -28,10 +28,6 @@ jobs:
       
       - name: Install Dependencies
         run: pnpm install --no-frozen-lockfile
-        env:
-          # 核心：允许所有包的构建脚本执行，不再触发 ERR_PNPM_IGNORED_BUILDS
-          PNPM_CONFIG_SIDE_EFFECTS_CACHE: "false"
-          PNPM_CONFIG_IGNORE_BUILD: "true"
 
       - name: Build Dependencies
         run: pnpm build
@@ -39,10 +35,6 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --no-frozen-lockfile
         working-directory: demo
-        env:
-          # 核心：允许所有包的构建脚本执行，不再触发 ERR_PNPM_IGNORED_BUILDS
-          PNPM_CONFIG_SIDE_EFFECTS_CACHE: "false"
-          PNPM_CONFIG_IGNORE_BUILD: "true"
 
       - name: Build Demo
         run: pnpm build
