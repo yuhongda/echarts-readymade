@@ -29,9 +29,6 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Build Dependencies
-        run: pnpm build
-
       - name: Install Dependencies
         run: pnpm install
         working-directory: demo
