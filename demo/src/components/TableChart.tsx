@@ -177,7 +177,7 @@ export const TableChart: React.FC = () => {
               blockWrapHeight={500}
               showSum
               // colorList={['#fafafa', '#333', '#ffc000', '#333', 'rgba(0, 0, 0, 0.5)', '#fff']}
-              setOption={(columns, dataSource) => {
+              setTableOption={(columns, dataSource) => {
                 console.log({ columns, dataSource })
                 return {
                   columns,

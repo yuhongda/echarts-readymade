@@ -213,6 +213,9 @@ importers:
         specifier: ^1.2.2
         version: 1.2.3
     devDependencies:
+      '@types/node':
+        specifier: ^26.0.0
+        version: 26.0.0
       '@types/react':
         specifier: ^19.0.10
         version: 19.2.17
@@ -222,6 +225,9 @@ importers:
       '@types/styled-components':
         specifier: ^5.1.16
         version: 5.1.36
+      '@types/wordcloud':
+        specifier: ^1.2.2
+        version: 1.2.2
       '@vitejs/plugin-react':
         specifier: ^1.0.0
         version: 1.0.0
@@ -229,8 +235,8 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3(@babel/core@7.29.7)(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)
       typescript:
-        specifier: ^5.8.2
-        version: 5.8.2
+        specifier: ^6.0.3
+        version: 6.0.3
       vite:
         specifier: ^8.1.3
         version: 8.1.3(@types/node@26.0.0)(esbuild@0.14.2)(yaml@2.9.0)
@@ -619,6 +625,9 @@ importers:
       '@types/styled-components':
         specifier: ^5.1.20
         version: 5.1.36
+      '@types/wordcloud':
+        specifier: ^1.2.2
+        version: 1.2.2
       copyfiles:
         specifier: ^2.4.1
         version: 2.4.1
@@ -2795,6 +2804,9 @@ packages:
 
   '@types/testing-library__jest-dom@5.14.9':
     resolution: {integrity: sha512-FSYhIjFlfOpGSRyVoMBMuS3ws5ehFQODymf3vlI7U1K8c7PHwWwFY7VREfmsuzHSOnoKs/9/Y983ayOs7eRzqw==}
+
+  '@types/wordcloud@1.2.2':
+    resolution: {integrity: sha512-UMKd/doXE3karDUd5l+2LqFKUU4SmuPWOT/VA22OrPOUGMlb8/qQvSf+DBLQf/sd8UphuBGxOK/jB/1BB5oQRw==}
 
   '@types/yargs-parser@21.0.3':
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
@@ -10032,6 +10044,8 @@ snapshots:
   '@types/testing-library__jest-dom@5.14.9':
     dependencies:
       '@types/jest': 26.0.24
+
+  '@types/wordcloud@1.2.2': {}
 
   '@types/yargs-parser@21.0.3': {}
 

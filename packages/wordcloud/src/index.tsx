@@ -23,6 +23,7 @@ import maskCloud from './assets/mask-cloud.png'
 import styled from 'styled-components'
 import { useRect } from './useRect'
 import cloneDeep from 'clone'
+import './types'
 
 const Wrapper = styled.div`
   width: 100%;

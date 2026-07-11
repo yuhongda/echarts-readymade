@@ -9,10 +9,14 @@ axiosInstance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
 axios.interceptors.request.use(
   (req) => {
-    Object.assign(req?.headers?.common, {
-      XMLHttpRequest: 'X-Requested-With',
-      refererClone: window.location.href
-    })
+    if (req?.headers) {
+      const headers = req.headers as Record<string, any>
+      headers.common = headers.common || {}
+      Object.assign(headers.common, {
+        XMLHttpRequest: 'X-Requested-With',
+        refererClone: window.location.href
+      })
+    }
     return req
   },
   (error) => Promise.reject(error)
