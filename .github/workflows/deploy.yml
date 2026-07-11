@@ -28,10 +28,12 @@ jobs:
       
       - name: Install Dependencies
         run: pnpm install
-
+      
       - name: Install Dependencies
         run: pnpm install
-        working-directory: demo
+
+      - name: Build Dependencies
+        run: pnpm build
 
       - name: Build Demo
         run: pnpm build
