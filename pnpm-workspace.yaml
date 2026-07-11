@@ -4,3 +4,5 @@ packages:
 allowBuilds:
   esbuild: true
   nx: true
+  sharp: true
+  workerd: true
