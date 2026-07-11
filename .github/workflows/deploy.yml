@@ -45,4 +45,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy demo/dist --project-name=echarts-readymade
+          command: deploy demo/dist --name echarts-readymade
