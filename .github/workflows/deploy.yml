@@ -27,25 +27,18 @@ jobs:
           cache: 'pnpm'
       
       - name: Install Dependencies
-        run: pnpm install --no-frozen-lockfile --unsafe-perm
-        env:
-          PNPM_CONFIG_IGNORE_BUILD: "true"
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build Dependencies
         run: pnpm build
 
       - name: Install Dependencies
-        run: pnpm install --no-frozen-lockfile --unsafe-perm
-        env:
-          PNPM_CONFIG_IGNORE_BUILD: "true"
+        run: pnpm install --no-frozen-lockfile
         working-directory: demo
 
       - name: Build Demo
         run: pnpm build
         working-directory: demo
-
-      - name: Install Wrangler
-        run: pnpm add -w wrangler@3.90.0
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
