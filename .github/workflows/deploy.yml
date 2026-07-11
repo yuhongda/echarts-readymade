@@ -27,13 +27,13 @@ jobs:
           cache: 'pnpm'
       
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile --unsafe-perm
 
       - name: Build Dependencies
         run: pnpm build
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile --unsafe-perm
         working-directory: demo
 
       - name: Build Demo
