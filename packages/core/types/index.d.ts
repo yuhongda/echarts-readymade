@@ -1,30 +1,7 @@
-import * as React$1 from 'react';
-import React__default, { ReactNode } from 'react';
-import { EChartsReactProps, EChartsOption } from 'echarts-for-react';
-
-interface ChartContextValue<T = any> {
-    data?: T[];
-    echartsOptions?: EChartsReactProps;
-    echartsOptionsBase?: EChartsOption;
-    userOptions?: EChartsOption;
-}
-declare const ChartContext: React__default.Context<ChartContextValue<any>>;
-interface ChartProviderProps<T = any> extends Omit<ChartContextValue<T>, 'echartsOptionsBase' | 'userOptions'> {
-    children: ReactNode;
-}
-declare const ChartProvider: React__default.FC<ChartProviderProps>;
-
-declare const COLOR_LIST: string[];
-declare const mergeOption: (baseOptions: EChartsOption, userOptions?: EChartsOption) => EChartsOption;
-declare const truncate: (str: string, n: number) => string;
-declare function numberWithCommas(x: string | number): string;
-
-type ChartSettings = {
-    legendPosition?: 'top' | 'right' | 'bottom' | 'left';
-};
-type ChartType = 'line' | 'bar' | 'pie' | 'stack' | 'line-stack' | 'line-bar' | 'bar-horizontal' | 'table' | 'high-relation-scatter' | 'map' | 'wordcloud' | 'scatter';
-declare const buildChartOption: (chartOptions: EChartsOption, settings: ChartSettings, chartType: ChartType) => EChartsOption;
-
+import { ChartProvider, ChartContext } from './ChartProvider';
+import { mergeOption, numberWithCommas, COLOR_LIST, truncate } from './misc';
+import { buildChartOption } from './chartOptionBuilder';
+import type { EChartsOption, EChartsReactProps } from 'echarts-for-react';
 type LegendPosition = 'top' | 'left' | 'right' | 'bottom';
 type SeriesType = 'line' | 'bar' | 'pie' | 'scatter';
 type Field = {
@@ -45,18 +22,15 @@ interface ChartProps extends Omit<EChartsReactProps, 'option'> {
     echartsSeries?: any[];
     setOption?: (option: EChartsOption) => EChartsOption;
 }
-
+export type { LegendPosition, Field, ChartProps };
+export { ChartProvider, ChartContext, mergeOption, buildChartOption, numberWithCommas, COLOR_LIST, truncate };
 declare const _default: {
-    ChartProvider: React$1.FC<ChartProviderProps<any>>;
-    ChartContext: React$1.Context<ChartContextValue<any>>;
-    mergeOption: (baseOptions: EChartsOption, userOptions?: EChartsOption) => EChartsOption;
-    buildChartOption: (chartOptions: EChartsOption, settings: {
-        legendPosition?: "top" | "right" | "bottom" | "left";
-    }, chartType: "line" | "bar" | "pie" | "stack" | "line-stack" | "line-bar" | "bar-horizontal" | "table" | "high-relation-scatter" | "map" | "wordcloud" | "scatter") => EChartsOption;
+    ChartProvider: import("react").FC<import("./ChartProvider").ChartProviderProps<any>>;
+    ChartContext: import("react").Context<import("./ChartProvider").ChartContextValue<any>>;
+    mergeOption: typeof mergeOption;
+    buildChartOption: typeof buildChartOption;
     numberWithCommas: typeof numberWithCommas;
     COLOR_LIST: string[];
-    truncate: (str: string, n: number) => string;
+    truncate: typeof truncate;
 };
-
-export { COLOR_LIST, ChartContext, ChartProvider, buildChartOption, _default as default, mergeOption, numberWithCommas, truncate };
-export type { ChartProps, Field, LegendPosition };
+export default _default;

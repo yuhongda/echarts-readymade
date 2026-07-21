@@ -1,57 +1,31 @@
-import * as React from 'react';
-import React__default from 'react';
-export { COLOR_LIST, ChartContext, ChartProps, ChartProvider, Field, LegendPosition, buildChartOption, mergeOption, numberWithCommas, truncate } from '@echarts-readymade/core';
-import { BarChartProps } from '@echarts-readymade/bar';
-import { LineChartProps } from '@echarts-readymade/line';
-import { PieChartProps } from '@echarts-readymade/pie';
-import { ScatterChartProps } from '@echarts-readymade/scatter';
-import { StackChartProps } from '@echarts-readymade/stack';
-import { WordcloudChartProps } from '@echarts-readymade/wordcloud';
-import { BarHorizontalChartProps } from '@echarts-readymade/bar-horizontal';
-import { TableChartProps } from '@echarts-readymade/table';
-
-interface IBarChartProps extends Omit<BarChartProps, 'context'> {
-}
-declare const Bar: ({ ref, ...props }: IBarChartProps) => React__default.JSX.Element;
-
-interface ILineChartProps extends Omit<LineChartProps, 'context'> {
-}
-declare const Line: ({ ref, ...props }: ILineChartProps) => React__default.JSX.Element;
-
-interface IPieChartProps extends Omit<PieChartProps, 'context'> {
-}
-declare const Pie: ({ ref, ...props }: IPieChartProps) => React__default.JSX.Element;
-
-interface IScatterChartProps extends Omit<ScatterChartProps, 'context'> {
-}
-declare const Scatter: ({ ref, ...props }: IScatterChartProps) => React__default.JSX.Element;
-
-interface IStackChartProps extends Omit<StackChartProps, 'context'> {
-}
-declare const Stack: ({ ref, ...props }: IStackChartProps) => React__default.JSX.Element;
-
-interface IWordcloudChartProps extends Omit<WordcloudChartProps, 'context'> {
-}
-declare const Wordcloud: React__default.FC<IWordcloudChartProps>;
-
-interface IBarHorizontalChartProps extends Omit<BarHorizontalChartProps, 'context'> {
-}
-declare const BarHorizontal: ({ ref, ...props }: IBarHorizontalChartProps) => React__default.JSX.Element;
-
-interface ITableChartProps extends Omit<TableChartProps, 'context'> {
-}
-declare const Table: React__default.FC<ITableChartProps>;
-
+export type { LegendPosition, Field, ChartProps } from '@echarts-readymade/core';
+export { ChartProvider, ChartContext, mergeOption, buildChartOption, numberWithCommas, COLOR_LIST, truncate } from '@echarts-readymade/core';
+import { Bar } from './bar';
+import { Line } from './line';
+import { Pie } from './pie';
+import { Scatter } from './scatter';
+import { Stack } from './stack';
+import { Wordcloud } from './wordcloud';
+import { BarHorizontal } from './bar-horizontal';
+import { Table } from './table';
+import type { IWordcloudChartProps } from './wordcloud';
+import type { ITableChartProps } from './table';
+import type { IStackChartProps } from './stack';
+import type { IScatterChartProps } from './scatter';
+import type { IPieChartProps } from './pie';
+import type { ILineChartProps } from './line';
+import type { IBarChartProps } from './bar';
+import type { IBarHorizontalChartProps } from './bar-horizontal';
+export type { IWordcloudChartProps, ITableChartProps, IStackChartProps, IScatterChartProps, IPieChartProps, ILineChartProps, IBarChartProps, IBarHorizontalChartProps };
+export { Bar, Line, Pie, Scatter, Stack, Wordcloud, BarHorizontal, Table };
 declare const _default: {
-    Bar: ({ ref, ...props }: IBarChartProps) => React.JSX.Element;
-    Line: ({ ref, ...props }: ILineChartProps) => React.JSX.Element;
-    Pie: ({ ref, ...props }: IPieChartProps) => React.JSX.Element;
-    Scatter: ({ ref, ...props }: IScatterChartProps) => React.JSX.Element;
-    Stack: ({ ref, ...props }: IStackChartProps) => React.JSX.Element;
-    Wordcloud: React.FC<IWordcloudChartProps>;
-    BarHorizontal: ({ ref, ...props }: IBarHorizontalChartProps) => React.JSX.Element;
-    Table: React.FC<ITableChartProps>;
+    Bar: typeof Bar;
+    Line: typeof Line;
+    Pie: typeof Pie;
+    Scatter: typeof Scatter;
+    Stack: typeof Stack;
+    Wordcloud: import("react").FC<IWordcloudChartProps>;
+    BarHorizontal: typeof BarHorizontal;
+    Table: import("react").FC<ITableChartProps>;
 };
-
-export { Bar, BarHorizontal, Line, Pie, Scatter, Stack, Table, Wordcloud, _default as default };
-export type { IBarChartProps, IBarHorizontalChartProps, ILineChartProps, IPieChartProps, IScatterChartProps, IStackChartProps, ITableChartProps, IWordcloudChartProps };
+export default _default;

@@ -1,10 +1,8 @@
-import { dts } from 'rollup-plugin-dts'
 import esbuild from 'rollup-plugin-esbuild'
 import replace from 'rollup-plugin-replace'
 import resolve from 'rollup-plugin-node-resolve'
 import type { RollupOptions } from 'rollup'
 import commonjs from '@rollup/plugin-commonjs'
-import typescript from '@rollup/plugin-typescript'
 
 const format = process.env.FORMAT || 'es'
 
@@ -16,16 +14,7 @@ const config: RollupOptions = {
         moduleDirectory: 'node_modules'
       }
     }),
-    commonjs(),
-    typescript({
-      // 💡 关键修复：显式指定 tsconfig 路径，并把 outDir 设为你的 Rollup 输出目录（通常是 "dist"）
-      tsconfig: './tsconfig.json',
-      outDir: 'lib',
-
-      // 如果你还需要生成 .d.ts 声明文件，可以加上这两行
-      declaration: false,
-      declarationDir: `lib/${format}`
-    })
+    commonjs()
   ],
 
   external: ['react', 'react-dom', 'echarts']
@@ -85,14 +74,6 @@ if (format === 'umd') {
       })
     )
   }
-}
-
-if (format === 'dts') {
-  config.output = {
-    format: 'es',
-    file: 'types/index.d.ts'
-  }
-  config.plugins = [dts()]
 }
 
 export default config

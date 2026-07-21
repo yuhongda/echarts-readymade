@@ -1,12 +1,8 @@
 import React from 'react';
-import { ChartProps, LegendPosition } from '@echarts-readymade/core';
-
-interface LineChartProps extends ChartProps {
+import type { ChartProps, LegendPosition } from '@echarts-readymade/core';
+export interface LineChartProps extends ChartProps {
     xAxisData?: any[];
     sortXAxis?: boolean;
     legendPosition?: LegendPosition;
 }
-declare const Line: (props: LineChartProps) => React.JSX.Element | null;
-
-export { Line };
-export type { LineChartProps };
+export declare const Line: (props: LineChartProps) => React.JSX.Element | null;

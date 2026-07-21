@@ -1,4 +1,3 @@
-import { dts } from 'rollup-plugin-dts'
 import esbuild from 'rollup-plugin-esbuild'
 import replace from 'rollup-plugin-replace'
 import resolve from 'rollup-plugin-node-resolve'
@@ -18,8 +17,8 @@ const config: RollupOptions = {
       }
     }),
     commonjs(),
-    image(),
-    visualizer()
+    image()
+    // visualizer()
   ],
 
   external: [
@@ -93,14 +92,6 @@ if (format === 'umd') {
       })
     )
   }
-}
-
-if (format === 'dts') {
-  config.output = {
-    format: 'es',
-    file: 'types/index.d.ts'
-  }
-  config.plugins = [dts()]
 }
 
 export default config
