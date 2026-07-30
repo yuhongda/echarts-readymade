@@ -6,10 +6,10 @@ import { ChartProvider, ChartContext } from '../packages/core/src/index'
 import type { Field } from '../packages/core/src/index'
 import { Wordcloud } from '../packages/wordcloud/src/index'
 
-jest.useRealTimers()
+vi.useRealTimers()
 
 beforeEach((): void => {
-  jest.useRealTimers()
+  vi.useRealTimers()
   // @ts-ignore
   window.HTMLElement.prototype.getBoundingClientRect = function () {
     return {

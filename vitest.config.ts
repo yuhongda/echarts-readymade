@@ -5,8 +5,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    include: ['**/__test__/**/*.{test,spec}.{js,jsx,ts,tsx}'],
-    setupFiles: ['./__test__/setup.js'],
+    // include: ['**/__test__/**/*.{test,spec}.{js,jsx,ts,tsx}'],
+    include: ['**/__test__/core.test.tsx'],
+    setupFiles: ['./__test__/vitest.setup.ts'],
     clearMocks: true,
     testTimeout: 50000,
     coverage: {

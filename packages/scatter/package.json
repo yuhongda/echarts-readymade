@@ -22,11 +22,6 @@
     "dts": "tsc -p tsconfig.json",
     "build": "pnpm run clear && pnpm run lib && pnpm run dts",
     "clear": "rm -rf lib/ && rm -rf types/",
-    "test": "jest",
-    "jest:clear": "jest --clearCache",
-    "cover": "pnpm run jest:clear && jest --coverage --config=jest.config.ts",
-    "make-badges": "istanbul-badges-readme --coverageDir=__test__/coverage",
-    "ci": "pnpm run build && pnpm run cover && codecov",
     "release": "npm publish",
     "release:next": "npm publish --tag next"
   },
