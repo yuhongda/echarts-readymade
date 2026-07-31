@@ -36,6 +36,11 @@ export default defineConfig({
             enabled: true,
             provider: playwright(),
             instances: [{ browser: 'chromium' }]
+          },
+          fileParallelism: false,
+          maxWorkers: 1,
+          sequence: {
+            concurrent: false
           }
         },
         resolve: {

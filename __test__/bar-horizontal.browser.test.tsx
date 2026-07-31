@@ -1,16 +1,16 @@
 import { describe, expect, test, vi } from 'vitest'
 import { render } from 'vitest-browser-react'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { ChartProvider, ChartContext } from '../packages/core/src/index'
 import type { Field } from '../packages/core/src/index'
-import { Bar } from '../packages/bar/src/index'
+import { BarHorizontal } from '../packages/bar-horizontal/src/index'
 import ReactEcharts from 'echarts-for-react'
 
-describe('testing <Bar /> chart', () => {
-  test('<Bar /> chart works fine', async () => {
+describe('testing <BarHorizontal /> chart', () => {
+  test('<BarHorizontal /> chart works fine', async () => {
     const ref = React.createRef<any>()
 
-    const BarChart: React.FC<{ ref: React.RefObject<any> }> = ({ ref }) => {
+    const BarHorizontalChart: React.FC<{ ref: React.RefObject<any> }> = ({ ref }) => {
       const data = [
         {
           v6: 0.8141021277904137,
@@ -136,7 +136,7 @@ describe('testing <Bar /> chart', () => {
             echartsOptions={{
               option: {
                 title: {
-                  text: 'Bar Chart'
+                  text: 'BarHorizontal Chart'
                 },
                 yAxis: [
                   {
@@ -148,7 +148,7 @@ describe('testing <Bar /> chart', () => {
               }
             }}
           >
-            <Bar
+            <BarHorizontal
               context={ChartContext}
               dimension={dimension}
               valueList={valueList}
@@ -160,7 +160,7 @@ describe('testing <Bar /> chart', () => {
       )
     }
 
-    const screen = await render(<BarChart ref={ref} />)
+    const screen = await render(<BarHorizontalChart ref={ref} />)
     if (ref.current) {
       await vi.waitFor(() => {
         expect(ref.current?.getEchartsInstance()).toBeDefined()
@@ -172,7 +172,7 @@ describe('testing <Bar /> chart', () => {
   test('The value will be 0, if could not find value in data', async () => {
     const testRef = React.createRef<any>()
 
-    const BarChart: React.FC<{ ref: React.RefObject<any> }> = ({ ref }) => {
+    const BarHorizontalChart: React.FC<{ ref: React.RefObject<any> }> = ({ ref }) => {
       const data = [
         {
           d1: '2020-12-31'
@@ -218,7 +218,7 @@ describe('testing <Bar /> chart', () => {
             echartsOptions={{
               option: {
                 title: {
-                  text: 'Bar Chart'
+                  text: 'BarHorizontal Chart'
                 },
                 yAxis: [
                   {
@@ -230,7 +230,7 @@ describe('testing <Bar /> chart', () => {
               }
             }}
           >
-            <Bar
+            <BarHorizontal
               context={ChartContext}
               dimension={dimension}
               valueList={valueList}
@@ -242,15 +242,19 @@ describe('testing <Bar /> chart', () => {
       )
     }
 
-    const screen = await render(<BarChart ref={testRef} />)
-    if (testRef.current) {
-      await vi.waitFor(() => {
-        expect(testRef.current?.getEchartsInstance().getOption()).toBeDefined()
-      })
-      const instance = testRef.current.getEchartsInstance()
-      const option = instance.getOption()
-      const seriesData = option.series
-      expect(Array.isArray(seriesData) && seriesData.length > 0).toBe(true)
+    const screen = await render(<BarHorizontalChart ref={testRef} />)
+    await vi.waitFor(() => {
+      expect(testRef.current?.getEchartsInstance().getOption()).toBeDefined()
+    })
+    const instance = testRef.current.getEchartsInstance()
+    const seriesData = instance.getOption().series
+    expect(Array.isArray(seriesData) && seriesData.length > 0).toBe(true)
+    if (Array.isArray(seriesData) && seriesData.length > 0) {
+      expect(seriesData.length).toBeGreaterThan(0)
+
+      expect(
+        seriesData.map((item: any) => item.data.map((d: any) => d.value)).flat()
+      ).toStrictEqual(seriesData.map((item: any) => item.data.map((d: any) => 0)).flat())
     }
     await screen.unmount()
   })
@@ -258,7 +262,7 @@ describe('testing <Bar /> chart', () => {
   test('setOption() works fine', async () => {
     const ref = React.createRef<any>()
 
-    const BarChart: React.FC<{ ref: React.RefObject<any> }> = ({ ref }) => {
+    const BarHorizontalChart: React.FC<{ ref: React.RefObject<any> }> = ({ ref }) => {
       const data = [
         {
           v6: 0.8141021277904137,
@@ -313,7 +317,7 @@ describe('testing <Bar /> chart', () => {
             echartsOptions={{
               option: {
                 title: {
-                  text: 'Bar Chart'
+                  text: 'BarHorizontal Chart'
                 },
                 yAxis: [
                   {
@@ -325,32 +329,134 @@ describe('testing <Bar /> chart', () => {
               }
             }}
           >
-            <Bar
+            <BarHorizontal
               context={ChartContext}
               dimension={dimension}
               valueList={valueList}
               legendPosition="top"
-              ref={ref}
               setOption={(option: any) => {
                 option.title.text = 'tada!!'
                 return option
               }}
+              ref={ref}
             />
           </ChartProvider>
         </div>
       )
     }
 
-    const screen = await render(<BarChart ref={ref} />)
-    if (ref.current) {
-      await vi.waitFor(() => {
-        expect(ref.current?.getEchartsInstance().getOption()).toBeDefined()
-      })
-      const instance = ref.current.getEchartsInstance()
-      const option = instance.getOption()
-      expect(option.title).toBeDefined()
-      expect(option.title[0].text).toBe('tada!!')
+    const screen = await render(<BarHorizontalChart ref={ref} />)
+    await vi.waitFor(() => {
+      expect(ref.current?.getEchartsInstance().getOption()).toBeDefined()
+    })
+    const instance = ref.current.getEchartsInstance()
+    const option = instance.getOption()
+    expect(option.title).toBeDefined()
+    expect(option.title[0].text).toBe('tada!!')
+    await screen.unmount()
+  })
+
+  test('testing when numberWithCommas() throw an exception, the value should be empty string', async () => {
+    const ref = React.createRef<any>()
+
+    const BarHorizontalChart: React.FC<{ ref: React.RefObject<any> }> = ({ ref }) => {
+      const data = [
+        {
+          d1: '2020-12-31',
+          d2: '北京',
+          v6: '18141021277e11',
+          v4: '18141021277e11'
+        },
+        {
+          d1: '2020-12-31',
+          d2: '北京'
+        },
+        {
+          d1: '2021-01-31',
+          d2: '北京'
+        },
+        {
+          d1: '2021-02-28',
+          d2: '北京'
+        }
+      ]
+
+      const dimension: Field[] = [
+        {
+          fieldKey: 'd1',
+          fieldName: '日期'
+        }
+      ]
+
+      const compareDimension: Field[] = [
+        {
+          fieldKey: 'd2',
+          fieldName: '城市'
+        }
+      ]
+
+      const valueList: Field[] = [
+        {
+          fieldKey: 'v6',
+          fieldName: '占比1',
+          isPercent: true
+        },
+        {
+          fieldKey: 'v4',
+          fieldName: '占比2'
+        },
+        {
+          fieldKey: 'v5',
+          fieldName: '占比3'
+        }
+      ]
+
+      return (
+        <div style={{ width: 500, height: 500 }}>
+          <ChartProvider
+            data={data}
+            echartsOptions={{
+              option: {
+                title: {
+                  text: 'BarHorizontal Chart'
+                },
+                yAxis: [
+                  {
+                    axisLabel: {
+                      formatter: '{value}%'
+                    }
+                  }
+                ]
+              }
+            }}
+          >
+            <BarHorizontal
+              context={ChartContext}
+              dimension={dimension}
+              valueList={valueList}
+              legendPosition="top"
+              ref={ref}
+            />
+          </ChartProvider>
+        </div>
+      )
     }
+
+    const screen = await render(<BarHorizontalChart ref={ref} />)
+    await vi.waitFor(() => {
+      expect(ref.current?.getEchartsInstance().getOption()).toBeDefined()
+    })
+    const instance = ref.current.getEchartsInstance()
+    const option = instance.getOption()
+    const seriesData = option.series
+    expect(Array.isArray(seriesData) && seriesData.length > 0).toBe(true)
+    if (Array.isArray(seriesData) && seriesData.length > 0) {
+      expect(seriesData.length).toBeGreaterThan(0)
+      expect(seriesData[0].data[0].label.formatter({ value: '18141021277e11' })).toBe(
+        '18141021277e11'
+      )
+    }
+
     await screen.unmount()
   })
 })
