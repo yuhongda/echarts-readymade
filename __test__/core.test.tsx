@@ -1,6 +1,4 @@
 import { describe, expect, test } from 'vitest'
-import '@testing-library/jest-dom'
-import { render, waitFor, screen, act } from '@testing-library/react'
 import React from 'react'
 import { buildChartOption } from '../packages/core/src/index'
 import { echartsOptionsBase, mergeOption, truncate, numberWithCommas } from '../packages/core/src/misc'
