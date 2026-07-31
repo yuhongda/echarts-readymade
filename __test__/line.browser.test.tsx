@@ -3,13 +3,13 @@ import { render } from 'vitest-browser-react'
 import React from 'react'
 import { ChartProvider, ChartContext } from '../packages/core/src/index'
 import type { Field } from '../packages/core/src/index'
-import { Bar } from '../packages/bar/src/index'
+import { Line } from '../packages/line/src/index'
 
-describe('testing <Bar /> chart', () => {
-  test('<Bar /> chart works fine', async () => {
+describe('testing <Line /> chart', () => {
+  test('<Line /> chart works fine', async () => {
     const ref = React.createRef<any>()
 
-    const BarChart: React.FC<{ ref: React.RefObject<any> }> = ({ ref }) => {
+    const LineChart: React.FC<{ ref: React.RefObject<any> }> = ({ ref }) => {
       const data = [
         {
           v6: 0.8141021277904137,
@@ -147,7 +147,7 @@ describe('testing <Bar /> chart', () => {
               }
             }}
           >
-            <Bar
+            <Line
               context={ChartContext}
               dimension={dimension}
               valueList={valueList}
@@ -158,8 +158,8 @@ describe('testing <Bar /> chart', () => {
         </div>
       )
     }
-
-    const screen = await render(<BarChart ref={ref} />)
+    
+    const screen = await render(<LineChart ref={ref} />)
     if (ref.current) {
       await vi.waitFor(() => {
         expect(ref.current?.getEchartsInstance()).toBeDefined()
@@ -171,7 +171,7 @@ describe('testing <Bar /> chart', () => {
   test('The value will be 0, if could not find value in data', async () => {
     const testRef = React.createRef<any>()
 
-    const BarChart: React.FC<{ ref: React.RefObject<any> }> = ({ ref }) => {
+    const LineChart: React.FC<{ ref: React.RefObject<any> }> = ({ ref }) => {
       const data = [
         {
           d1: '2020-12-31'
@@ -229,19 +229,19 @@ describe('testing <Bar /> chart', () => {
               }
             }}
           >
-            <Bar
+            <Line
               context={ChartContext}
               dimension={dimension}
               valueList={valueList}
               legendPosition="top"
-              ref={ref}
+              ref={testRef}
             />
           </ChartProvider>
         </div>
       )
     }
 
-    const screen = await render(<BarChart ref={testRef} />)
+    const screen = await render(<LineChart ref={testRef} />)
     if (testRef.current) {
       await vi.waitFor(() => {
         expect(testRef.current?.getEchartsInstance().getOption()).toBeDefined()
@@ -250,6 +250,9 @@ describe('testing <Bar /> chart', () => {
       const option = instance.getOption()
       const seriesData = option.series
       expect(Array.isArray(seriesData) && seriesData.length > 0).toBe(true)
+      expect(
+        seriesData.map((item: any) => item.data.map((d: any) => d.value)).flat()
+      ).toStrictEqual(seriesData.map((item: any) => item.data.map((d: any) => null)).flat())
     }
     await screen.unmount()
   })
@@ -257,7 +260,7 @@ describe('testing <Bar /> chart', () => {
   test('setOption() works fine', async () => {
     const ref = React.createRef<any>()
 
-    const BarChart: React.FC<{ ref: React.RefObject<any> }> = ({ ref }) => {
+    const LineChart: React.FC<{ ref: React.RefObject<any> }> = ({ ref }) => {
       const data = [
         {
           v6: 0.8141021277904137,
@@ -324,7 +327,7 @@ describe('testing <Bar /> chart', () => {
               }
             }}
           >
-            <Bar
+            <Line
               context={ChartContext}
               dimension={dimension}
               valueList={valueList}
@@ -340,7 +343,7 @@ describe('testing <Bar /> chart', () => {
       )
     }
 
-    const screen = await render(<BarChart ref={ref} />)
+    const screen = await render(<LineChart ref={ref} />)
     if (ref.current) {
       await vi.waitFor(() => {
         expect(ref.current?.getEchartsInstance().getOption()).toBeDefined()
