@@ -17,7 +17,6 @@
     "test": "vitest",
     "vitest:clear": "vitest --clearCache",
     "cover": "pnpm run vitest:clear && vitest run --coverage",
-    "ci": "pnpm run build && pnpm run cover && codecov",
     "make-badges": "istanbul-badges-readme --coverageDir=__test__/coverage"
   },
   "devDependencies": {
@@ -30,7 +29,6 @@
     "@vitest/coverage-v8": "^4.1.10",
     "antd": "^6.5.0",
     "axios": "^0.24.0",
-    "codecov": "^3.8.3",
     "echarts": "^6.1.0",
     "echarts-for-react": "^3.0.6",
     "esbuild": "^0.14.2",
