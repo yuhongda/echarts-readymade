@@ -23,8 +23,8 @@ export const BarChart: React.FC = () => {
       // boom!!
       const instance = ref.current.getEchartsInstance()
       if (instance) {
-        console.log(instance.getOption())
         // Echarts instance is available here, you can call instance.setOption(...) to update the chart
+        console.log(instance.getOption())
       }
     }
   }, [ref.current])
