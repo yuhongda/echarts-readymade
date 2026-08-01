@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@ant-design/icons": "^6.3.2",
-    "@changesets/cli": "^2.28.1",
     "@types/node": "^26.0.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
