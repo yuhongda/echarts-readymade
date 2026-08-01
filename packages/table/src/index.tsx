@@ -311,7 +311,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
       // feat: move columns
       let originColumns = [...(dimensionListCompareColumn[0] || [])]
       const sortedColumns: any[] = []
-      ;(sortedTableColumnsKeys || []).forEach((key) => {
+      ;(sortedTableColumnsKeys || []).forEach((key: string) => {
         let found = false
         originColumns = originColumns.filter((item) => {
           if (!found && item.key == key) {
@@ -745,7 +745,7 @@ export const Table: React.FC<TableChartProps> = (props) => {
   // feat: move columns
   useEffect(() => {
     if (moveItem) {
-      const _index = sortedTableColumnsKeys.findIndex((item) => item == moveItem.key)
+      const _index = sortedTableColumnsKeys.findIndex((item: string) => item == moveItem.key)
       if (moveItem.direction == 'left') {
         if (_index > 0) {
           sortedTableColumnsKeys.splice(_index - 1, 0, sortedTableColumnsKeys.splice(_index, 1)[0])
