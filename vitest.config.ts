@@ -16,26 +16,25 @@ export default defineConfig({
           setupFiles: ['./__test__/vitest.setup.ts'],
           clearMocks: true,
           testTimeout: 50000
-        },
-        resolve: {
-          alias: {
-            assets: path.resolve(__dirname, 'packages/wordcloud/src/assets')
-          }
         }
       },
       {
         test: {
           name: 'browser',
           globals: true,
-          environment: 'jsdom',
-          include: ['**/__test__/**/*.browser.{test,spec}.{js,jsx,ts,tsx}'],
+          // include: ['**/__test__/**/*.browser.{test,spec}.{js,jsx,ts,tsx}'],
+          include: ['**/__test__/**/wordcloud.browser.{test,spec}.{js,jsx,ts,tsx}'],
           setupFiles: ['./__test__/vitest.setup.ts'],
           clearMocks: true,
           testTimeout: 50000,
           browser: {
             enabled: true,
             provider: playwright(),
-            instances: [{ browser: 'chromium' }]
+            instances: [{ browser: 'chromium' }],
+            viewport: {
+              width: 3840,
+              height: 2160
+            }
           },
           fileParallelism: false,
           maxWorkers: 1,
