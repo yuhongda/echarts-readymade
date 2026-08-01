@@ -1,4 +1,491 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`testing buildChartOption() > legendPosition bottom works fine 1`] = `
+{
+  "grid": {
+    "bottom": 45,
+    "containLabel": true,
+    "left": 20,
+    "right": 20,
+    "top": 70,
+    "x": 30,
+    "x2": 30,
+  },
+  "legend": {
+    "bottom": 20,
+    "data": [],
+    "fontSize": 12,
+    "formatter": [Function],
+    "icon": "circle",
+    "itemHeight": 10,
+    "itemWidth": 10,
+    "left": "center",
+    "orient": "horizontal",
+    "padding": [
+      5,
+      5,
+    ],
+    "position": "bottom",
+    "right": 20,
+    "selectedMode": false,
+    "show": true,
+    "textStyle": {
+      "padding": [
+        2,
+        0,
+        0,
+        0,
+      ],
+    },
+    "top": "auto",
+    "type": "scroll",
+  },
+  "series": null,
+  "textStyle": {},
+  "title": {
+    "left": 24,
+    "show": true,
+    "text": "",
+    "textAlign": "left",
+    "textStyle": {
+      "fontSize": 16,
+      "lineHeight": 1,
+    },
+    "top": 30,
+  },
+  "toolbox": {
+    "show": false,
+  },
+  "tooltip": {
+    "formatter": [Function],
+    "show": true,
+    "trigger": "axis",
+  },
+  "xAxis": {
+    "axisLabel": {
+      "align": "right",
+      "rotate": 45,
+    },
+    "axisLine": {
+      "show": true,
+    },
+    "axisTick": {
+      "lineStyle": {},
+      "show": true,
+    },
+    "data": [],
+    "offset": 0,
+    "splitLine": {
+      "lineStyle": {},
+      "show": false,
+    },
+    "type": "category",
+  },
+  "yAxis": [
+    {
+      "axisLabel": {},
+      "axisLine": {
+        "show": false,
+      },
+      "axisTick": {
+        "lineStyle": {},
+        "show": false,
+      },
+      "name": "",
+      "show": true,
+      "splitLine": {
+        "lineStyle": {
+          "type": "dashed",
+        },
+        "show": true,
+      },
+      "type": "value",
+    },
+    {
+      "axisLabel": {},
+      "axisLine": {
+        "show": false,
+      },
+      "axisTick": {
+        "lineStyle": {},
+        "show": false,
+      },
+      "name": "",
+      "show": false,
+      "splitLine": {
+        "lineStyle": {},
+        "show": false,
+      },
+      "type": "value",
+    },
+  ],
+}
+`;
+
+exports[`testing buildChartOption() > legendPosition left works fine 1`] = `
+{
+  "grid": {
+    "bottom": 20,
+    "containLabel": true,
+    "left": 150,
+    "right": 20,
+    "top": 70,
+    "x": 30,
+    "x2": 30,
+  },
+  "legend": {
+    "bottom": 60,
+    "data": [],
+    "fontSize": 12,
+    "formatter": [Function],
+    "icon": "circle",
+    "itemHeight": 10,
+    "itemWidth": 10,
+    "left": 20,
+    "orient": "vertical",
+    "padding": [
+      5,
+      5,
+    ],
+    "position": "bottom",
+    "right": "auto",
+    "selectedMode": false,
+    "show": true,
+    "textStyle": {
+      "padding": [
+        2,
+        0,
+        0,
+        0,
+      ],
+    },
+    "top": 60,
+    "type": "scroll",
+  },
+  "series": null,
+  "textStyle": {},
+  "title": {
+    "left": 24,
+    "show": true,
+    "text": "",
+    "textAlign": "left",
+    "textStyle": {
+      "fontSize": 16,
+      "lineHeight": 1,
+    },
+    "top": 30,
+  },
+  "toolbox": {
+    "show": false,
+  },
+  "tooltip": {
+    "formatter": [Function],
+    "show": true,
+    "trigger": "axis",
+  },
+  "xAxis": {
+    "axisLabel": {
+      "align": "right",
+      "rotate": 45,
+    },
+    "axisLine": {
+      "show": true,
+    },
+    "axisTick": {
+      "lineStyle": {},
+      "show": true,
+    },
+    "data": [],
+    "offset": 0,
+    "splitLine": {
+      "lineStyle": {},
+      "show": false,
+    },
+    "type": "category",
+  },
+  "yAxis": [
+    {
+      "axisLabel": {},
+      "axisLine": {
+        "show": false,
+      },
+      "axisTick": {
+        "lineStyle": {},
+        "show": false,
+      },
+      "name": "",
+      "show": true,
+      "splitLine": {
+        "lineStyle": {
+          "type": "dashed",
+        },
+        "show": true,
+      },
+      "type": "value",
+    },
+    {
+      "axisLabel": {},
+      "axisLine": {
+        "show": false,
+      },
+      "axisTick": {
+        "lineStyle": {},
+        "show": false,
+      },
+      "name": "",
+      "show": false,
+      "splitLine": {
+        "lineStyle": {},
+        "show": false,
+      },
+      "type": "value",
+    },
+  ],
+}
+`;
+
+exports[`testing buildChartOption() > legendPosition right works fine 1`] = `
+{
+  "grid": {
+    "bottom": 20,
+    "containLabel": true,
+    "left": 20,
+    "right": 200,
+    "top": 70,
+    "x": 30,
+    "x2": 30,
+  },
+  "legend": {
+    "bottom": 60,
+    "data": [],
+    "fontSize": 12,
+    "formatter": [Function],
+    "icon": "circle",
+    "itemHeight": 10,
+    "itemWidth": 10,
+    "left": "auto",
+    "orient": "vertical",
+    "padding": [
+      5,
+      5,
+    ],
+    "position": "bottom",
+    "right": 20,
+    "selectedMode": false,
+    "show": true,
+    "textStyle": {
+      "padding": [
+        2,
+        0,
+        0,
+        0,
+      ],
+    },
+    "top": 60,
+    "type": "scroll",
+  },
+  "series": null,
+  "textStyle": {},
+  "title": {
+    "left": 24,
+    "show": true,
+    "text": "",
+    "textAlign": "left",
+    "textStyle": {
+      "fontSize": 16,
+      "lineHeight": 1,
+    },
+    "top": 30,
+  },
+  "toolbox": {
+    "show": false,
+  },
+  "tooltip": {
+    "formatter": [Function],
+    "show": true,
+    "trigger": "axis",
+  },
+  "xAxis": {
+    "axisLabel": {
+      "align": "right",
+      "rotate": 45,
+    },
+    "axisLine": {
+      "show": true,
+    },
+    "axisTick": {
+      "lineStyle": {},
+      "show": true,
+    },
+    "data": [],
+    "offset": 0,
+    "splitLine": {
+      "lineStyle": {},
+      "show": false,
+    },
+    "type": "category",
+  },
+  "yAxis": [
+    {
+      "axisLabel": {},
+      "axisLine": {
+        "show": false,
+      },
+      "axisTick": {
+        "lineStyle": {},
+        "show": false,
+      },
+      "name": "",
+      "show": true,
+      "splitLine": {
+        "lineStyle": {
+          "type": "dashed",
+        },
+        "show": true,
+      },
+      "type": "value",
+    },
+    {
+      "axisLabel": {},
+      "axisLine": {
+        "show": false,
+      },
+      "axisTick": {
+        "lineStyle": {},
+        "show": false,
+      },
+      "name": "",
+      "show": false,
+      "splitLine": {
+        "lineStyle": {},
+        "show": false,
+      },
+      "type": "value",
+    },
+  ],
+}
+`;
+
+exports[`testing buildChartOption() > legendPosition top works fine 1`] = `
+{
+  "grid": {
+    "bottom": 45,
+    "containLabel": true,
+    "left": 20,
+    "right": 20,
+    "top": 110,
+    "x": 30,
+    "x2": 30,
+  },
+  "legend": {
+    "bottom": "auto",
+    "data": [],
+    "fontSize": 12,
+    "formatter": [Function],
+    "icon": "circle",
+    "itemHeight": 10,
+    "itemWidth": 10,
+    "left": "center",
+    "orient": "horizontal",
+    "padding": [
+      5,
+      5,
+    ],
+    "position": "bottom",
+    "selectedMode": false,
+    "show": true,
+    "textStyle": {
+      "padding": [
+        2,
+        0,
+        0,
+        0,
+      ],
+    },
+    "top": 60,
+    "type": "scroll",
+  },
+  "series": null,
+  "textStyle": {},
+  "title": {
+    "left": 24,
+    "show": true,
+    "text": "",
+    "textAlign": "left",
+    "textStyle": {
+      "fontSize": 16,
+      "lineHeight": 1,
+    },
+    "top": 30,
+  },
+  "toolbox": {
+    "show": false,
+  },
+  "tooltip": {
+    "formatter": [Function],
+    "show": true,
+    "trigger": "axis",
+  },
+  "xAxis": {
+    "axisLabel": {
+      "align": "right",
+      "rotate": 45,
+    },
+    "axisLine": {
+      "show": true,
+    },
+    "axisTick": {
+      "lineStyle": {},
+      "show": true,
+    },
+    "data": [],
+    "offset": 0,
+    "splitLine": {
+      "lineStyle": {},
+      "show": false,
+    },
+    "type": "category",
+  },
+  "yAxis": [
+    {
+      "axisLabel": {},
+      "axisLine": {
+        "show": false,
+      },
+      "axisTick": {
+        "lineStyle": {},
+        "show": false,
+      },
+      "name": "",
+      "show": true,
+      "splitLine": {
+        "lineStyle": {
+          "type": "dashed",
+        },
+        "show": true,
+      },
+      "type": "value",
+    },
+    {
+      "axisLabel": {},
+      "axisLine": {
+        "show": false,
+      },
+      "axisTick": {
+        "lineStyle": {},
+        "show": false,
+      },
+      "name": "",
+      "show": false,
+      "splitLine": {
+        "lineStyle": {},
+        "show": false,
+      },
+      "type": "value",
+    },
+  ],
+}
+`;
 
 exports[`testing buildChartOption() legendPosition bottom works fine 1`] = `
 Object {

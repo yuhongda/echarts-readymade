@@ -45,8 +45,10 @@ export interface WordcloudOptions extends Omit<WordCloudTypes.Options, 'shape'> 
   shape?: WordcloudShape | string | ((theta: number) => number) | undefined
 }
 
-export interface WordcloudChartProps
-  extends Omit<ChartProps, 'compareDimension' | 'echartsSeries' | 'setOption'> {
+export interface WordcloudChartProps extends Omit<
+  ChartProps,
+  'compareDimension' | 'echartsSeries' | 'setOption'
+> {
   colorList?: string[]
   fontSizeMode?: 'bySort' | 'byValue'
   shape?: WordcloudShape | string
@@ -548,47 +550,45 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
     }
     const maskCanvas = document.createElement('canvas')
 
-    if (maskImage && process.env.NODE_ENV !== 'test') {
-      await new Promise<void>((resolve, reject) => {
-        const img = new Image()
-        img.onload = async () => {
-          maskCanvas.width = img.width
-          maskCanvas.height = img.height
-          const ctx = maskCanvas.getContext('2d')
+    await new Promise<void>((resolve, reject) => {
+      const img = new Image()
+      img.onload = async () => {
+        maskCanvas.width = img.width
+        maskCanvas.height = img.height
+        const ctx = maskCanvas.getContext('2d')
 
-          if (ref.current && wrapperRect) {
-            ref.current.width = wrapperRect.width * 2
-            ref.current.style.width = `${wrapperRect.width}px`
-            const _height = (wrapperRect.width * img.height) / img.width
-            ref.current.height = _height * 2
-            ref.current.style.height = `${_height}px`
-          }
-
-          if (ctx) {
-            ctx.drawImage(img, 0, 0, img.width, img.height)
-            const imageData = ctx.getImageData(0, 0, maskCanvas.width, maskCanvas.height)
-            const newImageData = ctx.createImageData(imageData)
-
-            for (let i = 0; i < imageData.data.length; i += 4) {
-              const tone = imageData.data[i] + imageData.data[i + 1] + imageData.data[i + 2]
-              const alpha = imageData.data[i + 3]
-
-              if (alpha < 128 || tone > 128 * 3) {
-                newImageData.data[i] = newImageData.data[i + 1] = newImageData.data[i + 2] = 255
-                newImageData.data[i + 3] = 0
-              } else {
-                newImageData.data[i] = newImageData.data[i + 1] = newImageData.data[i + 2] = 0
-                newImageData.data[i + 3] = 255
-              }
-            }
-
-            ctx.putImageData(newImageData, 0, 0)
-          }
-          resolve()
+        if (ref.current && wrapperRect) {
+          ref.current.width = wrapperRect.width * 2
+          ref.current.style.width = `${wrapperRect.width}px`
+          const _height = (wrapperRect.width * img.height) / img.width
+          ref.current.height = _height * 2
+          ref.current.style.height = `${_height}px`
         }
-        img.src = maskImage
-      })
-    }
+
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, img.width, img.height)
+          const imageData = ctx.getImageData(0, 0, maskCanvas.width, maskCanvas.height)
+          const newImageData = ctx.createImageData(imageData)
+
+          for (let i = 0; i < imageData.data.length; i += 4) {
+            const tone = imageData.data[i] + imageData.data[i + 1] + imageData.data[i + 2]
+            const alpha = imageData.data[i + 3]
+
+            if (alpha < 128 || tone > 128 * 3) {
+              newImageData.data[i] = newImageData.data[i + 1] = newImageData.data[i + 2] = 255
+              newImageData.data[i + 3] = 0
+            } else {
+              newImageData.data[i] = newImageData.data[i + 1] = newImageData.data[i + 2] = 0
+              newImageData.data[i + 3] = 255
+            }
+          }
+
+          ctx.putImageData(newImageData, 0, 0)
+        }
+        resolve()
+      }
+      img.src = maskImage
+    })
 
     if (maskCanvas) {
       /* Determine bgPixel by creating
@@ -708,6 +708,7 @@ export const Wordcloud: React.FC<WordcloudChartProps> = (props) => {
           }
 
           setIsShowKeywordValueComp(true)
+          console.log('dimension', event)
           setPos({
             top: dimension.y / 2 - 50,
             left: getLeft(dimension.x),
