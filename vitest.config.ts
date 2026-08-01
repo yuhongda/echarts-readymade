@@ -22,8 +22,7 @@ export default defineConfig({
         test: {
           name: 'browser',
           globals: true,
-          // include: ['**/__test__/**/*.browser.{test,spec}.{js,jsx,ts,tsx}'],
-          include: ['**/__test__/**/wordcloud.browser.{test,spec}.{js,jsx,ts,tsx}'],
+          include: ['**/__test__/**/*.browser.{test,spec}.{js,jsx,ts,tsx}'],
           setupFiles: ['./__test__/vitest.setup.ts'],
           clearMocks: true,
           testTimeout: 50000,
