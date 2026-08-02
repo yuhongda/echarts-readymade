@@ -14,7 +14,7 @@
     "build": "pnpm -w --filter @echarts-readymade/core run build && pnpm -w --filter '!@echarts-readymade/core' --filter '@echarts-readymade/*' run build && pnpm -w --filter echarts-readymade run build",
     "version": "lerna version",
     "release": "pnpm publish --filter '@echarts-readymade/*' --filter echarts-readymade",
-    "copy-readme": "bash scripts/prepare-release.sh",
+    "copy-readme": "bash scripts/cleanup-release.sh && bash scripts/prepare-release.sh",
     "test": "vitest",
     "vitest:clear": "vitest --clearCache",
     "cover": "pnpm run vitest:clear && vitest run --coverage",
