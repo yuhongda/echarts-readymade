@@ -9,7 +9,8 @@ import {
   Scatter,
   Stack,
   Wordcloud,
-  BarHorizontal
+  BarHorizontal,
+  Table
 } from '../packages/echarts-readymade/src/index'
 
 describe('testing echarts-readymade', () => {
@@ -247,5 +248,34 @@ describe('testing echarts-readymade', () => {
       })
     }
     await screen6.unmount()
+
+    // wordcloud
+    const screen7 = await render(
+      <div style={{ width: 500, height: 500 }}>
+        <ChartProvider data={data2}>
+          <Wordcloud
+            dimension={[{ fieldKey: 'd1', fieldName: '词' }]}
+            valueList={[{ fieldKey: 'v1', fieldName: '词频' }]}
+          />
+        </ChartProvider>
+      </div>
+    )
+    await screen7.unmount()
+
+    // table
+    const screen8 = await render(
+      <div style={{ width: 800, height: 500 }}>
+        <ChartProvider data={data}>
+          <Table
+            dimension={dimension}
+            valueList={[{ fieldKey: 'v6', fieldName: '占比' }]}
+          />
+        </ChartProvider>
+      </div>
+    )
+    await vi.waitFor(() => {
+      expect(document.querySelector('.ant-table')).toBeTruthy()
+    })
+    await screen8.unmount()
   })
 })

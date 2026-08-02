@@ -721,4 +721,96 @@ describe('testing <Pie /> chart', () => {
     expect(formatter({ value: 0 })).toBe('--%')
     await screen.unmount()
   })
+
+  test('renders without dimension with missing value and default radius', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderPie(
+      {
+        data: [{ other: 'x' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // 无维度时取第一行数据，缺失字段 → value 0；showInRing 缺省 → radius '50%'
+    expect(option.series[0].data[0].value).toBe(0)
+    expect(option.series[0].radius).toBe('50%')
+    await screen.unmount()
+  })
+
+  test('renders without dimension with empty data', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderPie(
+      {
+        data: [],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // 空数据 → d 为 {} → value 0
+    expect(option.series[0].data[0].value).toBe(0)
+    await screen.unmount()
+  })
+
+  test('renders without dimension with small value', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderPie(
+      {
+        data: [{ v6: 0.5 }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // |0.5| <= 1 → toFixed(4)
+    expect(option.series[0].data[0].value).toBe('0.5000')
+    await screen.unmount()
+  })
+
+  test('renders without dimension with string value', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderPie(
+      {
+        data: [{ v6: 'abc' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // 非数字字符串 → 原样返回
+    expect(option.series[0].data[0].value).toBe('abc')
+    await screen.unmount()
+  })
+
+  test('renders ring without dimension', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderPie(
+      {
+        data: [{ v6: 1 }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        showInRing: true
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].radius).toEqual(['30%', '50%'])
+    await screen.unmount()
+  })
+
+  test('formats label without dimension', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderPie(
+      {
+        data: [{ v6: 1 }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const formatter = option.series[0].data[0].label.formatter
+    // _sum = 1，1/1*100 = 100%
+    expect(formatter({ value: 1 })).toBe('100%')
+    await screen.unmount()
+  })
 })

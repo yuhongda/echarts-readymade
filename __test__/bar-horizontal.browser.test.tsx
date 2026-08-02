@@ -623,4 +623,25 @@ describe('testing <BarHorizontal /> chart', () => {
     expect(formatter({ value: 50 })).toBe('50.00%')
     await screen.unmount()
   })
+
+  test('formats labels with compare dimension', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBarHorizontal(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 0.5 },
+          { d1: '2020-02', d2: '北京', v6: 0.75 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比', isPercent: true, decimalLength: 2 }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const formatter = option.series[0].data[0].label.formatter
+    expect(formatter({ value: 50 })).toBe('50.00%')
+    expect(formatter({ value: null })).toBe('--%')
+    await screen.unmount()
+  })
 })

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { ChartContext } from '@echarts-readymade/core'
 import { Wordcloud as WordcloudChart } from '@echarts-readymade/wordcloud'
 import type { WordcloudChartProps } from '@echarts-readymade/wordcloud'

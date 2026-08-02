@@ -97,4 +97,10 @@ describe('quadrantSetting()', () => {
     expect(option.grid[0].left).toBe(10)
     expect(option.series[0].markLine.data[0].type).toBe('max')
   })
+
+  test('does nothing when series is an empty array', () => {
+    const option = { series: [] } as any
+    quadrantSetting(option, baseSetting('equal'))
+    expect(option.series).toEqual([])
+  })
 })

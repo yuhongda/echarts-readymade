@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { ChartContext } from '@echarts-readymade/core'
 import { Table as TableChart } from '@echarts-readymade/table'
 import type { TableChartProps } from '@echarts-readymade/table'

@@ -786,6 +786,97 @@ describe('testing <Stack /> chart', () => {
     // 无对比维度 sumData 为 [1, 3]，百分比均为 100
     const values = option.series[0].data.map((d: any) => d.value)
     expect(values).toEqual([100, 100])
+    // 无对比维度 + isPercentMode 的 label formatter
+    const formatter = option.series[0].data[0].label.formatter
+    expect(formatter({ value: 50 })).toBe('50%')
+    expect(formatter({ value: null })).toBe('--%')
+    await screen.unmount()
+  })
+
+  test('merges repeated dimension and compare values', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderStack(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1 },
+          { d1: '2020-01', d2: '北京', v6: 2 },
+          { d1: '2020-01', d2: '上海', v6: 3 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // 同 d1+d2 的数据会合并：北京 1+2=3
+    const beijing = option.series.find((s: any) => s.name === '北京')
+    expect(beijing.data[0].value).toBe(3)
+    await screen.unmount()
+  })
+
+  test('formats stack labels in percent mode with compare', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderStack(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1 },
+          { d1: '2020-01', d2: '上海', v6: 3 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        isPercentMode: true
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const formatter = option.series[0].data[0].label.formatter
+    expect(formatter({ value: 25 })).toBe('25%')
+    expect(formatter({ value: null })).toBe('--%')
+    await screen.unmount()
+  })
+
+  test('renders line stack without compareDimension and formats labels', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderStack(
+      {
+        data: [
+          { d1: '2020-01', v6: 1 },
+          { d1: '2020-02', v6: 2 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        isLineStack: true
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].type).toBe('line')
+    const formatter = option.series[0].data[0].label.formatter
+    expect(formatter({ value: 50 })).toBe('50')
+    expect(formatter({ value: null })).toBe('--')
+    await screen.unmount()
+  })
+
+  test('formats stack labels without percent mode with compare', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderStack(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1 },
+          { d1: '2020-01', d2: '上海', v6: 2 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const formatter = option.series[0].data[0].label.formatter
+    expect(formatter({ value: 1 })).toBe('1')
+    expect(formatter({ value: null })).toBe('--')
     await screen.unmount()
   })
 })

@@ -1,5 +1,4 @@
-import React, { forwardRef } from 'react'
-import type { ECharts } from 'echarts'
+import * as React from 'react'
 import { ChartContext } from '@echarts-readymade/core'
 import { Line as LineChart } from '@echarts-readymade/line'
 import type { LineChartProps } from '@echarts-readymade/line'
