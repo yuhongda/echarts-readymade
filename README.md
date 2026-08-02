@@ -32,21 +32,12 @@ English ｜ [简体中文](./README.zh-CN.md) ｜ 🤖 [AI Doc](https://chat.ope
 
 👉 Full Installation
 ```js
-npm install --save echarts-readymade
-
-OR
-
-yarn add echarts-readymade
+pnpm add echarts-readymade
 ```
 👉 Install What You Need
 ```js
-npm install --save @echarts-readymade/core
-npm install --save @echarts-readymade/line
-
-OR
-
-yarn add @echarts-readymade/core
-yarn add @echarts-readymade/line
+pnpm add @echarts-readymade/core
+pnpm add @echarts-readymade/line
 ```
 
 ### There're some differences between the two ways of installation below.
@@ -65,7 +56,7 @@ yarn add @echarts-readymade/line
 
 ### For `Full Installation`
 ```jsx
-import { ChartProvider, Bar } from 'echarts-readymade'
+import { ChartProvider, Line } from 'echarts-readymade'
 
 const data = [
   {
@@ -108,7 +99,7 @@ const valueList: Field[] = [
 ]
 
 <ChartProvider data={data}>
-  <Bar dimension={dimension} valueList={valueList} />
+  <Line dimension={dimension} valueList={valueList} />
 </ChartProvider>
 
 ```
@@ -116,7 +107,7 @@ const valueList: Field[] = [
 ### <a name="example"></a>For `Install What You Need`
 ```jsx
 import { ChartProvider, ChartContext } from '@echarts-readymade/core'
-import { Bar } from '@echarts-readymade/bar'
+import { Line } from '@echarts-readymade/line'
 
 const data = [
   {
@@ -159,7 +150,7 @@ const valueList: Field[] = [
 ]
 
 <ChartProvider data={data}>
-  <Bar 
+  <Line 
     // Note: here you need pass context down
     context={ChartContext} 
     dimension={dimension} 
@@ -171,7 +162,7 @@ const valueList: Field[] = [
 
 🪄 Boom!
 
-![截屏2022-04-29 16 07 37](https://user-images.githubusercontent.com/259410/165907177-d2e72b14-1da5-420c-9192-b49691208dbb.png)
+![screenshot](https://github.com/user-attachments/assets/0298cd4b-92cf-4510-ba6e-9695fb722ffc)
 
 
 ## Options
