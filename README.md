@@ -3,7 +3,7 @@ English ｜ [简体中文](./README.zh-CN.md) ｜ 🤖 [AI Doc](https://chat.ope
 # 📦 echarts-readymade
 > Make echarts come in handy for React. Based on [echarts-for-react](https://github.com/hustcc/echarts-for-react)
 
-![CC0328C6BAADA3C93D3DA9B093ED5908 (1)](https://github.com/user-attachments/assets/9d9ced33-2a48-42ad-a39d-b9f93ef1d9a5)
+![CC0328C6BAADA3C93D3DA9B093ED5908 (1)](https://user-images.githubusercontent.com/259410/149259067-f410c199-bf21-4f84-9121-35d46a75e465.jpeg)
 
 ## Coverage
 
