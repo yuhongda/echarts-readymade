@@ -162,7 +162,7 @@ const valueList: Field[] = [
 
 🪄 Boom!
 
-![screenshot](https://github.com/user-attachments/assets/0298cd4b-92cf-4510-ba6e-9695fb722ffc)
+![screenshot](https://github.com/user-attachments/assets/771f2ad9-9573-4e2f-b232-6b5b3750935b)
 
 
 ## Options
