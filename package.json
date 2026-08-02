@@ -13,7 +13,7 @@
     "dev": "pnpm --filter 'demo' dev",
     "build": "pnpm -w --filter @echarts-readymade/core run build && pnpm -w --filter '!@echarts-readymade/core' --filter '@echarts-readymade/*' run build && pnpm -w --filter echarts-readymade run build",
     "version": "lerna version",
-    "release": "pnpm publish --filter '@echarts-readymade/*' --filter echarts-readymade",
+    "release": "bash scripts/prepare-release.sh && pnpm publish --filter '@echarts-readymade/*' --filter echarts-readymade; bash scripts/cleanup-release.sh",
     "test": "vitest",
     "vitest:clear": "vitest --clearCache",
     "cover": "pnpm run vitest:clear && vitest run --coverage",
