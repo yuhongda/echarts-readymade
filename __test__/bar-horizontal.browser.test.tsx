@@ -2,9 +2,47 @@ import { describe, expect, test, vi } from 'vitest'
 import { render } from 'vitest-browser-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { ChartProvider, ChartContext } from '../packages/core/src/index'
-import type { Field } from '../packages/core/src/index'
+import type { Field, LegendPosition } from '../packages/core/src/index'
 import { BarHorizontal } from '../packages/bar-horizontal/src/index'
 import ReactEcharts from 'echarts-for-react'
+
+type BarHorizontalTestProps = {
+  data?: any[]
+  dimension?: Field[]
+  compareDimension?: Field[]
+  valueList?: Field[]
+  echartsOptions?: any
+  yAxisData?: any[]
+  setOption?: (option: any) => any
+  legendPosition?: LegendPosition
+}
+
+async function renderBarHorizontal(props: BarHorizontalTestProps, ref = React.createRef<any>()) {
+  const screen = await render(
+    <div style={{ width: 500, height: 500 }}>
+      <ChartProvider data={props.data} echartsOptions={props.echartsOptions}>
+        <BarHorizontal
+          context={ChartContext}
+          dimension={props.dimension}
+          compareDimension={props.compareDimension}
+          valueList={props.valueList}
+          legendPosition={props.legendPosition || 'top'}
+          yAxisData={props.yAxisData}
+          setOption={props.setOption}
+          ref={ref}
+        />
+      </ChartProvider>
+    </div>
+  )
+  await vi.waitFor(
+    () => {
+      const opt = ref.current?.getEchartsInstance()?.getOption()
+      expect(opt && Array.isArray(opt.series) && opt.series.length > 0).toBe(true)
+    },
+    { timeout: 10000 }
+  )
+  return { screen, instance: ref.current.getEchartsInstance() }
+}
 
 describe('testing <BarHorizontal /> chart', () => {
   test('<BarHorizontal /> chart works fine', async () => {
@@ -457,6 +495,132 @@ describe('testing <BarHorizontal /> chart', () => {
       )
     }
 
+    await screen.unmount()
+  })
+
+  // ===== 以下为新增测试，用于提高 BarHorizontal 组件覆盖率 =====
+
+  test('renders nothing when data is empty', async () => {
+    const ref = React.createRef<any>()
+    const screen = await render(
+      <div style={{ width: 500, height: 500 }}>
+        <ChartProvider>
+          <BarHorizontal
+            context={ChartContext}
+            dimension={[{ fieldKey: 'd1', fieldName: '日期' }]}
+            valueList={[{ fieldKey: 'v6', fieldName: '占比' }]}
+            ref={ref}
+          />
+        </ChartProvider>
+      </div>
+    )
+    expect(ref.current).toBeNull()
+    await screen.unmount()
+  })
+
+  test('renders with compareDimension and applies isPercent', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBarHorizontal(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 0.5 },
+          { d1: '2020-02', d2: '北京', v6: 0.75 },
+          { d1: '2020-01', d2: '上海', v6: 0.25 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比', isPercent: true, decimalLength: 1 }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const beijing = option.series.find((s: any) => s.name === '北京')
+    expect(beijing).toBeDefined()
+    // 有对比维度时数据会 reverse，且 isPercent 乘以 100
+    expect(beijing.data.map((d: any) => d.value)).toEqual([75, 50]) // 0.75*100, 0.5*100
+    await screen.unmount()
+  })
+
+  test('names series with compareDimension and multiple values', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBarHorizontal(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1, v4: 2 },
+          { d1: '2020-02', d2: '北京', v6: 3, v4: 4 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [
+          { fieldKey: 'v6', fieldName: '占比1' },
+          { fieldKey: 'v4', fieldName: '占比2' }
+        ]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const names = option.series.map((s: any) => s.name)
+    expect(names).toEqual(['北京-占比1', '北京-占比2'])
+    await screen.unmount()
+  })
+
+  test('uses yAxisData', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBarHorizontal(
+      {
+        data: [
+          { d1: '2020-01', v6: 1 },
+          { d1: '2020-02', v6: 2 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        yAxisData: ['x', 'y']
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const yAxis = Array.isArray(option.yAxis) ? option.yAxis[0] : option.yAxis
+    expect(yAxis.data).toEqual(['x', 'y'])
+    await screen.unmount()
+  })
+
+  test('renders without compareDimension and applies isPercent', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBarHorizontal(
+      {
+        data: [
+          { d1: '2020-01', v6: 0.5 },
+          { d1: '2020-02', v6: 0.256 },
+          { d1: '2020-03' }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比', isPercent: true, decimalLength: 1 }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // 无对比维度时数据会 reverse：缺值->0, 0.256*100=25.6, 0.5*100=50
+    expect(option.series[0].data.map((d: any) => d.value)).toEqual([0, 25.6, 50])
+    await screen.unmount()
+  })
+
+  test('formats label with percent and dash for missing values', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBarHorizontal(
+      {
+        data: [
+          { d1: '2020-01', v6: 0.5 },
+          { d1: '2020-02' }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比', isPercent: true, decimalLength: 2 }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const formatter = option.series[0].data[0].label.formatter
+    expect(formatter({ value: null })).toBe('--%')
+    expect(formatter({ value: 50 })).toBe('50.00%')
     await screen.unmount()
   })
 })

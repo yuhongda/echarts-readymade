@@ -2,8 +2,50 @@ import { describe, expect, test, vi } from 'vitest'
 import { render } from 'vitest-browser-react'
 import React from 'react'
 import { ChartProvider, ChartContext } from '../packages/core/src/index'
-import type { Field } from '../packages/core/src/index'
+import type { Field, LegendPosition } from '../packages/core/src/index'
 import { Bar } from '../packages/bar/src/index'
+
+type BarTestProps = {
+  data?: any[]
+  dimension?: Field[]
+  compareDimension?: Field[]
+  valueList?: Field[]
+  echartsOptions?: any
+  xAxisData?: any[]
+  sortXAxis?: boolean
+  echartsSeries?: any[]
+  setOption?: (option: any) => any
+  legendPosition?: LegendPosition
+}
+
+async function renderBar(props: BarTestProps, ref = React.createRef<any>()) {
+  const screen = await render(
+    <div style={{ width: 500, height: 500 }}>
+      <ChartProvider data={props.data} echartsOptions={props.echartsOptions}>
+        <Bar
+          context={ChartContext}
+          dimension={props.dimension}
+          compareDimension={props.compareDimension}
+          valueList={props.valueList}
+          legendPosition={props.legendPosition || 'top'}
+          xAxisData={props.xAxisData}
+          sortXAxis={props.sortXAxis}
+          echartsSeries={props.echartsSeries}
+          setOption={props.setOption}
+          ref={ref}
+        />
+      </ChartProvider>
+    </div>
+  )
+  await vi.waitFor(
+    () => {
+      const opt = ref.current?.getEchartsInstance()?.getOption()
+      expect(opt && Array.isArray(opt.series) && opt.series.length > 0).toBe(true)
+    },
+    { timeout: 10000 }
+  )
+  return { screen, instance: ref.current.getEchartsInstance() }
+}
 
 describe('testing <Bar /> chart', () => {
   test('<Bar /> chart works fine', async () => {
@@ -350,6 +392,241 @@ describe('testing <Bar /> chart', () => {
       expect(option.title).toBeDefined()
       expect(option.title[0].text).toBe('tada!!')
     }
+    await screen.unmount()
+  })
+
+  // ===== 以下为新增测试，用于提高 Bar 组件覆盖率 =====
+
+  test('renders nothing when data is empty', async () => {
+    const ref = React.createRef<any>()
+    const screen = await render(
+      <div style={{ width: 500, height: 500 }}>
+        <ChartProvider>
+          <Bar
+            context={ChartContext}
+            dimension={[{ fieldKey: 'd1', fieldName: '日期' }]}
+            valueList={[{ fieldKey: 'v6', fieldName: '占比' }]}
+            ref={ref}
+          />
+        </ChartProvider>
+      </div>
+    )
+    // data 为空时组件直接返回 null，不渲染图表实例
+    expect(ref.current).toBeNull()
+    await screen.unmount()
+  })
+
+  test('renders without compareDimension and applies isPercent', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBar(
+      {
+        data: [
+          { d1: '2020-01', v6: 0.5 },
+          { d1: '2020-02', v6: 0.256 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比', isPercent: true, decimalLength: 1 }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const series = option.series
+    expect(Array.isArray(series)).toBe(true)
+    expect(series[0].name).toBe('占比')
+    expect(series[0].type).toBe('bar')
+    // isPercent 会乘以 100
+    expect(series[0].data[0].value).toBe(50)
+    expect(series[0].data[0].isPercent).toBe(true)
+    expect(series[0].data[0].decimalLength).toBe(1)
+    expect(series[0].data[1].value).toBe(25.6) // 0.256 * 100 = 25.6
+    await screen.unmount()
+  })
+
+  test('returns null value when data is missing without compareDimension', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBar(
+      {
+        data: [{ d1: '2020-01' }, { d1: '2020-02' }],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].data[0].value).toBeNull()
+    expect(option.series[0].data[1].value).toBeNull()
+    await screen.unmount()
+  })
+
+  test('uses xAxisData and shows second yAxis when yAxisIndex is 1', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBar(
+      {
+        data: [
+          { d1: '2020-01', v6: 1, v4: 2 },
+          { d1: '2020-02', v6: 3, v4: 4 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [
+          { fieldKey: 'v6', fieldName: '占比1' },
+          { fieldKey: 'v4', fieldName: '占比2', yAxisIndex: 1 }
+        ],
+        xAxisData: ['a', 'b']
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const xAxis = Array.isArray(option.xAxis) ? option.xAxis[0] : option.xAxis
+    expect(xAxis.data).toEqual(['a', 'b'])
+    expect(option.yAxis[1].show).toBe(true)
+    expect(option.series[1].yAxisIndex).toBe(1)
+    await screen.unmount()
+  })
+
+  test('sorts xAxis data when sortXAxis is enabled', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBar(
+      {
+        data: [
+          { d1: '2021-01', d2: '北京', v6: 1 },
+          { d1: '2020-01', d2: '北京', v6: 2 },
+          { d1: '2020-02', d2: '北京', v6: 3 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        sortXAxis: true
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const xAxis = Array.isArray(option.xAxis) ? option.xAxis[0] : option.xAxis
+    expect(xAxis.data).toEqual(['2020-01', '2020-02', '2021-01'])
+    await screen.unmount()
+  })
+
+  test('uses compareDimensionName when valueList has a single item', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBar(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1 },
+          { d1: '2020-02', d2: '上海', v6: 2 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // valueList 只有 1 项时，series 名称不带 "~字段名" 后缀
+    expect(option.series[0].name).toBe('北京')
+    expect(option.series[1].name).toBe('上海')
+    await screen.unmount()
+  })
+
+  test('uses custom echartsSeries with compareDimension', async () => {
+    const ref = React.createRef<any>()
+    const customSeries = [{ name: 'custom', type: 'bar', data: [{ value: 1 }, { value: 2 }] }]
+    const { screen, instance } = await renderBar(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1 },
+          { d1: '2020-02', d2: '上海', v6: 2 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        echartsSeries: customSeries
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].name).toBe('custom')
+    expect(option.series).toHaveLength(1)
+    await screen.unmount()
+  })
+
+  test('uses custom echartsSeries without compareDimension', async () => {
+    const ref = React.createRef<any>()
+    const customSeries = [{ name: 'custom2', type: 'bar', data: [{ value: 5 }] }]
+    const { screen, instance } = await renderBar(
+      {
+        data: [{ d1: '2020-01', v6: 1 }],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        echartsSeries: customSeries
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].name).toBe('custom2')
+    expect(option.series).toHaveLength(1)
+    await screen.unmount()
+  })
+
+  test('supports custom series type (line)', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBar(
+      {
+        data: [{ d1: '2020-01', v6: 1 }],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比', type: 'line' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].type).toBe('line')
+    await screen.unmount()
+  })
+
+  test('filters out empty compareDimension values', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBar(
+      {
+        data: [
+          { d1: '2020-01', d2: undefined, v6: 1 },
+          { d1: '2020-02', d2: '上海', v6: 2 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // d2 为 undefined 时生成的 "~" 会被过滤，只保留 "上海"
+    expect(option.series.some((s: any) => s.name.includes('上海'))).toBe(true)
+    await screen.unmount()
+  })
+
+  test('groups repeated dimension values with compareDimension', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderBar(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 0.5, v4: 2 },
+          { d1: '2020-01', d2: '上海', v6: 0.25, v4: 3 },
+          { d1: '2020-02', d2: '北京', v6: 0.75, v4: 4 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [
+          { fieldKey: 'v6', fieldName: '占比', isPercent: true },
+          { fieldKey: 'v4', fieldName: '数量', yAxisIndex: 1 }
+        ]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // 同一 d1 出现多行（北京/上海）时会按对比维度分组
+    const percentSeries = option.series.find((s: any) => s.name.includes('占比'))
+    expect(percentSeries).toBeDefined()
+    // 有对比维度下 isPercent 同样会乘以 100
+    expect(percentSeries.data.some((d: any) => d.value === 50)).toBe(true)
+    // yAxisIndex 为 1 时显示第二个 y 轴
+    expect(option.yAxis[1].show).toBe(true)
     await screen.unmount()
   })
 })

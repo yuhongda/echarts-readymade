@@ -2,8 +2,50 @@ import { describe, expect, test, vi } from 'vitest'
 import { render } from 'vitest-browser-react'
 import React from 'react'
 import { ChartProvider, ChartContext } from '../packages/core/src/index'
-import type { Field } from '../packages/core/src/index'
+import type { Field, LegendPosition } from '../packages/core/src/index'
 import { Line } from '../packages/line/src/index'
+
+type LineTestProps = {
+  data?: any[]
+  dimension?: Field[]
+  compareDimension?: Field[]
+  valueList?: Field[]
+  echartsOptions?: any
+  xAxisData?: any[]
+  sortXAxis?: boolean
+  echartsSeries?: any[]
+  setOption?: (option: any) => any
+  legendPosition?: LegendPosition
+}
+
+async function renderLine(props: LineTestProps, ref = React.createRef<any>()) {
+  const screen = await render(
+    <div style={{ width: 500, height: 500 }}>
+      <ChartProvider data={props.data} echartsOptions={props.echartsOptions}>
+        <Line
+          context={ChartContext}
+          dimension={props.dimension}
+          compareDimension={props.compareDimension}
+          valueList={props.valueList}
+          legendPosition={props.legendPosition || 'top'}
+          xAxisData={props.xAxisData}
+          sortXAxis={props.sortXAxis}
+          echartsSeries={props.echartsSeries}
+          setOption={props.setOption}
+          ref={ref}
+        />
+      </ChartProvider>
+    </div>
+  )
+  await vi.waitFor(
+    () => {
+      const opt = ref.current?.getEchartsInstance()?.getOption()
+      expect(opt && Array.isArray(opt.series) && opt.series.length > 0).toBe(true)
+    },
+    { timeout: 10000 }
+  )
+  return { screen, instance: ref.current.getEchartsInstance() }
+}
 
 describe('testing <Line /> chart', () => {
   test('<Line /> chart works fine', async () => {
@@ -353,6 +395,260 @@ describe('testing <Line /> chart', () => {
       expect(option.title).toBeDefined()
       expect(option.title[0].text).toBe('tada!!')
     }
+    await screen.unmount()
+  })
+
+  // ===== 以下为新增测试，用于提高 Line 组件覆盖率 =====
+
+  test('renders nothing when data is empty', async () => {
+    const ref = React.createRef<any>()
+    const screen = await render(
+      <div style={{ width: 500, height: 500 }}>
+        <ChartProvider>
+          <Line
+            context={ChartContext}
+            dimension={[{ fieldKey: 'd1', fieldName: '日期' }]}
+            valueList={[{ fieldKey: 'v6', fieldName: '占比' }]}
+            ref={ref}
+          />
+        </ChartProvider>
+      </div>
+    )
+    // data 为空时组件直接返回 null，不渲染图表实例
+    expect(ref.current).toBeNull()
+    await screen.unmount()
+  })
+
+  test('renders with compareDimension and applies isPercent', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderLine(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 0.5 },
+          { d1: '2020-01', d2: '上海', v6: 0.25 },
+          { d1: '2020-02', d2: '北京', v6: 0.75 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比', isPercent: true, decimalLength: 1 }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const beijing = option.series.find((s: any) => s.name === '北京')
+    expect(beijing).toBeDefined()
+    // isPercent 乘以 100：0.5 -> 50, 0.75 -> 75
+    expect(beijing.data.map((d: any) => d.value)).toEqual([50, 75])
+    const shanghai = option.series.find((s: any) => s.name === '上海')
+    expect(shanghai).toBeDefined()
+    // 2020-02 无上海数据 → 补空 → value 为 null
+    expect(shanghai.data[1].value).toBeNull()
+    await screen.unmount()
+  })
+
+  test('returns null value when data is missing with compareDimension', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderLine(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京' },
+          { d1: '2020-01', d2: '上海' }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].data.every((d: any) => d.value === null)).toBe(true)
+    await screen.unmount()
+  })
+
+  test('renders without compareDimension and applies isPercent', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderLine(
+      {
+        data: [
+          { d1: '2020-01', v6: 0.5 },
+          { d1: '2020-02', v6: 0.256 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比', isPercent: true, decimalLength: 1 }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const xAxis = Array.isArray(option.xAxis) ? option.xAxis[0] : option.xAxis
+    // 无对比维度时 xAxis 数据会转为字符串
+    expect(xAxis.data).toEqual(['2020-01', '2020-02'])
+    expect(option.series[0].name).toBe('占比')
+    expect(option.series[0].data[0].value).toBe(50)
+    expect(option.series[0].data[1].value).toBe(25.6) // 0.256 * 100 = 25.6
+    await screen.unmount()
+  })
+
+  test('returns null value when data is missing without compareDimension', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderLine(
+      {
+        data: [
+          { d1: '2020-01' },
+          { d1: '2020-02' },
+          { other: 'no-d1' }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // 三条数据都缺少 v6 → value 全为 null
+    expect(option.series[0].data.map((d: any) => d.value)).toEqual([null, null, null])
+    await screen.unmount()
+  })
+
+  test('uses xAxisData and shows second yAxis when yAxisIndex is 1', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderLine(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1, v4: 2 },
+          { d1: '2020-02', d2: '北京', v6: 3, v4: 4 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [
+          { fieldKey: 'v6', fieldName: '占比1' },
+          { fieldKey: 'v4', fieldName: '占比2', yAxisIndex: 1 }
+        ],
+        xAxisData: ['a', 'b']
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const xAxis = Array.isArray(option.xAxis) ? option.xAxis[0] : option.xAxis
+    expect(xAxis.data).toEqual(['a', 'b'])
+    expect(option.yAxis[1].show).toBe(true)
+    expect(option.series.some((s: any) => s.yAxisIndex === 1)).toBe(true)
+    await screen.unmount()
+  })
+
+  test('sorts xAxis data when sortXAxis is enabled', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderLine(
+      {
+        data: [
+          { d1: '2021-01', d2: '北京', v6: 1 },
+          { d1: '2020-01', d2: '北京', v6: 2 },
+          { d1: '2020-02', d2: '北京', v6: 3 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        sortXAxis: true
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const xAxis = Array.isArray(option.xAxis) ? option.xAxis[0] : option.xAxis
+    expect(xAxis.data).toEqual(['2020-01', '2020-02', '2021-01'])
+    await screen.unmount()
+  })
+
+  test('uses compareDimensionName when valueList has a single item', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderLine(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1 },
+          { d1: '2020-02', d2: '上海', v6: 2 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // valueList 只有 1 项时，series 名称不带 "~字段名" 后缀
+    expect(option.series[0].name).toBe('北京')
+    expect(option.series[1].name).toBe('上海')
+    await screen.unmount()
+  })
+
+  test('uses custom echartsSeries with compareDimension', async () => {
+    const ref = React.createRef<any>()
+    const customSeries = [{ name: 'custom', type: 'line', data: [{ value: 1 }, { value: 2 }] }]
+    const { screen, instance } = await renderLine(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1 },
+          { d1: '2020-02', d2: '上海', v6: 2 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        echartsSeries: customSeries
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].name).toBe('custom')
+    expect(option.series).toHaveLength(1)
+    await screen.unmount()
+  })
+
+  test('uses custom echartsSeries without compareDimension', async () => {
+    const ref = React.createRef<any>()
+    const customSeries = [{ name: 'custom2', type: 'line', data: [{ value: 5 }] }]
+    const { screen, instance } = await renderLine(
+      {
+        data: [{ d1: '2020-01', v6: 1 }],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        echartsSeries: customSeries
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].name).toBe('custom2')
+    expect(option.series).toHaveLength(1)
+    await screen.unmount()
+  })
+
+  test('supports custom series type (bar)', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderLine(
+      {
+        data: [{ d1: '2020-01', v6: 1 }],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比', type: 'bar' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].type).toBe('bar')
+    await screen.unmount()
+  })
+
+  test('filters out empty compareDimension values', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderLine(
+      {
+        data: [
+          { d1: '2020-01', d2: undefined, v6: 1 },
+          { d1: '2020-02', d2: '上海', v6: 2 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // d2 为 undefined 时生成的 "~" 会被过滤，只保留 "上海"
+    expect(option.series.some((s: any) => s.name.includes('上海'))).toBe(true)
     await screen.unmount()
   })
 })

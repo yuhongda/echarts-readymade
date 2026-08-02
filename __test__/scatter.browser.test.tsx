@@ -2,8 +2,52 @@ import { describe, expect, test, vi } from 'vitest'
 import { render } from 'vitest-browser-react'
 import React, { useRef } from 'react'
 import { ChartProvider, ChartContext } from '../packages/core/src/index'
-import type { Field } from '../packages/core/src/index'
+import type { Field, LegendPosition } from '../packages/core/src/index'
 import { Scatter } from '../packages/scatter/src/index'
+
+type ScatterTestProps = {
+  data?: any[]
+  dimension?: Field[]
+  compareDimension?: Field[]
+  valueList?: Field[]
+  echartsOptions?: any
+  minDotSize?: number
+  maxDotSize?: number
+  colorMap?: { name: string; color: string }[]
+  echartsSeries?: any[]
+  setOption?: (option: any) => any
+  legendPosition?: LegendPosition
+}
+
+async function renderScatter(props: ScatterTestProps, ref = React.createRef<any>()) {
+  const screen = await render(
+    <div style={{ width: 500, height: 500 }}>
+      <ChartProvider data={props.data} echartsOptions={props.echartsOptions}>
+        <Scatter
+          context={ChartContext}
+          dimension={props.dimension}
+          compareDimension={props.compareDimension}
+          valueList={props.valueList}
+          legendPosition={props.legendPosition || 'top'}
+          minDotSize={props.minDotSize}
+          maxDotSize={props.maxDotSize}
+          colorMap={props.colorMap}
+          echartsSeries={props.echartsSeries}
+          setOption={props.setOption}
+          ref={ref}
+        />
+      </ChartProvider>
+    </div>
+  )
+  await vi.waitFor(
+    () => {
+      const opt = ref.current?.getEchartsInstance()?.getOption()
+      expect(opt && Array.isArray(opt.series) && opt.series.length > 0).toBe(true)
+    },
+    { timeout: 10000 }
+  )
+  return { screen, instance: ref.current.getEchartsInstance() }
+}
 
 describe('testing <Scatter /> chart', () => {
   test('<Scatter /> chart works fine', async () => {
@@ -585,6 +629,173 @@ describe('testing <Scatter /> chart', () => {
       expect(option.title).toBeDefined()
       expect(option.title[0].text).toBe('tada!!')
     }
+    await screen.unmount()
+  })
+
+  // ===== 以下为新增测试，用于提高 Scatter 组件覆盖率 =====
+
+  test('renders nothing when data is empty', async () => {
+    const ref = React.createRef<any>()
+    const screen = await render(
+      <div style={{ width: 500, height: 500 }}>
+        <ChartProvider>
+          <Scatter
+            context={ChartContext}
+            dimension={[{ fieldKey: 'd1', fieldName: '日期' }]}
+            valueList={[
+              { fieldKey: 'v6', fieldName: '占比X' },
+              { fieldKey: 'v4', fieldName: '占比Y' }
+            ]}
+            ref={ref}
+          />
+        </ChartProvider>
+      </div>
+    )
+    expect(ref.current).toBeNull()
+    await screen.unmount()
+  })
+
+  test('renders nothing when valueList has less than 2 items', async () => {
+    const ref = React.createRef<any>()
+    const screen = await render(
+      <div style={{ width: 500, height: 500 }}>
+        <ChartProvider data={[{ d1: 'A', v6: 1 }]}>
+          <Scatter
+            context={ChartContext}
+            dimension={[{ fieldKey: 'd1', fieldName: '日期' }]}
+            valueList={[{ fieldKey: 'v6', fieldName: '占比' }]}
+            ref={ref}
+          />
+        </ChartProvider>
+      </div>
+    )
+    expect(ref.current).toBeNull()
+    await screen.unmount()
+  })
+
+  test('renders with compareDimension and applies isPercent', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderScatter(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 0.5, v4: 2, v5: 3 },
+          { d1: '2020-02', d2: '北京', v6: 0.25, v4: 4, v5: 5 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [
+          { fieldKey: 'v6', fieldName: '占比X', isPercent: true },
+          { fieldKey: 'v4', fieldName: '占比Y' },
+          { fieldKey: 'v5', fieldName: '大小' }
+        ]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const series = option.series[0]
+    expect(series.name).toBe('北京')
+    expect(series.type).toBe('scatter')
+    // v6 isPercent 会乘以 100
+    expect(series.data[0].value[0]).toBe(50) // 0.5 * 100
+    expect(series.data[0].value[1]).toBe(2)
+    expect(series.data[0].value[2]).toBe(3)
+    await screen.unmount()
+  })
+
+  test('renders without compareDimension with 2 values', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderScatter(
+      {
+        data: [
+          { d1: 'A', v6: 1, v4: 2 },
+          { d1: 'B', v6: 3, v4: 4 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [
+          { fieldKey: 'v6', fieldName: '占比X' },
+          { fieldKey: 'v4', fieldName: '占比Y' }
+        ]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const series = option.series[0]
+    expect(series.type).toBe('scatter')
+    // 无对比维度 2 值时 value = [v6, v4, 1, 维度值, 原始数据]
+    expect(series.data[0].value[0]).toBe(1)
+    expect(series.data[0].value[2]).toBe(1)
+    expect(series.data[0].name).toBe('A')
+    await screen.unmount()
+  })
+
+  test('applies colorMap colors with compareDimension', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderScatter(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1, v4: 2 },
+          { d1: '2020-02', d2: '北京', v6: 3, v4: 4 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [
+          { fieldKey: 'v6', fieldName: '占比X' },
+          { fieldKey: 'v4', fieldName: '占比Y' }
+        ],
+        colorMap: [{ name: '北京', color: '#ff0000' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const series = option.series[0]
+    expect(series.data[0].itemStyle.color).toBe('#ff0000')
+    await screen.unmount()
+  })
+
+  test('applies custom minDotSize and maxDotSize', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderScatter(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1, v4: 2, v5: 3 },
+          { d1: '2020-02', d2: '北京', v6: 3, v4: 4, v5: 5 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [
+          { fieldKey: 'v6', fieldName: '占比X' },
+          { fieldKey: 'v4', fieldName: '占比Y' },
+          { fieldKey: 'v5', fieldName: '大小' }
+        ],
+        minDotSize: 10,
+        maxDotSize: 30
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const symbolSize = option.series[0].symbolSize
+    // v5 范围 [3,5]，scale = (5-3)/(30-10) = 0.1，最小值对应 size 10
+    expect(symbolSize([0, 0, 3])).toBe(10)
+    await screen.unmount()
+  })
+
+  test('uses custom echartsSeries', async () => {
+    const ref = React.createRef<any>()
+    const customSeries = [{ name: 'custom', type: 'scatter', data: [[1, 2]] }]
+    const { screen, instance } = await renderScatter(
+      {
+        data: [{ d1: 'A', v6: 1, v4: 2 }],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [
+          { fieldKey: 'v6', fieldName: '占比X' },
+          { fieldKey: 'v4', fieldName: '占比Y' }
+        ],
+        echartsSeries: customSeries
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].name).toBe('custom')
     await screen.unmount()
   })
 })

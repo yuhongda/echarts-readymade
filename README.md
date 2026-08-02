@@ -5,6 +5,11 @@ English ｜ [简体中文](./README.zh-CN.md) ｜ 🤖 [AI Doc](https://chat.ope
 
 ![CC0328C6BAADA3C93D3DA9B093ED5908 (1)](https://user-images.githubusercontent.com/259410/149259067-f410c199-bf21-4f84-9121-35d46a75e465.jpeg)
 
+## Coverage
+
+| Statements | Branches | Functions | Lines |
+| ---------- | -------- | --------- | ----- |
+| ![Statements](https://img.shields.io/badge/statements-90.23%25-brightgreen.svg?style=flat) | ![Branches](https://img.shields.io/badge/branches-74.35%25-red.svg?style=flat) | ![Functions](https://img.shields.io/badge/functions-92.4%25-brightgreen.svg?style=flat) | ![Lines](https://img.shields.io/badge/lines-90.33%25-brightgreen.svg?style=flat) |
 
 ## Content
 - [Features](#-features)

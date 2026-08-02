@@ -2,8 +2,52 @@ import { describe, expect, test, vi } from 'vitest'
 import { render } from 'vitest-browser-react'
 import React, { useRef } from 'react'
 import { ChartProvider, ChartContext } from '../packages/core/src/index'
-import type { Field } from '../packages/core/src/index'
+import type { Field, LegendPosition } from '../packages/core/src/index'
 import { Stack } from '../packages/stack/src/index'
+
+type StackTestProps = {
+  data?: any[]
+  dimension?: Field[]
+  compareDimension?: Field[]
+  valueList?: Field[]
+  echartsOptions?: any
+  xAxisData?: any[]
+  isPercentMode?: boolean
+  isLineStack?: boolean
+  echartsSeries?: any[]
+  setOption?: (option: any) => any
+  legendPosition?: LegendPosition
+}
+
+async function renderStack(props: StackTestProps, ref = React.createRef<any>()) {
+  const screen = await render(
+    <div style={{ width: 500, height: 500 }}>
+      <ChartProvider data={props.data} echartsOptions={props.echartsOptions}>
+        <Stack
+          context={ChartContext}
+          dimension={props.dimension}
+          compareDimension={props.compareDimension}
+          valueList={props.valueList}
+          legendPosition={props.legendPosition || 'top'}
+          xAxisData={props.xAxisData}
+          isPercentMode={props.isPercentMode}
+          isLineStack={props.isLineStack}
+          echartsSeries={props.echartsSeries}
+          setOption={props.setOption}
+          ref={ref}
+        />
+      </ChartProvider>
+    </div>
+  )
+  await vi.waitFor(
+    () => {
+      const opt = ref.current?.getEchartsInstance()?.getOption()
+      expect(opt && Array.isArray(opt.series) && opt.series.length > 0).toBe(true)
+    },
+    { timeout: 10000 }
+  )
+  return { screen, instance: ref.current.getEchartsInstance() }
+}
 
 describe('testing <Stack /> chart', () => {
   test('<Stack /> chart works fine', async () => {
@@ -595,6 +639,153 @@ describe('testing <Stack /> chart', () => {
       const seriesData = option.series
       expect(seriesData[0].data[0].label.formatter({ value: null })).toBe('--%')
     }
+    await screen.unmount()
+  })
+
+  // ===== 以下为新增测试，用于提高 Stack 组件覆盖率 =====
+
+  test('renders nothing when data is empty', async () => {
+    const ref = React.createRef<any>()
+    const screen = await render(
+      <div style={{ width: 500, height: 500 }}>
+        <ChartProvider>
+          <Stack
+            context={ChartContext}
+            dimension={[{ fieldKey: 'd1', fieldName: '日期' }]}
+            valueList={[{ fieldKey: 'v6', fieldName: '占比' }]}
+            ref={ref}
+          />
+        </ChartProvider>
+      </div>
+    )
+    expect(ref.current).toBeNull()
+    await screen.unmount()
+  })
+
+  test('renders with compareDimension and stacks values', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderStack(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1 },
+          { d1: '2020-01', d2: '上海', v6: 2 },
+          { d1: '2020-02', d2: '北京', v6: 3 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series.map((s: any) => s.name)).toEqual(['北京', '上海'])
+    expect(option.series[0].stack).toBe('总量')
+    // 北京 [1, 3]；上海 [2, 空 -> 0]
+    expect(option.series[0].data.map((d: any) => d.value)).toEqual([1, 3])
+    expect(option.series[1].data.map((d: any) => d.value)).toEqual([2, 0])
+    await screen.unmount()
+  })
+
+  test('renders in percent mode with compareDimension', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderStack(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1 },
+          { d1: '2020-01', d2: '上海', v6: 3 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        isPercentMode: true
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // 北京 1/(1+3)*100 = 25，上海 3/4*100 = 75
+    expect(option.series[0].data[0].value).toBeCloseTo(25)
+    expect(option.series[1].data[0].value).toBeCloseTo(75)
+    // 百分比模式下 yAxis max 为 100
+    expect(option.yAxis[0].max).toBe(100)
+    await screen.unmount()
+  })
+
+  test('renders line stack when isLineStack is enabled', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderStack(
+      {
+        data: [
+          { d1: '2020-01', d2: '北京', v6: 1 },
+          { d1: '2020-02', d2: '北京', v6: 2 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        compareDimension: [{ fieldKey: 'd2', fieldName: '城市' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        isLineStack: true
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].type).toBe('line')
+    await screen.unmount()
+  })
+
+  test('uses xAxisData', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderStack(
+      {
+        data: [
+          { d1: '2020-01', v6: 1 },
+          { d1: '2020-02', v6: 2 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        xAxisData: ['a', 'b']
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const xAxis = Array.isArray(option.xAxis) ? option.xAxis[0] : option.xAxis
+    expect(xAxis.data).toEqual(['a', 'b'])
+    await screen.unmount()
+  })
+
+  test('uses custom echartsSeries', async () => {
+    const ref = React.createRef<any>()
+    const customSeries = [{ name: 'custom', type: 'bar', stack: '总量', data: [{ value: 1 }] }]
+    const { screen, instance } = await renderStack(
+      {
+        data: [{ d1: '2020-01', v6: 1 }],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        echartsSeries: customSeries
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].name).toBe('custom')
+    expect(option.series).toHaveLength(1)
+    await screen.unmount()
+  })
+
+  test('renders percent mode without compareDimension with decimalLength', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderStack(
+      {
+        data: [
+          { d1: '2020-01', v6: 1 },
+          { d1: '2020-02', v6: 3 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比', decimalLength: 1 }],
+        isPercentMode: true
+      },
+      ref
+    )
+    const option = instance.getOption()
+    // 无对比维度 sumData 为 [1, 3]，百分比均为 100
+    const values = option.series[0].data.map((d: any) => d.value)
+    expect(values).toEqual([100, 100])
     await screen.unmount()
   })
 })

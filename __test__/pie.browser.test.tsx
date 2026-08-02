@@ -2,8 +2,46 @@ import { describe, expect, test, vi } from 'vitest'
 import { render } from 'vitest-browser-react'
 import React from 'react'
 import { ChartProvider, ChartContext } from '../packages/core/src/index'
-import type { Field } from '../packages/core/src/index'
+import type { Field, LegendPosition } from '../packages/core/src/index'
 import { Pie } from '../packages/pie/src/index'
+
+type PieTestProps = {
+  data?: any[]
+  dimension?: Field[]
+  valueList?: Field[]
+  echartsOptions?: any
+  showInRing?: boolean
+  echartsSeries?: any[]
+  setOption?: (option: any) => any
+  legendPosition?: LegendPosition
+}
+
+async function renderPie(props: PieTestProps, ref = React.createRef<any>()) {
+  const screen = await render(
+    <div style={{ width: 500, height: 500 }}>
+      <ChartProvider data={props.data} echartsOptions={props.echartsOptions}>
+        <Pie
+          context={ChartContext}
+          dimension={props.dimension}
+          valueList={props.valueList}
+          legendPosition={props.legendPosition || 'top'}
+          showInRing={props.showInRing}
+          echartsSeries={props.echartsSeries}
+          setOption={props.setOption}
+          ref={ref}
+        />
+      </ChartProvider>
+    </div>
+  )
+  await vi.waitFor(
+    () => {
+      const opt = ref.current?.getEchartsInstance()?.getOption()
+      expect(opt && Array.isArray(opt.series) && opt.series.length > 0).toBe(true)
+    },
+    { timeout: 10000 }
+  )
+  return { screen, instance: ref.current.getEchartsInstance() }
+}
 
 describe('testing <Pie /> chart', () => {
   test('<Pie /> chart works fine', async () => {
@@ -522,6 +560,165 @@ describe('testing <Pie /> chart', () => {
       const option = instance.getOption()
       expect(option.series[0].center).toEqual(['55%', '50%'])
     }
+    await screen.unmount()
+  })
+
+  // ===== 以下为新增测试，用于提高 Pie 组件覆盖率 =====
+
+  test('renders nothing when data is empty', async () => {
+    const ref = React.createRef<any>()
+    const screen = await render(
+      <div style={{ width: 500, height: 500 }}>
+        <ChartProvider>
+          <Pie
+            context={ChartContext}
+            dimension={[{ fieldKey: 'd1', fieldName: '日期' }]}
+            valueList={[{ fieldKey: 'v6', fieldName: '占比' }]}
+            ref={ref}
+          />
+        </ChartProvider>
+      </div>
+    )
+    expect(ref.current).toBeNull()
+    await screen.unmount()
+  })
+
+  test('renders without dimension using valueList as pie data', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderPie(
+      {
+        data: [{ v6: 10, v4: 20 }],
+        valueList: [
+          { fieldKey: 'v6', fieldName: '占比1' },
+          { fieldKey: 'v4', fieldName: '占比2' }
+        ]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const series = option.series[0]
+    expect(series.name).toBe('')
+    // 无维度时 data 项按 valueList 的 fieldName 命名，值大于 1 保留 2 位小数
+    expect(series.data.map((d: any) => d.name)).toEqual(['占比1', '占比2'])
+    expect(series.data[0].value).toBe('10.00')
+    await screen.unmount()
+  })
+
+  test('renders ring when showInRing is enabled', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderPie(
+      {
+        data: [
+          { d1: 'A', v6: 1 },
+          { d1: 'B', v6: 2 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        showInRing: true
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].radius).toEqual(['30%', '50%'])
+    await screen.unmount()
+  })
+
+  test('getCenter adjusts for right/top/bottom legend positions', async () => {
+    const refRight = React.createRef<any>()
+    const { screen: s1, instance: i1 } = await renderPie(
+      {
+        data: [{ d1: 'A', v6: 1 }],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        legendPosition: 'right'
+      },
+      refRight
+    )
+    expect(i1.getOption().series[0].center).toEqual(['45%', '50%'])
+    await s1.unmount()
+
+    const refTop = React.createRef<any>()
+    const { screen: s2, instance: i2 } = await renderPie(
+      {
+        data: [{ d1: 'A', v6: 1 }],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        legendPosition: 'top'
+      },
+      refTop
+    )
+    expect(i2.getOption().series[0].center).toEqual(['50%', '55%'])
+    await s2.unmount()
+
+    const refBottom = React.createRef<any>()
+    const { screen: s3, instance: i3 } = await renderPie(
+      {
+        data: [{ d1: 'A', v6: 1 }],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        legendPosition: 'bottom'
+      },
+      refBottom
+    )
+    expect(i3.getOption().series[0].center).toEqual(['50%', '45%'])
+    await s3.unmount()
+  })
+
+  test('uses custom echartsSeries', async () => {
+    const ref = React.createRef<any>()
+    const customSeries = [{ name: 'custom', type: 'pie', data: [{ name: 'a', value: 1 }] }]
+    const { screen, instance } = await renderPie(
+      {
+        data: [{ d1: 'A', v6: 1 }],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }],
+        echartsSeries: customSeries
+      },
+      ref
+    )
+    const option = instance.getOption()
+    expect(option.series[0].name).toBe('custom')
+    expect(option.series).toHaveLength(1)
+    await screen.unmount()
+  })
+
+  test('uses 0 as value when missing in data with dimension', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderPie(
+      {
+        data: [
+          { d1: 'A', v6: 1 },
+          { d1: 'B' }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const values = option.series[0].data.map((d: any) => d.value)
+    // |1| <= 1 → toFixed(4)，缺失值 → 0
+    expect(values).toEqual(['1.0000', 0])
+    await screen.unmount()
+  })
+
+  test('formats label percent or dash', async () => {
+    const ref = React.createRef<any>()
+    const { screen, instance } = await renderPie(
+      {
+        data: [
+          { d1: 'A', v6: 1 },
+          { d1: 'B', v6: 3 }
+        ],
+        dimension: [{ fieldKey: 'd1', fieldName: '日期' }],
+        valueList: [{ fieldKey: 'v6', fieldName: '占比' }]
+      },
+      ref
+    )
+    const option = instance.getOption()
+    const formatter = option.series[0].label.formatter
+    expect(formatter({ value: 1 })).toBe('25%') // 1/4*100 = 25
+    expect(formatter({ value: 0 })).toBe('--%')
     await screen.unmount()
   })
 })

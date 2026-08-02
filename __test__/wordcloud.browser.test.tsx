@@ -185,6 +185,99 @@ describe('testing <Wordcloud /> chart', () => {
 
   })
 
+  // ===== 以下为新增测试，用于提高 Wordcloud 组件覆盖率 =====
+
+  test('renders nothing when data is empty', async () => {
+    const stop = vi.fn()
+    const screen = await render(
+      <ChartProvider>
+        <div style={{ width: 500, height: 500 }}>
+          <Wordcloud
+            context={ChartContext}
+            dimension={[{ fieldKey: 'd1', fieldName: '词' }]}
+            valueList={[{ fieldKey: 'v1', fieldName: '词频' }]}
+            wordcloudStop={stop}
+          />
+        </div>
+      </ChartProvider>
+    )
+    // data 为空时组件直接返回 null，不会触发绘制
+    await new Promise((r) => setTimeout(r, 300))
+    expect(stop).not.toHaveBeenCalled()
+    await screen.unmount()
+  })
+
+  test('renders nothing when dimension or valueList is empty', async () => {
+    const stop = vi.fn()
+    const screen = await render(
+      <ChartProvider data={[{ d1: '啤酒', v1: 100 }]}>
+        <div style={{ width: 500, height: 500 }}>
+          <Wordcloud
+            context={ChartContext}
+            dimension={[]}
+            valueList={[]}
+            wordcloudStop={stop}
+          />
+        </div>
+      </ChartProvider>
+    )
+    await new Promise((r) => setTimeout(r, 300))
+    expect(stop).not.toHaveBeenCalled()
+    await screen.unmount()
+  })
+
+  test('renders in bySort mode without colorList', async () => {
+    let done = false
+    const screen = await render(
+      <ChartProvider
+        data={[
+          { d1: '啤酒', v1: 100 },
+          { d1: '自营', v1: 50 },
+          { d1: '青岛', v1: 30 }
+        ]}
+      >
+        <div style={{ width: 800, height: 800 }}>
+          <Wordcloud
+            context={ChartContext}
+            dimension={[{ fieldKey: 'd1', fieldName: '词' }]}
+            valueList={[{ fieldKey: 'v1', fieldName: '词频' }]}
+            fontSizeMode="bySort"
+            wordcloudStop={() => {
+              done = true
+            }}
+          />
+        </div>
+      </ChartProvider>
+    )
+    await vi.waitFor(() => expect(done).toBe(true), { timeout: 5000 })
+    await screen.unmount()
+  })
+
+  test('renders with missing dimension values', async () => {
+    let done = false
+    const screen = await render(
+      <ChartProvider
+        data={[
+          { d1: '啤酒', v1: 100 },
+          { d1: '', v1: 50 }
+        ]}
+      >
+        <div style={{ width: 800, height: 800 }}>
+          <Wordcloud
+            context={ChartContext}
+            dimension={[{ fieldKey: 'd1', fieldName: '词' }]}
+            valueList={[{ fieldKey: 'v1', fieldName: '词频' }]}
+            wordcloudStop={() => {
+              done = true
+            }}
+          />
+        </div>
+      </ChartProvider>
+    )
+    await vi.waitFor(() => expect(done).toBe(true), { timeout: 5000 })
+    await screen.unmount()
+  })
+
   // const MyComponent: React.FC<{ onDone: () => void }> = ({ onDone }) => {
   //   const ref = useRef<any>(null)
   //   useEffect(() => {
