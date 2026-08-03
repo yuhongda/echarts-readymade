@@ -330,7 +330,7 @@ const valueList: Field[] = [
 
 ### Shared Raw Data
 
-> The raw data in <ChartProvider /> is shared, so you can use it in different chart components at the same time.
+> The raw data in ```<ChartProvider />``` is shared, so you can use it in different chart components at the same time.
 
 ```jsx
 import { ChartProvider, Line, Bar } from 'echarts-readymade'
