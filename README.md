@@ -25,6 +25,7 @@ English ｜ [简体中文](./README.zh-CN.md) ｜ 🤖 [AI Doc](https://chat.ope
 - 🌈 Easy to use
 - 🌟 Available components: `<Bar />` `<Line />` `<Pie />` `<Stack />` `<Scatter />` `<Wordcloud />` `<BarHorizontal />` `<Table />`
 - 🎁 Support `Comparative Dimension`, which means you can indicate another dimension field to compare base on one dimension.
+- 🔗 Multiple charts can share the same raw data
 - 💪 Typescript support
 
 ## Installation
@@ -346,6 +347,28 @@ import { ChartProvider, Line, Bar } from 'echarts-readymade'
 </ChartProvider>
 ```
 
+### setOption()
+
+> Here you can get all the echarts options already processed.
+>
+> That's the last chance you could change it. bro~
+>
+> echarts document: [https://echarts.apache.org/zh/option.html](https://echarts.apache.org/zh/option.html)
+
+```jsx
+<ChartProvider data={data}>
+  <Line 
+    dimension={dimensionForLine} 
+    valueList={valuesForLine}
+    setOption={(options) => {
+      console.log(options)
+      return options // Change & return it
+    }}
+  />
+</ChartProvider>
+```
+
+
 
 ## Options
 ###  `<ChartProvider />`
@@ -443,7 +466,7 @@ Base on [wordcloud2.js](https://github.com/timdream/wordcloud2.js)
 
 ## Q/A
 ### Q: How to get the instance of `echarts`?
-### A: Each chart component support forwarding `ref` down to `echarts-for-react` in order to get Echarts instance, you can do it like below:
+> Each chart component supports passing `ref` down to `echarts-for-react` in order to get Echarts instance, you can do it like below:
 
 ```jsx
 import { ChartProvider, Bar } from 'echarts-readymade'
