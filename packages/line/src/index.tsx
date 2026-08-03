@@ -211,13 +211,16 @@ export const Line = (props: LineChartProps) => {
         ..._chartOption.xAxis,
         data:
           xAxisData ||
-          (data &&
-            data.map((d) => {
-              const value = dimension && d[dimension?.[0]?.fieldKey]
-              if (value != null) {
-                return `${value}`
-              }
-            }))
+          (data && [
+            ...new Set(
+              data.map((d) => {
+                const value = dimension && d[dimension?.[0]?.fieldKey]
+                if (value != null) {
+                  return `${value}`
+                }
+              })
+            )
+          ])
       }
 
       if (

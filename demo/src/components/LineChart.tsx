@@ -21,6 +21,13 @@ export const LineChart: React.FC = () => {
       v5: 27.577454409512264
     },
     {
+      v6: 0.8982190959595345,
+      d1: '2021-01-31',
+      d2: '上海',
+      v4: 41.51820080195095,
+      v5: 21.872185824241658
+    },
+    {
       v6: 0.33504289914191104,
       d1: '2021-02-28',
       d2: '北京',
@@ -90,13 +97,6 @@ export const LineChart: React.FC = () => {
       d2: '上海',
       v4: 60.028318723339325,
       v5: 47.577454409512264
-    },
-    {
-      v6: 0.8982190959595345,
-      d1: '2021-01-31',
-      d2: '上海',
-      v4: 41.51820080195095,
-      v5: 21.872185824241658
     }
   ])
 
@@ -172,7 +172,7 @@ export const LineChart: React.FC = () => {
                   formatter: '{value}%'
                 }
               }
-            ],
+            ]
             // color: COLOR_LIST
           },
           theme: themeStore.value === 'light' ? 'light' : 'dark'
@@ -184,7 +184,12 @@ export const LineChart: React.FC = () => {
               context={ChartContext}
               dimension={dimension}
               valueList={valueList}
-              legendPosition={legendPosition as LegendPosition}            />
+              legendPosition={legendPosition as LegendPosition}
+              setOption={(options) => {
+                console.log('setOptions', options)
+                return options
+              }}
+            />
           </Col>
           <Col span={12}>
             <Line
