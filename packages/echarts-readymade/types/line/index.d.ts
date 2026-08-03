@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import type { LineChartProps } from '@echarts-readymade/line';
 export interface ILineChartProps extends Omit<LineChartProps, 'context'> {
 }

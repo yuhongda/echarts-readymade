@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import type { ReactNode } from 'react';
 import type { EChartsReactProps, EChartsOption } from 'echarts-for-react';
 export interface ChartContextValue<T = any> {

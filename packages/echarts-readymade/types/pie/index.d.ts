@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import type { PieChartProps } from '@echarts-readymade/pie';
 export interface IPieChartProps extends Omit<PieChartProps, 'context'> {
 }

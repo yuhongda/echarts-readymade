@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import type { ScatterChartProps } from '@echarts-readymade/scatter';
 export interface IScatterChartProps extends Omit<ScatterChartProps, 'context'> {
 }

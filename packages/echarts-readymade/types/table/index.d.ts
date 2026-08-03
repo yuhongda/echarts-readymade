@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import type { TableChartProps } from '@echarts-readymade/table';
 export interface ITableChartProps extends Omit<TableChartProps, 'context'> {
 }
