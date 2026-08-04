@@ -179,7 +179,6 @@ export const echartsOptionsBase: any = {
     itemHeight: 10,
     top: 30,
     left: 24,
-    selectedMode: false,
     textStyle: {
       padding: [2, 0, 0, 0]
     },
