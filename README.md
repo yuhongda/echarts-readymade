@@ -358,8 +358,8 @@ import { ChartProvider, Line, Bar } from 'echarts-readymade'
 ```jsx
 <ChartProvider data={data}>
   <Line 
-    dimension={dimensionForLine} 
-    valueList={valuesForLine}
+    dimension={dimension} 
+    valueList={values}
     setOption={(options) => {
       console.log(options)
       return options // Change & return it
