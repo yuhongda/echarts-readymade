@@ -4,6 +4,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "packageManager": "pnpm@11.21.0",
   "version": "1.0.0",
   "description": "A collection of echarts templates for React. Based on echarts-for-react",
   "repository": "https://yuhongda@github.com/yuhongda/echarts-readymade.git",
