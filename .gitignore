@@ -10,3 +10,5 @@ lib
 stats.html
 /.DS_Store
 /demo/dist
+__test__/.DS_Store
+demo/.DS_Store
